@@ -1,0 +1,1 @@
+participant_id,run_id,condition,environment_id,start_time_iso8601,end_time_iso8601,phase,phase_start_iso8601,phase_end_iso8601,complete_and_correct,interruption_or_failure,evidence_reference

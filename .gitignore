@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+runs/
+dist/
+.pytest_cache/
+local-settings.json

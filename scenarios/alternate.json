@@ -1,0 +1,9 @@
+{
+  "deadline_days": 7,
+  "quantity": 5,
+  "quotes": [
+    {"id": "crest", "supplier": "Crest Industrial", "unit_price": 105, "lead_days": 3},
+    {"id": "atlas", "supplier": "Atlas Supplies", "unit_price": 120, "lead_days": 7},
+    {"id": "beacon", "supplier": "Beacon Supply", "unit_price": 115, "lead_days": 10}
+  ]
+}
