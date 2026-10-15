@@ -4,7 +4,7 @@ Build one reliable, measurable office workflow and make the evidence easy for ju
 
 This is a strategy for improving the entry, not a prediction or guarantee of winning. Three normal-speed native runs—fixed timing, recorded contextual timing, and an alternate scenario—each completed 11/11 steps with correct saved outputs. Thirty-six automated tests pass. The alternate scenario puts Crest first at SGD 105 per unit and correctly changes the recommendation to Crest at SGD 525. The current scenario uses controlled local pages, not arbitrary websites.
 
-A 162.13-second video of the contextual run is recorded at 1× playback. Source is in the private [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). See [validation details](docs/VALIDATION.md) for evidence locations. The highest-value remaining work is a small honest human comparison and independent process telemetry: no human baseline was collected, No Sysmon capture was collected, and WMI access was denied. Those gaps directly affect evidence for the two 30% categories. The private organizer brief was not available for review.
+A 162.13-second video of the contextual run is recorded at 1× playback. Source is in the [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). See [validation details](docs/VALIDATION.md) for evidence locations. The highest-value remaining work is a small honest human comparison and independent process telemetry: no human baseline was collected, No Sysmon capture was collected, and WMI access was denied. Those gaps directly affect evidence for the two 30% categories. The private organizer brief was not available for review.
 
 ## Match effort to the rubric
 

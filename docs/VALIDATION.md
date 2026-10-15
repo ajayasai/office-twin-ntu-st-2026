@@ -35,11 +35,11 @@ Across the six documented Sheets development attempts, four passed and two faile
 - `runs/demo/office-twin-desktop-20261015-171812.mp4` is a continuous **162.13-second**, 1920×1200, 15 fps, real-time (1×) recording. It has identifying banners and no microphone audio. Capture starts before and ends after the workflow, so video length differs from run duration.
 - `docs/validation-results.json` contains selected measurements copied from the run summaries without local account paths or spreadsheet identifiers.
 
-Raw local evidence, the video, credentials, personal settings and the virtual environment are excluded from the source archive. Share selected evidence and the video separately after reviewing them. The private repository must be made accessible to judges before submission.
+Raw local evidence, the video, credentials, personal settings and the virtual environment are excluded from the source archive. Share selected evidence and the video separately after reviewing them. Repository and video access must be verified before submission.
 
 ## Automated verification and limits
 
-**36 unit tests passed** before packaging. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
+**41 unit tests passed** in the final suite, including five checks for the manual reference collector. The earlier suite contained 36 tests. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
 
 The passive WMI process-start collector returned **Access denied** on this host. No independent Sysmon export was collected. Controller action logs and process snapshots must not be presented as independent Sysmon evidence. Security and logging settings were not changed.
 

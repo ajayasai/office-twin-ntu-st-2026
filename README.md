@@ -2,9 +2,9 @@
 
 Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office worker: review local supplier quotes in **Chrome**, compare them in **Google Sheets**, and write a recommendation in **Notepad**. It performs a controlled, repeatable scenario through visible desktop input. It does not navigate or understand arbitrary websites.
 
-**Status:** three normal-speed native Chrome → Google Sheets → Notepad runs completed all **11/11 steps**: fixed timing, recorded contextual timing, and an alternate scenario. All saved-report and displayed-sheet checks passed. Independent read-only connector checks also verified actual formula source and values for the initial smoke test and the alternate scenario. The automated test suite passes **36 tests**. Excel/Word support is optional and untested here because licensed Office is unavailable.
+**Status:** three normal-speed native Chrome → Google Sheets → Notepad runs completed all **11/11 steps**: fixed timing, recorded contextual timing, and an alternate scenario. All saved-report and displayed-sheet checks passed. Independent read-only connector checks also verified actual formula source and values for the initial smoke test and the alternate scenario. The automated test suite passes **41 tests**. Excel/Word support is optional and untested here because licensed Office is unavailable.
 
-Source is in the private [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The local demonstration video is [162.13 seconds at 1× playback](runs/demo/office-twin-desktop-20261015-171812.mp4). Local runs and recordings are not assumed to be available through the source repository.
+Source is in the [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The local demonstration video is [162.13 seconds at 1× playback](runs/demo/office-twin-desktop-20261015-171812.mp4). Local runs and recordings are not assumed to be available through the source repository.
 
 | Verified normal-speed run | Evidence folder | Result |
 | --- | --- | --- |
@@ -78,7 +78,10 @@ If Sysmon is already installed and authorized for the test environment, export t
 - [Submission checklist](SUBMISSION.md)
 - [Paired benchmark and human-baseline protocol](docs/EVALUATION.md)
 - [Suggested demo storyboard](docs/DEMO.md)
+- [Manual reference collector and guide](docs/MANUAL_BASELINE.md)
 - [Manual baseline log template](docs/baseline-template.csv)
+- [Devpost project narrative](docs/DEVPOST_ENTRY.md)
+- [Narrated pitch script](docs/PITCH.md)
 - [Validation details](docs/VALIDATION.md)
 
 ## Provenance

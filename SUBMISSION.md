@@ -4,7 +4,7 @@
 
 Unchecked items below are required work or review points, not completed claims.
 
-The primary entry targets Chrome, Google Sheets, and Notepad. Three normal-speed native runs—fixed, recorded contextual, and alternate contextual—completed all 11/11 steps with correct saved outputs; 36 automated tests pass. The local 1× demonstration video is 162.13 seconds long. Independent connector reads verified the alternate scenario's actual formulas and values, including Crest at SGD 525. The optional Excel/Word path remains untested.
+The primary entry targets Chrome, Google Sheets, and Notepad. Three normal-speed native runs—fixed, recorded contextual, and alternate contextual—completed all 11/11 steps with correct saved outputs; 41 automated tests pass. The local 1× demonstration video is 162.13 seconds long. Independent connector reads verified the alternate scenario's actual formulas and values, including Crest at SGD 525. The optional Excel/Word path remains untested.
 
 No human baseline was collected. No Sysmon capture was collected, and WMI collection reported access denied. No private organizer brief was available for review. Preserve these limits in the submitted claims. Evidence locations are recorded in [validation details](docs/VALIDATION.md).
 
@@ -18,7 +18,7 @@ No human baseline was collected. No Sysmon capture was collected, and WMI collec
 
 ## Source and reproducibility
 
-- [x] Create the private [source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
+- [x] Create the [source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
 - [ ] Push the final reviewed source and documentation to the submission commit.
 - [ ] Install from the documented instructions on the evaluation setup.
 - [x] Record the tested machine, OS, application versions and primary display in [validation](docs/VALIDATION.md); document the [Sheet setup](docs/GOOGLE_SHEETS.md).
