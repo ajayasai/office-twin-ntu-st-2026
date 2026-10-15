@@ -1,0 +1,230 @@
+{
+  "collected_on": "2026-10-15",
+  "scope": "Selected fields from local run summaries. Not independent telemetry. No human reference data.",
+  "resource_scope": "Python controller CPU and sampled RSS only, not whole workload.",
+  "development_note": "Includes earlier failed attempts and different code, task, timing and capture conditions; not a fixed-version benchmark.",
+  "runs": [
+    {
+      "run_id": "20261015T085621Z-e5a89455",
+      "backend": "desktop",
+      "workflow": "notepad",
+      "timing": "contextual",
+      "seed": 42,
+      "scale": 1.0,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "completed",
+      "success": true,
+      "steps_completed": 7,
+      "steps_total": 7,
+      "wall_seconds": 89.54712519999975,
+      "controller_cpu_seconds": 18.078125,
+      "controller_peak_rss_bytes": 89022464,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true
+        },
+        "errors": [],
+        "workflow": "notepad",
+        "method": "Independent saved-file read; no reliance on controller action claims"
+      },
+      "independent_formula_readback_file_present": false,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T090304Z-558389e7",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "contextual",
+      "seed": 42,
+      "scale": 1.0,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "failed",
+      "success": false,
+      "steps_completed": 4,
+      "steps_total": 11,
+      "wall_seconds": 40.33023999999932,
+      "controller_cpu_seconds": 5.8125,
+      "controller_peak_rss_bytes": 83734528,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": null,
+      "independent_formula_readback_file_present": false,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T090739Z-a30f8a8b",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "contextual",
+      "seed": 42,
+      "scale": 0.15,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "failed",
+      "success": false,
+      "steps_completed": 7,
+      "steps_total": 11,
+      "wall_seconds": 37.26326830000016,
+      "controller_cpu_seconds": 5.359375,
+      "controller_peak_rss_bytes": 74035200,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": null,
+      "independent_formula_readback_file_present": false,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T091003Z-1a9e2fd5",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "contextual",
+      "seed": 42,
+      "scale": 0.15,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "completed",
+      "success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "wall_seconds": 58.332549100000506,
+      "controller_cpu_seconds": 9.78125,
+      "controller_peak_rss_bytes": 83890176,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "independent_formula_readback_file_present": true,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T091539Z-3d7a2a48",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "fixed",
+      "seed": 42,
+      "scale": 1.0,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "completed",
+      "success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "wall_seconds": 136.82229869999992,
+      "controller_cpu_seconds": 14.859375,
+      "controller_peak_rss_bytes": 83668992,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "independent_formula_readback_file_present": false,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T091815Z-588afee5",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "contextual",
+      "seed": 73,
+      "scale": 1.0,
+      "scenario": "default",
+      "scenario_sha256": null,
+      "status": "completed",
+      "success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "wall_seconds": 158.83945889999995,
+      "controller_cpu_seconds": 18.078125,
+      "controller_peak_rss_bytes": 84205568,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": true,
+      "runtime_verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "independent_formula_readback_file_present": false,
+      "process_trace_available": false
+    },
+    {
+      "run_id": "20261015T092135Z-e43abfcb",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "timing": "contextual",
+      "seed": 101,
+      "scale": 1.0,
+      "scenario": "scenarios\\alternate.json",
+      "scenario_sha256": "1fee68616cb117758fa647119bcf59cf95ff5886cc4b5dffc074875b995a578d",
+      "status": "completed",
+      "success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "wall_seconds": 141.8067005999992,
+      "controller_cpu_seconds": 15.78125,
+      "controller_peak_rss_bytes": 84967424,
+      "sample_interval_seconds": 0.25,
+      "screen_capture_active": false,
+      "runtime_verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "independent_formula_readback_file_present": true,
+      "process_trace_available": false
+    }
+  ]
+}

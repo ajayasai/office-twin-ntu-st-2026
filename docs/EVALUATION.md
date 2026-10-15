@@ -1,6 +1,6 @@
 # Evaluation protocol
 
-The purpose is to measure correct task completion, timing, genuine application activity, and resource cost. The protocol is proposed by this team; it is not an official organizer benchmark. No numerical performance result is supplied here.
+The purpose is to measure correct task completion, timing, genuine application activity, and resource cost. The protocol is proposed by this team; it is not an official organizer benchmark. See [observed validation](VALIDATION.md) for the completed functional checks; the paired human comparison below is still outstanding.
 
 ## A paired task
 

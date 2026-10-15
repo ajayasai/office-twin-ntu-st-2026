@@ -4,7 +4,9 @@
 
 Unchecked items below are required work or review points, not completed claims.
 
-The primary entry targets Chrome, Google Sheets, and Notepad. Its eleven-step native smoke run completed with correct displayed values, independently verified formulas, and a saved-text check. Timing scale `0.15` accelerated that functional test; it does not establish human-like timing. The optional Excel/Word path remains untested. Preserve those distinctions in the submitted claims.
+The primary entry targets Chrome, Google Sheets, and Notepad. Three normal-speed native runs—fixed, recorded contextual, and alternate contextual—completed all 11/11 steps with correct saved outputs; 36 automated tests pass. The local 1× demonstration video is 162.13 seconds long. Independent connector reads verified the alternate scenario's actual formulas and values, including Crest at SGD 525. The optional Excel/Word path remains untested.
+
+No human baseline was collected. No Sysmon capture was collected, and WMI collection reported access denied. No private organizer brief was available for review. Preserve these limits in the submitted claims. Evidence locations are recorded in [validation details](docs/VALIDATION.md).
 
 ## Team and event requirements
 
@@ -16,11 +18,12 @@ The primary entry targets Chrome, Google Sheets, and Notepad. Its eleven-step na
 
 ## Source and reproducibility
 
-- [ ] Put the complete source in the GitHub repository used for submission.
+- [x] Create the private [source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
+- [ ] Push the final reviewed source and documentation to the submission commit.
 - [ ] Install from the documented instructions on the evaluation setup.
-- [ ] Record Windows, Python, Chrome and Notepad versions, machine specifications, display settings, and Google Sheets setup. Record Office versions only if that optional path is demonstrated.
+- [x] Record the tested machine, OS, application versions and primary display in [validation](docs/VALIDATION.md); document the [Sheet setup](docs/GOOGLE_SHEETS.md).
 - [ ] Run the exact documented native Sheets command and check the cloud sheet plus saved text report manually.
-- [ ] Record all attempted runs, including partial completions and failures.
+- [x] Preserve all seven recorded native development attempts, including two failed Sheets attempts, in the local evidence history.
 - [ ] Remove secrets and personal data; use only synthetic business fixtures in shared artifacts.
 - [ ] Check that judges can access the repository and required files without requesting additional permissions.
 
@@ -37,10 +40,11 @@ The primary entry targets Chrome, Google Sheets, and Notepad. Its eleven-step na
 
 ## Documentation and video
 
-- [ ] Update README status to reflect only the tests and demonstrations actually completed.
-- [ ] Explain the architecture, workflow, timing model, error handling, and evaluation procedure.
-- [ ] Disclose AI assistance, third-party code, and human review accurately.
-- [ ] Record and upload a demonstration video. No video is provided or implied by this repository's planning documents.
+- [x] Update README status with completed runs, tests, recording, and current limitations.
+- [x] Explain the [architecture, workflow, timing and error handling](docs/ARCHITECTURE.md), plus the [evaluation procedure](docs/EVALUATION.md).
+- [x] Disclose AI assistance and dependency provenance; state that student review has not been recorded.
+- [x] Record the native contextual demonstration: [local 1× video](runs/demo/office-twin-desktop-20261015-171812.mp4), 162.13 seconds.
+- [ ] Upload the reviewed video to an organizer-accepted destination and verify judge access.
 - [ ] Use the suggested [three-minute storyboard](docs/DEMO.md), adjusting to any organizer-specified limit.
 - [ ] Label speed changes, edited sequences, simulated material, and recorded-versus-live demonstrations.
 - [ ] Check video playback, readable text, sound, and link accessibility.
@@ -55,9 +59,9 @@ The primary entry targets Chrome, Google Sheets, and Notepad. Its eleven-step na
 
 **Approach:** Perform one controlled office task through visible Chrome and Notepad input, record execution evidence, and compare observed behavior with documented baselines. The agent uses local synthetic supplier pages and an explicitly supplied test Sheet. Only describe capabilities that the submitted version has demonstrated; do not claim arbitrary-site understanding.
 
-**What we measured:** Replace this paragraph with actual run counts, completion results, timing comparisons, resource measurements, and the scope of any independently collected telemetry. If a measurement was not collected, say so. Do not fill missing values with estimates presented as results.
+**What we measured:** Three normal-speed native runs completed 11/11 steps each: fixed timing (`20261015T091539Z-3d7a2a48`), recorded contextual timing (`20261015T091815Z-588afee5`), and alternate contextual timing (`20261015T092135Z-e43abfcb`). Saved text and displayed-sheet checks passed. A read-only connector query independently confirmed the alternate scenario's formula source and values. Thirty-six automated tests pass. Report resource values from the matching run reports with their actual process scope; do not infer missing telemetry or human similarity from successful completion.
 
-**Limitations:** Record the supported machine/application setup, brittle steps, unresolved failures, telemetry coverage, baseline sample size, and any untested conditions.
+**Limitations:** The workflow uses controlled local pages, three synthetic suppliers, Google Sheets in Chrome, and Notepad. It does not establish arbitrary-site autonomy. No human baseline or Sysmon capture was collected; WMI process-start collection was unavailable because access was denied. Excel/Word remains untested, and private organizer requirements were unavailable for review. Keep earlier failed attempts in the evidence history.
 
 ## Final submission check
 

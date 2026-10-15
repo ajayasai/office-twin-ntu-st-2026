@@ -2,7 +2,17 @@
 
 Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office worker: review local supplier quotes in **Chrome**, compare them in **Google Sheets**, and write a recommendation in **Notepad**. It performs a controlled, repeatable scenario through visible desktop input. It does not navigate or understand arbitrary websites.
 
-**Status:** an eleven-step native Chrome → Google Sheets → Notepad smoke run completed, with correct sheet values and independently checked formula source plus the saved text report. That run used timing scale `0.15` to accelerate functional testing; it is not a human-realism benchmark. A smaller seven-step Chrome-and-Notepad run also completed. Excel/Word support is optional and untested here because licensed Office is unavailable. Human-baseline comparisons, independent telemetry benchmarks, and a demonstration video remain outstanding. Simulation success does not establish native execution or human resemblance.
+**Status:** three normal-speed native Chrome → Google Sheets → Notepad runs completed all **11/11 steps**: fixed timing, recorded contextual timing, and an alternate scenario. All saved-report and displayed-sheet checks passed. Independent read-only connector checks also verified actual formula source and values for the initial smoke test and the alternate scenario. The automated test suite passes **36 tests**. Excel/Word support is optional and untested here because licensed Office is unavailable.
+
+Source is in the private [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The local demonstration video is [162.13 seconds at 1× playback](runs/demo/office-twin-desktop-20261015-171812.mp4). Local runs and recordings are not assumed to be available through the source repository.
+
+| Verified normal-speed run | Evidence folder | Result |
+| --- | --- | --- |
+| Fixed timing, default scenario | `runs/20261015T091539Z-3d7a2a48` | 11/11 steps; artifact checks passed |
+| Contextual timing, recorded default scenario | `runs/demo/20261015T091815Z-588afee5` | 11/11 steps; artifact checks passed |
+| Contextual timing, alternate scenario | `runs/20261015T092135Z-e43abfcb` | 11/11 steps; artifact checks passed; Crest selected at SGD 525 |
+
+No human baseline was collected. No Sysmon capture was collected, and WMI process-start collection reported access denied. These runs establish task execution and output correctness, not human indistinguishability or validated process-telemetry authenticity. No private organizer brief was available for review. See [validation details](docs/VALIDATION.md).
 
 ## Run
 
@@ -34,7 +44,7 @@ Run the primary desktop scenario on Windows with Chrome already signed in to the
 For a timing comparison, repeat with a separate output directory:
 
 ```powershell
-.\.venv\Scripts\python.exe -m office_twin --mode desktop --workflow sheets --timing fixed --seed 42 --sheet-url "PASTE_DEDICATED_SHEET_EDIT_URL" --output runs-fixed
+.\.venv\Scripts\python.exe -m office_twin --mode desktop --workflow sheets --timing fixed --seed 42 --sheet-url "PASTE_DEDICATED_SHEET_EDIT_URL" --output runs/fixed
 ```
 
 Use `--workflow notepad` for the smaller Chrome-and-Notepad task, which needs no spreadsheet account. Use `--workflow office` only on a machine with installed, licensed Excel and Word; that path has not been validated here. See the [Google Sheets setup guide](docs/GOOGLE_SHEETS.md) before a Sheets run.
@@ -63,11 +73,13 @@ If Sysmon is already installed and authorized for the test environment, export t
 
 ## Project documents
 
+- [Architecture and AI/dependency provenance](docs/ARCHITECTURE.md)
 - [Winning strategy and schedule](STRATEGY.md)
 - [Submission checklist](SUBMISSION.md)
 - [Paired benchmark and human-baseline protocol](docs/EVALUATION.md)
 - [Suggested demo storyboard](docs/DEMO.md)
 - [Manual baseline log template](docs/baseline-template.csv)
+- [Validation details](docs/VALIDATION.md)
 
 ## Provenance
 

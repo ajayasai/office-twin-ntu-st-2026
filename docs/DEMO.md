@@ -1,6 +1,8 @@
 # Suggested demonstration storyboard
 
-This is a suggested **three-minute** format, not a published competition time limit. Confirm any private organizer instructions. No video has been created by this document.
+This is a suggested **three-minute** pitch format, not a published competition time limit. Confirm any private organizer instructions.
+
+A real native run has now been recorded: `runs/demo/office-twin-desktop-20261015-171812.mp4` (162.13 seconds, 1920×1200, 15 fps, continuous 1× playback, no microphone). Its matching run is `runs/demo/20261015T091815Z-588afee5`, which completed 11/11 steps. A stable copy is included in the local `dist` review package. This is a working technical demo; the storyboard below remains the proposed narrated competition pitch. See [observed validation](VALIDATION.md) for evidence and limits.
 
 | Time | Show | Say or establish |
 | --- | --- | --- |

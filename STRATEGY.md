@@ -2,7 +2,9 @@
 
 Build one reliable, measurable office workflow and make the evidence easy for judges to inspect. The primary workflow is **Chrome local supplier brief → Google Sheets comparison → Notepad recommendation**. A clear business task connects the application activity, timing decisions, and final artifacts. Excel/Word remains an optional, untested path for a licensed Office machine.
 
-This is a strategy for improving the entry, not a prediction or guarantee of winning. An eleven-step native Sheets workflow completed with correct displayed values, independently verified formulas, and a correct saved report. This was an accelerated functional smoke test at timing scale `0.15`, not a human-realism benchmark. The current scenario uses controlled local pages, not arbitrary websites. Competition comparisons still require collection on the submission machine.
+This is a strategy for improving the entry, not a prediction or guarantee of winning. Three normal-speed native runs—fixed timing, recorded contextual timing, and an alternate scenario—each completed 11/11 steps with correct saved outputs. Thirty-six automated tests pass. The alternate scenario puts Crest first at SGD 105 per unit and correctly changes the recommendation to Crest at SGD 525. The current scenario uses controlled local pages, not arbitrary websites.
+
+A 162.13-second video of the contextual run is recorded at 1× playback. Source is in the private [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). See [validation details](docs/VALIDATION.md) for evidence locations. The highest-value remaining work is a small honest human comparison and independent process telemetry: no human baseline was collected, No Sysmon capture was collected, and WMI access was denied. Those gaps directly affect evidence for the two 30% categories. The private organizer brief was not available for review.
 
 ## Match effort to the rubric
 
@@ -21,7 +23,7 @@ The overview labels efficiency “Primary” and complexity “Secondary” with
 
 The minimum credible demonstration has one local synthetic supplier dataset, a reproducible initial desktop state, one dedicated comparison Sheet, one saved text recommendation, and a separate evidence folder. Add features only after the complete task runs reliably. Confirm how organizers treat web spreadsheets: their process activity is Chrome activity, not Excel activity.
 
-Useful polish includes progress visibility, a clear stop control, helpful failure messages, and retry behavior that does not corrupt output. Extra personas, many unrelated tasks, and elaborate dashboards should wait until the core workflow and evidence are complete.
+The control panel, stop behavior, result reporting, scenario changes, and native recording are implemented. Prioritize evidence quality, reproducibility on the judging setup, and concise explanation over extra personas, many unrelated tasks, or elaborate dashboards.
 
 Keep independent telemetry intact. The goal is to generate genuine application activity and describe its limits, not to fabricate logs, conceal the controller, or alter process lineage. A visible difference from a human trace is a result to explain.
 
@@ -31,11 +33,11 @@ The official deadline is **Sunday 18 October at 00:00**, which means Saturday ni
 
 | Date | Focus | Exit condition |
 | --- | --- | --- |
-| Thu 15 Oct | Confirm the 3–5-person team and private brief; finish the fixture, orchestration, and one native vertical slice. | The Chrome-to-Sheets-to-Notepad attempt produces inspectable artifacts, or its specific blockers are recorded. |
-| Fri 16 Oct, first half | Stabilize the native workflow and capture configuration. | At least three consecutive correct runs from a documented starting state; no result claimed before this is observed. |
+| Thu 15 Oct | Native implementation and recording completed; confirm the 3–5-person team and obtain the private brief. | Three normal-speed runs passed; retain the raw evidence and record unresolved organizer requirements. |
+| Fri 16 Oct, first half | Reproduce the workflow on the judging setup and resolve authorized telemetry availability. | The documented setup works and telemetry coverage is reported accurately, including any unavailable sources. |
 | Fri 16 Oct, second half | Collect consented manual baselines, fixed-delay runs, and contextual-delay runs. | Comparable raw evidence, documented failures, and initial metrics; freeze feature scope. |
 | Sat 17 Oct, morning | Reproduce on a clean setup, fix blockers, and validate calculations and recommendation text. | Installation and end-to-end instructions match observed behavior. |
-| Sat 17 Oct, afternoon | Record the demo, finish documentation, and prepare the Devpost entry. | All links, outputs, limitations, and provenance are ready for review. |
+| Sat 17 Oct, afternoon | Review the recorded demo, finish documentation, and prepare the Devpost entry. | All links, outputs, limitations, and provenance are ready for review. |
 | Sat 17 Oct, by 21:00 | Submit, reopen the submission, and check access. | The actual submitted entry contains accessible source, documentation, and video. |
 
 If native automation remains blocked on Friday, reduce task breadth and show only the portions that run. A labelled simulation can explain the architecture, but it cannot substitute for claims of native office activity. Never use a polished video to imply unsupported behavior.

@@ -49,4 +49,8 @@ For a competition recording, show the real Chrome grid, formula bar, cloud-save 
 
 ## Validation status
 
-A native Chrome → Google Sheets → Notepad smoke run completed all eleven steps on 15 October 2026. The displayed inputs/results and saved report passed runtime checks. A separate read-only connector query confirmed the six actual formulas and their expected results. The run used timing scale `0.15`, so it establishes functional execution, not realistic human timing. Its evidence is in run `20261015T091003Z-1a9e2fd5`, including `sheets-independent-verification.json`. Later worksheet-binding and range-clearing improvements require their own rerun before being described as tested.
+After the initial accelerated smoke test, the worksheet-binding and range-clearing version completed three normal-speed native runs on 15 October 2026: fixed timing (`20261015T091539Z-3d7a2a48`), recorded contextual timing (`20261015T091815Z-588afee5`), and alternate contextual timing (`20261015T092135Z-e43abfcb`). All eleven steps and artifact checks passed in each run.
+
+The alternate scenario changes the first row to Crest at SGD 105 per unit, correctly calculates SGD 525, and changes the recommendation to Crest. A separate read-only connector query confirmed all six actual formulas and the computed values; its result is saved as `sheets-independent-verification.json` in that run folder. The recorded contextual video is 162.13 seconds at 1× playback. Thirty-six automated tests pass.
+
+No human baseline was collected. No Sysmon capture was collected and WMI process-start collection reported access denied, so functional success does not establish human-like timing or independent process-telemetry authenticity. See [validation details](VALIDATION.md).
