@@ -33,13 +33,16 @@ Across the six documented Sheets development attempts, four passed and two faile
 - `runs/comparison.html` compares all seven native attempts with failures, task scopes, speed scales and capture differences preserved.
 - `runs/20261015T091003Z-1a9e2fd5/sheets-independent-verification.json` records the independent default-scenario formula check. `runs/20261015T092135Z-e43abfcb/sheets-independent-verification.json` confirms all six alternate-scenario formulas, results of 525/600/575 and eligibility of YES/YES/NO. Separate connector reads verify saved content, not every UI action.
 - `runs/demo/office-twin-desktop-20261015-171812.mp4` is a continuous **162.13-second**, 1920×1200, 15 fps, real-time (1×) recording. It has identifying banners and no microphone audio. Capture starts before and ends after the workflow, so video length differs from run duration.
+- `dist/office-twin-submission.mp4` is the completed **180.133333-second** narrated edit, with an eight-second introduction, the full continuous 162.133-second source recording at 1×, and a ten-second closing card. It is 1920×1200 with H.264 video and AAC audio. Microsoft Zira Desktop supplies synthetic narration; captions identify evidence limits and the separately validated alternate scenario. The edit does not add another native test run.
 - `docs/validation-results.json` contains selected measurements copied from the run summaries without local account paths or spreadsheet identifiers.
 
-Raw local evidence, the video, credentials, personal settings and the virtual environment are excluded from the source archive. Share selected evidence and the video separately after reviewing them. Repository and video access must be verified before submission.
+Raw local evidence, videos, credentials, personal settings and the virtual environment are excluded from the source archive. The [source repository is public](https://github.com/ajayasai/office-twin-ntu-st-2026). The narrated [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in YouTube Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page. The Devpost entry remains a draft: Ajay is the team leader, and final submission is held until two teammates have joined.
 
 ## Automated verification and limits
 
 **41 unit tests passed** in the final suite, including five checks for the manual reference collector. The earlier suite contained 36 tests. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
+
+The [manual reference collector](MANUAL_BASELINE.md) is implemented and tested. It records explicit participant start/stop, optional phase markers, and resource snapshots for selected PIDs; it records no task keystrokes, pointer activity or screen content. Outcomes remain participant-reported and unverified. Collector tests are not human reference observations, and no manual run has been collected.
 
 The passive WMI process-start collector returned **Access denied** on this host. No independent Sysmon export was collected. Controller action logs and process snapshots must not be presented as independent Sysmon evidence. Security and logging settings were not changed.
 

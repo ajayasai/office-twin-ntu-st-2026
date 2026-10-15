@@ -1,72 +1,34 @@
 # Submission checklist
 
-**Target:** 17 October 2026, 21:00 SGT. **Official cutoff:** 18 October 2026, 00:00 SGT. Do not interpret midnight as the end of Sunday. [Schedule](https://ntu-x-st-engineering-hackathon.devpost.com/details/dates)
+**Status: draft; project details saved, judges' file upload being prepared.** Ajay is the team leader. Two additional teammates must join before final submission; Siddharth has been invited but has not joined.
 
-Unchecked items below are required work or review points, not completed claims.
+**Team requirement:** 3–5 eligible NTU students. **Target submission:** 17 October 2026, 21:00 SGT. **Official cutoff:** 18 October 2026, 00:00 SGT, immediately after Saturday ends. [Official schedule](https://ntu-x-st-engineering-hackathon.devpost.com/details/dates)
 
-The primary entry targets Chrome, Google Sheets, and Notepad. Three normal-speed native runs—fixed, recorded contextual, and alternate contextual—completed all 11/11 steps with correct saved outputs; 41 automated tests pass. The local 1× demonstration video is 162.13 seconds long. Independent connector reads verified the alternate scenario's actual formulas and values, including Crest at SGD 525. The optional Excel/Word path remains untested.
+## Ready
 
-No human baseline was collected. No Sysmon capture was collected, and WMI collection reported access denied. No private organizer brief was available for review. Preserve these limits in the submitted claims. Evidence locations are recorded in [validation details](docs/VALIDATION.md).
+- [x] Public [GitHub source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
+- [x] Three latest native Chrome → Google Sheets → Notepad runs completed all 11 steps at timing scale 1; 41 automated tests pass.
+- [x] Saved text and displayed-sheet checks passed. Separate connector readback verified the alternate scenario's six formulas and Crest recommendation at SGD 525.
+- [x] [Validation history](docs/VALIDATION.md), [architecture and provenance](docs/ARCHITECTURE.md), [setup instructions](docs/GOOGLE_SHEETS.md), and [Devpost narrative](docs/DEVPOST_ENTRY.md) are prepared.
+- [x] Final narrated video is 180.13 seconds, preserving the continuous 162.13-second source run at 1× between an eight-second introduction and ten-second closing card.
+- [x] [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page.
 
-## Team and event requirements
+The local final video is `dist/office-twin-submission.mp4`. Raw run evidence and videos are excluded from the source archive. The public video and repository links above are the submission links.
 
-- [ ] Confirm 3–5 eligible NTU students and ensure each required team member is included in the entry.
-- [ ] Read the private challenge brief and reconcile it with the public requirements.
-- [ ] Have a team member clarify organizer-specific AI/pre-existing-code policy and record the answer.
-- [ ] Confirm organizer acceptance of Google Sheets and a plain-text recommendation for this workflow.
-- [ ] Review any licensing and source-disclosure obligations for dependencies or borrowed code.
+## Before final submission
 
-## Source and reproducibility
+- [ ] Confirm two teammates have joined and the entry lists 3–5 eligible NTU students, with Ajay as team leader. An invitation alone is not a completed join.
+- [x] Verify the saved Devpost title, narrative, technology tags, repository URL, image, and embedded video in the project preview. Ajay's contribution reads "Team leader and project owner."
+- [ ] Upload the review ZIP and save the judges' GitHub field, then verify the completed draft.
+- [x] Verify watch-page playback. The local edit has readable captions and AAC narration; measured audio has no clipping.
+- [ ] Push the final reviewed documentation and source, then verify the submission links and evidence descriptions.
+- [ ] Submit after the required teammates have joined, by the target time above.
+- [ ] Reopen the entry and confirm its submitted status, team membership and links; preserve the submitted commit and evidence set.
 
-- [x] Create the [source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
-- [ ] Push the final reviewed source and documentation to the submission commit.
-- [ ] Install from the documented instructions on the evaluation setup.
-- [x] Record the tested machine, OS, application versions and primary display in [validation](docs/VALIDATION.md); document the [Sheet setup](docs/GOOGLE_SHEETS.md).
-- [ ] Run the exact documented native Sheets command and check the cloud sheet plus saved text report manually.
-- [x] Preserve all seven recorded native development attempts, including two failed Sheets attempts, in the local evidence history.
-- [ ] Remove secrets and personal data; use only synthetic business fixtures in shared artifacts.
-- [ ] Check that judges can access the repository and required files without requesting additional permissions.
+## Claims to preserve
 
-## Evidence
+The demonstrated task is a controlled, scenario-driven workflow, not arbitrary website understanding. Four of six documented Sheets development attempts completed; two earlier failures and their fixes remain in the evidence history. The three latest runs differ in seed, scenario and recording setup, so their durations are not a controlled efficiency comparison.
 
-- [ ] Keep simulation outputs explicitly separate from real desktop evidence.
-- [ ] Include the real Google Sheet and saved text recommendation whose values agree; verify formulas separately from displayed values.
-- [ ] Describe observed Chrome/Notepad telemetry accurately, without presenting browser activity as Excel/Word activity.
-- [ ] Include anonymized agent logs; label them self-reported.
-- [ ] Include independent Windows telemetry only if actually collected, with capture scope and configuration documented.
-- [ ] Include consented manual baselines only if performed; otherwise state that no human comparison was collected.
-- [ ] Report timing and resource metrics with units, sampling interval, process scope, run count, and failure count.
-- [ ] Explain observed differences and limitations without claiming indistinguishability.
+No human baseline or Sysmon trace was collected; WMI process-start collection returned Access denied. Resource figures cover the Python controller, not the full application workload. The manual collector is implemented, but its tests are not human reference runs. Excel/Word support remains untested. AI assistance and synthetic narration are disclosed.
 
-## Documentation and video
-
-- [x] Update README status with completed runs, tests, recording, and current limitations.
-- [x] Explain the [architecture, workflow, timing and error handling](docs/ARCHITECTURE.md), plus the [evaluation procedure](docs/EVALUATION.md).
-- [x] Disclose AI assistance and dependency provenance; state that student review has not been recorded.
-- [x] Record the native contextual demonstration: [local 1× video](runs/demo/office-twin-desktop-20261015-171812.mp4), 162.13 seconds.
-- [ ] Upload the reviewed video to an organizer-accepted destination and verify judge access.
-- [ ] Use the suggested [three-minute storyboard](docs/DEMO.md), adjusting to any organizer-specified limit.
-- [ ] Label speed changes, edited sequences, simulated material, and recorded-versus-live demonstrations.
-- [ ] Check video playback, readable text, sound, and link accessibility.
-
-## Devpost entry draft
-
-**Project name:** Office Twin
-
-**One-line description:** A synthetic office worker that turns local supplier quotes into a Google Sheets comparison and a Notepad recommendation, with measurable desktop activity and timing.
-
-**Problem:** Desktop-agent demonstrations can show task completion while leaving the resulting system activity, timing, and computing cost unexamined.
-
-**Approach:** Perform one controlled office task through visible Chrome and Notepad input, record execution evidence, and compare observed behavior with documented baselines. The agent uses local synthetic supplier pages and an explicitly supplied test Sheet. Only describe capabilities that the submitted version has demonstrated; do not claim arbitrary-site understanding.
-
-**What we measured:** Three normal-speed native runs completed 11/11 steps each: fixed timing (`20261015T091539Z-3d7a2a48`), recorded contextual timing (`20261015T091815Z-588afee5`), and alternate contextual timing (`20261015T092135Z-e43abfcb`). Saved text and displayed-sheet checks passed. A read-only connector query independently confirmed the alternate scenario's formula source and values. Thirty-six automated tests pass. Report resource values from the matching run reports with their actual process scope; do not infer missing telemetry or human similarity from successful completion.
-
-**Limitations:** The workflow uses controlled local pages, three synthetic suppliers, Google Sheets in Chrome, and Notepad. It does not establish arbitrary-site autonomy. No human baseline or Sysmon capture was collected; WMI process-start collection was unavailable because access was denied. Excel/Word remains untested, and private organizer requirements were unavailable for review. Keep earlier failed attempts in the evidence history.
-
-## Final submission check
-
-- [ ] Add the complete GitHub source link, documentation, and video required by the [official overview](https://ntu-x-st-engineering-hackathon.devpost.com/).
-- [ ] Have another teammate follow every link and compare the entry's claims against the evidence.
-- [ ] Submit by 21:00 SGT on 17 October.
-- [ ] Reopen the submitted entry and verify the final state and team membership.
-- [ ] Preserve the submitted commit and evidence set so the team can reproduce and explain it during judging.
+No private organizer brief has been supplied. Apply any additional instructions if the team later provides one; no special approval requirement for Google Sheets or AI assistance is inferred from the public rules.

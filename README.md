@@ -4,7 +4,9 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 
 **Status:** three normal-speed native Chrome → Google Sheets → Notepad runs completed all **11/11 steps**: fixed timing, recorded contextual timing, and an alternate scenario. All saved-report and displayed-sheet checks passed. Independent read-only connector checks also verified actual formula source and values for the initial smoke test and the alternate scenario. The automated test suite passes **41 tests**. Excel/Word support is optional and untested here because licensed Office is unavailable.
 
-Source is in the [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The local demonstration video is [162.13 seconds at 1× playback](runs/demo/office-twin-desktop-20261015-171812.mp4). Local runs and recordings are not assumed to be available through the source repository.
+Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The completed narrated submission video is **180.13 seconds**: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. The local file is `dist/office-twin-submission.mp4`. The [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in YouTube Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page. Raw runs and video files are excluded from the source repository.
+
+**Submission status:** draft. Ajay is the team leader; final submission is held until two teammates have joined.
 
 | Verified normal-speed run | Evidence folder | Result |
 | --- | --- | --- |
@@ -67,6 +69,7 @@ Use application state and saved content to determine task success. A log entry s
 - **Native evidence** includes the real Google Sheet, its UI readback, the saved text report, a screen recording, and independently collected Windows telemetry where available. Browser-based Sheets activity does not create Excel process evidence.
 - **Resource measurements** must state their scope. Agent-process CPU/RAM alone excludes Chrome and Notepad, or Excel/Word when using the optional Office path.
 - **Human comparisons** require consented manual runs of the same task. Synthetic or automated traces must never be labelled human.
+- **Manual reference collector:** `tools/record_manual.py` records explicit task boundaries, optional participant markers and selected-process resources. It does not collect keystroke timings or independently verify human participation or task success. The tool is ready; no human reference runs have been collected. See the [collection guide](docs/MANUAL_BASELINE.md).
 - **Timing** is a testable model of pauses and activity, not proof of indistinguishability or a guarantee against automation detection.
 
 If Sysmon is already installed and authorized for the test environment, export the relevant records using the existing configuration. Do not disable security controls, alter logs, manipulate process ancestry, or change security logging settings to improve the result. State when an event type is unavailable under the current configuration.
