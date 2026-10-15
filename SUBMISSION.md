@@ -1,6 +1,6 @@
 # Submission checklist
 
-**Status: draft; project details saved, judges' file upload being prepared.** Ajay is the team leader. Two additional teammates must join before final submission; Siddharth has been invited but has not joined.
+**Status: draft, 4/5 Devpost steps saved; final submission intentionally held.** Ajay is the team leader. Two additional teammates must join before final submission; Siddharth has been invited but has not joined.
 
 **Team requirement:** 3–5 eligible NTU students. **Target submission:** 17 October 2026, 21:00 SGT. **Official cutoff:** 18 October 2026, 00:00 SGT, immediately after Saturday ends. [Official schedule](https://ntu-x-st-engineering-hackathon.devpost.com/details/dates)
 
@@ -19,9 +19,9 @@ The local final video is `dist/office-twin-submission.mp4`. Raw run evidence and
 
 - [ ] Confirm two teammates have joined and the entry lists 3–5 eligible NTU students, with Ajay as team leader. An invitation alone is not a completed join.
 - [x] Verify the saved Devpost title, narrative, technology tags, repository URL, image, and embedded video in the project preview. Ajay's contribution reads "Team leader and project owner."
-- [ ] Upload the review ZIP and save the judges' GitHub field, then verify the completed draft.
+- [x] Upload the review ZIP and save the judges' GitHub field; Devpost reports 4/5 steps complete.
 - [x] Verify watch-page playback. The local edit has readable captions and AAC narration; measured audio has no clipping.
-- [ ] Push the final reviewed documentation and source, then verify the submission links and evidence descriptions.
+- [x] Push the reviewed documentation and source; preserve the package commit and artifact hashes in `dist/manifest.json`.
 - [ ] Submit after the required teammates have joined, by the target time above.
 - [ ] Reopen the entry and confirm its submitted status, team membership and links; preserve the submitted commit and evidence set.
 
