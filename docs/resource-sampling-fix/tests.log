@@ -1,5 +1,5 @@
-<TEMP>\tmpf0ng8trw\export\benchmark.json
-<TEMP>\tmpf0ng8trw\export\BENCHMARK.md
+<TEMP>\tmpm_djrtml\export\benchmark.json
+<TEMP>\tmpm_djrtml\export\BENCHMARK.md
 CANARIES: before-native
 NATIVE VALIDATION: one fixed/contextual pair, normal timing
 CANARIES: after-native
@@ -157,6 +157,6 @@ test_scale_changes_only_duration (test_timing.TimingPolicyTests.test_scale_chang
 test_seed_reproduces_the_sequence_without_collapsing_variation (test_timing.TimingPolicyTests.test_seed_reproduces_the_sequence_without_collapsing_variation) ... ok
 
 ----------------------------------------------------------------------
-Ran 144 tests in 5.164s
+Ran 144 tests in 6.054s
 
 OK
