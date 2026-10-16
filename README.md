@@ -10,7 +10,7 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 
 Chrome, Notepad and Explorer stayed open throughout this validation. Their current identities are verified, while the historical parents of the warm main processes remain unresolved because those parents exited before tracing. Newly observed application child relationships are reported only where parent lifetime evidence resolves; application cohorts remain shared and nonexclusive. The [earlier start/stop-only capture](docs/process-events/README.md) retains its own 28/28 canary result, 120-test provenance and historical 0/33 focus bindings.
 
-The current suite and automatic timing checks are documented in the [human-informed timing evidence](docs/human-timing/README.md). A separate [fresh-environment installation check](docs/reproduction/README.md) reproduced the earlier frozen source with **85 tests** and two successful simulation plans on the same machine. It is not a second-machine native test.
+The current suite passes **172 automated tests**. Across five seeds, the new human-informed mean/median/p90 checks are all within **0.61%** of the supplied targets and closer than the legacy model; see [complete timing evidence](docs/human-timing/README.md). A separate [fresh-environment installation check](docs/reproduction/README.md) reproduced the earlier frozen source with **85 tests** and two successful simulation plans on the same machine. It is not a second-machine native test.
 
 The earlier [resource-sampling fix](docs/resource-sampling-fix/README.md) changed only `office_twin/evidence.py` among runtime modules at its 144-test checkpoint. Its 19/19 noninteractive integration checks remain separately scoped to the unchanged sampler and observer code. The new timing revision changes additional runtime modules; neither update reran the native benchmark. Benchmark and ETW results retain their historical source versions.
 
@@ -78,7 +78,7 @@ Run the safe simulation without opening native applications:
 
 This replays the 11-step Sheets plan without desktop input. `--scale 0` skips deliberate waits for a quick review; it is not a native timing measurement.
 
-Add `--timing human-informed` to select the aggregate-informed key-delay profile. Verify its scale-1 generated distribution without sleeping or using applications with ` .\.venv\Scripts\python.exe tools/verify_human_timing.py --output-dir runs/human-timing-check`. The [timing evidence page](docs/human-timing/README.md) explains targets and limits.
+Add `--timing human-informed` to select the aggregate-informed key-delay profile. Verify its scale-1 generated distribution without sleeping or using applications with `.\.venv\Scripts\python.exe tools/verify_human_timing.py --output-dir runs/human-timing-check`. The [timing evidence page](docs/human-timing/README.md) explains targets and limits.
 
 Run the primary desktop scenario on Windows with Chrome already signed in to the dedicated Google Sheet:
 

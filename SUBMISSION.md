@@ -2,6 +2,8 @@
 
 **Latest verified submission:** [judging and reproduction polish, 16 October 2026 at 21:19 SGT](#judging-review-upload-verified). Devpost showed **SUBMITTED — 5/5 steps done** with the `d0aebff` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
 
+**Human-informed timing revision prepared:** the optional key-delay model now uses the existing unassisted aggregate median/p90. All 172 software tests pass; five predefined seeds, 100,000 generated delays per policy/seed, pass all 15 target-statistic checks within 0.61% of the supplied mean/median/p90. [Model and verification](docs/human-timing/README.md). No new manual run, native office task, input capture or app restart was performed. The supplied human record and historical native evidence are unchanged. A subsequent verified-upload section will identify the replacement package; this paragraph records preparation only.
+
 ## Rundown supplement prepared — 16 October 2026 (SGT)
 
 The [new rundown evidence](docs/process-rundown/README.md) verifies 32/32 focus observations against three existing application identities, using actual before/after state records and exact independent OS snapshots. All 16 application starts inside the native windows have compatible parent identities: two Explorer → Chrome, ten Chrome → Chrome and four Explorer → Notepad. Thirteen have observed exits within the capture; three Chrome processes remain present in final rundown. The three warm main applications' original parents remain unavailable. Applications stayed open as requested.

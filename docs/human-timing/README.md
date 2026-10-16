@@ -14,7 +14,17 @@ Each draw is clipped to **5–2,000 ms** as an engineering safeguard. These boun
 
 The [verification program](../../tools/verify_human_timing.py) generates 100,000 requested key delays for each of five predefined seeds (211, 223, 227, 229, 233), for both legacy contextual and human-informed modes: **1,000,000 synthetic samples total**. It checks each human-informed seed's mean, median and p90 against a predefined 3% relative-error threshold, and checks that each target error is lower than the corresponding legacy error. Quantiles use linear interpolation at `(n - 1) * p`. No samples are labelled as recorded human keystrokes or delivered native input.
 
-See [all per-seed results and provenance](verification.json), [automated test log](tests.log) and [test-source hashes](test-provenance.json). The suite also checks preserved baseline hashes, unchanged legacy sequences, separate key streams, unit/scaling behavior, cancellation before dispatch, and routing through the existing text executor with native input replaced by test doubles. An 11-step Sheets plan check blocks native backend imports and performs no desktop input.
+**Result: all five seeds pass; all 15 mean/median/p90 checks are within 0.61% of the supplied targets and closer than the corresponding legacy-policy statistics. All 172 software tests pass** (9.841 seconds reported by unittest), from clean source `db808d703af3ae146c8a089e8a4dc9497b0d89ae`.
+
+| Statistic | Supplied human aggregate | Legacy contextual generated range | Human-informed generated range |
+| --- | ---: | ---: | ---: |
+| Mean | 200 ms | 104.525–105.006 ms | 198.797–199.704 ms |
+| Median | 170 ms | 96.947–97.452 ms | 169.442–169.920 ms |
+| p90 | 350 ms | 154.371–155.554 ms | 349.104–351.707 ms |
+
+Ranges span the five predefined seeds, not confidence intervals. Both model columns are generated requested delays, not the historical native benchmark's measured controller waits.
+
+See [all per-seed results and provenance](verification.json), [automated test log](tests.log) and [test-source hashes](test-provenance.json). The suite also checks preserved baseline hashes, unchanged legacy sequences, separate key streams, unit/scaling behavior, cancellation before dispatch, and routing through the existing text executor with native input replaced by test doubles. An 11-step Sheets plan test blocks native backend imports. A separate [CLI plan check](plan-check.json) completed 11/11 plan steps at scale 0, explicitly reporting `native_verified: false`; neither performs desktop input.
 
 ## Reproduce without touching applications
 

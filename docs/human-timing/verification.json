@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "kind": "offline-synthetic-key-timing-verification",
+  "generated_utc": "2026-10-16T13:34:11+00:00",
+  "passed": true,
+  "checks": {
+    "reference_hash_and_aggregate_targets_verified": true,
+    "model_metadata_matches_reference_and_scope": true,
+    "all_predeclared_seed_checks_passed": true,
+    "source_bytes_unchanged_during_verification": true
+  },
+  "source_files_sha256": {
+    "office_twin/timing.py": "57f73473692d8ed5f4b182893fb17a90bc666765d0fb5af34860819aac9322a0",
+    "tools/verify_human_timing.py": "e6a5f902a49453c9d669feea8f87e3a5cc31b67ee8a436a7abaacfa76b34488d"
+  },
+  "reference": {
+    "path": "docs/human-baseline/aggregate.json",
+    "sha256": "a18df6f37bb963db97acd371ccc7d2991ca746d9d300c69dbe7b3b3b2aba5976",
+    "classification": "participant-confirmed unassisted human measurement aggregates",
+    "targets_seconds": {
+      "mean": 0.2,
+      "median": 0.17,
+      "p90": 0.35
+    },
+    "independently_verified": false,
+    "raw_input_event_logs_supplied": false,
+    "fitted_metrics": [
+      "median",
+      "p90"
+    ],
+    "held_out_aggregate_check": "mean"
+  },
+  "python_version": "3.14.2",
+  "protocol": {
+    "seeds": [
+      211,
+      223,
+      227,
+      229,
+      233
+    ],
+    "modes": [
+      "contextual",
+      "human-informed"
+    ],
+    "samples_per_seed_per_mode": 100000,
+    "total_generated_key_delay_samples": 1000000,
+    "scale": 1.0,
+    "units_per_sample": 1,
+    "draw_kind": "key",
+    "absolute_relative_error_limit": 0.03,
+    "required_comparison": "Each human-informed mean, median and p90 must be within 3% of its target and strictly closer than contextual for the same seed.",
+    "quantile_definition": "Linear interpolation between sorted samples at zero-based position (n - 1) * p; median uses p=0.5 and p90 uses p=0.9.",
+    "predeclared_engineering_criteria": true,
+    "actual_sleep_or_input_delivery_performed": false
+  },
+  "claims": {
+    "synthetic_samples": true,
+    "new_human_run": false,
+    "native_input_observed": false,
+    "elapsed_task_duration_validated": false,
+    "human_distribution_tested": false,
+    "official_score_claimed": false
+  },
+  "model_metadata": {
+    "contextual": {
+      "mode": "contextual",
+      "seed": 211,
+      "scale": 1.0,
+      "sample_count": 100000,
+      "model_version": "contextual-v1",
+      "calibration": "Uncalibrated engineering defaults; this legacy mode does not use the supplied human aggregates.",
+      "units": "Seconds per action unit; read units are short reading chunks.",
+      "delays_disabled": false,
+      "profiles_seconds_per_unit": {
+        "key": {
+          "minimum": 0.035,
+          "nominal": 0.095,
+          "maximum": 0.3
+        },
+        "read": {
+          "minimum": 0.3,
+          "nominal": 0.8,
+          "maximum": 2.5
+        },
+        "think": {
+          "minimum": 0.35,
+          "nominal": 1.1,
+          "maximum": 3.8
+        },
+        "switch": {
+          "minimum": 0.15,
+          "nominal": 0.45,
+          "maximum": 1.6
+        },
+        "review": {
+          "minimum": 0.4,
+          "nominal": 1.3,
+          "maximum": 4.5
+        },
+        "correction": {
+          "minimum": 0.1,
+          "nominal": 0.35,
+          "maximum": 1.1
+        },
+        "click": {
+          "minimum": 0.08,
+          "nominal": 0.18,
+          "maximum": 0.6
+        },
+        "move": {
+          "minimum": 0.08,
+          "nominal": 0.2,
+          "maximum": 0.7
+        },
+        "scroll": {
+          "minimum": 0.08,
+          "nominal": 0.22,
+          "maximum": 0.8
+        },
+        "action": {
+          "minimum": 0.1,
+          "nominal": 0.3,
+          "maximum": 1.0
+        }
+      }
+    },
+    "human-informed": {
+      "mode": "human-informed",
+      "seed": 211,
+      "scale": 1.0,
+      "sample_count": 100000,
+      "model_version": "aggregate-key-v1",
+      "calibration": "Participant-aggregate-informed requested key delays; other actions retain engineering defaults.",
+      "units": "Seconds per action unit; read units are short reading chunks.",
+      "delays_disabled": false,
+      "profiles_seconds_per_unit": {
+        "key": {
+          "minimum": 0.005,
+          "nominal": 0.17,
+          "maximum": 2.0,
+          "bounds_basis": "engineering safeguards, not measured extrema"
+        },
+        "read": {
+          "minimum": 0.3,
+          "nominal": 0.8,
+          "maximum": 2.5
+        },
+        "think": {
+          "minimum": 0.35,
+          "nominal": 1.1,
+          "maximum": 3.8
+        },
+        "switch": {
+          "minimum": 0.15,
+          "nominal": 0.45,
+          "maximum": 1.6
+        },
+        "review": {
+          "minimum": 0.4,
+          "nominal": 1.3,
+          "maximum": 4.5
+        },
+        "correction": {
+          "minimum": 0.1,
+          "nominal": 0.35,
+          "maximum": 1.1
+        },
+        "click": {
+          "minimum": 0.08,
+          "nominal": 0.18,
+          "maximum": 0.6
+        },
+        "move": {
+          "minimum": 0.08,
+          "nominal": 0.2,
+          "maximum": 0.7
+        },
+        "scroll": {
+          "minimum": 0.08,
+          "nominal": 0.22,
+          "maximum": 0.8
+        },
+        "action": {
+          "minimum": 0.1,
+          "nominal": 0.3,
+          "maximum": 1.0
+        }
+      },
+      "reference_fit": {
+        "source": "docs/human-baseline/aggregate.json",
+        "source_sha256": "a18df6f37bb963db97acd371ccc7d2991ca746d9d300c69dbe7b3b3b2aba5976",
+        "provenance": "Participant-confirmed unassisted human measurement aggregates; raw traces not supplied",
+        "method": "Lognormal fitted to reported median and p90; reported mean is a held-out aggregate consistency check",
+        "fitted_median_seconds": 0.17,
+        "fitted_p90_seconds": 0.35,
+        "reference_mean_seconds": 0.2,
+        "unclipped_model_mean_seconds": 0.1992491294499626,
+        "log_sigma": 0.5634847140359297,
+        "target_scale": 1.0,
+        "scale_one_targets_active": true,
+        "independent_key_samples": true,
+        "scope": "Requested pre-key controller delays only. UI/API overhead and OS scheduling add to delivered input intervals.",
+        "not_fitted": [
+          "key holds",
+          "serial correlation",
+          "reading/thinking phases",
+          "pause episodes",
+          "errors",
+          "mouse activity",
+          "total task duration"
+        ],
+        "native_input_intervals_verified": false,
+        "human_indistinguishability_verified": false
+      }
+    }
+  },
+  "analytical_unclipped_fit": {
+    "log_sigma": 0.5634847140359297,
+    "median_seconds": 0.17,
+    "mean_seconds": 0.1992491294499626,
+    "probability_below_engineering_lower_bound": 1.9481064514413744e-10,
+    "probability_above_engineering_upper_bound": 6.078622337257755e-06,
+    "interpretation": "Mathematical properties of the assumed lognormal model, not estimates of human population tails."
+  },
+  "per_seed_results": [
+    {
+      "seed": 211,
+      "samples": {
+        "contextual": {
+          "count": 100000,
+          "mean": 0.10500563896386188,
+          "median": 0.09745207230831371,
+          "p90": 0.15526879343803074,
+          "minimum": 0.035,
+          "maximum": 0.3,
+          "engineering_bounds_seconds": {
+            "minimum": 0.035,
+            "maximum": 0.3
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 101,
+            "upper": 273
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        },
+        "human-informed": {
+          "count": 100000,
+          "mean": 0.19970366192430328,
+          "median": 0.1697481019671273,
+          "p90": 0.3517067399374415,
+          "minimum": 0.01790929439986233,
+          "maximum": 1.8373645003445838,
+          "engineering_bounds_seconds": {
+            "minimum": 0.005,
+            "maximum": 2.0
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 0,
+            "upper": 0
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        }
+      },
+      "metric_checks": {
+        "mean": {
+          "target_seconds": 0.2,
+          "contextual_absolute_relative_error": 0.47497180518069065,
+          "human_informed_absolute_relative_error": 0.0014816903784836688,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "median": {
+          "target_seconds": 0.17,
+          "contextual_absolute_relative_error": 0.4267525158334488,
+          "human_informed_absolute_relative_error": 0.0014817531345453232,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "p90": {
+          "target_seconds": 0.35,
+          "contextual_absolute_relative_error": 0.5563748758913407,
+          "human_informed_absolute_relative_error": 0.004876399821261503,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "seed": 223,
+      "samples": {
+        "contextual": {
+          "count": 100000,
+          "mean": 0.10495873158206226,
+          "median": 0.09716353899113997,
+          "p90": 0.15518367334063485,
+          "minimum": 0.035,
+          "maximum": 0.3,
+          "engineering_bounds_seconds": {
+            "minimum": 0.035,
+            "maximum": 0.3
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 102,
+            "upper": 267
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        },
+        "human-informed": {
+          "count": 100000,
+          "mean": 0.1992795406840805,
+          "median": 0.1694415914367639,
+          "p90": 0.35120407956336946,
+          "minimum": 0.01239839174209805,
+          "maximum": 2.0,
+          "engineering_bounds_seconds": {
+            "minimum": 0.005,
+            "maximum": 2.0
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 0,
+            "upper": 1
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        }
+      },
+      "metric_checks": {
+        "mean": {
+          "target_seconds": 0.2,
+          "contextual_absolute_relative_error": 0.47520634208968876,
+          "human_informed_absolute_relative_error": 0.003602296579597597,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "median": {
+          "target_seconds": 0.17,
+          "contextual_absolute_relative_error": 0.42844977064035317,
+          "human_informed_absolute_relative_error": 0.0032847562543300403,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "p90": {
+          "target_seconds": 0.35,
+          "contextual_absolute_relative_error": 0.5566180761696147,
+          "human_informed_absolute_relative_error": 0.0034402273239128194,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "seed": 227,
+      "samples": {
+        "contextual": {
+          "count": 100000,
+          "mean": 0.10491819118685781,
+          "median": 0.09722790960108198,
+          "p90": 0.15507187481301882,
+          "minimum": 0.035,
+          "maximum": 0.3,
+          "engineering_bounds_seconds": {
+            "minimum": 0.035,
+            "maximum": 0.3
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 111,
+            "upper": 277
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        },
+        "human-informed": {
+          "count": 100000,
+          "mean": 0.19914039421115046,
+          "median": 0.1699200287628593,
+          "p90": 0.3509775457911844,
+          "minimum": 0.014014239342111054,
+          "maximum": 1.9867339479345536,
+          "engineering_bounds_seconds": {
+            "minimum": 0.005,
+            "maximum": 2.0
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 0,
+            "upper": 0
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        }
+      },
+      "metric_checks": {
+        "mean": {
+          "target_seconds": 0.2,
+          "contextual_absolute_relative_error": 0.47540904406571094,
+          "human_informed_absolute_relative_error": 0.004298028944247773,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "median": {
+          "target_seconds": 0.17,
+          "contextual_absolute_relative_error": 0.42807111999363545,
+          "human_informed_absolute_relative_error": 0.0004704190420041645,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "p90": {
+          "target_seconds": 0.35,
+          "contextual_absolute_relative_error": 0.556937500534232,
+          "human_informed_absolute_relative_error": 0.0027929879748126284,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "seed": 229,
+      "samples": {
+        "contextual": {
+          "count": 100000,
+          "mean": 0.10495408598379388,
+          "median": 0.09725867087733203,
+          "p90": 0.15555360417717004,
+          "minimum": 0.035,
+          "maximum": 0.3,
+          "engineering_bounds_seconds": {
+            "minimum": 0.035,
+            "maximum": 0.3
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 114,
+            "upper": 293
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        },
+        "human-informed": {
+          "count": 100000,
+          "mean": 0.19939613579897764,
+          "median": 0.1698080444060302,
+          "p90": 0.35036191980748715,
+          "minimum": 0.013479954655560124,
+          "maximum": 2.0,
+          "engineering_bounds_seconds": {
+            "minimum": 0.005,
+            "maximum": 2.0
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 0,
+            "upper": 2
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        }
+      },
+      "metric_checks": {
+        "mean": {
+          "target_seconds": 0.2,
+          "contextual_absolute_relative_error": 0.4752295700810306,
+          "human_informed_absolute_relative_error": 0.0030193210051118746,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "median": {
+          "target_seconds": 0.17,
+          "contextual_absolute_relative_error": 0.4278901713098116,
+          "human_informed_absolute_relative_error": 0.0011291505527635966,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "p90": {
+          "target_seconds": 0.35,
+          "contextual_absolute_relative_error": 0.5555611309223712,
+          "human_informed_absolute_relative_error": 0.0010340565928205045,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "seed": 233,
+      "samples": {
+        "contextual": {
+          "count": 100000,
+          "mean": 0.10452530735281383,
+          "median": 0.09694657840722776,
+          "p90": 0.15437067165844612,
+          "minimum": 0.035,
+          "maximum": 0.3,
+          "engineering_bounds_seconds": {
+            "minimum": 0.035,
+            "maximum": 0.3
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 114,
+            "upper": 275
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        },
+        "human-informed": {
+          "count": 100000,
+          "mean": 0.19879746143547444,
+          "median": 0.1695089947123496,
+          "p90": 0.34910429287349287,
+          "minimum": 0.013838665535077775,
+          "maximum": 2.0,
+          "engineering_bounds_seconds": {
+            "minimum": 0.005,
+            "maximum": 2.0
+          },
+          "all_samples_within_bounds": true,
+          "bound_hit_counts": {
+            "lower": 0,
+            "upper": 1
+          },
+          "bound_hit_definition": "Returned values exactly equal to an engineering bound; raw unclipped draws are not exposed by sample()."
+        }
+      },
+      "metric_checks": {
+        "mean": {
+          "target_seconds": 0.2,
+          "contextual_absolute_relative_error": 0.4773734632359309,
+          "human_informed_absolute_relative_error": 0.006012692822627841,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "median": {
+          "target_seconds": 0.17,
+          "contextual_absolute_relative_error": 0.42972600936924854,
+          "human_informed_absolute_relative_error": 0.0028882663979436472,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        },
+        "p90": {
+          "target_seconds": 0.35,
+          "contextual_absolute_relative_error": 0.5589409381187254,
+          "human_informed_absolute_relative_error": 0.0025591632185917312,
+          "human_informed_within_3_percent": true,
+          "human_informed_closer_than_contextual": true
+        }
+      },
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "All generated values are synthetic requested pre-key controller delays, not measured human intervals or observed native key delivery.",
+    "The reference is participant-confirmed unassisted human measurement aggregates. Raw input traces and detailed interval capture definitions were not supplied; independent verification is not claimed.",
+    "Median and p90 are fit targets. Mean is held out of the two-parameter fit as an aggregate consistency check, not an independent participant or task.",
+    "Matching three aggregate statistics does not recover the human distribution, serial correlation, pauses, key holds, errors, mouse activity, or task behavior.",
+    "The 3% threshold is a predeclared engineering acceptance criterion, not a confidence interval, significance test, competition rule, or human-indistinguishability threshold.",
+    "Scale is one and each sample requests one key unit. Application/API overhead and OS scheduling add time; these synthetic delays cannot be directly substituted for delivered inter-key intervals.",
+    "The 720-second task and 180-second typing window are not fitted, reconstructed, or validated. No new human run or native desktop run occurred.",
+    "Engineering clipping bounds are not measured human extrema. Public sample() exposes boundary values, not the underlying unclipped draws.",
+    "No official score, winning probability, human-versus-agent speed ratio, KS test, or human-authenticity conclusion is produced."
+  ]
+}

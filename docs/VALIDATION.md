@@ -2,7 +2,7 @@
 
 ## Current human-informed timing validation
 
-The optional `human-informed` profile uses the supplied unassisted median and p90 as requested key-delay targets. The [new validation record](human-timing/README.md) documents the fitting assumptions, one million generated samples, current software tests and a plan-only integration check. No native workload, new human task, input capture or app restart is part of this update. The original human aggregate and all historical evidence remain unchanged.
+The optional `human-informed` profile uses the supplied unassisted median and p90 as requested key-delay targets. The [new validation record](human-timing/README.md) records 172 passing tests, one million generated samples and all 15 target-statistic checks within 0.61%, plus an 11/11 CLI plan check. No native workload, new human task, input capture or app restart is part of this update. The original human aggregate and all historical evidence remain unchanged.
 
 ## Earlier resource-sampler validation
 
