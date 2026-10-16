@@ -4,7 +4,13 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 
 **For judges:** start with the [criterion-by-criterion evidence guide](docs/JUDGING_GUIDE.md) for measured results, expected outputs, source links and reproduction steps.
 
-**16 October evidence update:** ten normal-speed native runs completed **11/11 steps each**, with **five matched fixed/contextual pairs** and **85 passing automated tests**. A separate process observer now reports actual sampling gaps, parent relationships, scoped CPU/RSS and its own overhead. Both browser and report opening use visible Explorer shortcut double-clicks. See the [revised benchmark](docs/benchmark/README.md).
+**16 October process-event update:** a new native fixed/contextual pair completed **11/11 steps in both runs** inside a verified Windows ETW capture. All **28 known canary lifecycles** and both task-controller lifecycles passed verification; all three final ETW loss counters were zero. Twenty-four canaries lived less than 100 ms. This verifies the stated canary/controller coverage, not complete application ancestry or universal event capture. See the [retained event evidence and first failed attempt](docs/process-events/README.md).
+
+Inside the task windows, the nonexclusive application cohort also records **14 Chrome and four Notepad start records**, with three Chrome → Chrome relationships resolved to parent identities. The warm main applications had no lifecycle records in this capture; their 33 focus observations remain unbound to event identities. Parent-PID-only comparisons are reported separately from resolved ancestry.
+
+The current suite passes **120 automated tests**. A separate [fresh-environment installation check](docs/reproduction/README.md) reproduced the earlier frozen source with **85 tests** and two successful simulation plans on the same machine. It is not a second-machine native test.
+
+The earlier [controlled benchmark](docs/benchmark/README.md) remains **ten normal-speed native runs, 11/11 steps each, and five matched fixed/contextual pairs**. Its separate observer reports actual sampling gaps, parent relationships, scoped CPU/RSS and its own overhead. Both browser and report opening use visible Explorer shortcut double-clicks. The new ETW pair is reported separately because its capture conditions differ.
 
 | Observed measure | Fixed | Contextual |
 | --- | ---: | ---: |
@@ -27,7 +33,7 @@ All revised trials passed displayed-sheet and saved-report checks. A [separate f
 
 **Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**. The latest verified update added the unassisted human measurements and measured process ancestry to the story and judges' evidence ZIP; Devpost showed **SUBMITTED — 5/5 steps done**. Team: **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`) and **Sourabh Sooraj** (`@sourabhsooraj97`). The [Devpost entry](https://devpost.com/software/office-twin) remains submitted. The [submission record](SUBMISSION.md) identifies the verified attachment and preserves earlier revisions.
 
-The [revised narrated video](https://youtu.be/oTTT0ECN25U) is 180.13 seconds and preserves the same continuous 162.13-second desktop recording at 1×. Its updated narration and cards report the **16 October evidence: ten native completions, five matched pairs, 85 passing tests and the participant-confirmed 720-second unassisted human baseline**. The footage remains labelled as the **15 October functional version**, before the later Notepad launch and observer changes; it does not depict the later measurements.
+The [revised narrated video](https://youtu.be/oTTT0ECN25U) is 180.13 seconds and preserves the same continuous 162.13-second desktop recording at 1×. Its updated narration and cards report the **16 October evidence: ten native completions, five matched pairs, 85 passing tests and the participant-confirmed 720-second unassisted human baseline**. The footage remains labelled as the **15 October functional version**, before the later Notepad launch and observer changes; it does not depict the later measurements. This published edit predates the ETW capture and current 120-test suite, which are documented separately.
 
 The final presentation review maps evidence to all four judging criteria, adds the scoped CPU/RSS results and the measured process-parent counts, and reconciles the human baseline across the story, repository and chart. Across the ten runs, sampled controller peak RSS was **72.72–73.09 MiB**; controller CPU medians appear above, with observer and application costs reported separately in the [judging guide](docs/JUDGING_GUIDE.md). Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026); raw runs, personal settings and videos are excluded from the source archive. Optional Excel/Word support remains untested because licensed Office is unavailable.
 
@@ -82,6 +88,7 @@ Use application state and saved content to determine task success. A log entry s
 - **Simulation** exercises orchestration and reporting without performing native office work. Label all its outputs as simulated.
 - **Agent logs** are self-reported execution records. They are not independent Windows telemetry.
 - **Native evidence** includes the real Google Sheet, its UI readback, the saved text report, a screen recording, and independently collected Windows telemetry where available. Browser-based Sheets activity does not create Excel process evidence.
+- **Process events:** the new ETW capture verifies known canary and task-controller lifecycles with zero reported final logger loss. The failed first attempt is retained. Unresolved application identities remain unresolved; process events do not prove input delivery or human similarity.
 - **Resource measurements** must state their scope. Agent-process CPU/RAM alone excludes Chrome and Notepad, or Excel/Word when using the optional Office path.
 - **Human comparisons** require consented manual runs of the same task. Synthetic or automated traces must never be labelled human.
 - **Manual reference collector:** `tools/record_manual.py` records explicit task boundaries, optional participant markers and selected-process resources. A browser timer wrapper recorded the [one guided practice](docs/manual-practice/README.md) using duration and collector overhead only; application processes were not sampled. Saved outputs were checked separately. The collector does not verify human participation or collect task input timings. See the [collection guide](docs/MANUAL_BASELINE.md).
@@ -95,6 +102,8 @@ If Sysmon is already installed and authorized for the test environment, export t
 - [Winning strategy and schedule](STRATEGY.md)
 - [Submission checklist](SUBMISSION.md)
 - [Paired benchmark and human-baseline protocol](docs/EVALUATION.md)
+- [Verified process-event evidence](docs/process-events/README.md) and [ETW collection protocol](docs/PROCESS_EVENTS.md)
+- [Fresh-environment installation evidence](docs/reproduction/README.md)
 - [Suggested demo storyboard](docs/DEMO.md)
 - [Manual reference collector and guide](docs/MANUAL_BASELINE.md)
 - [Unassisted human baseline: measurements, provenance and methods](docs/human-baseline/README.md)

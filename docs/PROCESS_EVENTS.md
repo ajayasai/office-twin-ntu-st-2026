@@ -1,6 +1,6 @@
 # Windows process lifecycle event evidence
 
-**Status: a first ETW attempt captured real process events but did not complete native verification; no successful end-to-end native capture is claimed here.** PowerShell syntax, the native interop layout, read-only session queries, the non-admin rejection path and session ownership guards have been checked. Tests of the parser or known-child launcher are not observations of the Office Twin task under ETW. Publish a successful result only after the complete protocol below passes against an actual capture.
+**Status: the retry passed the bounded process-event validation protocol: 28/28 known canary lifecycles and 2/2 native tasks, each completing 11/11 steps.** All three final ETW loss counters were zero. See the [verified event evidence and retained failed attempt](process-events/README.md). This verifies the specified lifecycles and native-task coverage; it does not claim universal event completeness or complete ancestry for every application window.
 
 The existing [ten-run benchmark](benchmark/README.md) used a separate process that sampled Toolhelp/psutil counters. Those historical results remain unchanged. This protocol adds a new, separately identified fixed/contextual pair under Windows process lifecycle tracing; it does not retroactively turn the earlier samples into event records or merge the new pair into the old timing comparison.
 
@@ -58,7 +58,7 @@ This preserves a final capture record but supplies no successful workload eviden
 
 ## Lifecycle identity and validation gates
 
-The analyzer reads decoded event names rather than assuming one binary layout. Event 1 is ProcessStart, event 2 is ProcessStop and event 15 is ProcessRundown in the installed provider metadata. Rundown enumerates an already-running process; it is never counted as a newly observed start.
+The analyzer matches provider event IDs and reads named payload fields rather than assuming one binary layout. Event 1 is ProcessStart, event 2 is ProcessStop and event 15 is ProcessRundown in the installed provider metadata. Rundown enumerates an already-running process; it is never counted as a newly observed start.
 
 Identity uses PID together with process creation time. Sequence numbers, where present, provide additional consistency checks. A repeated PID alone is insufficient to join records. Parent relationships must resolve to a compatible parent identity at the child's start; ambiguous, contradictory or absent parent evidence is not invented. The public export uses capture-local aliases and distinguishes rundown, start and stop records.
 
@@ -74,6 +74,14 @@ A submission result must satisfy all of these checks:
 The native trace conversion uses [`tracerpt`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracerpt) to preserve its XML and local summary; it does not use a permissive best-effort decode mode. A second decode uses `Get-WinEvent -Path ... -Oldest` and each record's `ToXml()` output to preserve the Windows API's UTC timestamps. Microsoft documents `-Oldest` as required for ETL input. [Get-WinEvent documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1).
 
 The canonical `process-events-winapi.xml` contains only the exact process-provider GUID. `winapi-decode-status.json` binds its hash and event count to the unchanged ETL hash, records the decoder source hash, and is required before the analyzer uses that view. A failed or inconsistent decode does not become verified evidence. No timestamp is manually shifted to fit a canary window.
+
+## Verified retry
+
+The [published retry evidence](process-events/README.md) records a 393.9823415-second capture with 344 process-provider records: 172 starts, 172 stops and no rundown records. Final `EventsLost`, `LogBuffersLost` and `RealTimeBuffersLost` were all zero. The maximum collector loop gap was 0.2349567 seconds, the collector received the requested stop marker, and no deadline overrun was reported.
+
+All 28 known canary lifecycles passed the identity, parent-chain, time-boundary and exit-code checks. Both native trial controllers had verified lifecycles within the trace, bracketed by verified canaries, and both tasks completed 11/11 steps and output verification. The analyzer reported `validation_passed: true` with no validation errors. The 33 focus records refer to already-running application processes without a matching lifecycle record in this trace (0/33 focus bindings). Application-cohort events are reported separately in the public evidence; they do not make those focus bindings complete. No rundown events were observed, so this capture does not establish the original ancestry of every process already running when tracing began.
+
+The 120-test software suite passed separately. Unit tests support the collector/decoder/validator implementation; the actual ETW files, native outputs and protocol checks provide the new observational evidence. This retry remains separate from the earlier ten-run sampled timing benchmark.
 
 ## Retained first attempt
 

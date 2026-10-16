@@ -1,0 +1,60 @@
+{
+  "source_commit": "09e4b83824b8b0bec4348be0dbae2bcdef1f62dc",
+  "source_worktree_dirty_at_start": false,
+  "seed": 307,
+  "condition": "Same warm shared Windows host; process-only ETW and the separate sampled observer enabled; scale 1; no screen recording.",
+  "manifest_sha256": "c8e02d0999953ec2ab8b0e1637e0cd3957faace4c34395741ef733388f76c965",
+  "historical_timing_benchmark_pooled": false,
+  "runs": [
+    {
+      "id": "R001",
+      "policy": "fixed",
+      "backend": "desktop",
+      "status": "completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "private_summary_sha256": "82f6c0d241304e989e456848591bba6d9406431144c9c7fcfc6e19e04bea97f4"
+    },
+    {
+      "id": "R002",
+      "policy": "contextual",
+      "backend": "desktop",
+      "status": "completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "private_summary_sha256": "843c3d78b85f7d598124a3de62277755013add656753f07346cd6c3297189638"
+    }
+  ]
+}

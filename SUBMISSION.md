@@ -51,6 +51,16 @@ The final judges' attachment is **`office-twin-final-evidence-20261016-f89ca68.z
 
 Devpost readback confirmed the exact saved filename and **SUBMITTED — 5/5 steps done**. The public page displays the revised criterion table, human measurements, CPU/RSS results, process-parent counts and three teammates, and embeds the new video `oTTT0ECN25U`. YouTube confirmed **Video published** after Unlisted was selected; the public watch link opened and playback began. Copyright and Community Guidelines checks reported no issues. This completion record follows the verified upload and is not part of the archived source preparation snapshot.
 
+## Process-event and reproduction supplement prepared — 16 October 2026 (SGT)
+
+The [new ETW evidence](docs/process-events/README.md) verifies **28/28 known process lifecycles**, the validation worker, both native controllers, and a separate fixed/contextual pair completing **11/11 steps each**. The 393.982-second capture contains 344 process-provider records; all three final loss counters are zero. Twenty-four known processes lived under 100 ms. The native pair ran from clean source `09e4b83824b8b0bec4348be0dbae2bcdef1f62dc`; the application runtime is unchanged from the earlier benchmark.
+
+The explicitly nonexclusive application cohort includes 14 Chrome and four Notepad start records inside the native windows, plus 18 stop records; equal counts do not imply paired lifetime identities. Three Chrome parent chains resolve to ETW lifetimes; 15 further parent-ID comparisons are labeled separately. The main applications predate capture, so all 33 focus-to-ETW-lifetime bindings remain unresolved. The failed first attempt remains documented. These results do not establish universal process-event completeness and are not pooled into the original performance comparison.
+
+The current suite passes **120 tests**. A [fresh-environment check](docs/reproduction/README.md) independently recreated dependencies from PyPI and passed the earlier frozen source's 85 tests plus two simulation plans on this same machine. It does not establish native portability to another device. The published video predates this supplement and remains unchanged.
+
+At this preparation checkpoint, the new source and evidence are ready for packaging; the previously verified Devpost attachment is still the `f89ca68` package above. A completion record will identify the replacement only after the saved filename and submitted status are read back.
+
 ## Media and links
 
 - [Devpost entry](https://devpost.com/software/office-twin).
@@ -60,4 +70,4 @@ Devpost readback confirmed the exact saved filename and **SUBMITTED — 5/5 step
 
 The three joined teammates and rules/Terms declaration were confirmed before the original submission. Updating the existing entry does not create a new team or a second submission.
 
-Current evidence comprises the ten-run automated comparison, the participant-confirmed unassisted aggregate baseline and the earlier guided practice with separately verified outputs. Human raw input/resource/process traces and matching capture definitions were not supplied, so no human timing calibration or agent-versus-human speed ratio is inferred. No human similarity, full process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.
+Current repository evidence comprises the ten-run automated comparison, the separate bounded ETW validation, the fresh-environment installation check, the participant-confirmed unassisted aggregate baseline and the earlier guided practice with separately verified outputs. Human raw input/resource/process traces and matching capture definitions were not supplied, so no human timing calibration or agent-versus-human speed ratio is inferred. No human similarity, universal process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.

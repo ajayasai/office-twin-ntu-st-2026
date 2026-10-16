@@ -22,6 +22,8 @@ import xml.etree.ElementTree as ET
 PROVIDER = "22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716"
 KINDS = {1: "start", 2: "stop", 15: "rundown"}
 ROLES = {name + suffix: name for name in ("chrome", "notepad", "explorer", "python", "cmd", "pwsh", "powershell") for suffix in ("", ".exe")}
+FOCUS_ROLES = {"explorer": "explorer", "browser": "chrome", "sheets": "chrome", "notepad": "notepad"}
+APPLICATION_ROLES = frozenset(("chrome", "notepad", "explorer"))
 LOSS_KEYS = ("events_lost", "log_buffers_lost", "real_time_buffers_lost")
 LIMITATIONS = [
     "Zero reported logger loss plus observed known canaries is a bounded validation, not proof that every system process event was captured.",
@@ -29,6 +31,7 @@ LIMITATIONS = [
     "A stop is paired only with a compatible process sequence number or PID plus creation time. Ambiguous identities and parents remain unresolved.",
     "Application windows and their descendant cohorts can share unrelated tabs and work; process relationships do not prove exclusive task attribution or delivery of desktop input.",
     "Preexisting application processes may have no event or rundown in this trace. Unresolved window-to-process bindings are counted separately and are not synthesized from snapshots; they do not invalidate observed known-canary and controller lifecycles.",
+    "Native application cohorts include Chrome, Notepad and Explorer lifecycle events inside each trial window, regardless of who caused them. A reported parent-ID match compares an ETW start's ParentProcessID with a controller window-focus PID; it is not a resolved parent lifetime identity or proof of task causation.",
     "Capture-boundary and known-canary checks cover this trace and supplied native trials only; they do not create raw human-input evidence or establish portability to another machine.",
     "Public output contains capture-local aliases, relative times and allowlisted application roles; original ETL/XML, identifiers, absolute times and command lines remain private.",
 ]
@@ -293,6 +296,7 @@ def analyze_capture(capture_dir, manifest_path=None):
     # Alias order is deterministic but all aliases are local to this capture.
     aliases = {key: f"P{number:04d}" for number, key in enumerate(sorted(processes, key=lambda key: (key[1], key[0])), 1)}
     selected = defaultdict(set)
+    parent_focus_matches = defaultdict(set)
     try:
         ground = read_json(capture_dir / "canary-ground-truth.json")
         children = ground.get("canaries", ground.get("children"))
@@ -417,6 +421,7 @@ def analyze_capture(capture_dir, manifest_path=None):
                     controller_ok = process["identity_valid"] and len(starts) == len(stops) == 1 and start <= starts[0].time <= stops[0].time <= end and stops[0].exit_code == 0
                     row["controller"] = aliases[key]
                 focus_bound, focus_total = 0, 0
+                focus_roles = defaultdict(set)
                 for line in (run_dir / "events.jsonl").read_text(encoding="utf-8").splitlines():
                     event = json.loads(line)
                     if event.get("event") != "window_focus":
@@ -426,10 +431,40 @@ def analyze_capture(capture_dir, manifest_path=None):
                     if not start <= event_time <= end:
                         raise ValueError("focus event outside native trial")
                     focus_pid = integer(event["pid"])
+                    if event.get("app") in FOCUS_ROLES:
+                        focus_roles[focus_pid].add(FOCUS_ROLES[event["app"]])
                     candidates = [key for key, process in processes.items() if key[0] == focus_pid and key[1] <= event_time and not any(stop.time < event_time for stop in process["stops"])]
                     if len(candidates) == 1:
                         selected[candidates[0]].add("native_window_process")
                         focus_bound += 1
+                cohort_events = [event for event in events if start <= event.time <= end and processes[(event.pid, event.created)]["role"] in APPLICATION_ROLES]
+                cohort_keys = {(event.pid, event.created) for event in cohort_events}
+                for key in cohort_keys:
+                    selected[key].add("native_application_cohort")
+                cohort_counts = Counter((processes[(event.pid, event.created)]["role"], event.kind) for event in cohort_events)
+                parent_matches, resolved_chains = Counter(), Counter()
+                for event in cohort_events:
+                    if event.kind != "start":
+                        continue
+                    key = (event.pid, event.created)
+                    process = processes[key]
+                    if event.parent_pid in focus_roles and len(focus_roles[event.parent_pid]) == 1:
+                        focused_role = next(iter(focus_roles[event.parent_pid]))
+                        parent_matches[(process["role"], focused_role)] += 1
+                        parent_focus_matches[key].add(focused_role)
+                    parent = process["parent"]
+                    if parent is not None:
+                        resolved_chains[(process["role"], processes[parent]["role"])] += 1
+                row["application_cohort"] = {
+                    "selection": "allowlisted application lifecycle events within native trial; shared cohort, task causation not established",
+                    "identity_count": len(cohort_keys),
+                    "event_counts": [{"application_role": app_role, "event": kind, "count": count} for (app_role, kind), count in sorted(cohort_counts.items())],
+                    "reported_parent_id_focus_matches": [{"child_role": child_role, "focused_parent_role": parent_role, "start_events": count}
+                                                         for (child_role, parent_role), count in sorted(parent_matches.items())],
+                    "reported_parent_id_match_scope": "ETW ParentProcessID equals controller-reported focused PID; this comparison does not resolve the parent lifetime identity",
+                    "resolved_etw_parent_chains": [{"child_role": child_role, "parent_role": parent_role, "start_events": count}
+                                                  for (child_role, parent_role), count in sorted(resolved_chains.items())],
+                }
                 row.update({"native_task_verified": complete, "inside_trace_window": window_ok,
                             "bracketed_by_verified_canaries": bracketed, "controller_lifecycle_verified": controller_ok,
                             "focus_events": focus_total, "focus_events_with_resolved_identity": focus_bound,
@@ -461,6 +496,9 @@ def analyze_capture(capture_dir, manifest_path=None):
                   "parent_process": aliases.get(process["parent"]), "identity_valid": process["identity_valid"]}
         if event.kind == "stop":
             record["exit_code"] = event.exit_code & 0xFFFFFFFF
+        if event.kind == "start" and key in parent_focus_matches:
+            record["reported_parent_id_focus_role_matches"] = sorted(parent_focus_matches[key])
+            record["reported_parent_id_match_scope"] = "ETW ParentProcessID versus controller window-focus PID; parent lifetime identity not established by this comparison"
         public_events.append(record)
     hashes = {name: hash_file(capture_dir / filename) for name, filename in (("raw_etl_sha256", "process-events.etl"), ("raw_xml_sha256", "process-events.xml"), ("capture_status_sha256", "capture-status.json"), ("canary_ground_truth_sha256", "canary-ground-truth.json"))}
     hashes["analyzer_source_sha256"] = hash_file(Path(__file__))

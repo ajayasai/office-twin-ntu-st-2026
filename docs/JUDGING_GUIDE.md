@@ -6,12 +6,12 @@ Office Twin performs a connected procurement task through Chrome, Google Sheets 
 
 | Criterion | Weight | Result to inspect | Evidence |
 | --- | ---: | --- | --- |
-| Process Telemetry Authenticity | 30% | Actual Explorer shortcut openings, Chrome multiprocess activity and Notepad use. The separate observer collected 17,018 snapshots. Within capture windows it observed compatible Explorer parents for 6 Chrome and 8 Notepad identities, and Chrome parents for 33 Chrome child identities. | [Parent observations](benchmark/process-parent-evidence.md), [measurement method](TELEMETRY.md) |
+| Process Telemetry Authenticity | 30% | New ETW capture verifies 28/28 known canary lifecycles and both task controllers, with zero reported final loss; 24 canaries lived under 100 ms. The nonexclusive application cohort includes 14 Chrome and four Notepad start records, with three resolved Chrome → Chrome parent relationships. Warm focus-process ancestry remains unresolved. | [Verified event evidence](process-events/README.md), [event protocol](PROCESS_EVENTS.md), [sampled parent observations](benchmark/process-parent-evidence.md) |
 | Human Entropy & Timing | 30% | Five paired fixed/contextual runs. Per-run 90th-percentile single-key controller waits were 109.50–110.08 ms fixed and 161.01–177.73 ms contextual. A participant-confirmed unassisted human baseline reports 720 s, 42 WPM, 14 corrected errors and measured process ancestry. | [Paired timing results](benchmark/README.md), [human baseline and definitions](human-baseline/README.md) |
-| Complexity of Action | 20% | Ten of ten native tasks completed all 11 steps: three supplier reviews, six formulas, cost/deadline decisions, a typing correction, cloud-save/reload verification, and text-file save/reopen verification. A separately validated changed-price scenario correctly changes the winner. | [Validation history](VALIDATION.md), [saved formula/value check](benchmark/saved-sheet-verification.json), [scenario source](../scenarios/alternate.json) |
+| Complexity of Action | 20% | The ten-run controlled series completed all 11 steps in every run. A separate ETW retry pair also completed 11/11 each; the first interrupted ETW attempt remains documented. Tasks include supplier review, six formulas, a cost/deadline decision, correction and save/reopen checks. A historical changed-price scenario changes the winner. | [Validation history](VALIDATION.md), [event evidence](process-events/README.md), [saved formula/value check](benchmark/saved-sheet-verification.json), [scenario source](../scenarios/alternate.json) |
 | Resource Efficiency | 20% | Median full-window controller CPU: 19.14 CPU-s fixed / 20.61 contextual. Sampled controller peak RSS: 72.72–73.09 MiB across ten runs. Runtime makes no cloud-model calls. Observer overhead and application cohorts are reported separately. | [Full numeric resource report](benchmark/BENCHMARK.md), [machine-readable export](benchmark/benchmark.json), [architecture](ARCHITECTURE.md) |
 
-The process counts sum identities separately within each run; they are not globally unique process counts. The observer polls OS state rather than collecting a complete process-start event stream. Human aggregates and controller waits use different measurement definitions; they are not a validated timing-similarity comparison. The evidence supports the listed results, not a computed official score.
+The historical observer polls OS state; its per-run parent counts are not globally unique process counts. The newer event capture verifies its known canary/controller lifecycles, not complete application ancestry or every possible system event. Unresolved application identities are reported in the event record. Human aggregates and controller waits use different measurement definitions; they are not a validated timing-similarity comparison. The evidence supports the listed results, not a computed official score.
 
 ## What a correct result looks like
 
@@ -21,10 +21,10 @@ Google Sheets runs inside Chrome. Native Excel/Word is optional and has not been
 
 ## Reproduce or review
 
-1. Follow the [installation commands](../README.md#run), then run `python -m office_twin --doctor` and `python -m unittest discover -s tests -v` inside the configured environment. The reviewed suite passes **85 tests**.
+1. Follow the [installation commands](../README.md#run), then run `python -m office_twin --doctor` and `python -m unittest discover -s tests -v` inside the configured environment. The current reviewed suite passes **120 tests**. A [fresh-environment check](reproduction/README.md) separately reproduced the earlier frozen source's 85 tests and two simulation plans on this same machine.
 2. Run `python -m office_twin --mode simulate --workflow sheets` to inspect the plan without driving the desktop. Simulation is explicitly labelled and does not count as a native result.
 3. Prepare a dedicated Google Sheet using [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md). Use the native contextual command in the README on an unlocked Windows desktop. Escape cancels input. Use synthetic task data and a dedicated output directory.
-4. Inspect saved results and logs. For the controlled fixed/contextual series, follow [the telemetry reproduction commands](TELEMETRY.md#reproduce-the-collection); retain every attempted run and its capture result.
+4. Inspect saved results and logs. For the controlled fixed/contextual series, follow [the telemetry reproduction commands](TELEMETRY.md#reproduce-the-collection). The separate [ETW protocol](PROCESS_EVENTS.md) keeps its collector elevated and workload unelevated; retain every attempted run and its capture result.
 
 The recorded automated environment was Windows 11 Home Single Language build 26200, Intel Core Ultra 7 155U with 14 logical processors, 31.55 GiB RAM, Python 3.14.2, Chrome 155.0.8059.40, Notepad 11.2607.14.0 and a 1920 × 1200 display. Applications were warm and shared. This is distinct from the human mouse-distance summary's assumed 1920 × 1080 coordinates.
 
@@ -37,10 +37,12 @@ Chrome and Notepad cohorts may include unrelated application activity. Summed RS
 ## Version and evidence map
 
 - The ten-run automated benchmark used frozen runtime `051ec6871425ddaba9faeffed297a2168620e58c`. Later documentation and presentation updates do not constitute a new runtime trial.
+- The successful ETW retry used source `09e4b83824b8b0bec4348be0dbae2bcdef1f62dc` for a separate fixed/contextual pair. Its capture conditions differ from the ten-run performance series; results are not pooled. The failed first attempt is retained.
+- The [fresh-install result](reproduction/README.md) uses frozen source `5d3e0100f652f424fed5653ac78b2ffdae0256e5` and its historical 85-test suite. It demonstrates installation in a new virtual environment on the same Windows host, not portability to a second device.
 - The continuous desktop footage is from **15 October 2026**, before the later launch and observer changes. Later results shown in presentation material are identified separately; they were not recorded in that footage.
 - The [unassisted 720-second baseline](human-baseline/README.md) contains participant-confirmed measured aggregates, including process ancestry. Raw input, resource and process-event traces were not supplied with those aggregates.
 - The [earlier 734.526-second guided practice](manual-practice/README.md) is preserved as a separate historical record with its guidance and waiting-inclusive boundaries.
 - The [initial automated series](benchmark-initial/README.md) retains three completed tasks and an excluded comparison. Its observed Python-to-Notepad parentage motivated the actual Explorer opening change.
 - The [submission record](../SUBMISSION.md) identifies published artifacts. [AI assistance and dependency provenance](ARCHITECTURE.md) remain disclosed.
 
-Remaining evidence limits are a matched human/agent input-event study, complete event telemetry, and native reproduction on a second machine. Those require new observations; editing the narrative cannot establish them.
+Remaining evidence limits are matched human/agent input-event observations, unresolved application lifecycle/ancestry coverage, and native reproduction on a second machine. The verified ETW canary/controller result does not close those separate gaps.

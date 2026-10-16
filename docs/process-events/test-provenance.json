@@ -1,0 +1,17 @@
+{
+  "command": "python -m unittest discover -s tests -v",
+  "tests": 120,
+  "passed": true,
+  "elapsed_seconds": 9.038,
+  "private_log_sha256": "405f0b9a0d1c7e0b9215878ef2a6a5e4cc436a0c65be547fe422d1b339b451a6",
+  "published_log_sha256": "b1fc604e40889a19cb9c0c0eeb9bdb2abbd609dee8764e91d80e5932370ecb32",
+  "redaction": "Temporary local account directory prefixes replaced by <TEMP>; test names and outcomes unchanged.",
+  "source_file_sha256": {
+    "tools/analyze_process_events.py": "4823e08fa81b8e63a4152711d82b2af7d8838ef50b74428c2629f1cc1ce34d5b",
+    "tools/capture_process_events.ps1": "20b2d1f7ae7356c9a1d49801516ebcd4423685ddd9f8e8076d65c9427b1c56f1",
+    "tools/decode_process_events.ps1": "9ea41a81f06a62a57d6f5f252f036ad45106058ecaf7b9a838751f6d2037e7c0",
+    "tools/run_event_validation.py": "6d65ab25f93b446ffa2a9fed05d3d7e1199759d91ea7731db8d22fe903b17b71",
+    "tests/test_event_trace_analysis.py": "19bd64dc70508b67c9524e71f15f1e5b10d39ecf9c24d34fda193ca196ca448d",
+    "tests/test_event_validation_runner.py": "1b41d2d7512901085c75f42e0225ac037603617e6ce6289d411600ac2c648cb7"
+  }
+}

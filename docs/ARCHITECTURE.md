@@ -19,6 +19,11 @@ flowchart LR
     K --> L[Scoped telemetry and capture coverage]
     I --> M[Benchmark analysis]
     L --> M
+    N[Windows Kernel-Process events] --> O[Temporary elevated ETW collector]
+    O --> P[Private ETL and canonical XML]
+    Q[Unelevated known-process and native workload] --> R[Lifecycle verifier]
+    P --> R
+    R --> S[Allowlisted event evidence]
 ```
 
 ## Components
@@ -33,6 +38,8 @@ flowchart LR
 | `process_trace.py` | Attempt passive Windows process-start observation; report unavailable capture explicitly. |
 | `observer.py` / `tools/observe_run.py` | Read process identities, parent metadata and resource counters in a separate process; report sampling gaps, nonexclusive application cohorts and observer overhead. |
 | `tools/run_benchmark.py` / `tools/analyze_benchmark.py` | Run counterbalanced fixed/contextual trials, retain failed attempts, check matching conditions and export privacy-filtered measurements. |
+| `tools/capture_process_events.ps1` / `tools/decode_process_events.ps1` | Collect a temporary Kernel-Process ETW session, retain final loss counters and unchanged raw ETL, and decode timestamps through the Windows Event Log API. |
+| `tools/run_event_validation.py` / `tools/analyze_process_events.py` | Keep the workload unelevated; bracket a native pair with known process lifecycles; verify identity, parent/exit data, capture coverage and artifact integrity before exporting allowlisted evidence. |
 | `report.py` / `compare.py` | Produce self-contained HTML reports, preserving failures and differences between configurations. |
 | `simulation.py` | Replay the plan without native application actions; label outputs as simulated. |
 | `gui.py` / `__main__.py` | Expose the desktop control panel and command-line interface. |
@@ -53,7 +60,9 @@ The desktop must remain unlocked and idle. Window checks and bounded waits reduc
 
 Contextual timing is reproducible at the policy level through its seed. Application waits and OS scheduling vary. Timing defaults have not been calibrated to human observations. The runtime does not fabricate OS logs, conceal the controller or override process-parent metadata.
 
-The manual collector performs no desktop automation and captures no task keystrokes, pointer activity, window titles or screen content. It measures explicitly selected application processes separately from its own overhead. Its output cannot establish human participation or correct task completion; those require separate evidence. The current automated suite has 85 passing tests, including five manual-collector checks. The automated benchmark contains zero human-reference runs. The subsequent [720-second unassisted human baseline](human-baseline/README.md) is a participant-supplied measurement summary, including actual measured process ancestry; it was not produced by this collector and its raw input-event and resource logs were not supplied.
+The manual collector performs no desktop automation and captures no task keystrokes, pointer activity, window titles or screen content. It measures explicitly selected application processes separately from its own overhead. Its output cannot establish human participation or correct task completion; those require separate evidence. The current automated suite has 120 passing tests, including manual-collector, event-analysis and guarded-workload checks. The automated benchmark contains zero human-reference runs. The subsequent [720-second unassisted human baseline](human-baseline/README.md) is a participant-supplied measurement summary, including actual measured process ancestry; it was not produced by this collector and its raw input-event and resource logs were not supplied.
+
+The ETW collector is a separate, temporary elevated process. The desktop workload stays unelevated and binds collector readiness to PID plus creation time; it stops exact owned Python workers if capture ends or its deadline approaches. Canary processes execute known exits before and after the native pair. The analyzer verifies lifecycle identity and parent/exit data against that ground truth and checks final logger loss, capture boundaries and file hashes. Raw system-wide traces remain private. Public aliases and fixed application roles expose selected evidence without publishing personal paths or raw process IDs. The [verified retry](process-events/README.md) covers 28 known canary lifecycles and two task controllers, not complete ancestry of warm applications or all possible system events.
 
 ## Provenance
 
@@ -61,7 +70,9 @@ Source code, synthetic fixtures, documentation and tests were created and iterat
 
 Runtime dependencies are declared in `requirements.txt`. The tested environment used pywinauto 0.6.9, psutil 7.2.2 and pywin32 312, with comtypes 1.4.17 as a transitive dependency. Python supplies Tkinter and the standard-library modules. FFmpeg was used externally for the local demonstration recording; Chrome, Google Sheets and Windows Notepad are host applications and are not bundled. Dependency and application licenses remain their respective owners' terms; the source package does not include their binaries.
 
-The submitted video, `dist/office-twin-submission.mp4`, is 180.13 seconds: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. Microsoft Zira Desktop provides synthetic narration, and FFmpeg assembles the edit. It documents the 15 October workflow before the later Notepad launch change and separate-observer benchmark. It presents recorded execution, not a live demonstration or a recording of the revised evaluation. Upload and publication status are tracked in [validation](VALIDATION.md).
+A [fresh virtual-environment reproduction](reproduction/README.md) installed those dependencies and six 1.17.0 from PyPI with the package cache disabled. It passed dependency checks, doctor, the frozen source's 85 tests and two simulation plans. That verifies the stated installation on the same machine and base Python; it does not establish second-device native compatibility.
+
+The [published revised video](https://youtu.be/oTTT0ECN25U) is 180.13 seconds: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. Microsoft Zira Desktop provides synthetic narration, and FFmpeg assembles the edit. Its footage documents the 15 October workflow before the later Notepad launch change and separate-observer benchmark. Narration and cards separately report the later ten-run series, historical 85-test result and supplied human baseline. It predates the ETW capture and current 120-test suite; it is not video evidence for those results. The [submission record](../SUBMISSION.md) identifies the published package and its exact video artifact.
 
 The optional evidence figure was rendered with Matplotlib 3.11.2 in a separate reporting environment; it is not a runtime dependency.
 

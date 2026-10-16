@@ -2,12 +2,22 @@
 
 | Official criterion | Weight | Evidence to inspect |
 | --- | --- | --- |
-| Process Telemetry Authenticity | 30% | Real Explorer openings; 17,018 separate observer snapshots; compatible Explorer → Chrome, Chrome → Chrome and Explorer → Notepad parent observations. |
+| Process Telemetry Authenticity | 30% | Verified Windows ETW capture: 28/28 known canary lifecycles and both native task-controller lifecycles; zero reported loss in all three final counters; 24 canaries under 100 ms. Historical sampled application-parent evidence remains separate. |
 | Human Entropy & Timing | 30% | Five controlled fixed/contextual pairs, measured wait variation, and a participant-confirmed unassisted human baseline: 720 seconds, 42 WPM and 14 corrected error episodes. |
-| Complexity of Action | 20% | Ten native tasks completed all 11 steps: three supplier reviews, six formulas, a cost/deadline decision, correction, saving, reopening and output checks. |
+| Complexity of Action | 20% | Ten controlled native tasks completed all 11 steps; a separate ETW retry pair also completed 11/11 each. Supplier reviews, six formulas, cost/deadline decisions, correction and save/reopen checks connect the applications. Failed earlier attempts remain documented. |
 | Resource Efficiency | 20% | Median controller CPU: 19.14 / 20.61 CPU-s (fixed/contextual); sampled peak controller RSS: 72.72–73.09 MiB. Runtime makes no cloud-model calls; observer and application costs are reported separately. |
 
 Start with the [judging guide](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/JUDGING_GUIDE.md) for evidence links, exact measurement boundaries, expected outputs and reproduction commands. These are observed and participant-reported results, not a calculated judging score.
+
+### New process-event verification
+
+The [retained ETW evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/process-events/README.md) verifies **28 known lifecycle pairs**, including nested parent relationships and exit codes, around a new **two-run native fixed/contextual pair**. Both tasks completed **11/11 steps** and both task-controller lifecycles resolved. The 393.982-second capture contains **344 process-provider records: 172 starts and 172 stops**, with no rundown. All three final logger-loss counters were zero; **24 canary lifetimes were below 100 ms**. This tests observed short-lived process coverage through actual OS events, beyond the earlier 100 ms polling evidence.
+
+Within the two task windows, the application-name cohort contains **14 Chrome and four Notepad start records**, and **three Chrome → Chrome relationships with resolved parent identities**. Eighteen stop records were also observed; equal start/stop totals do not establish 18 matched lifecycles within the individual trial windows. Fifteen additional relationships match parent PIDs against observed application processes; those are explicitly weaker than a resolved parent lifetime. These application cohorts can include unrelated activity.
+
+Coverage is explicit: all **33 recorded focus observations** refer to three warm main-application processes with no start/stop/rundown records in this window, so their lifecycle ancestry remains unresolved. Zero reported loss and complete known-canary checks do not prove every system event was captured. The first ETW attempt failed after Modern Standby interrupted the workload and is preserved. The successful retry used frozen source `09e4b83`; its extra capture conditions are not pooled with the earlier five-pair timing results. Only the temporary collector runs elevated; the workload remains unelevated. Public exports omit paths and raw process identifiers.
+
+The current software suite passes **120 tests**. A separate [fresh-environment check](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/reproduction/README.md) installed pinned dependencies from PyPI and passed the earlier frozen source's **85 tests** plus two 11-step simulation plans. It is a same-machine installation check, not another native run or second-device validation.
 
 ## Inspiration
 
@@ -33,7 +43,7 @@ Fixed and contextual timing policies share the same workflow. Contextual timing 
 
 A separate Python observer uses Windows Toolhelp inventory and psutil identity/resource snapshots. It requests 100-millisecond polling and reports actual median and maximum sampling gaps, overruns and its own CPU/memory overhead. Controller resources, controller descendants, Chrome and Notepad are separate scopes. Application cohorts can include unrelated activity; they are not exclusive task costs and must not be added into a purported whole-system total.
 
-The observer does not read the controller's action log, but it is still our instrumentation, not an independent auditor. Polling is not Sysmon, ETW or a complete process-start trace. Public exports omit personal paths, Sheet IDs, command lines and raw process identifiers.
+The observer does not read the controller's action log, but it is still our instrumentation, not an independent auditor. That historical polling method is distinct from the new Kernel-Process ETW collector, canonical Windows API decoder and lifecycle verifier. The event verifier checks identities, before/after canaries, native-task coverage and final logger counters. Public exports omit personal paths, Sheet IDs, command lines and raw process identifiers.
 
 Runtime execution makes no cloud-model calls. Google connectors provisioned the fixture and provided separate saved-content checks. OpenAI Codex assisted implementation, tests, documentation and local validation; that provenance is disclosed.
 
@@ -49,7 +59,7 @@ The revised series is therefore separate. It uses frozen source `051ec68`, five 
 
 ## Accomplishments that we're proud of
 
-The project delivers a connected native workflow with checked outputs, an inspectable implementation and **85 passing automated tests**. Measured process relationships led to a real implementation change, and the comparison checks caught a setup difference that would otherwise have distorted the timing result.
+The project delivers a connected native workflow with checked outputs, an inspectable implementation and **120 passing automated tests**. Measured process relationships led to a real implementation change, and the comparison checks caught a setup difference that would otherwise have distorted the timing result. The separate ETW retry now adds verified canary/controller lifecycles while retaining its failed first attempt.
 
 **The revised series completed 10 of 10 native tasks, each with 11/11 steps, yielding five comparable fixed/contextual pairs.** Fixed task duration had a median of **153.13 s** (range 152.24–158.99); contextual duration had a median of **167.08 s** (158.78–169.35). The within-pair contextual-minus-fixed difference had a median of **+11.26 s**, ranging from +5.55 to +17.10 s. These are descriptive results on one warm, shared Windows host, not a population reliability or significance claim.
 
@@ -130,7 +140,7 @@ The participant confirms that the process ancestry is also an actual measurement
 
 Automated task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
 
-The [revised narrated video](https://youtu.be/oTTT0ECN25U) preserves the same continuous 162.13-second **15 October functional recording at 1×** within a 180.13-second edit. Updated narration and cards report the **16 October evidence—ten native completions, five matched pairs, 85 passing tests and the participant-confirmed 720-second unassisted human baseline—separately from the footage**. The historical recording is labelled throughout; it does not show the revised launch mechanism or constitute a new benchmark trial. The final presentation review also makes all four judging criteria explicit in the evidence table and judging guide, including scoped CPU/RSS results and measured process-parent counts.
+The [revised narrated video](https://youtu.be/oTTT0ECN25U) preserves the same continuous 162.13-second **15 October functional recording at 1×** within a 180.13-second edit. Updated narration and cards report the **16 October evidence—ten native completions, five matched pairs, 85 passing tests and the participant-confirmed 720-second unassisted human baseline—separately from the footage**. The historical recording is labelled throughout; it does not show the revised launch mechanism or constitute a new benchmark trial. That edit predates the ETW verification and current 120-test suite, which are documented in the linked evidence. The four judging criteria remain explicit in the evidence table and guide.
 
 ## What we learned
 
@@ -140,6 +150,6 @@ Timing variation is similarly insufficient by itself. Our automated comparison m
 
 ## What's next
 
-Next are additional consented, unassisted manual reference runs with retained input-event and resource traces, explicit timestamp and process-cohort definitions, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
+Next are additional consented, unassisted manual reference runs with retained input-event and resource traces, explicit timestamp and process-cohort definitions, and calibration against those observations. Further event collection should resolve the preexisting application identities left unresolved in the current capture. Native reproduction on another Windows setup would test robustness beyond the current host; the new fresh-environment check uses this same machine.
 
-Evidence: [source](https://github.com/ajayasai/office-twin-ntu-st-2026), [revised benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md), [sampled parent evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/process-parent-evidence.md), [telemetry methods](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/TELEMETRY.md), and [retained initial series](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark-initial/README.md).
+Evidence: [source](https://github.com/ajayasai/office-twin-ntu-st-2026), [verified process events](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/process-events/README.md), [fresh-install check](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/reproduction/README.md), [revised benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md), [sampled parent evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/process-parent-evidence.md), [telemetry methods](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/TELEMETRY.md), and [retained initial series](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark-initial/README.md).

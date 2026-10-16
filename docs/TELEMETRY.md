@@ -44,7 +44,7 @@ All three initial pilot trials completed their native tasks. Across those observ
 
 The revised workflow opens both the supplier browser and the Notepad report through real, visible Explorer shortcut double-clicks. The report shortcut targets only the exact existing run-owned text file, and its unique launch-folder window is reused for the saved-file reopen. Missing or ambiguous controls stop input; there is no direct-file launch fallback. This changes the actual opening action, not process metadata. Windows file association, application reuse and sampling coverage still determine which parent relationships can be observed. Unresolved parents remain explicitly unresolved.
 
-The revised paired series is a separate source version. Its ten native attempts all completed, yielding five comparable pairs; see the [revised benchmark](benchmark/README.md) and [validation](VALIDATION.md) for measurements and limits. The current software suite has 85 passing tests, including launch targeting and evidence-handling checks; tests are not native telemetry observations.
+The revised paired series is a separate source version. Its ten native attempts all completed, yielding five comparable pairs; see the [revised benchmark](benchmark/README.md) and [validation](VALIDATION.md) for measurements and limits. The current software suite has 120 passing tests, including launch targeting and evidence-handling checks; tests are not native telemetry observations.
 
 ## Human-reference status
 
@@ -58,6 +58,8 @@ The existing [manual collector and protocol](MANUAL_BASELINE.md) remain availabl
 
 The collection process runs with an unelevated, medium-integrity token; the account's Administrators membership is present only as deny-only in that token. No Sysmon service/channel was available, the Security log was inaccessible, and the WMI process-start collector reported Access denied. These historical collection limitations are preserved. No logging policy, endpoint protection or audit records were modified, and no process-parent metadata was spoofed or rewritten.
 
-The new [process lifecycle event protocol](PROCESS_EVENTS.md) provides an elevated, temporary ETW collector and a separate unelevated validation worker. Its first attempt captured real start/stop events but failed the full protocol after the computer entered Modern Standby. No successful end-to-end native capture is claimed until final loss counters, 28 known lifecycles and the new native pair pass verification. New event-trace trials remain separate from the ten-run sampled benchmark above.
+The new [process lifecycle event protocol](PROCESS_EVENTS.md) provides an elevated, temporary ETW collector and a separate unelevated validation worker. The [verified retry](process-events/README.md) passed 28/28 known canary lifecycles and 2/2 native tasks with 11/11 steps each. Its 393.9823415-second trace contained 344 process-provider records (172 starts and 172 stops), with zero in all three final ETW loss counters. This is bounded validation of the specified lifecycles and tasks; no rundown events were observed, and complete application-window ancestry is not claimed.
+
+The first event-trace attempt remains a recorded failure after the computer entered Modern Standby. Both new attempts remain separate from the ten-run sampled benchmark above. The elevated ETW results do not change the historical WMI access-denied result or turn those earlier sampled observations into process events.
 
 Implementation references: [Microsoft Toolhelp process inventory](https://learn.microsoft.com/en-us/windows/win32/api/tlhelp32/ns-tlhelp32-processentry32w) and [psutil process counters](https://psutil.readthedocs.io/en/latest/). Parent snapshots establish observed compatibility, not causation.

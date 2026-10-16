@@ -288,6 +288,42 @@ class EventTraceAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["native_runs"][0]["focus_events_with_resolved_identity"], 0)
         self.assertFalse(any(row["application_role"] == "chrome" for row in events))
 
+    def test_application_cohort_distinguishes_pid_only_matches_from_resolved_parent_lifetimes(self):
+        manifest = self.fixture.native_manifest()
+        self.fixture.xml_events.pop()  # Focused Chrome PID 300 predates this trace; no invented rundown.
+        self.fixture.xml_events.extend([
+            event(1, 400, 12, parent=300, name="C:\\PRIVATE_BROWSER_PROFILE\\chrome.exe"),
+            event(2, 400, 12, at=14, name="chrome.exe"),
+            event(1, 401, 12.5, parent=400, name="chrome.exe"),
+            event(2, 401, 12.5, at=13.5, name="chrome.exe"),
+            event(1, 500, 14, parent=100, name="PRIVATE_UNRELATED.exe"),
+            event(2, 500, 14, at=14.5, name="PRIVATE_UNRELATED.exe"),
+        ])
+        # The controller's app label provides only a focused PID comparison.
+        path = manifest.parent / "trial" / "events.jsonl"
+        focus = json.loads(path.read_text(encoding="utf-8"))
+        focus["app"] = "browser"
+        path.write_text(json.dumps(focus) + "\n", encoding="utf-8")
+        self.fixture.save()
+        summary, events = analyze_capture(self.fixture.root, manifest)
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        run = summary["native_runs"][0]
+        self.assertEqual(run["focus_events_with_resolved_identity"], 0)
+        cohort = run["application_cohort"]
+        self.assertEqual(cohort["identity_count"], 2)
+        self.assertEqual(cohort["reported_parent_id_focus_matches"], [{"child_role": "chrome", "focused_parent_role": "chrome", "start_events": 1}])
+        self.assertEqual(cohort["resolved_etw_parent_chains"], [{"child_role": "chrome", "parent_role": "chrome", "start_events": 1}])
+        starts = [row for row in events if row["event"] == "start" and "native_application_cohort" in row["selection"]]
+        self.assertEqual(len(starts), 2)
+        self.assertIsNone(starts[0]["parent_process"])
+        self.assertEqual(starts[0]["reported_parent_id_focus_role_matches"], ["chrome"])
+        self.assertIn("not established", starts[0]["reported_parent_id_match_scope"])
+        self.assertEqual(starts[1]["parent_process"], starts[0]["process"])
+        self.assertNotIn("reported_parent_id_focus_role_matches", starts[1])
+        public = json.dumps([summary, events])
+        for secret in ("PRIVATE", "C:\\", '"pid"', '"parent_pid"', '"title"'):
+            self.assertNotIn(secret, public)
+
     def test_canonical_decoder_requires_raw_etl_hash_and_exact_event_count(self):
         self.fixture.save()
         canonical = self.fixture.root / "process-events-winapi.xml"
