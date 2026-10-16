@@ -27,9 +27,9 @@ Official cutoff: **18 October 2026, 00:00 SGT**. [Official schedule](https://ntu
 
 The earlier judges' attachment was **`office-twin-evidence-20261016-193080e.zip`**, 10,105,470 bytes, SHA-256 `30cc679ed4af24b8e1ea414fcb2c6f6c64c0567fd475010adce83b197f29c28b`. It contained source from clean commit [`193080e19a62eab8b3d10197ada50ac0150bf0a6`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/193080e19a62eab8b3d10197ada50ac0150bf0a6), the existing videos and an artifact manifest. That revision was verified at 15:58 SGT and is preserved locally. The subsequent packages below replace it.
 
-Documentation-only completion records follow each upload. The attached source archive contains its preparation-time status; this page records the verified completion without rebuilding the attachment or changing the tested runtime.
+For the uploads preceding the resource-sampler fix, documentation-only completion records followed each upload. The attached source archive contains its preparation-time status; this page records the verified completion without rebuilding the attachment or changing the tested runtime.
 
-The release packager records its exact source commit, clean/dirty state and artifact hashes in `dist/manifest.json`. The revised runtime tested was `051ec6871425ddaba9faeffed297a2168620e58c`; later reporting/documentation commits do not imply a different tested runtime. The original submitted archive based on `5dd7181317838d9cfa52ba023cf02037539ac5ff` is preserved locally under `runs/submitted-20261016`.
+The release packager records its exact source commit, clean/dirty state and artifact hashes in `dist/manifest.json`. The earlier native benchmark tested runtime `051ec6871425ddaba9faeffed297a2168620e58c`; the following reporting/documentation uploads did not change it. The later resource-sampler fix has separate software and noninteractive validation and is not covered by that historical performance benchmark. The original submitted archive based on `5dd7181317838d9cfa52ba023cf02037539ac5ff` is preserved locally under `runs/submitted-20261016`.
 
 ## Guided manual evidence update — 16 October, 16:49 SGT
 
@@ -107,3 +107,9 @@ Devpost saves **`office-twin-reviewed-evidence-20261016-74aaa3d.zip`**, **10,384
 The exact attachment name was read back after saving. The finalization page showed **Project submitted! — SUBMITTED — 5/5 steps done** and the three teammates. The saved story matches the packaged source after newline normalization: **22,886 characters**, SHA-256 `5cc1f5c21e3ba9b13013141f406d0f4fa7d24425ebca40036e324094ee7f3998`. The new timing table and ancestry correction were verified on the public page. The video URL remains `https://youtu.be/oTTT0ECN25U`, with its historical scope disclosed. This completion record follows the upload and is not inside that preparation snapshot.
 
 The substantive limits remain matched human/agent input-event evidence, exited historical parents, workflow breadth and native portability, and exclusive whole-task application resource attribution. The final review does not convert those limits into verified claims or predict an official score.
+
+## Resource-sampler fix prepared — 16 October 2026 (SGT)
+
+The controller recorder now verifies fresh process identities around CPU/RSS reads and checks parent identity separately. The [new evidence](docs/resource-sampling-fix/README.md) records 144 passing tests and a successful 19-check noninteractive Windows probe, including CPU-baseline exclusion, exact identity agreement for 37 existing application processes and clean recorder shutdown. The first probe selected the virtual-environment launcher instead of the worker; that failed check is retained with the corrected exact-worker binding.
+
+The participant-supplied unassisted human baseline, historical benchmark JSON and rundown evidence remain byte-for-byte unchanged. No app restart, new human run or native office-workflow run was performed. Only `office_twin/evidence.py` differs among the 14 runtime modules from the historical native benchmark; its performance figures are not reassigned to this fix. The versioned package manifest distinguishes current software validation from historical native measurements. This checkpoint prepares the replacement story and evidence attachment; upload completion is recorded separately after readback.

@@ -1,6 +1,12 @@
 # Observed validation — 16 October 2026 update
 
-## Current rundown identity validation
+## Current resource-sampler validation
+
+The [resource-sampling fix](resource-sampling-fix/README.md) passes **144 automated tests** and **19/19 noninteractive Windows integration checks**. Five new regressions cover reused process IDs, stale inventory metadata, descendant selection and inaccessible/reused parents. The live probe excluded 0.65625 CPU-seconds of pre-observation work, measured 0.78125 CPU-seconds matching fresh OS readings, and matched 37 stable Chrome/Notepad identities. It started only an owned temporary Python workload, with no app restart, office-task input, human run, input hooks or ETW capture.
+
+This changes `office_twin/evidence.py`; the other 13 runtime modules match the historical native benchmark after line-ending normalization. The measurements below remain evidence of their original frozen runtime. No new performance improvement or native-workflow result is claimed. The supplied unassisted baseline is retained unchanged. Published test logs, source hashes, integration summary, original probe source and preserved-evidence hashes are linked from the new validation page.
+
+## Historical rundown identity validation
 
 The [rundown supplement](process-rundown/README.md) resolves **32/32 focus observations** across **three current application identities** and verifies **28/28 known process lifecycles**. Both native tasks completed **11/11 steps**. Its 354.908-second trace contains 1,300 provider records: 185 starts, 185 stops and 930 rundown records (including two Idle PID 0 state records excluded from process identities); final reported loss counters were **0 / 0 / 0**. The seed-311 pair uses clean source `95bb3efc830a2d811b69cc68c9483ae9b0353fec`, normal timing and warm shared applications kept open as requested.
 
@@ -26,7 +32,7 @@ The result verifies the stated known canary/controller coverage and completed sa
 
 Each run recorded 586 single-key controller waits. Across runs, their 90th percentiles were **109.50–110.08 ms for fixed** and **161.01–177.73 ms for contextual**. This establishes measured policy variation and its cost; the waits are not OS input-delivery timestamps and do not validate human behavior.
 
-The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. It observed eight per-run Notepad identities created within capture windows with compatible Explorer parents, and ten preexisting Notepad observations with unresolved parents. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
+The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. It observed eight per-run Notepad identities created within capture windows with compatible Explorer parents, and ten preexisting Notepad observations with unresolved parents. No revised Notepad identity had a compatible Python parent in the sampled observations. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
 
 Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
 

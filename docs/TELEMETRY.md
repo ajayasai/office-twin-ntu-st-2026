@@ -44,7 +44,9 @@ All three initial pilot trials completed their native tasks. Across those observ
 
 The revised workflow opens both the supplier browser and the Notepad report through real, visible Explorer shortcut double-clicks. The report shortcut targets only the exact existing run-owned text file, and its unique launch-folder window is reused for the saved-file reopen. Missing or ambiguous controls stop input; there is no direct-file launch fallback. This changes the actual opening action, not process metadata. Windows file association, application reuse and sampling coverage still determine which parent relationships can be observed. Unresolved parents remain explicitly unresolved.
 
-The revised paired series is a separate source version. Its ten native attempts all completed, yielding five comparable pairs; see the [revised benchmark](benchmark/README.md) and [validation](VALIDATION.md) for measurements and limits. The current software suite has 139 passing tests, including launch targeting and evidence-handling checks; tests are not native telemetry observations.
+The revised paired series is a separate source version. Its ten native attempts all completed, yielding five comparable pairs; see the [revised benchmark](benchmark/README.md) and [validation](VALIDATION.md) for measurements and limits. The current software suite has 144 passing tests, including resource-sampling regressions, launch targeting and evidence-handling checks; tests are not native telemetry observations.
+
+The later [resource-sampling fix](resource-sampling-fix/README.md) changes only `office_twin/evidence.py` among runtime modules relative to the published native evidence. It uses one OS inventory to select candidates, reads counters through fresh process identities, and rejects observations if an identity changes. Regression tests and noninteractive live sampling validate this revision. The native workflow was not rerun, and the historical benchmark and ETW measurements retain their frozen source versions; the new sampling checks are reported separately.
 
 ## Human-reference status
 

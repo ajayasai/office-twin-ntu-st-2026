@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "noninteractive-resource-sampler-integration",
+  "passed": true,
+  "started_utc": "2026-10-16T12:52:07.845062+00:00",
+  "finished_utc": "2026-10-16T12:52:12.163105+00:00",
+  "source_commit": "ebbf7923a851840bc3c9ff9b239f074626773b43",
+  "source_worktree_had_uncommitted_fix": true,
+  "source_files_sha256": {
+    "office_twin/evidence.py": "48fb197e90d284a36a26e0402294fc530d667bdb6793df71bd37e59c79f2d181",
+    "office_twin/observer.py": "e5b84e1afc23aafb87300cf8230986dd7f445241c81ff600641a37715f47ac7b"
+  },
+  "tested_patch_sha256": "510929ddebbf106b60ba0361b7b42470d01fd5d83ce9b0d0a76fd80fc1269045",
+  "probe_sha256": "0b6515f140e268fbce45c05ce8f4d349e57d21c0e9c5ff6ee3daa90096b2af19",
+  "python": "3.14.2",
+  "psutil": "7.2.2",
+  "checks": {
+    "source_bytes_unchanged_during_probe": true,
+    "worker_binding_to_owned_launcher_tree": true,
+    "worker_exit_success": true,
+    "worker_exact_identity_no_longer_alive": true,
+    "one_exact_worker_identity_observed": true,
+    "worker_direct_identity_stable": true,
+    "nonzero_cpu_precedes_sampling": true,
+    "known_postbaseline_cpu_work_observed_directly": true,
+    "stable_existing_apps_available": true,
+    "stable_app_identity_and_name_agree": true,
+    "recorder_start_stop_and_thread_join": true,
+    "no_monitor_errors": true,
+    "controller_cpu_within_outer_direct_interval": true,
+    "worker_classified_as_controller_descendant": true,
+    "worker_multiple_samples": true,
+    "worker_baseline_excludes_prior_cpu": true,
+    "sampled_worker_delta_matches_bracketed_os_delta": true,
+    "sampled_worker_delta_is_not_lifetime_cpu": true,
+    "worker_memory_allocation_visible": true
+  },
+  "application_ui_actions": 0,
+  "app_restart_actions": 0,
+  "human_run": false,
+  "input_capture": false,
+  "etw_capture": false,
+  "stable_existing_application_identities": 37,
+  "stable_existing_application_counts": {
+    "chrome.exe": 36,
+    "notepad.exe": 1
+  },
+  "worker": {
+    "cpu_first_seconds": 0.65625,
+    "cpu_last_seconds": 1.4375,
+    "observed_cpu_delta_seconds": 0.78125,
+    "peak_observed_rss_bytes": 56590336,
+    "snapshot_count": 9,
+    "selection": "controller descendant",
+    "held_allocation_bytes": 33554432,
+    "direct_pre_sampling_cpu_seconds": 0.65625,
+    "direct_bracketed_cpu_delta_seconds": 0.78125,
+    "cpu_delta_tolerance_seconds": 0.15
+  },
+  "limits": [
+    "One same-machine noninteractive integration probe of the current uncommitted fix; not a native office-task run or a performance benchmark.",
+    "Direct and recorder readings use the same OS counter interface through psutil; these are cross-checks, not an independent external auditor.",
+    "No PID reuse was forced in this integration probe. Controlled regression tests cover reuse and access races separately.",
+    "CPU deltas cover first-to-last successful observations. Sampling can miss short-lived processes and memory peaks.",
+    "Existing application processes are a warm, nonexclusive cohort. Stability checks cover only identities readable before and after the probe.",
+    "Chrome, Notepad and Explorer were not intentionally launched, closed or restarted. Only the owned temporary Python workload was launched; unrelated background activity was not isolated.",
+    "No claim of CPU, memory, task-speed or score improvement follows from this probe."
+  ],
+  "recorder": {
+    "wall_seconds": 3.2366832999978215,
+    "controller_cpu_seconds": 0.46875,
+    "controller_peak_rss_bytes": 28160000,
+    "sample_interval_seconds": 0.25,
+    "monitor_error_count": 0
+  },
+  "prior_probe": {
+    "passed": false,
+    "reason": "The initial probe selected the Windows virtual-environment launcher PID instead of its actual worker descendant. Its workload assertions failed; the recorder had correctly captured both identities. The corrected probe validates exact worker membership in the owned launcher tree before collecting comparison readings.",
+    "summary_sha256": "4c99fb6048278747cc0a3f95d0bea09f7c2a9439607b7b218963e3b51125a87a",
+    "probe_sha256": "d54fa3f7faec5210fdae2de001dca93d8d8d2950ca8a21976526b54c9001a324",
+    "retained_privately": true
+  },
+  "validation_scope": "Nineteen bounded checks against actual Windows counters with one owned Python workload and existing warm applications; no desktop office task was executed."
+}

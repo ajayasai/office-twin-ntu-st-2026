@@ -14,7 +14,7 @@ The process-only `Microsoft-Windows-Kernel-Process` capture ran for **393.982 se
 | Native output verification | Fixed 11/11; contextual 11/11; both passed saved text and reloaded Sheet value checks |
 | Controller boundaries | Both native controllers and the validation worker resolved inside the trace |
 | Collector scheduling | Maximum loop gap 0.235 s; no deadline overrun |
-| Current automated suite | 120 tests passed, including event parsing/export and guarded-worker tests |
+| Historical automated suite | 120 tests passed, including event parsing/export and guarded-worker tests |
 
 Canaries are deliberately launched test processes, separate from the office workflow. Their short lifetimes are measured from ETW creation and exit payloads, not assumed from polling intervals. They test capture behavior; they are not evidence of human-like application behavior.
 
@@ -31,11 +31,11 @@ All **33 focus observations** refer to three main application processes already 
 - [Validation summary](process-event-summary.json): all 28 checks, two native results, cohort counts, explicit limitations and source-artifact SHA-256 hashes.
 - [Public event records](process-events-public.jsonl): 109 selected events across 56 capture-local process aliases; other process records are represented only by aggregate counts.
 - [Native output verification](native-output-verification.json): saved-text and reloaded Sheet checks, source commit and hashes of the private run summaries. This runtime check does not independently inspect formula source.
-- [Current test output](tests.log) and [test provenance](test-provenance.json): 120 passing tests; temporary directory prefixes are replaced with `<TEMP>` in the public log.
+- [Historical test output](tests.log) and [test provenance](test-provenance.json): 120 passing tests; temporary directory prefixes are replaced with `<TEMP>` in the public log.
 - [Retained failed-attempt summary](failed-attempt-summary.json): the first attempt remains failed, with only the 14 before-task canaries and no successful native pair.
 - [Capture, decode and reproduction protocol](../PROCESS_EVENTS.md): privilege boundary, validation gates, stop behavior and artifact handling.
 
-The retry used clean source commit [`09e4b83824b8b0bec4348be0dbae2bcdef1f62dc`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/09e4b83824b8b0bec4348be0dbae2bcdef1f62dc). The application runtime remains the frozen version used by the earlier benchmark. The later analyzer revision adds an explicitly scoped application-cohort view of the same unchanged capture; its source hash is recorded in the summary. It does not create a new native trial.
+The retry used clean source commit [`09e4b83824b8b0bec4348be0dbae2bcdef1f62dc`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/09e4b83824b8b0bec4348be0dbae2bcdef1f62dc). The application runtime used by this historical pair matched the frozen version used by the earlier benchmark. The later [resource-sampling fix](../resource-sampling-fix/README.md) changes only `office_twin/evidence.py` among runtime modules; its regression tests and noninteractive live sampling do not constitute a new native workflow trial. The later analyzer revision adds an explicitly scoped application-cohort view of the same unchanged capture; its source hash is recorded in the summary. It does not create a new native trial.
 
 The original ETL SHA-256 is `45c0cf6a0305d8e5298722fab50cacdc7e6c212a6a494e6aee907553e6a04c22`. Raw ETL, original tracerpt XML, canonical Windows API XML, final counters, ground truth and native logs are retained privately. Hashes establish consistency with those artifacts, not third-party certification. The Windows API decode preserves native UTC timestamps; the original tracerpt output is unchanged.
 

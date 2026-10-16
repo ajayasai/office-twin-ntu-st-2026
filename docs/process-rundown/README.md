@@ -42,7 +42,7 @@ Of those 16 newly started application identities, 13 have an observed stop withi
 | Native fixed/contextual tasks | 2/2 completed, each 11/11 steps; saved text and reloaded Sheet values passed |
 | Exact focus bindings | 32/32, verified against three preexisting identities |
 | Public selection | 59 process identities, 118 events; unrelated records excluded |
-| Software suite | 139 tests passed in 10.389 seconds |
+| Historical capture-source suite | 139 tests passed in 10.389 seconds |
 
 The collector stopped its verified owned session on the requested stop marker, flushed it, and retained final counters. The unchanged ETL was decoded through `Get-WinEvent.ToXml`; hashes bind the decoded view, capture status, canary ground truth and native manifest. The final analyzer reports `validation_passed: true` and no validation errors. Zero reported session loss does not establish universal provider completeness.
 
@@ -50,7 +50,7 @@ The collector stopped its verified owned session on the requested stop marker, f
 
 Use the [process-event protocol](../PROCESS_EVENTS.md), including collector `-RequestRundown` and worker `--require-rundown`. Only the collector needs elevation. The task controller, worker and sampled observer run unelevated.
 
-This pair used clean source `95bb3efc830a2d811b69cc68c9483ae9b0353fec`, seed 311, fixed then contextual timing, scale 1, on the same warm shared Windows host with no screen recording. The application runtime remains the frozen ten-run benchmark implementation; the new code adds evidence collection and verification. These trials are not pooled into the historical timing/resource comparison.
+This pair used clean source `95bb3efc830a2d811b69cc68c9483ae9b0353fec`, seed 311, fixed then contextual timing, scale 1, on the same warm shared Windows host with no screen recording. The application runtime used by this historical pair matched the frozen ten-run benchmark implementation; that revision added evidence collection and verification. The later [resource-sampling fix](../resource-sampling-fix/README.md) changes only `office_twin/evidence.py` among runtime modules and was checked through regression tests and noninteractive live sampling, without rerunning the native workflow. These trials are not pooled into the historical timing/resource comparison.
 
 - [Machine-readable verification](process-event-summary.json): capture counts, every canary check, focus identities, parent-resolution results and source/artifact hashes.
 - [Allowlisted event records](process-events-public.jsonl): relative timestamps, capture-local aliases and application roles.

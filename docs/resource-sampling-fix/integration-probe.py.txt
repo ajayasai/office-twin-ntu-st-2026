@@ -1,0 +1,227 @@
+"""Private bounded integration probe; no desktop input or application launches."""
+from __future__ import annotations
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import platform
+import subprocess
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[3]
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+import psutil
+from office_twin.evidence import EvidenceRecorder
+from office_twin.observer import process_inventory
+
+def utc():
+    return datetime.now(timezone.utc).isoformat()
+
+def write(path, value):
+    path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+
+def cpu_work(seconds):
+    start = time.process_time()
+    value = 7
+    while time.process_time() - start < seconds:
+        for _ in range(1000):
+            value = (value * 1664525 + 1013904223) & 0xffffffff
+    return value
+
+def read_identity(pid):
+    proc = psutil.Process(pid)
+    with proc.oneshot():
+        created, name = proc.create_time(), proc.name()
+        cpu, rss = proc.cpu_times(), proc.memory_info().rss
+    if psutil.Process(pid).create_time() != created:
+        raise RuntimeError("Process identity changed during direct OS read")
+    return {"pid": pid, "create_time": created, "name": name,
+            "cpu_seconds": float(cpu.user + cpu.system), "rss_bytes": rss, "read_utc": utc()}
+
+def wait_file(path, seconds=15):
+    deadline = time.monotonic() + seconds
+    while not path.exists():
+        if time.monotonic() >= deadline:
+            raise RuntimeError(f"Timed out waiting for owned worker marker {path.name}")
+        time.sleep(.02)
+
+def worker():
+    memory = bytearray(32 * 1024 * 1024)
+    for index in range(0, len(memory), 4096):
+        memory[index] = 137
+    cpu_work(.5)
+    write(HERE / "worker-ready.json", {**read_identity(os.getpid()), "held_allocation_bytes": len(memory)})
+    wait_file(HERE / "work.signal")
+    cpu_work(.75)
+    write(HERE / "worker-done.json", {**read_identity(os.getpid()), "held_allocation_bytes": len(memory), "touch_checksum": sum(memory[::4096])})
+    wait_file(HERE / "exit.signal")
+    return 0
+
+def app_snapshot():
+    rows, errors = [], 0
+    for row in process_inventory():
+        if row["name"].lower() not in {"chrome.exe", "notepad.exe"}:
+            continue
+        try:
+            fresh = read_identity(row["pid"])
+            if fresh["name"].lower() == row["name"].lower():
+                rows.append(fresh)
+        except (psutil.Error, OSError, RuntimeError):
+            errors += 1
+    return {"read_utc": utc(), "processes": rows, "read_errors": errors}
+
+def source_hashes():
+    return {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in sorted((ROOT / "office_twin").glob("*.py"))}
+
+def main():
+    raw = {"schema_version": 1, "started_utc": utc(), "kind": "noninteractive-resource-sampler-integration",
+           "operating_system": platform.platform(), "python": platform.python_version(),
+           "psutil": psutil.__version__, "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+           "source_worktree_status": subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True),
+           "source_hashes_before": source_hashes(), "probe_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+           "actions": ["read existing application counters", "launch one bounded owned Python workload (Windows venv launcher may add a descendant)", "sample resources", "allow owned child to exit"],
+           "application_ui_actions": 0, "app_restart_actions": 0, "input_capture": False, "etw_capture": False}
+    patch = subprocess.check_output(["git", "diff", "--", "office_twin/evidence.py", "tests/test_evidence.py"], cwd=ROOT)
+    (HERE / "tested-source.patch").write_bytes(patch)
+    raw["tested_patch_sha256"] = hashlib.sha256(patch).hexdigest()
+    child = None
+    recorder = None
+    checks = {}
+    try:
+        raw["applications_before"] = app_snapshot()
+        with (HERE / "worker-stdout.txt").open("w", encoding="utf-8") as stdout, (HERE / "worker-stderr.txt").open("w", encoding="utf-8") as stderr:
+            child = subprocess.Popen([sys.executable, str(Path(__file__)), "--worker"], cwd=HERE,
+                                     stdout=stdout, stderr=stderr, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+            wait_file(HERE / "worker-ready.json")
+            ready = json.loads((HERE / "worker-ready.json").read_text())
+            raw["worker_ready"] = ready
+            launcher = read_identity(child.pid)
+            raw["launcher_identity"] = launcher
+            worker_key = (ready["pid"], ready["create_time"])
+            owned = {(proc.pid, proc.create_time()) for proc in psutil.Process(child.pid).children(recursive=True)}
+            owned.add((launcher["pid"], launcher["create_time"]))
+            if worker_key not in owned or read_identity(child.pid)["create_time"] != launcher["create_time"]:
+                raise RuntimeError("Self-reported worker does not belong to the exact owned launcher tree")
+            raw["worker_binding_verified"] = True
+            raw["child_direct_before"] = read_identity(ready["pid"])
+            direct_before = raw["child_direct_before"]
+            key = (direct_before["pid"], direct_before["create_time"])
+            outer_cpu_start = time.process_time()
+            recorder = EvidenceRecorder(HERE / "recorder").start()
+            time.sleep(.8)
+            (HERE / "work.signal").touch(exist_ok=False)
+            wait_file(HERE / "worker-done.json")
+            raw["worker_done"] = json.loads((HERE / "worker-done.json").read_text())
+            time.sleep(.8)
+            raw["child_direct_after"] = read_identity(key[0])
+            (HERE / "exit.signal").touch(exist_ok=False)
+            raw["worker_exit_code"] = child.wait(timeout=10)
+            time.sleep(.7)
+            raw["recorder_summary"] = recorder.stop()
+            raw["outer_controller_cpu_delta_seconds"] = time.process_time() - outer_cpu_start
+        raw["recorder_stop_idempotent"] = recorder.stop() == raw["recorder_summary"]
+        raw["recorder_thread_stopped"] = recorder._thread is None or not recorder._thread.is_alive()
+        try:
+            raw["child_identity_after_exit"] = read_identity(key[0])
+            exited = raw["child_identity_after_exit"]["create_time"] != key[1]
+        except (psutil.NoSuchProcess, psutil.AccessDenied, OSError):
+            raw["child_identity_after_exit"] = None
+            exited = not psutil.pid_exists(key[0])
+        raw["applications_after"] = app_snapshot()
+        raw["source_hashes_after"] = source_hashes()
+        summary = raw["recorder_summary"]
+        child_rows = [row for row in summary["process_observations"] if (row["pid"], row["create_time"]) == key]
+        raw["matched_worker_observations"] = child_rows
+        before, after = raw["child_direct_before"], raw["child_direct_after"]
+        direct_delta = after["cpu_seconds"] - before["cpu_seconds"]
+        raw["child_direct_cpu_delta_seconds"] = direct_delta
+        before_app = {(row["pid"], row["create_time"]): row for row in raw["applications_before"]["processes"]}
+        after_app = {(row["pid"], row["create_time"]): row for row in raw["applications_after"]["processes"]}
+        stable = before_app.keys() & after_app.keys()
+        sampled = {(row["pid"], row["create_time"]): row for row in summary["process_observations"]}
+        raw["stable_app_identity_checks"] = [{"pid": pid, "create_time": created, "name": before_app[(pid, created)]["name"],
+             "sampled": (pid, created) in sampled,
+             "name_agrees": sampled.get((pid, created), {}).get("name", "").lower() == before_app[(pid, created)]["name"].lower()}
+             for pid, created in sorted(stable)]
+        checks = {
+            "source_bytes_unchanged_during_probe": raw["source_hashes_before"] == raw["source_hashes_after"],
+            "worker_binding_to_owned_launcher_tree": raw.get("worker_binding_verified") is True,
+            "worker_exit_success": raw["worker_exit_code"] == 0,
+            "worker_exact_identity_no_longer_alive": exited,
+            "one_exact_worker_identity_observed": len(child_rows) == 1,
+            "worker_direct_identity_stable": (before["pid"], before["create_time"]) == (after["pid"], after["create_time"]) == key,
+            "nonzero_cpu_precedes_sampling": before["cpu_seconds"] >= .4,
+            "known_postbaseline_cpu_work_observed_directly": .65 <= direct_delta <= 1.25,
+            "stable_existing_apps_available": len(stable) > 0,
+            "stable_app_identity_and_name_agree": all(row["sampled"] and row["name_agrees"] for row in raw["stable_app_identity_checks"]),
+            "recorder_start_stop_and_thread_join": raw["recorder_stop_idempotent"] and raw["recorder_thread_stopped"],
+            "no_monitor_errors": summary["monitor_error_count"] == 0,
+            "controller_cpu_within_outer_direct_interval": 0 <= summary["controller_cpu_seconds"] <= raw["outer_controller_cpu_delta_seconds"] + .03125,
+        }
+        if child_rows:
+            row = child_rows[0]
+            checks.update({
+                "worker_classified_as_controller_descendant": row["selection"] == "controller descendant",
+                "worker_multiple_samples": row["snapshot_count"] >= 3,
+                "worker_baseline_excludes_prior_cpu": row["cpu_first_seconds"] >= before["cpu_seconds"] - .0625 and row["cpu_first_seconds"] >= .4,
+                "sampled_worker_delta_matches_bracketed_os_delta": abs(row["observed_cpu_delta_seconds"] - direct_delta) <= .15,
+                "sampled_worker_delta_is_not_lifetime_cpu": row["cpu_last_seconds"] - row["observed_cpu_delta_seconds"] >= .4,
+                "worker_memory_allocation_visible": row["peak_observed_rss_bytes"] >= 32 * 1024 * 1024 and row["peak_observed_rss_bytes"] >= min(before["rss_bytes"], after["rss_bytes"]) - 2 * 1024 * 1024,
+            })
+        raw["checks"] = checks
+        raw["passed"] = all(checks.values())
+    except Exception as exc:
+        raw["passed"] = False
+        raw["error_type"] = type(exc).__name__
+        raw["error"] = str(exc)
+    finally:
+        if child is not None and child.poll() is None:
+            # The Popen object owns this exact handle, never an application PID search.
+            child.terminate()
+            child.wait(timeout=5)
+            raw["owned_worker_emergency_cleanup"] = True
+        if recorder is not None:
+            raw.setdefault("recorder_summary", recorder.stop())
+        raw["finished_utc"] = utc()
+        write(HERE / "private-report.json", raw)
+    public = {
+        "schema_version": 1, "kind": raw["kind"], "passed": raw["passed"],
+        "started_utc": raw["started_utc"], "finished_utc": raw["finished_utc"],
+        "source_commit": raw["source_commit"], "source_worktree_had_uncommitted_fix": bool(raw["source_worktree_status"].strip()),
+        "source_files_sha256": {key: value for key, value in raw["source_hashes_before"].items() if key in {"office_twin/evidence.py", "office_twin/observer.py"}},
+        "tested_patch_sha256": raw["tested_patch_sha256"], "probe_sha256": raw["probe_sha256"],
+        "python": raw["python"], "psutil": raw["psutil"], "checks": checks,
+        "application_ui_actions": 0, "app_restart_actions": 0, "human_run": False,
+        "input_capture": False, "etw_capture": False,
+        "stable_existing_application_identities": len(raw.get("stable_app_identity_checks", [])),
+        "stable_existing_application_counts": {name: sum(row["name"].lower() == name for row in raw.get("stable_app_identity_checks", [])) for name in ("chrome.exe", "notepad.exe")},
+        "worker": {},
+        "limits": [
+            "One same-machine noninteractive integration probe of the current uncommitted fix; not a native office-task run or a performance benchmark.",
+            "Direct and recorder readings use the same OS counter interface through psutil; these are cross-checks, not an independent external auditor.",
+            "No PID reuse was forced in this integration probe. Controlled regression tests cover reuse and access races separately.",
+            "CPU deltas cover first-to-last successful observations. Sampling can miss short-lived processes and memory peaks.",
+            "Existing application processes are a warm, nonexclusive cohort. Stability checks cover only identities readable before and after the probe.",
+            "No application was intentionally launched, closed or restarted; unrelated background activity was not isolated.",
+            "No claim of CPU, memory, task-speed or score improvement follows from this probe."
+        ]
+    }
+    if raw.get("matched_worker_observations"):
+        row = raw["matched_worker_observations"][0]
+        public["worker"] = {key: row[key] for key in ("cpu_first_seconds", "cpu_last_seconds", "observed_cpu_delta_seconds", "peak_observed_rss_bytes", "snapshot_count", "selection")}
+        public["worker"].update({"held_allocation_bytes": 32 * 1024 * 1024, "direct_pre_sampling_cpu_seconds": raw["child_direct_before"]["cpu_seconds"], "direct_bracketed_cpu_delta_seconds": raw["child_direct_cpu_delta_seconds"], "cpu_delta_tolerance_seconds": .15})
+    if raw.get("recorder_summary"):
+        public["recorder"] = {key: raw["recorder_summary"][key] for key in ("wall_seconds", "controller_cpu_seconds", "controller_peak_rss_bytes", "sample_interval_seconds", "monitor_error_count")}
+    write(HERE / "proposed-public-summary.json", public)
+    hashes = {path.relative_to(HERE).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(HERE.rglob("*")) if path.is_file() and path.name != "artifact-hashes.json"}
+    write(HERE / "artifact-hashes.json", hashes)
+    print(json.dumps({"passed": raw["passed"], "report": str(HERE / "private-report.json"), "summary": public}, indent=2))
+    return 0 if raw["passed"] else 1
+
+if __name__ == "__main__":
+    raise SystemExit(worker() if "--worker" in sys.argv else main())
+
