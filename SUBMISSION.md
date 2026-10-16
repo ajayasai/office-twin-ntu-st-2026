@@ -38,4 +38,3 @@ The saved judges' attachment is now **`office-twin-evidence-20261016-manual-7eec
 The three joined teammates and rules/Terms declaration were confirmed before the original submission. Updating the existing entry does not create a new team or a second submission.
 
 One participant subsequently completed a [guided manual attempt](docs/manual-practice/README.md) in **734.526 seconds**, with separately verified saved Sheet formulas/results and recommendation. The elapsed time includes chat guidance and waiting; exact formulas and a report example were supplied. **Unassisted human reference n=0**. This completion is not used for an agent-versus-human speed ratio or human-timing calibration. No human similarity, full process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.
-
