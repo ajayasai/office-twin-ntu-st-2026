@@ -4,6 +4,7 @@ Optional media tooling: Pillow, FFmpeg/ffprobe, Windows System.Speech.
 The desktop footage is never accelerated or spliced. Speech is synthetic.
 """
 from pathlib import Path
+import argparse
 import json
 import re
 import shutil
@@ -12,15 +13,25 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs" / "pitch"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--source", type=Path, default=ROOT / "runs/demo/office-twin-desktop-20261015-171812.mp4")
+parser.add_argument("--work-dir", type=Path, default=ROOT / "runs" / "pitch")
+parser.add_argument("--output", type=Path, default=ROOT / "dist" / "office-twin-submission.mp4")
+parser.add_argument("--cover-output", type=Path, default=ROOT / "docs" / "media" / "office-twin-cover.png")
+args = parser.parse_args()
+OUT = args.work_dir.resolve()
 OUT.mkdir(parents=True, exist_ok=True)
-DIST = ROOT / "dist"
-DIST.mkdir(exist_ok=True)
+output = args.output.resolve()
+output.parent.mkdir(parents=True, exist_ok=True)
+cover_output = args.cover_output.resolve()
+cover_output.parent.mkdir(parents=True, exist_ok=True)
 FFMPEG = shutil.which("ffmpeg")
 FFPROBE = shutil.which("ffprobe")
 if not FFMPEG or not FFPROBE:
     raise SystemExit("Install FFmpeg and ffprobe before building the optional pitch.")
-SOURCE = ROOT / "runs/demo/office-twin-desktop-20261015-171812.mp4"
+SOURCE = args.source.resolve()
+if not SOURCE.is_file():
+    raise SystemExit("Source recording is missing. Supply --source with the retained 15 October functional recording.")
 BG, PANEL, INK, MUTED, TEAL = "#0B1220", "#152236", "#F3F7FE", "#B7C7DB", "#58DEC5"
 FONT_DIR = Path("C:/Windows/Fonts")
 
@@ -56,26 +67,25 @@ def card(path, kind, size=(1920, 1200)):
         t(x+35, 510, name, 30, TEAL, True)
         t(x+35, 580, sub, 30)
     if kind == "closing":
-        t(105, 750, "SEPARATE ALTERNATE RUN", 28, TEAL, True)
-        t(105, 805, "Changed price → Crest Industrial selected at SGD 525", 45, bold=True)
-        t(105, 890, "6 formulas independently checked • 11/11 steps completed", 34, MUTED)
+        t(105, 750, "LATER EVIDENCE  /  16 OCTOBER UPDATE", 28, TEAL, True)
+        t(105, 805, "10/10 native tasks • 5 matched pairs • 85 tests passed", 45, bold=True)
+        t(105, 890, "Human baseline: 720 s • participant-confirmed aggregates", 34, MUTED)
+        t(105, 960, "Source, methods, saved-output checks and limits are linked below.", 30, MUTED)
         t(105, 1035, "github.com/ajayasai/office-twin-ntu-st-2026", 37)
     elif kind == "cover":
-        t(105, 765, "11 STEPS     /     3 LATEST RUNS COMPLETED     /     41 TESTS", 34, TEAL, True)
+        t(105, 765, "10/10 NATIVE TASKS     /     5 MATCHED PAIRS     /     85 TESTS", 34, TEAL, True)
         t(105, 860, "Scenario-driven Windows desktop workflow", 43, bold=True)
-        t(105, 960, "Synthetic business data • Contextual timing • Saved-content checks", 30, MUTED)
+        t(105, 960, "15 Oct functional recording • 16 Oct evidence update", 30, MUTED)
     else:
-        t(105, 775, "RECORDED DESKTOP EXECUTION  •  1x PLAYBACK", 37, TEAL, True)
-        t(105, 865, "Continuous original run, with introductory and result cards", 35, MUTED)
+        t(105, 775, "15 OCTOBER FUNCTIONAL RECORDING  •  1x PLAYBACK", 37, TEAL, True)
+        t(105, 865, "Later benchmark and human-reference results reported separately", 35, MUTED)
         t(105, 1025, "Synthetic narration added • No human-similarity claim", 31, MUTED)
     image.save(path)
 
 
 card(OUT / "intro.png", "opening")
 card(OUT / "outro.png", "closing")
-media = ROOT / "docs" / "media"
-media.mkdir(exist_ok=True)
-card(media / "office-twin-cover.png", "cover", (1500, 1000))
+card(cover_output, "cover", (1500, 1000))
 source_duration = duration(SOURCE)
 end = 8 + source_duration + 10
 script = (ROOT / "docs" / "PITCH.md").read_text(encoding="utf-8")
@@ -121,11 +131,14 @@ captions = [
     (32,58,"CONTEXTUAL TIMING  |  Seeded engineering defaults; not human-calibrated."),
     (58,86,"VISIBLE DESKTOP INPUT  |  Dedicated Quotes worksheet. Escape stops input."),
     (86,114,"SAVED-CONTENT CHECKS  |  Reload the sheet and check calculated results."),
-    (114,150,"DEFAULT RESULT  |  Atlas: SGD 600. Latest 3 runs: 11/11 steps. 41 tests pass."),
-    (150,8+source_duration,"EVIDENCE LIMITS  |  No human baseline or independent Sysmon trace collected."),
+    (114,150,"LATER BENCHMARK  |  10/10 native tasks. 5 matched policy pairs. 85 tests passed."),
+    (150,8+source_duration,"HUMAN REFERENCE  |  720 s, unassisted. Participant-confirmed aggregates; raw traces not supplied."),
 ]
+(OUT / "recording-scope.txt").write_text(
+    "15 OCT 2026 FUNCTIONAL RECORDING  |  Continuous 1x playback  |  Later results are reported separately",
+    encoding="utf-8")
 video_filter = ["[0:v]fps=15,format=yuv420p,setsar=1[i]",
-                "[1:v]fps=15,format=yuv420p,setsar=1[r]",
+                "[1:v]fps=15,format=yuv420p,setsar=1,drawbox=x=0:y=0:w=iw:h=44:color=0x101b2d:t=fill,drawtext=textfile=recording-scope.txt:fontfile='C\\:/Windows/Fonts/segoeui.ttf':fontcolor=white:fontsize=22:x=24:y=10[r]",
                 "[2:v]fps=15,format=yuv420p,setsar=1[o]",
                 "[i][r][o]concat=n=3:v=1:a=0[v0]"]
 last="v0"
@@ -134,7 +147,6 @@ for i,(start,stop,caption) in enumerate(captions):
     nxt=f"v{i+1}"
     video_filter.append(f"[{last}]drawbox=x=0:y=ih-50:w=iw:h=50:color=0x101b2d:t=fill:enable='between(t,{start},{stop})',drawtext=textfile=caption-{i}.txt:fontfile='C\\:/Windows/Fonts/segoeui.ttf':fontcolor=white:fontsize=24:x=24:y=h-39:enable='between(t,{start},{stop})'[{nxt}]")
     last=nxt
-output=DIST/"office-twin-submission.mp4"
 run([FFMPEG,"-y","-hide_banner","-loglevel","warning",
      "-loop","1","-framerate","15","-t","8","-i",str(OUT/"intro.png"),
      "-i",str(SOURCE),"-loop","1","-framerate","15","-t","10","-i",str(OUT/"outro.png"),
@@ -143,6 +155,8 @@ run([FFMPEG,"-y","-hide_banner","-loglevel","warning",
      "-c:a","aac","-b:a","160k","-movflags","+faststart",str(output)])
 (OUT/"build.json").write_text(json.dumps({"source_video":str(SOURCE),"source_seconds":source_duration,
     "source_playback":"unchanged 1x continuous", "opening_seconds":8,"closing_seconds":10,
+    "footage_scope":"15 October functional runtime, before the later launch and observer changes",
+    "narrative_scope":"16 October benchmark and participant-confirmed human aggregate update; later results are not depicted by the historical footage",
     "speech":"Microsoft Zira Desktop, synthetic narration", "segments":segments,
     "output":str(output),"output_seconds":duration(output)},indent=2),encoding="utf-8")
 print(output)

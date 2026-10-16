@@ -14,7 +14,7 @@ Final read-only Sheet inspection confirmed all six formulas and their saved valu
 
 Runtime commit: `051ec6871425ddaba9faeffed297a2168620e58c`. Five seed pairs (211, 223, 227, 229, 233), scale 1, default scenario, no screen recording. Fixed/contextual order reverses in alternate pairs. All pairs passed the analyzer's declared-version, scenario, action-sequence, capture and completion checks. The runtime and measurement source hashes are retained in the JSON export. Each run contains 622 timing events with the same kind/unit sequence.
 
-No human participant was available: **human reference n=0**. This is an automated policy comparison. No official score or human-authenticity result is inferred.
+**Human reference n=0 within this automated series.** The subsequent [720-second unassisted human baseline](../human-baseline/README.md) is reported separately from participant-supplied aggregates, including measured process ancestry. Its raw input-event and resource logs were not supplied. The historical automated JSON retains its original scope; no official score or human-authenticity result is inferred.
 
 ## Resource scope
 

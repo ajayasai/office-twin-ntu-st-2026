@@ -80,7 +80,7 @@ def plot_benchmark(source: Path, output: Path, dpi: int = 220):
              "axes.edgecolor": GRID, "axes.linewidth": 0.8, "svg.fonttype": "none"}
     with plt.rc_context(style):
         fig, axes = plt.subplots(1, 2, figsize=(13.6, 8.2), facecolor="white")
-        # Reserve separate bands for the human-reference notice, panel titles,
+        # Reserve separate bands for the automated-series notice, panel titles,
         # two-line seed labels and the measurement notes.
         fig.subplots_adjust(left=0.073, right=0.975, top=0.69, bottom=0.30, wspace=0.23)
         fig.text(0.073, 0.94, "OFFICE TWIN  /  OBSERVED AUTOMATED BENCHMARK", fontsize=10,
@@ -88,7 +88,7 @@ def plot_benchmark(source: Path, output: Path, dpi: int = 220):
         fig.text(0.073, 0.884, "Paired timing, with the limits visible.", fontsize=24, weight="bold")
         fig.text(0.073, 0.838, f"{len(data['runs'])} supplied attempts  ·  {len(pairs)} matched complete pairs  ·  {excluded} attempts excluded from these plots",
                  fontsize=11, color=MUTED)
-        fig.text(0.073, 0.792, "HUMAN REFERENCE  n = 0    ·    Human similarity has not been validated.",
+        fig.text(0.073, 0.792, "AUTOMATED POLICY COMPARISON · Human measurements are reported separately.",
                  fontsize=11, color=NAVY, weight="bold", bbox={"facecolor": "#edf6f4", "edgecolor": "none", "pad": 7})
 
         for ax in axes:
@@ -167,8 +167,8 @@ def plot_benchmark(source: Path, output: Path, dpi: int = 220):
                  fontsize=9, color=MUTED)
         fig.text(0.073, 0.038, "Descriptive observations only  ·  No statistical significance, whole-system efficiency, human authenticity or official score is inferred.",
                  fontsize=9, color=NAVY)
-        fig.savefig(png, dpi=dpi, facecolor="white", metadata={"Description": "Observed paired automated benchmark. Human reference n=0; no human validation."})
-        fig.savefig(svg, facecolor="white", metadata={"Description": "Observed paired automated benchmark. Human reference n=0; no human validation."})
+        fig.savefig(png, dpi=dpi, facecolor="white", metadata={"Description": "Observed paired automated benchmark. Human measurements are reported separately; no human similarity validation is inferred."})
+        fig.savefig(svg, facecolor="white", metadata={"Description": "Observed paired automated benchmark. Human measurements are reported separately; no human similarity validation is inferred."})
         plt.close(fig)
     return png.resolve(), svg.resolve()
 

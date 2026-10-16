@@ -48,7 +48,9 @@ The revised paired series is a separate source version. Its ten native attempts 
 
 ## Human-reference status
 
-**Human participants: 0.** No participant was available for this evaluation. The timing policy remains an uncalibrated engineering model. Fixed-versus-contextual measurements can show whether variation exists and what time/resource cost it has; they cannot establish resemblance to humans, human entropy, indistinguishability or an official judging score.
+**The automated observer series contains zero human-reference runs.** A subsequent [participant-confirmed, unassisted human baseline](human-baseline/README.md) reports a 720-second task, input behavior, application resources and measured process ancestry. Its aggregates were supplied by the participant; raw input-event and resource logs were not supplied. It is separate from both this automated capture and the earlier guided practice.
+
+The timing policy remains an uncalibrated engineering model. Fixed-versus-contextual measurements can show whether variation exists and what time/resource cost it has; they cannot establish resemblance to humans, human entropy, indistinguishability or an official judging score. The retained automated exports keep their original `human_reference_runs: 0` scope.
 
 The existing [manual collector and protocol](MANUAL_BASELINE.md) remain available for a future consented study. Automated runs, collector tests and synthetic traces are never substituted for manual observations.
 

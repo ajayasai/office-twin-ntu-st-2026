@@ -1,4 +1,13 @@
-# Office Twin
+## Evidence at a glance
+
+| Official criterion | Weight | Evidence to inspect |
+| --- | --- | --- |
+| Process Telemetry Authenticity | 30% | Real Explorer openings; 17,018 separate observer snapshots; compatible Explorer → Chrome, Chrome → Chrome and Explorer → Notepad parent observations. |
+| Human Entropy & Timing | 30% | Five controlled fixed/contextual pairs, measured wait variation, and a participant-confirmed unassisted human baseline: 720 seconds, 42 WPM and 14 corrected error episodes. |
+| Complexity of Action | 20% | Ten native tasks completed all 11 steps: three supplier reviews, six formulas, a cost/deadline decision, correction, saving, reopening and output checks. |
+| Resource Efficiency | 20% | Median controller CPU: 19.14 / 20.61 CPU-s (fixed/contextual); sampled peak controller RSS: 72.72–73.09 MiB. Runtime makes no cloud-model calls; observer and application costs are reported separately. |
+
+Start with the [judging guide](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/JUDGING_GUIDE.md) for evidence links, exact measurement boundaries, expected outputs and reproduction commands. These are observed and participant-reported results, not a calculated judging score.
 
 ## Inspiration
 
@@ -20,7 +29,7 @@ Python, pywinauto, Windows UI Automation and pywin32 control visible application
 
 The revised implementation opens both the supplier browser and the Notepad report through visible Explorer shortcut double-clicks. The report shortcut targets the exact run-owned text file. Ambiguous controls stop the run; no direct-file fallback silently changes the opening method.
 
-Fixed and contextual timing policies share the same workflow. Contextual timing introduces bounded variation, correlated pacing and pauses for reading, typing, switching, review and correction. These remain engineering defaults: **unassisted human reference n = 0**. The guided manual completion described below adds functional evidence, not human-timing calibration.
+Fixed and contextual timing policies share the same workflow. Contextual timing introduces bounded variation, correlated pacing and pauses for reading, typing, switching, review and correction. These remain engineering defaults. A participant-confirmed, unassisted human baseline is reported below; it has not yet been used to calibrate the timing policies. The earlier documented practice record is retained separately.
 
 A separate Python observer uses Windows Toolhelp inventory and psutil identity/resource snapshots. It requests 100-millisecond polling and reports actual median and maximum sampling gaps, overruns and its own CPU/memory overhead. Controller resources, controller descendants, Chrome and Notepad are separate scopes. Application cohorts can include unrelated activity; they are not exclusive task costs and must not be added into a purported whole-system total.
 
@@ -46,11 +55,78 @@ The project delivers a connected native workflow with checked outputs, an inspec
 
 Each run recorded 586 single-key controller waits. Across runs, their 90th percentiles were **109.50–110.08 ms for fixed** and **161.01–177.73 ms for contextual**. This establishes measured policy variation and its cost; the waits are not OS input-delivery timestamps and do not validate human behavior.
 
-The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. It observed eight per-run Notepad identities created within capture windows with compatible Explorer parents, and ten preexisting Notepad observations with unresolved parents. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
+The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. For identities created within capture windows, the per-run counts sum to **6 Chrome identities with compatible Explorer parents, 33 Chrome children with compatible Chrome parents, and 8 Notepad identities with compatible Explorer parents**. Ten preexisting Notepad observations had unresolved parents. These are per-run identity counts, not distinct processes across the whole experiment. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
 
 Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
 
-**One participant also completed a guided manual practice with verified saved outputs.** The participant reported operating the applications personally and used Start/Finish buttons. Post-run checks confirmed 18 literal Sheet cells, six formula sources, six calculated results and a correct saved recommendation for Atlas at SGD 600. The recorded **734.526 seconds** includes chat guidance and waiting. Exact formulas and a report example were supplied during the attempt; independent report authorship and entry method were not established. This is one guided completion, with no input-timing or application-resource recording, so it is not used for an agent-versus-human speed ratio. [Practice evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/README.md) and the [verification record](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/result.json) preserve that distinction.
+### Measured resource efficiency and test environment
+
+Full-window controller CPU had medians of **19.14 CPU-seconds (fixed)** and **20.61 CPU-seconds (contextual)**. Across the ten runs, sampled controller peak RSS was **72.72–73.09 MiB**, with a requested 250 ms sampling interval. These controller figures exclude the applications and observer. The separate observer itself used **38.36–65.88 CPU-seconds** and **26.45–29.28 MiB** peak sampled RSS per capture. Its diagnostic cost is disclosed separately; Chrome and Notepad cohorts may include unrelated activity and shared pages. The [numeric benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md) retains all scopes and per-run results.
+
+The automated benchmark ran on Windows 11 build 26200, an Intel Core Ultra 7 155U with 14 logical processors and 31.55 GiB RAM, Python 3.14.2, Chrome 155.0.8059.40 and Notepad 11.2607.14.0, at 1920 × 1200. Applications were warm and shared. The human mouse-distance summary below separately assumes 1920 × 1080 coordinates; the two display descriptions are not pooled.
+
+**Earlier practice record, retained separately from the human baseline below.** One participant completed a documented practice with verified saved outputs. The participant reported operating the applications personally and used Start/Finish buttons. Post-run checks confirmed 18 literal Sheet cells, six formula sources, six calculated results and a correct saved recommendation for Atlas at SGD 600. The recorded **734.526 seconds** includes chat guidance and waiting. Exact formulas and a report example were supplied during the attempt; independent report authorship and entry method were not established. This is one guided completion, with no input-timing or application-resource recording, so it is not used for an agent-versus-human speed ratio. [Practice evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/README.md) and the [verification record](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/result.json) preserve that distinction.
+
+## Human baseline: unassisted, human-performed task
+
+The participant confirms that the following task was completed entirely by a human, without guidance. This is the participant-supplied measurement summary for a **720-second (12-minute) human baseline**. It is reported separately from the earlier 734.526-second practice record above. The aggregate measurements were supplied by the participant; raw input-event and resource logs were not included with this update. The participant's clarification is reflected in the waiting/idle phase label below. The [baseline documentation and machine-readable aggregates](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/human-baseline/README.md) preserve every measurement and its scope.
+
+### Task duration and phases
+
+| Measure | Human baseline |
+| --- | --- |
+| **Total task duration** | **720 seconds — 12 minutes** |
+| Reading brief and reviewing quotes | 90 seconds |
+| Entering spreadsheet headers | 45 seconds |
+| Entering supplier data | 135 seconds |
+| Calculations and deadline checks | 90 seconds |
+| Writing recommendation | 180 seconds |
+| Saving, reopening and checking outputs | 90 seconds |
+| Waiting / idle | 90 seconds |
+| Typing measurement window, across task phases | 180 seconds |
+
+### Typing, corrections and interaction
+
+| Measure | Human baseline |
+| --- | --- |
+| Final retained text | 630 characters |
+| Net typing speed [1] | 42 WPM |
+| Total key-down events | 740 |
+| Printable-character keypresses | 672 |
+| Backspace/Delete keypresses | 42 |
+| Navigation/modifier keypresses | 26 |
+| Backspace/Delete share | 5.68% |
+| Mean inter-key interval [2] | 200 milliseconds |
+| Median inter-key interval [2] | 170 milliseconds |
+| 90th-percentile inter-key interval [2] | 350 milliseconds |
+| Mean key-hold duration | 100 milliseconds |
+| Input-error episodes | 14 |
+| Error episodes corrected | 14 |
+| Errors remaining in final output | 0 |
+| Pauses of at least 2 seconds [3] | 18 |
+| Combined pause duration [3] | 150 seconds |
+| Mouse click cycles | 112 |
+| Double-click gestures | 4, comprising 8 of those 112 clicks |
+| Mouse-wheel events | 28 |
+| Mouse travel at an assumed 1920 × 1080 resolution | 20,000 screen-coordinate pixels |
+| Foreground application switches | 8 |
+| Chrome tab switches | 24 |
+
+### Application resources and process ancestry
+
+| Measure | Human baseline |
+| --- | --- |
+| Chrome process-group CPU time [4] | 36 CPU-seconds |
+| Chrome process-group mean / peak summed RSS [5] | 600 / 720 MiB |
+| Notepad CPU time [4] | 1.8 CPU-seconds |
+| Notepad mean / peak RSS [5] | 55 / 70 MiB |
+| Measured process ancestry (participant-reported) | Explorer → Chrome; Chrome → Chrome child processes; Explorer → Notepad |
+
+The participant confirms that the process ancestry is also an actual measurement. The reported relationships are included as human-baseline results; underlying process-event records were not supplied with this update. They are reported separately from the agent's retained sampled parent evidence.
+
+**Definitions and scope.** [1] Net WPM = 630 retained characters ÷ 5 characters per word ÷ 3 minutes = 42. The phase durations sum to 720 seconds; the typing window spans those phases and is not additional time. Key categories sum to 740, and 42 ÷ 740 × 100 = 5.68%. [2] Inter-key and hold statistics are participant-reported aggregates. The eligible key set, timestamp source and pause-exclusion rule were not supplied, so they are not treated as directly comparable to the agent's controller waits. [3] Pause duration overlaps task activity and is not added to the 720-second total; its overlap with the 180-second typing window was not specified. [4] CPU-seconds represent processor time, not elapsed time. Capture boundaries and Chrome process inclusion rules were not supplied. [5] MiB means 2²⁰ bytes. Summed RSS can count shared pages more than once; sampling cadence and the group-peak aggregation method were not supplied.
+
+**What this adds to the evaluation.** The human baseline provides a concrete reference for task phases, typing variation, correction behavior, application switching, process ancestry and application resources. The reported output has 14 corrected error episodes and zero remaining errors. It complements the verified agent workflow and five paired automated comparisons, while keeping participant-reported human measurements distinct from retained automated logs. A single aggregate baseline does not establish human indistinguishability, a population distribution or an official score. We do not infer an agent-versus-human speedup because capture boundaries, assistance history of the older practice and input-event definitions differ.
 
 Automated task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
 
@@ -60,10 +136,10 @@ The published video shows the initial functional run recorded on 15 October, pre
 
 A correct artifact, a successful desktop action and a convincing process trace require different evidence. Separate observation made an implementation difference visible.
 
-Timing variation is similarly insufficient by itself. Our automated comparison measures policy behavior and its observed cost. The guided manual practice demonstrates correct saved work, but does not establish human entropy, indistinguishability or an official judging score. Missing parents remain unresolved, and sampled CPU or memory must keep its measurement scope attached.
+Timing variation is similarly insufficient by itself. Our automated comparison measures policy behavior and its observed cost. The earlier practice demonstrates correct saved work, and the participant-confirmed unassisted baseline adds reported human measurements. Neither establishes human indistinguishability or an official judging score. Missing parents remain unresolved, and sampled CPU or memory must keep its measurement scope attached.
 
 ## What's next
 
-Next are consented, unassisted manual reference runs with suitable input-timing capture, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
+Next are additional consented, unassisted manual reference runs with retained input-event and resource traces, explicit timestamp and process-cohort definitions, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
 
 Evidence: [source](https://github.com/ajayasai/office-twin-ntu-st-2026), [revised benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md), [sampled parent evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/process-parent-evidence.md), [telemetry methods](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/TELEMETRY.md), and [retained initial series](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark-initial/README.md).

@@ -6,7 +6,7 @@ The new observer exposed six Notepad process identities with Python parentage an
 
 This finding prompted a change from direct file association invocation in Python to a visible Explorer double-click for opening and reopening the report. The running trial finished on its already-loaded version. The harness then stopped before another trial when its source-digest guard detected the revision. No trial result was removed or relabelled as a failure.
 
-These measurements are historical evidence for the launch-mechanism change. The revised-version benchmark is reported separately. Human reference runs remain zero. Shared application cohorts include unrelated activity.
+These measurements are historical evidence for the launch-mechanism change. The revised-version benchmark is reported separately. This initial automated series contains zero human-reference runs; the subsequent [720-second unassisted human baseline](../human-baseline/README.md) is reported separately from participant-supplied measurements. Shared application cohorts include unrelated activity.
 
 - [Timing and resource observations](BENCHMARK.md)
 - [Sampled parent relationships and pseudonymized observations](process-parent-evidence.md)

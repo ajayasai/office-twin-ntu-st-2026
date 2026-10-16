@@ -2,7 +2,7 @@
 
 The separate observer sampled real OS process identities and parent metadata. The tables publish fixed application roles, aggregate counts and pseudonymized process observations.
 
-**This is sampled process evidence, not a process-start trace.** Creation age uses OS-reported timestamps. Preexisting Chrome parentage does not establish how this run launched Chrome; application cohorts include unrelated activity. Human reference runs: **0**.
+**This is sampled process evidence, not a process-start trace.** Creation age uses OS-reported timestamps. Preexisting Chrome parentage does not establish how this run launched Chrome; application cohorts include unrelated activity. Human reference runs within this automated series: **0**. The later [unassisted human baseline](../human-baseline/README.md), including participant-reported measured process ancestry, is reported separately.
 
 | Run | Policy | Observed identities | Compatible parent | Unresolved/conflicting parent | Preexisting | OS creation within window | Age unresolved |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -476,4 +476,4 @@ Aliases restart at P001 in each run. A blank parent alias means the compatible p
 - P001-style aliases are local to each run and are not stable across runs. A parent alias is included only when that compatible parent identity was itself observed in the selected process cohort.
 - Per-process CPU covers first-to-last sampled counters, not lifetime CPU. Peak RSS is a sampled process maximum; per-process memory peaks must not be added to infer simultaneous or unique physical memory.
 - Only fixed application roles are published; all other process names are redacted. PIDs, raw creation timestamps, source paths, command lines, URLs and account information are not exported.
-- Human reference runs: 0. Process parentage and automated timing evidence do not establish human similarity.
+- Human reference runs within this automated series: 0; the later [participant-reported baseline](../human-baseline/README.md) is separate. Process parentage and automated timing evidence do not establish human similarity.

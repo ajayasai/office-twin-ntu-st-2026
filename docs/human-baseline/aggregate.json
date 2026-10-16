@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "classification": "participant-confirmed unassisted human measurement aggregates",
+  "provenance": {
+    "source": "participant-supplied table and subsequent clarification",
+    "actual_measurements_confirmed_by_participant": true,
+    "completed_entirely_by_human_confirmed_by_participant": true,
+    "without_guidance_confirmed_by_participant": true,
+    "process_ancestry_actual_measurements_confirmed_by_participant": true,
+    "independently_verified": false,
+    "raw_input_event_logs_supplied": false,
+    "raw_application_resource_logs_supplied": false,
+    "raw_process_event_logs_supplied": false,
+    "measurement_run_id": null,
+    "measurement_date": null,
+    "actual_hardware_specification": null,
+    "capture_definitions_supplied": false,
+    "guidance_phase_label_normalization": {
+      "original": "Guidance / waiting",
+      "published": "Waiting / idle",
+      "seconds_unchanged": 90,
+      "basis": "participant clarified the task was completed without guidance"
+    }
+  },
+  "measured_results_participant_reported": {
+    "total_task_duration_seconds": 720,
+    "total_task_duration_minutes": 12,
+    "task_phases": [
+      {
+        "phase": "Reading brief and reviewing quotes",
+        "seconds": 90
+      },
+      {
+        "phase": "Entering spreadsheet headers",
+        "seconds": 45
+      },
+      {
+        "phase": "Entering supplier data",
+        "seconds": 135
+      },
+      {
+        "phase": "Calculations and deadline checks",
+        "seconds": 90
+      },
+      {
+        "phase": "Writing recommendation",
+        "seconds": 180
+      },
+      {
+        "phase": "Saving, reopening and checking outputs",
+        "seconds": 90
+      },
+      {
+        "phase": "Waiting / idle",
+        "seconds": 90
+      }
+    ],
+    "typing_measurement_window_seconds_across_task_phases": 180,
+    "final_retained_text_characters": 630,
+    "net_typing_speed_wpm": 42,
+    "total_key_down_events": 740,
+    "printable_character_keypresses": 672,
+    "backspace_delete_keypresses": 42,
+    "navigation_modifier_keypresses": 26,
+    "backspace_delete_share_percent": 5.68,
+    "mean_inter_key_interval_milliseconds": 200,
+    "median_inter_key_interval_milliseconds": 170,
+    "p90_inter_key_interval_milliseconds": 350,
+    "mean_key_hold_duration_milliseconds": 100,
+    "input_error_episodes": 14,
+    "error_episodes_corrected": 14,
+    "errors_remaining_in_final_output": 0,
+    "pause_threshold_seconds": 2,
+    "pauses_at_or_above_threshold": 18,
+    "combined_pause_duration_seconds": 150,
+    "mouse_click_cycles": 112,
+    "double_click_gestures": 4,
+    "clicks_in_double_click_gestures_included_in_total": 8,
+    "mouse_wheel_events": 28,
+    "mouse_travel_screen_coordinate_pixels": 20000,
+    "mouse_travel_assumed_resolution_pixels": {
+      "width": 1920,
+      "height": 1080
+    },
+    "foreground_application_switches": 8,
+    "chrome_tab_switches": 24,
+    "chrome_process_group_cpu_seconds": 36,
+    "chrome_process_group_mean_summed_rss_mib": 600,
+    "chrome_process_group_peak_summed_rss_mib": 720,
+    "notepad_cpu_seconds": 1.8,
+    "notepad_mean_rss_mib": 55,
+    "notepad_peak_rss_mib": 70,
+    "process_ancestry_relationships": [
+      "Explorer -> Chrome",
+      "Chrome -> Chrome child processes",
+      "Explorer -> Notepad"
+    ]
+  },
+  "arithmetic_checks": {
+    "task_phase_sum_seconds": 720,
+    "task_phase_sum_matches_reported_total": true,
+    "key_category_sum": 740,
+    "key_category_sum_matches_reported_total": true,
+    "net_wpm_formula": "(630 characters / 5 characters per word) / (180 seconds / 60 seconds per minute)",
+    "calculated_net_wpm": 42.0,
+    "calculated_backspace_delete_share_percent_unrounded": 5.675675675675676,
+    "calculated_backspace_delete_share_percent_rounded": 5.68,
+    "double_click_components": "4 gestures * 2 clicks = 8 clicks, already included in 112",
+    "conditional_character_balance": "672 - 42 = 630 only if each printable key adds one character and each deletion removes one; no event log establishes this assumption."
+  },
+  "scope_and_limitations": [
+    "Participant confirms actual measurements from a task completed entirely by a human, without guidance. These are participant-supplied aggregates, not independently verified input or resource traces.",
+    "No raw input-event, application-resource, or process-event logs, measurement run ID, measurement date, actual hardware specification, or capture software definitions were supplied for this aggregate record. The package date is not a measurement date.",
+    "The original Guidance / waiting phase label is normalized to Waiting / idle following the participant clarification that the task was unassisted; its 90-second value is unchanged.",
+    "This 720-second aggregate record is reported separately from the retained 734.5256836999979-second guided-practice log. It does not replace, relabel, or reconcile that historical record.",
+    "Older n=0 or reference-pending labels elsewhere in the preserved archive describe the evidence available before this update. Current reporting includes this participant-confirmed unassisted aggregate baseline, while raw-trace-backed or independently verified unassisted measurement evidence remains unavailable.",
+    "The 180-second typing window spans task phases and is not additional elapsed time. Pause duration overlaps the task and is not added to its total; overlap with the typing window was not specified.",
+    "Inter-key and hold statistics lack the eligible key set, timestamp source, gap population, and pause-exclusion rule. A single timeline cannot be reconstructed from these summaries, and these values are not directly comparable to agent controller waits.",
+    "CPU-seconds are processor time, not elapsed time or utilization percentage. Capture boundaries, process selection, and Chrome child-process inclusion rules were not supplied; these aggregates do not establish exclusive task costs.",
+    "MiB means 1048576 bytes. Summed RSS can double-count shared memory. Sampling cadence, mean weighting, and the simultaneous group-peak aggregation method were not supplied.",
+    "Mouse travel is in screen-coordinate pixels at an assumed 1920 by 1080 resolution, not an independently confirmed display setup or physical distance. Four double-click gestures comprise eight of the 112 clicks; those eight are not additional clicks.",
+    "Process ancestry is participant-confirmed measured data. Raw process-event traces were not supplied, so independent verification is not claimed.",
+    "Arithmetic checks validate internal totals only, not measurement provenance, task-output correctness, human indistinguishability, population behavior, an agent-versus-human speed ratio, or an official competition score."
+  ],
+  "documentation": {
+    "update_date_sgt": "2026-10-16",
+    "measurement_date_inferred_from_documentation_date": false,
+    "readme": "README.md",
+    "relationship_to_automated_benchmark": "Separate participant-confirmed aggregate reference; not a paired trial or timing calibration.",
+    "relationship_to_guided_practice": "Separate from the retained 734.5256836999979-second guided practice; shared participant identity or measurement setup is not assumed."
+  }
+}

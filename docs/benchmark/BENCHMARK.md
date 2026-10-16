@@ -2,7 +2,7 @@
 
 10 attempts; 10 complete, verified native tasks; 5 comparable fixed/contextual pairs under declared matching conditions.
 
-**No human baseline was collected. This comparison does not establish human similarity or an official score.**
+**This automated series contains no human-reference runs.** The subsequent [720-second unassisted human baseline](../human-baseline/README.md) is reported separately from participant-supplied measurements. This automated comparison does not establish human similarity or an official score; its retained JSON preserves the original series scope.
 
 Run aliases correspond to manifest order (then explicit run arguments); duplicate paths are excluded. No source paths, Sheet IDs, process command lines, raw error text or event payloads are exported.
 
@@ -186,7 +186,7 @@ External sampling covers its own observation window. Chrome/Notepad are nonexclu
 
 ## Limits
 
-- No human participant or human reference data was collected. Timing variation is not evidence of human similarity.
+- No human-reference data was collected within this automated series. The later [participant-reported human baseline](../human-baseline/README.md) is separate; timing variation is not evidence of human similarity.
 - No official score, winning probability, statistical significance or population reliability is inferred.
 - Matching source version, environment and capture metadata is based on operator declarations, not independent verification.
 - Task interval runs from the first step start through the final step completion; it excludes preparation, countdown, final verification and cleanup.

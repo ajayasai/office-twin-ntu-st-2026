@@ -2,6 +2,8 @@
 
 Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office worker: review local supplier quotes in **Chrome**, compare them in **Google Sheets**, and write a recommendation in **Notepad**. It performs a controlled, repeatable scenario through visible desktop input. It does not navigate or understand arbitrary websites.
 
+**For judges:** start with the [criterion-by-criterion evidence guide](docs/JUDGING_GUIDE.md) for measured results, expected outputs, source links and reproduction steps.
+
 **16 October evidence update:** ten normal-speed native runs completed **11/11 steps each**, with **five matched fixed/contextual pairs** and **85 passing automated tests**. A separate process observer now reports actual sampling gaps, parent relationships, scoped CPU/RSS and its own overhead. Both browser and report opening use visible Explorer shortcut double-clicks. See the [revised benchmark](docs/benchmark/README.md).
 
 | Observed measure | Fixed | Contextual |
@@ -13,7 +15,9 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 
 Within matched pairs, contextual timing added a median **11.26 s** (range 5.55–17.10 s). Task duration excludes preparation, countdown, final verification and cleanup; CPU covers the full controller window and excludes applications. This is a descriptive comparison of automated policies on one warm, shared host; human similarity remains unvalidated.
 
-**Guided manual practice:** one participant subsequently recorded one completion in **734.53 s**, with the saved Sheet's six formulas/results and the recommendation independently checked after the run. The participant received step-by-step guidance, exact formulas and a sample report; elapsed time includes instructions and waiting. Manual operation was participant-reported, not independently observed. **Unassisted human baseline n=0**; no task input timings or agent-versus-human speed ratio are claimed. See the [guided practice evidence](docs/manual-practice/README.md).
+**Unassisted human baseline:** the participant confirms a task completed entirely by a human, without guidance, in **720 s (12 minutes)**. The supplied measurements include **42 WPM**, **740 key-down events**, **14 corrected error episodes**, application resources and measured Explorer/Chrome/Notepad ancestry. The [baseline page and machine-readable aggregates](docs/human-baseline/README.md) give every metric, arithmetic checks and measurement scope. These participant-supplied aggregates have no accompanying raw event traces, so they are not used to infer timing similarity or an agent-versus-human speed ratio.
+
+**Earlier guided practice, retained separately:** one participant recorded **734.53 s**, including step-by-step guidance, exact formulas, a sample report and waiting. The saved Sheet's six formulas/results and recommendation were checked after the run; manual operation was participant-reported. See the [historical practice evidence](docs/manual-practice/README.md).
 
 ![Observed paired benchmark](docs/media/benchmark.png)
 
@@ -21,7 +25,7 @@ The observer collected 17,018 snapshots at per-run median gaps of about 100.4 ms
 
 All revised trials passed displayed-sheet and saved-report checks. A [separate final Sheet read](docs/benchmark/saved-sheet-verification.json) confirmed the six formula sources and saved values, with Atlas selected at SGD 600. Historical alternate-scenario validation selected Crest at SGD 525. [Validation history](docs/VALIDATION.md) retains earlier failures and explains the different evidence scopes.
 
-**Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**; the revised story, benchmark chart and judges' evidence ZIP were saved and verified at **15:58 SGT**. Team: **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`) and **Sourabh Sooraj** (`@sourabhsooraj97`). The [Devpost entry](https://devpost.com/software/office-twin) remains submitted. The [submission checklist](SUBMISSION.md) records the attached archive's exact release commit and hash.
+**Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**. The latest verified update added the unassisted human measurements and measured process ancestry to the story and judges' evidence ZIP; Devpost showed **SUBMITTED — 5/5 steps done**. Team: **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`) and **Sourabh Sooraj** (`@sourabhsooraj97`). The [Devpost entry](https://devpost.com/software/office-twin) remains submitted. The [submission record](SUBMISSION.md) identifies the verified attachment and preserves earlier revisions.
 
 The [unlisted narrated video](https://youtu.be/0OpIetkSomM) is 180.13 seconds and preserves the continuous 162.13-second desktop recording at 1×. It shows the **15 October functional version**, before the later Notepad launch change and separate-observer evaluation. It is not a recording of the new benchmark. Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026); raw runs, personal settings and videos are excluded from the source archive. Optional Excel/Word support remains untested because licensed Office is unavailable.
 
@@ -91,6 +95,7 @@ If Sysmon is already installed and authorized for the test environment, export t
 - [Paired benchmark and human-baseline protocol](docs/EVALUATION.md)
 - [Suggested demo storyboard](docs/DEMO.md)
 - [Manual reference collector and guide](docs/MANUAL_BASELINE.md)
+- [Unassisted human baseline: measurements, provenance and methods](docs/human-baseline/README.md)
 - [Guided manual practice and verified saved outputs](docs/manual-practice/README.md)
 - [Manual baseline log template](docs/baseline-template.csv)
 - [Devpost project narrative](docs/DEVPOST_ENTRY.md)

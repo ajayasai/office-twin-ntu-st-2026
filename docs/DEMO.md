@@ -2,7 +2,9 @@
 
 This is a suggested **three-minute** pitch format, not a published competition time limit. Confirm any private organizer instructions.
 
-A real native run has now been recorded: `runs/demo/office-twin-desktop-20261015-171812.mp4` (162.13 seconds, 1920×1200, 15 fps, continuous 1× playback, no microphone). Its matching run is `runs/demo/20261015T091815Z-588afee5`, which completed 11/11 steps. A stable copy is included in the local `dist` review package. This is a working technical demo; the storyboard below remains the proposed narrated competition pitch. See [observed validation](VALIDATION.md) for evidence and limits.
+A real native run was recorded on **15 October**: `runs/demo/office-twin-desktop-20261015-171812.mp4` (162.13 seconds, 1920×1200, continuous 1× playback, no microphone; capture requested 15 fps). Its matching run is `runs/demo/20261015T091815Z-588afee5`, which completed 11/11 steps. A stable copy, `office-twin-demo.mp4`, is included in the judges' evidence archive. It shows the functional version before the subsequent Notepad launch and observer changes. It does not depict the later ten-run benchmark or participant's human measurements.
+
+The [updated narrated pitch](PITCH.md) preserves this complete recording at 1×, labels its date throughout, and reports the later ten native completions, five matched pairs, 85 passing tests and participant-confirmed 720-second human baseline separately. The human aggregate record lacks raw traces and is not used for a matched speed or human-similarity claim. See [observed validation](VALIDATION.md) for evidence and limits. The storyboard below describes the presentation flow; the pitch script defines the actual narration and media build.
 
 | Time | Show | Say or establish |
 | --- | --- | --- |

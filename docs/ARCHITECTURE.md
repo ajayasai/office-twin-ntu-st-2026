@@ -53,7 +53,7 @@ The desktop must remain unlocked and idle. Window checks and bounded waits reduc
 
 Contextual timing is reproducible at the policy level through its seed. Application waits and OS scheduling vary. Timing defaults have not been calibrated to human observations. The runtime does not fabricate OS logs, conceal the controller or override process-parent metadata.
 
-The manual collector performs no desktop automation and captures no task keystrokes, pointer activity, window titles or screen content. It measures explicitly selected application processes separately from its own overhead. Its output cannot establish human participation or correct task completion; those require separate evidence. The current automated suite has 85 passing tests, including five manual-collector checks. No human participant was available, and no human reference run has been performed.
+The manual collector performs no desktop automation and captures no task keystrokes, pointer activity, window titles or screen content. It measures explicitly selected application processes separately from its own overhead. Its output cannot establish human participation or correct task completion; those require separate evidence. The current automated suite has 85 passing tests, including five manual-collector checks. The automated benchmark contains zero human-reference runs. The subsequent [720-second unassisted human baseline](human-baseline/README.md) is a participant-supplied measurement summary, including actual measured process ancestry; it was not produced by this collector and its raw input-event and resource logs were not supplied.
 
 ## Provenance
 
@@ -67,4 +67,4 @@ The optional evidence figure was rendered with Matplotlib 3.11.2 in a separate r
 
 The separate observer uses Windows Toolhelp for process inventory and psutil for identity/resource counters. It targets a 100 ms sampling interval and records actual cadence, gaps, read failures and its own CPU/RSS overhead. It does not read controller action logs or browser content. Its sampled observations are distinct from WMI process-start events and cannot replace an unavailable Sysmon trace. Chrome and Notepad cohorts can include unrelated activity. See [telemetry and benchmark reproduction](TELEMETRY.md) for scope and limitations.
 
-See [validation](VALIDATION.md) for observed outcomes and [evaluation](EVALUATION.md) for the outstanding human comparison.
+See [validation](VALIDATION.md) for observed outcomes, the separate [human baseline](human-baseline/README.md), and [evaluation](EVALUATION.md) for a future comparison with matched capture definitions and retained raw traces.
