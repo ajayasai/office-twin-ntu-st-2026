@@ -108,6 +108,141 @@ class EventTraceAnalysisTests(unittest.TestCase):
         self.fixture.save()
         return analyze_capture(self.fixture.root)
 
+    def rundown_manifest(self, parent=9):
+        manifest = self.fixture.native_manifest()
+        self.fixture.xml_events[0] = event(15, 9, -100, at=0.2, parent=0, sequence=9, name="explorer.exe")
+        self.fixture.xml_events[-1] = event(15, 300, -10, at=0.3, parent=parent, sequence=3000, parent_sequence=9 if parent == 9 else 999, name="chrome.exe")
+        self.fixture.xml_events.extend([event(15, 9, -100, at=31.1, parent=0, sequence=9, name="explorer.exe"),
+                                        event(15, 300, -10, at=31.2, parent=parent, sequence=3000, parent_sequence=9 if parent == 9 else 999, name="chrome.exe")])
+        self.fixture.ready["request_rundown"] = True
+        self.fixture.ground["require_rundown"] = True
+        identities = [{"pid": 300, "create_time_filetime": filetime(-10), "parent_pid": parent, "name": "C:\\PRIVATE_PROFILE\\chrome.exe", "identity_rechecked": True},
+                      {"pid": 9, "create_time_filetime": filetime(-100), "parent_pid": 0, "name": "explorer.exe", "identity_rechecked": True}]
+        self.fixture.ground["rundown_identity_snapshots"] = [
+            {"phase": "before-native", "source": "Toolhelp32Snapshot+GetProcessTimes", "started_utc": stamp(8), "finished_utc": stamp(9), "processes": deepcopy(identities)},
+            {"phase": "after-native", "source": "Toolhelp32Snapshot+GetProcessTimes", "started_utc": stamp(21), "finished_utc": stamp(22), "processes": deepcopy(identities)},
+        ]
+        for name in ("trial", "trial2"):
+            path = manifest.parent / name / "events.jsonl"
+            focus = json.loads(path.read_text(encoding="utf-8"))
+            focus["app"] = "browser"
+            path.write_text(json.dumps(focus) + "\n", encoding="utf-8")
+        return manifest
+
+    def test_rundown_focus_identity_and_parent_sequence_match_two_independent_snapshots(self):
+        manifest = self.rundown_manifest()
+        self.fixture.ground["require_application_parents"] = True
+        self.fixture.save()
+        summary, events = analyze_capture(self.fixture.root, manifest)
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        check = summary["rundown_focus_validation"]
+        self.assertTrue(check["verified"])
+        self.assertEqual(check["verified_focus_event_count"], 2)
+        self.assertTrue(check["all_immediate_application_parents_verified"])
+        record = check["focused_processes"][0]
+        self.assertEqual(record["parent_resolution_method"], "process-sequence-number")
+        self.assertTrue(record["stable_identity_in_both_os_snapshots"])
+        self.assertTrue(record["parent_identity_stable_in_both_os_snapshots"])
+        self.assertFalse(any(row["event"] == "start" and row["process"] == record["process"] for row in events))
+        self.assertNotIn("PRIVATE_PROFILE", json.dumps([summary, events]))
+
+    def test_rundown_request_success_cannot_replace_actual_after_rundown(self):
+        manifest = self.rundown_manifest()
+        self.fixture.xml_events.pop()
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertFalse(summary["rundown_focus_validation"]["verified"])
+        self.assertFalse(summary["validation_passed"])
+
+    def test_rundown_snapshot_pid_reuse_or_role_mismatch_fails_exact_binding(self):
+        manifest = self.rundown_manifest()
+        snapshot_row = self.fixture.ground["rundown_identity_snapshots"][1]["processes"][0]
+        snapshot_row["create_time_filetime"] = filetime(-9)
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertFalse(summary["rundown_focus_validation"]["verified"])
+        snapshot_row["create_time_filetime"] = filetime(-10)
+        snapshot_row["name"] = "PRIVATE_DIFFERENT_APP.exe"
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertFalse(summary["rundown_focus_validation"]["verified"])
+        self.assertNotIn("PRIVATE_DIFFERENT_APP", json.dumps(summary))
+
+    def test_exited_original_parent_remains_separate_from_verified_warm_identity(self):
+        manifest = self.rundown_manifest(parent=8877)
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        check = summary["rundown_focus_validation"]
+        self.assertTrue(check["verified"])
+        self.assertFalse(check["all_immediate_application_parents_verified"])
+        self.assertTrue(check["focused_processes"][0]["terminal_parent_gap"])
+        self.fixture.ground["require_application_parents"] = True
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertFalse(summary["validation_passed"])
+
+    def test_newly_started_focus_process_does_not_require_prebirth_snapshot(self):
+        manifest = self.rundown_manifest()
+        self.fixture.xml_events = [value for value in self.fixture.xml_events if not ('<Data Name="ProcessID">300</Data>' in value)]
+        self.fixture.xml_events.extend([event(1, 300, 12, parent=9, name="chrome.exe"), event(2, 300, 12, at=14, name="chrome.exe"),
+                                        event(1, 301, 17, parent=9, name="chrome.exe"), event(2, 301, 17, at=19, name="chrome.exe")])
+        path = manifest.parent / "trial2" / "events.jsonl"
+        focus = json.loads(path.read_text(encoding="utf-8"))
+        focus["pid"] = 301
+        path.write_text(json.dumps(focus) + "\n", encoding="utf-8")
+        for snapshot in self.fixture.ground["rundown_identity_snapshots"]:
+            snapshot["processes"] = [row for row in snapshot["processes"] if row["pid"] != 300]
+        self.fixture.ground["require_application_parents"] = True
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        records = summary["rundown_focus_validation"]["focused_processes"]
+        self.assertEqual(len(records), 2)
+        self.assertTrue(all(row["verified"] and row["observed_exit_after_last_focus"] for row in records))
+        self.assertTrue(all(not row["preexisting_at_trace_start"] for row in records))
+
+    def test_parent_exit_payload_prevents_false_ancestry_during_delayed_stop_event(self):
+        self.fixture.xml_events.extend([
+            event(1, 700, 7, parent=100),
+            event(2, 700, 7, at=9).replace('<Data Name="ExitTime">' + filetime(9), '<Data Name="ExitTime">' + filetime(8)),
+            event(1, 701, 8.5, parent=700),
+        ])
+        self.fixture.save()
+        events, _ = read_xml(self.fixture.root / "process-events.xml")
+        processes, _ = build_processes(events)
+        child = processes[(701, timestamp_ns(stamp(8.5)))]
+        self.assertIsNone(child["parent"])
+
+    def test_conflicting_parent_sequence_observations_remain_unresolved(self):
+        self.fixture.xml_events.extend([event(1, 700, 7, parent=100, sequence=700),
+                                        event(1, 701, 8, parent=700, parent_sequence=700),
+                                        event(15, 701, 8, at=9, parent=700, parent_sequence=999)])
+        self.fixture.save()
+        events, _ = read_xml(self.fixture.root / "process-events.xml")
+        processes, _ = build_processes(events)
+        self.assertIsNone(processes[(701, timestamp_ns(stamp(8)))]["parent"])
+
+    def test_system_idle_rundown_is_counted_but_not_a_task_identity_or_parse_failure(self):
+        self.fixture.xml_events.append(event(15, 0, -100, at=0.1, parent=0, sequence=0, parent_sequence=0xFFFFFFFFFFFFFFFF, name="Idle").replace(filetime(-100), "0"))
+        summary, events = self.analyze()
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        self.assertEqual(summary["parse_counts"]["system_idle_rundown_excluded"], 1)
+        self.assertEqual(summary["parse_counts"]["rundown"], 2)
+        self.assertNotIn("invalid_process_events", summary["parse_counts"])
+        self.assertFalse(any(row["application_role"] == "idle" for row in events))
+
+    def test_unavailable_parent_sequence_sentinel_cannot_bind_a_reused_parent_pid(self):
+        manifest = self.rundown_manifest()
+        self.fixture.xml_events = [value.replace('<Data Name="ParentProcessSequenceNumber">9</Data>', '<Data Name="ParentProcessSequenceNumber">18446744073709551615</Data>') if '<Data Name="ProcessID">300</Data>' in value else value for value in self.fixture.xml_events]
+        self.fixture.save()
+        summary, _ = analyze_capture(self.fixture.root, manifest)
+        self.assertTrue(summary["validation_passed"], summary["validation_errors"])
+        record = summary["rundown_focus_validation"]["focused_processes"][0]
+        self.assertTrue(record["unavailable_parent_sequence_reported"])
+        self.assertTrue(record["terminal_parent_gap"])
+        self.assertIsNone(record["parent_process"])
+
     def test_known_canaries_and_worker_verified_without_universal_claim(self):
         summary, events = self.analyze()
         self.assertTrue(summary["validation_passed"], summary["validation_errors"])

@@ -15,11 +15,16 @@ Wait for capture-ready.json before starting the normal, unelevated task worker. 
 stop.request in OutputDirectory after the worker and post-run canaries have
 exited. A duration limit ends collection but marks it incomplete. This script
 never runs the task itself and stops only its uniquely named, path-checked trace.
+
+RequestRundown asks the existing process provider to capture its state before
+readiness and before stopping. A successful API request is not proof that a
+rundown was emitted: the canonical XML must contain and validate Event 15.
 #>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)] [string] $OutputDirectory,
-    [ValidateRange(5, 900)] [int] $MaxSeconds = 900
+    [ValidateRange(5, 900)] [int] $MaxSeconds = 900,
+    [switch] $RequestRundown
 )
 
 $ErrorActionPreference = 'Stop'
@@ -98,12 +103,24 @@ namespace OfficeTwinEtw {
     public sealed class TraceResult {
         public uint ReturnCode;
         public string Operation, SessionName, LogFileName;
+        public ulong SessionHandle;
         public uint EventsLost, LogBuffersLost, RealTimeBuffersLost, BuffersWritten;
         public uint NumberOfBuffers, BufferSizeKiB, LogFileMode;
     }
     public static class Native {
         [DllImport("advapi32.dll", EntryPoint="ControlTraceW", CharSet=CharSet.Unicode)]
         private static extern uint ControlTrace(ulong handle, string name, IntPtr properties, uint code);
+        [DllImport("advapi32.dll", EntryPoint="EnableTraceEx2")]
+        private static extern uint EnableTraceEx2(ulong handle, ref Guid provider,
+            uint controlCode, byte level, ulong matchAnyKeyword, ulong matchAllKeyword,
+            uint timeoutMilliseconds, IntPtr parameters);
+        public static uint CaptureProcessState(ulong handle) {
+            if (handle == 0) return 87; // ERROR_INVALID_PARAMETER, no native call.
+            Guid provider = new Guid("22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716");
+            // EVENT_CONTROL_CODE_CAPTURE_STATE only. Keep the already enabled
+            // process keyword/level; no provider/filter/security-policy change.
+            return EnableTraceEx2(handle, ref provider, 2, 4, 0x10, 0, 5000, IntPtr.Zero);
+        }
         public static TraceResult Control(string name, uint code) {
             int size = Marshal.SizeOf(typeof(TraceProperties));
             int bytes = size + 4096;
@@ -122,6 +139,9 @@ namespace OfficeTwinEtw {
                 stats.ReturnCode = result;
                 stats.Operation = code == 1 ? "stop_final" : "query_running";
                 if (result == 0) {
+                    // WNODE_HEADER.HistoricalContext is the session handle on
+                    // output, not a handle inferred from a PID or session name.
+                    stats.SessionHandle = properties.Wnode.HistoricalContext;
                     if (properties.LoggerNameOffset >= size && properties.LoggerNameOffset < bytes)
                         stats.SessionName = Marshal.PtrToStringUni(IntPtr.Add(memory, (int)properties.LoggerNameOffset));
                     if (properties.LogFileNameOffset >= size && properties.LogFileNameOffset < bytes)
@@ -167,6 +187,7 @@ $collectionElapsedAtStop = $null
 $status = 'failed'
 $traceStartedUtc = $null
 $traceStoppedUtc = $null
+$captureStateRequests = New-Object 'System.Collections.Generic.List[object]'
 
 function Test-OwnedTrace($Stats, [bool] $AllowPrivateDirectory = $false) {
     if ($Stats.ReturnCode -ne 0 -or $Stats.SessionName -ne $sessionName -or [string]::IsNullOrEmpty($Stats.LogFileName)) { return $false }
@@ -181,6 +202,39 @@ function Test-OwnedTrace($Stats, [bool] $AllowPrivateDirectory = $false) {
         return $AllowPrivateDirectory -and $creationSucceeded -and [IO.Path]::GetDirectoryName($normalized).Equals($outputPath, [StringComparison]::OrdinalIgnoreCase)
     }
     catch { return $false }
+}
+
+function Invoke-OwnedCaptureState([string] $Phase) {
+    # Query a fresh handle only after verifying this exact session and ETL path.
+    # Reusing an unrelated logger handle or creating a new provider is forbidden.
+    $before = [OfficeTwinEtw.Native]::Control($sessionName, 2)
+    if (-not (Test-OwnedTrace $before) -or $before.SessionHandle -eq 0) {
+        throw "Cannot bind capture-state request to the owned session ($Phase)."
+    }
+    $requestStarted = [DateTime]::UtcNow.ToString('o')
+    $requestClock = [Diagnostics.Stopwatch]::StartNew()
+    $returnCode = [OfficeTwinEtw.Native]::CaptureProcessState($before.SessionHandle)
+    $requestClock.Stop()
+    $requestEnded = [DateTime]::UtcNow.ToString('o')
+    $withinWallBudget = $requestClock.Elapsed.TotalSeconds -le 5.5
+    $after = [OfficeTwinEtw.Native]::Control($sessionName, 2)
+    $revalidated = (Test-OwnedTrace $after) -and $after.SessionHandle -eq $before.SessionHandle
+    $request = [ordered]@{
+        phase = $Phase; provider = $providerName; provider_guid = $providerGuid
+        control_code = 2; control_name = 'EVENT_CONTROL_CODE_CAPTURE_STATE'
+        level = 4; match_any_keyword = '0x10'; match_all_keyword = '0x0'; timeout_ms = 5000
+        session_name = $sessionName; session_handle = $before.SessionHandle
+        started_utc = $requestStarted; ended_utc = $requestEnded; elapsed_seconds = $requestClock.Elapsed.TotalSeconds
+        return_code = $returnCode; callback_request_succeeded = ($returnCode -eq 0)
+        within_wall_time_budget = $withinWallBudget
+        session_revalidated_after = $revalidated
+        meaning = 'Provider state was requested; emitted ProcessRundown events and ancestry still require independent decode/identity validation.'
+    }
+    $captureStateRequests.Add($request)
+    Write-NewJson "capture-state-$Phase.json" $request
+    if ($returnCode -ne 0 -or -not $revalidated -or -not $withinWallBudget) {
+        throw "Capture-state request failed or session identity changed ($Phase, return $returnCode)."
+    }
 }
 
 try {
@@ -201,6 +255,7 @@ try {
     $traceStartedUtc = [DateTime]::UtcNow.ToString('o')
     $query = Invoke-RecordedTool 'trace-query' $logman @('query', $sessionName, '-ets')
     if ($query.ExitCode -ne 0 -or $query.Text -notmatch [Regex]::Escape($providerGuid)) { throw 'Live session query did not confirm the expected process provider.' }
+    if ($RequestRundown) { Invoke-OwnedCaptureState 'before_ready' }
     Write-NewJson 'capture-ready.json' ([ordered]@{
         schema_version = 1; status = 'recording'; session_name = $sessionName
         provider = $providerName; provider_guid = $providerGuid; keyword = '0x10'; level = 4
@@ -210,6 +265,8 @@ try {
         max_seconds = $MaxSeconds; output_directory = $outputPath; etl_path = $etlPath
         script_sha256 = (Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant()
         initial_session_counters = $live
+        request_rundown = [bool]$RequestRundown
+        capture_state_requests = @($captureStateRequests.ToArray())
         scope = 'Process lifecycle provider only; system-wide raw trace kept private; no task worker launched elevated.'
     })
     $readyWritten = $true
@@ -236,6 +293,11 @@ try {
     # exact session created here with its expected private ETL path is eligible.
     if ($startedTrace -or $creationSucceeded) {
         try {
+            if ($RequestRundown -and $readyWritten) {
+                # A request error must not skip finally's exact-session cleanup.
+                try { Invoke-OwnedCaptureState 'before_stop' }
+                catch { $captureErrors.Add($_.Exception.Message) }
+            }
             $preStop = [OfficeTwinEtw.Native]::Control($sessionName, 2)
             if (-not (Test-OwnedTrace $preStop $true)) { throw 'Owned trace identity/path cannot be verified before stop.' }
             $finalStats = [OfficeTwinEtw.Native]::Control($sessionName, 1)
@@ -285,6 +347,8 @@ try {
         observed_deadline_overrun_seconds = $(if ($null -ne $collectionElapsedAtStop) { [Math]::Max(0.0, $collectionElapsedAtStop - $MaxSeconds) } else { $null })
         maximum_collector_loop_gap_seconds = $maximumLoopGapSeconds
         session_name = $sessionName; provider = $providerName; provider_guid = $providerGuid; keyword = '0x10'
+        request_rundown = [bool]$RequestRundown
+        capture_state_requests = @($captureStateRequests.ToArray())
         ready_marker_written = $readyWritten; stopped_own_session = $stoppedTrace; stop_reason = $stopReason
         pre_stop_counters = $preStop; final_stop_counters = $finalStats
         final_loss_counters_available = $finalCountersAvailable; zero_reported_etw_loss = $zeroLoss
@@ -294,7 +358,7 @@ try {
         conversion_exit_code = $conversionCode; errors = @($captureErrors.ToArray())
         canonical_winapi_decode_completed = $canonicalDecodeCompleted
         required_verification = @('Decoded process-start, stop and rundown semantics', 'Matching before/after canary lifecycle pairs', 'Trace covers the full unelevated worker interval', 'PID plus CreateTime or sequence-number identity, including parent relationships', 'Allowlisted public export; raw ETL/XML remain private')
-        limitations = @('ETW loss counters measure reported session loss, not all possible provider or coverage failures.', 'Already-running processes may appear as rundown; rundown is not an observed start.', 'Process lifecycle events do not prove input delivery, task correctness or human similarity.', 'The duration limit is checked while scheduled; system suspend or collector stalls can delay stopping. Actual overrun and scheduling gaps are reported.', 'A duration-limit stop, scheduling gap, unknown final loss counters or a conversion error never qualifies as verified evidence.')
+        limitations = @('ETW loss counters measure reported session loss, not all possible provider or coverage failures.', 'Already-running processes may appear as rundown; rundown is not an observed start.', 'A successful capture-state API request does not prove emitted rundown events or resolve absent/exited parent identities; decoded event evidence is required.', 'Process lifecycle events do not prove input delivery, task correctness or human similarity.', 'The duration limit is checked while scheduled; system suspend or collector stalls can delay stopping. Actual overrun and scheduling gaps are reported.', 'A duration-limit stop, scheduling gap, unknown final loss counters or a conversion error never qualifies as verified evidence.')
     })
 }
 Write-Host "Capture status: $status. Raw evidence: $outputPath"

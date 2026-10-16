@@ -25,7 +25,7 @@ In an **Administrator PowerShell**, run:
 
 ```powershell
 $captureDirectory = Join-Path (Get-Location).Path 'runs\process-event-validation-01'
-& .\tools\capture_process_events.ps1 -OutputDirectory $captureDirectory -MaxSeconds 900
+& .\tools\capture_process_events.ps1 -OutputDirectory $captureDirectory -MaxSeconds 900 -RequestRundown
 ```
 
 The capture directory must not already exist and must be covered by the repository's `runs/` ignore rule. `capture-ready.json` is written only after the uniquely named session and expected private output path are confirmed. The marker records the session, provider, collector PID plus creation time, start/ready times, source hash and initial counters. Wait for the collector's recording message.
@@ -33,7 +33,7 @@ The capture directory must not already exist and must be covered by the reposito
 Within two minutes of readiness, run the following in a **normal PowerShell**, also from the repository root:
 
 ```powershell
-.\.venv\Scripts\python.exe tools\run_event_validation.py --capture-dir runs\process-event-validation-01 --native-output runs\process-event-native-01 --seed 307
+.\.venv\Scripts\python.exe tools\run_event_validation.py --capture-dir runs\process-event-validation-01 --native-output runs\process-event-native-01 --seed 307 --require-rundown
 ```
 
 The worker checks the collector's process identity and marker freshness. It launches 14 known processes before the native pair and 14 afterward: in each phase, 12 direct `cmd.exe /d /c exit` children plus a base-Python intermediate parent and its Python child. Known exit statuses include 0 and 7. These are intended to exercise short-lived processes and nested ancestry; actual lifetimes must come from ETW, and the protocol does not assume sub-100-millisecond coverage. Ground truth records actual child identities, launch/wait boundaries and exit results in `canary-ground-truth.json`.
@@ -59,6 +59,10 @@ This preserves a final capture record but supplies no successful workload eviden
 ## Lifecycle identity and validation gates
 
 The analyzer matches provider event IDs and reads named payload fields rather than assuming one binary layout. Event 1 is ProcessStart, event 2 is ProcessStop and event 15 is ProcessRundown in the installed provider metadata. Rundown enumerates an already-running process; it is never counted as a newly observed start.
+
+The optional `-RequestRundown` collector mode requests provider state before readiness and immediately before stopping. It uses `EnableTraceEx2` with `EVENT_CONTROL_CODE_CAPTURE_STATE`, a bounded callback timeout and a session handle obtained from the verified owned session. API success is recorded separately from observed events. The matching worker option `--require-rundown` collects two independent Toolhelp/GetProcessTimes snapshots around the native pair. These preserve exact 100-nanosecond creation identities and recheck process handles; they collect no command lines, window titles or executable paths. The verifier requires actual before/after rundown records and matching snapshots for every preexisting focused process. A process created during the trace instead requires its actual start plus a compatible later snapshot or observed exit.
+
+This protocol can identify applications that predate collection and resolve parent identities that are present in the trace. It cannot recover an original parent that exited before collection without retained historical evidence. Parent identity closure is reported separately from focused-process identity coverage. Unavailable parent sequence numbers, conflicting identities and reused parent PIDs do not become verified ancestry. Microsoft's [provider state request documentation](https://learn.microsoft.com/en-us/windows/win32/api/evntrace/nf-evntrace-enabletraceex2) describes the request mechanism; the actual decoded events establish what this host emitted.
 
 Identity uses PID together with process creation time. Sequence numbers, where present, provide additional consistency checks. A repeated PID alone is insufficient to join records. Parent relationships must resolve to a compatible parent identity at the child's start; ambiguous, contradictory or absent parent evidence is not invented. The public export uses capture-local aliases and distinguishes rundown, start and stop records.
 

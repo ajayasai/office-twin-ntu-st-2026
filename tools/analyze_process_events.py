@@ -30,7 +30,7 @@ LIMITATIONS = [
     "Rundown records identify processes already present; they are never counted as observed process-start events.",
     "A stop is paired only with a compatible process sequence number or PID plus creation time. Ambiguous identities and parents remain unresolved.",
     "Application windows and their descendant cohorts can share unrelated tabs and work; process relationships do not prove exclusive task attribution or delivery of desktop input.",
-    "Preexisting application processes may have no event or rundown in this trace. Unresolved window-to-process bindings are counted separately and are not synthesized from snapshots; they do not invalidate observed known-canary and controller lifecycles.",
+    "Preexisting application processes may lack an event or rundown. Under the legacy protocol, unresolved focus bindings are reported separately from known-canary and controller validation. When require_rundown is enabled, every focused process identity must pass the rundown/snapshot or observed-start checks; snapshots never synthesize ETW events.",
     "Native application cohorts include Chrome, Notepad and Explorer lifecycle events inside each trial window, regardless of who caused them. A reported parent-ID match compares an ETW start's ParentProcessID with a controller window-focus PID; it is not a resolved parent lifetime identity or proof of task causation.",
     "Capture-boundary and known-canary checks cover this trace and supplied native trials only; they do not create raw human-input evidence or establish portability to another machine.",
     "Public output contains capture-local aliases, relative times and allowlisted application roles; original ETL/XML, identifiers, absolute times and command lines remain private.",
@@ -136,6 +136,15 @@ def read_xml(path):
                         data[name] = entry.text or ""
                 time = timestamp_ns(fields["TimeCreated"].get("SystemTime"))
                 pid = integer(data["processid"])
+                # The provider includes kernel Idle PID 0 in CaptureState
+                # rundown. It is a system placeholder, not a task-process
+                # lifetime; retain an explicit count without fabricating one.
+                if (event_id == 15 and pid == 0 and integer(data.get("parentprocessid", "-1")) == 0
+                        and data.get("imagename", "").lower() in ("idle", "system idle process")):
+                    counts["rundown"] += 1
+                    counts["system_idle_rundown_excluded"] += 1
+                    element.clear()
+                    continue
                 created = timestamp_ns(data["createtime"], creation=True)
                 seq = integer(data["processsequencenumber"]) if "processsequencenumber" in data else None
                 pseq = integer(data["parentprocesssequencenumber"]) if "parentprocesssequencenumber" in data else None
@@ -183,8 +192,11 @@ def build_processes(events):
             issues["duplicate_lifecycle_events"] += 1
         if process["stops"] and min(event.time for event in process["stops"]) < identity[1]:
             issues["inverted_lifetime"] += 1
+    for identity, process in processes.items():
         process["parent"] = None
+        process["parent_resolution_method"] = "unresolved"
         parents = set()
+        all_parent_observations_resolved = True
         for ppid, pseq in process["parents"]:
             if ppid == 0:
                 continue
@@ -192,17 +204,22 @@ def build_processes(events):
             for key, candidate in processes.items():
                 if key == identity or key[0] != ppid or key[1] > identity[1]:
                     continue
+                if not candidate["identity_valid"]:
+                    continue
                 if pseq is not None and pseq not in candidate["sequences"]:
                     continue
                 # Creation and exit evidence must place this exact parent alive.
-                stops = [event.time for event in candidate["events"] if event.kind == "stop"]
+                stops = [event.exit_time for event in candidate["events"] if event.kind == "stop"]
                 if stops and min(stops) < identity[1]:
                     continue
                 candidates.append(key)
             if len(candidates) == 1:
                 parents.add(candidates[0])
-        if len(parents) == 1 and len({value[0] for value in process["parents"]}) == 1:
+            else:
+                all_parent_observations_resolved = False
+        if all_parent_observations_resolved and len(parents) == 1 and len({value[0] for value in process["parents"]}) == 1:
             process["parent"] = next(iter(parents))
+            process["parent_resolution_method"] = "process-sequence-number" if all(value[1] is not None for value in process["parents"]) else "unique-pid-creation-lifetime"
     # A reused PID with no exit observed can make a parent relation ambiguous;
     # never pick the most recent record merely because it looks convenient.
     return processes, issues
@@ -227,6 +244,112 @@ def hash_file(path):
 
 def relative(value, origin):
     return round((value - origin) / 1_000_000_000, 7)
+
+
+def validate_rundown_focus(ground, ready, origin, ended, processes, observations, aliases, native_windows):
+    """Cross-check warm focus identities without converting snapshots to events."""
+    result = {"required": ground.get("require_rundown") is True, "verified": False,
+              "method": "Two OS identity snapshots cross-checked against actual ETW rundown identities and parent links; no historical starts synthesized",
+              "snapshot_boundaries_valid": False, "focus_event_count": len(observations),
+              "verified_focus_event_count": 0, "focused_processes": [],
+              "require_application_parents": ground.get("require_application_parents") is True,
+              "all_immediate_application_parents_verified": False,
+              "scope": "Focused process identity and immediate parent closure are separate. Exited or absent historical parents remain explicit terminal gaps; no ancestry-to-boot claim."}
+    if not result["required"]:
+        return result
+    snapshots, snapshot_windows = {}, {}
+    try:
+        if ready.get("request_rundown") is not True or len(ground["rundown_identity_snapshots"]) != 2 or not native_windows:
+            raise ValueError("rundown protocol unavailable")
+        for snapshot in ground["rundown_identity_snapshots"]:
+            phase = snapshot["phase"]
+            if phase not in ("before-native", "after-native") or phase in snapshots or snapshot.get("source") != "Toolhelp32Snapshot+GetProcessTimes":
+                raise ValueError("snapshot source or phase invalid")
+            begin, end = timestamp_ns(snapshot["started_utc"]), timestamp_ns(snapshot["finished_utc"])
+            if not origin <= begin <= end <= ended:
+                raise ValueError("snapshot outside trace")
+            index = {}
+            for row in snapshot["processes"]:
+                pid, created, parent = integer(row["pid"]), timestamp_ns(row["create_time_filetime"], creation=True), integer(row["parent_pid"])
+                key = (pid, created)
+                if pid <= 0 or parent < 0 or key in index or row.get("identity_rechecked") is not True or created > end:
+                    raise ValueError("snapshot identity invalid")
+                index[key] = {"parent_pid": parent, "role": role(row["name"])}
+            snapshots[phase], snapshot_windows[phase] = index, (begin, end)
+        result["snapshot_boundaries_valid"] = (snapshot_windows["before-native"][1] <= min(start for start, _ in native_windows)
+                                                 and snapshot_windows["after-native"][0] >= max(end for _, end in native_windows))
+        if not result["snapshot_boundaries_valid"]:
+            raise ValueError("snapshots do not bracket native trials")
+    except (KeyError, ValueError, TypeError, OverflowError):
+        result["validation_error"] = "rundown_identity_snapshots_missing_or_invalid"
+        return result
+    groups = defaultdict(list)
+    for run_id, key, expected_role, pid, at in observations:
+        groups[(key, expected_role)].append((run_id, pid, at))
+    for (key, expected_role), rows in groups.items():
+        record = {"application_role": expected_role if expected_role in APPLICATION_ROLES else "other",
+                  "focus_events": len(rows), "verified": False}
+        if key is None or key not in processes:
+            record["validation_error"] = "focus_lifetime_identity_unresolved"
+            result["focused_processes"].append(record)
+            continue
+        process = processes[key]
+        record["process"] = aliases[key]
+        record["preexisting_at_trace_start"] = key[1] < origin
+        snapshot_before, snapshot_after = snapshots["before-native"].get(key), snapshots["after-native"].get(key)
+        stable = bool(snapshot_before and snapshot_after and snapshot_before == snapshot_after
+                      and snapshot_before["role"] == process["role"] == expected_role
+                      and process["identity_valid"] and len({parent[0] for parent in process["parents"]}) == 1
+                      and snapshot_before["parent_pid"] == next(iter(process["parents"]))[0])
+        record["stable_identity_in_both_os_snapshots"] = stable
+        rundown = [event for event in process["events"] if event.kind == "rundown"]
+        first_focus, last_focus = min(row[2] for row in rows), max(row[2] for row in rows)
+        before_rundown = any(origin <= event.time <= first_focus for event in rundown)
+        after_rundown = any(last_focus <= event.time <= ended for event in rundown)
+        record["observed_rundown_before_and_after_focus"] = before_rundown and after_rundown
+        alive = not any(event.exit_time <= snapshot_windows["after-native"][0] for event in process["stops"])
+        record["compatible_lifetime_through_after_snapshot"] = alive
+        parent = process["parent"]
+        record["parent_process"] = aliases.get(parent)
+        record["parent_resolution_method"] = process["parent_resolution_method"]
+        record["unavailable_parent_sequence_reported"] = any(value[1] == 0xFFFFFFFFFFFFFFFF for value in process["parents"])
+        parent_stable = False
+        if parent is not None:
+            before_parent, after_parent = snapshots["before-native"].get(parent), snapshots["after-native"].get(parent)
+            parent_stable = bool(before_parent and after_parent and before_parent == after_parent
+                                 and before_parent["role"] == processes[parent]["role"] and processes[parent]["identity_valid"]
+                                 and not any(event.exit_time <= snapshot_windows["after-native"][0] for event in processes[parent]["stops"]))
+            record["parent_role"] = processes[parent]["role"]
+        record["parent_identity_stable_in_both_os_snapshots"] = parent_stable
+        parent_required = result["require_application_parents"] and expected_role in ("chrome", "notepad")
+        record["immediate_parent_required"] = parent_required
+        record["terminal_parent_gap"] = parent is None
+        record["parent_lifetime_identity_resolved"] = parent is not None
+        if record["preexisting_at_trace_start"]:
+            identity_verified = stable and before_rundown and after_rundown and alive
+            record["identity_verification_method"] = "preexisting-rundown-and-two-os-snapshots"
+        else:
+            starts = process["starts"]
+            snapshot_after_matches = bool(snapshot_after and snapshot_after["role"] == process["role"] == expected_role
+                                          and len({value[0] for value in process["parents"]}) == 1
+                                          and snapshot_after["parent_pid"] == next(iter(process["parents"]))[0])
+            exit_after_focus = len(process["stops"]) == 1 and last_focus < process["stops"][0].exit_time <= process["stops"][0].time <= ended
+            identity_verified = (process["identity_valid"] and process["role"] == expected_role and len(starts) == 1
+                                 and origin <= starts[0].time <= first_focus and not any(event.exit_time <= last_focus for event in process["stops"])
+                                 and (snapshot_after_matches and alive or exit_after_focus))
+            record["identity_verification_method"] = "observed-start-with-after-os-snapshot-or-observed-exit"
+            record["after_snapshot_identity_matches"] = snapshot_after_matches
+            record["observed_exit_after_last_focus"] = exit_after_focus
+        record["identity_verified"] = bool(identity_verified)
+        record["verified"] = bool(identity_verified and (not parent_required or parent is not None))
+        if record["verified"]:
+            result["verified_focus_event_count"] += len(rows)
+        result["focused_processes"].append(record)
+    result["verified"] = bool(observations and result["snapshot_boundaries_valid"] and result["verified_focus_event_count"] == len(observations)
+                              and all(record["verified"] for record in result["focused_processes"]))
+    applications = [record for record in result["focused_processes"] if record["application_role"] in ("chrome", "notepad")]
+    result["all_immediate_application_parents_verified"] = bool(applications and all(record.get("identity_verified") and record.get("parent_lifetime_identity_resolved") for record in applications))
+    return result
 
 
 def analyze_capture(capture_dir, manifest_path=None):
@@ -306,7 +429,7 @@ def analyze_capture(capture_dir, manifest_path=None):
         ground = {}
         children = []
         errors.add("canary_ground_truth_missing_or_invalid")
-    worker_verified, worker_pid = False, None
+    worker_verified, worker_pid, ready = False, None, {}
     try:
         worker_start, worker_finish = timestamp_ns(ground["started_utc"]), timestamp_ns(ground["finished_utc"])
         worker_pid = integer(ground["controller_pid"])
@@ -372,7 +495,7 @@ def analyze_capture(capture_dir, manifest_path=None):
     observed_protocol = Counter((row["phase"], row["kind"]) for row in canaries)
     if observed_protocol != expected_protocol:
         errors.add("expected_28_canary_protocol_not_met")
-    runs = []
+    runs, focus_observations, native_windows = [], [], []
     if manifest_path is not None:
         manifest_path = Path(manifest_path)
         try:
@@ -391,6 +514,7 @@ def analyze_capture(capture_dir, manifest_path=None):
             row = {"id": f"R{number:03d}", "verified": False}
             try:
                 start, end = timestamp_ns(entry["started_utc"]), timestamp_ns(entry["finished_utc"])
+                native_windows.append((start, end))
                 run_dir = (manifest_path.parent / entry["path"]).resolve()
                 summary = read_json(run_dir / "summary.json")
                 observer = read_json((manifest_path.parent / entry["observer_summary"]).resolve())
@@ -433,7 +557,10 @@ def analyze_capture(capture_dir, manifest_path=None):
                     focus_pid = integer(event["pid"])
                     if event.get("app") in FOCUS_ROLES:
                         focus_roles[focus_pid].add(FOCUS_ROLES[event["app"]])
-                    candidates = [key for key, process in processes.items() if key[0] == focus_pid and key[1] <= event_time and not any(stop.time < event_time for stop in process["stops"])]
+                    candidates = [key for key, process in processes.items() if key[0] == focus_pid and key[1] <= event_time and process["identity_valid"]
+                                  and not any(stop.exit_time <= event_time for stop in process["stops"])]
+                    focused_key = candidates[0] if len(candidates) == 1 else None
+                    focus_observations.append((row["id"], focused_key, FOCUS_ROLES.get(event.get("app")), focus_pid, event_time))
                     if len(candidates) == 1:
                         selected[candidates[0]].add("native_window_process")
                         focus_bound += 1
@@ -477,6 +604,9 @@ def analyze_capture(capture_dir, manifest_path=None):
             runs.append(row)
         if not runs or not all(row["verified"] for row in runs):
             errors.add("native_trace_overlap_not_verified")
+    rundown_focus = validate_rundown_focus(ground, ready, origin, ended, processes, focus_observations, aliases, native_windows)
+    if rundown_focus["required"] and not rundown_focus["verified"]:
+        errors.add("rundown_focus_identity_or_required_parent_not_verified")
     # Export only selected task/canary processes and their evidenced ancestors.
     for key in list(selected):
         visited = {key}
@@ -493,7 +623,7 @@ def analyze_capture(capture_dir, manifest_path=None):
         process = processes[key]
         record = {"process": aliases[key], "event": event.kind, "at_seconds": relative(event.time, origin),
                   "application_role": process["role"], "selection": sorted(selected[key]),
-                  "parent_process": aliases.get(process["parent"]), "identity_valid": process["identity_valid"]}
+                  "parent_process": aliases.get(process["parent"]), "parent_resolution_method": process["parent_resolution_method"], "identity_valid": process["identity_valid"]}
         if event.kind == "stop":
             record["exit_code"] = event.exit_code & 0xFFFFFFFF
         if event.kind == "start" and key in parent_focus_matches:
@@ -539,6 +669,7 @@ def analyze_capture(capture_dir, manifest_path=None):
                "validation_passed": not errors, "universal_completeness_claim": False,
                "analyzed_xml_decoder": decoder,
                "validation_worker_lifecycle_verified": worker_verified,
+               "rundown_focus_validation": rundown_focus,
                "zero_reported_logger_loss": zero_loss, "final_loss_counters": counters,
                "capture_duration_seconds": relative(ended, origin) if ended else None,
                "parse_counts": dict(sorted(counts.items())), "identity_issue_counts": dict(sorted(issues.items())),
