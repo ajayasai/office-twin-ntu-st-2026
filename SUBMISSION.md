@@ -1,6 +1,6 @@
 # Submission status and evidence revision
 
-**Latest verified submission:** [resource-sampler update, 16 October 2026 at 21:05 SGT](#resource-sampler-upload-verified). Devpost showed **SUBMITTED — 5/5 steps done** with the `671f032` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
+**Latest verified submission:** [judging and reproduction polish, 16 October 2026 at 21:19 SGT](#judging-review-upload-verified). Devpost showed **SUBMITTED — 5/5 steps done** with the `d0aebff` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
 
 ## Rundown supplement prepared — 16 October 2026 (SGT)
 
@@ -127,3 +127,11 @@ After upload, Devpost's finalization page showed **Project submitted!** and **SU
 This documentation revision brings the business workflow and outcome to the start of the Devpost story, followed by a four-criterion result/boundary table. It preserves the full human-baseline section verbatim while shortening repeated capture chronology. The judging guide adds a one-minute review route and the historical paired contextual-timing cost: median +11.26 task seconds and +1.219 controller CPU-seconds, computed from the existing five comparable pairs. This is not a new measurement or a sampler speedup claim.
 
 Setup commands now explicitly select the repository virtual environment; the Sheet setup describes how a judge can create the dedicated Quotes tab without the team's connector. Runtime, tests, supplied human aggregates and retained historical evidence remain unchanged. The revised ZIP and story will be verified after upload; this paragraph records preparation only.
+
+## Judging review upload verified
+
+Verified **16 October 2026 at 21:19 SGT**. The saved story matches the packaged source exactly: **16,797 characters**, SHA-256 `c2c61d01f79bb08f855f4efe2cb63393afdb6633309659706da569f281cbe32f`. It is **32.9% shorter** than the previous 25,016-character story, leads with the task and checked outcome, and preserves the complete 4,910-character human-baseline section unchanged. The public page displays the four-criterion evidence table and historical paired timing/CPU cost. No performance result, raw measurement or runtime behavior changed.
+
+The saved judges' attachment is **`office-twin-judging-review-20261016-d0aebff.zip`**, **10,407,479 bytes**, SHA-256 **`7a10e3fa07de0bf1d7e8abc487b1b311ec62c5977de4780c7ece44cbe83757e4`**. It contains clean source [`d0aebff1cbe2425b04cf0635960e4ddb2db32530`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/d0aebff1cbe2425b04cf0635960e4ddb2db32530), the same revised historical video and versioned manifest. Exact runtime/test/tool hashes still match the prior 144-test validation; the 19-check sampler evidence and protected historical artifacts remain unchanged. ZIP integrity, all manifest hashes and 215 local Markdown file links passed.
+
+The explicit virtual-environment dependency check and doctor command passed. The fast Sheets simulation completed all 11 planned steps with `native_verified=false`; it performed no desktop input and does not add a native trial. No new manual run or application restart occurred. Devpost finalization showed **Project submitted!**, **SUBMITTED — 5/5 steps done**, and all three teammates; reopening Additional info confirmed the exact replacement filename. The video URL remained `https://youtu.be/oTTT0ECN25U`. Screenshots and exact readbacks are retained locally. This completion note is documentation only and does not rebuild the uploaded ZIP.
