@@ -27,6 +27,8 @@ flowchart LR
 | `timing.py` | Produce seeded fixed or contextual delays for reading, typing, switching, review and correction. |
 | `evidence.py` | Record controller actions and measure controller CPU time/RSS with psutil. |
 | `process_trace.py` | Attempt passive Windows process-start observation; report unavailable capture explicitly. |
+| `observer.py` / `tools/observe_run.py` | Read process identities, parent metadata and resource counters in a separate process; report sampling gaps, nonexclusive application cohorts and observer overhead. |
+| `tools/run_benchmark.py` / `tools/analyze_benchmark.py` | Run counterbalanced fixed/contextual trials, retain failed attempts, check matching conditions and export privacy-filtered measurements. |
 | `report.py` / `compare.py` | Produce self-contained HTML reports, preserving failures and differences between configurations. |
 | `simulation.py` | Replay the plan without native application actions; label outputs as simulated. |
 | `gui.py` / `__main__.py` | Expose the desktop control panel and command-line interface. |
@@ -53,4 +55,6 @@ Runtime dependencies are declared in `requirements.txt`. The tested environment 
 
 The final local video, `dist/office-twin-submission.mp4`, is 180.13 seconds: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. Microsoft Zira Desktop provides synthetic narration, and FFmpeg assembles the edit. The video presents recorded execution, not a live demonstration. Upload and publication status are tracked in [validation](VALIDATION.md).
 
-See [validation](VALIDATION.md) for observed outcomes and [evaluation](EVALUATION.md) for the outstanding human and independent-telemetry comparison.
+The separate observer uses Windows Toolhelp for process inventory and psutil for identity/resource counters. It does not read controller action logs or browser content. Its sampled observations are distinct from WMI process-start events and cannot replace an unavailable Sysmon trace. Chrome and Notepad cohorts can include unrelated activity. See [telemetry and benchmark reproduction](TELEMETRY.md) for scope and limitations.
+
+See [validation](VALIDATION.md) for observed outcomes and [evaluation](EVALUATION.md) for the outstanding human comparison.

@@ -29,7 +29,8 @@ if all(path.is_file() for path in videos):
         "project": "Office Twin",
         "source_commit": commit,
         "source_worktree_dirty": dirty,
-        "status": "Review package; Devpost draft held until two teammates join",
+        "status": "Updated evidence package for the submitted Office Twin entry",
+        "video_scope": "15 October functional demonstration; subsequent benchmark measurements are documented in the source archive",
         "repository": "https://github.com/ajayasai/office-twin-ntu-st-2026",
         "video": "https://youtu.be/0OpIetkSomM",
         "files": [
