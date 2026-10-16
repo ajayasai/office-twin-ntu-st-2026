@@ -19,7 +19,7 @@ The provider is `Microsoft-Windows-Kernel-Process`, GUID `{22FB2CD6-0E7B-422B-A0
 
 ## Reproduce a new capture
 
-Use the repository root as the working directory in both shells. Configure the dedicated Sheet in ignored `local-settings.json` as described in [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md), keep that Sheet open, and leave the desktop unlocked and awake with the lid open. Each attempt needs fresh capture and native-output directory names; retain failed attempts. Do not edit the collector, decoder, worker, runtime or analyzer during an attempt.
+Use a full Git clone with Git for Windows on `PATH`, and the repository root as the working directory in both shells; follow [the clone and environment setup](../README.md#run). The evidence tools require Git commit/working-tree metadata and the `runs/` ignore rule. An extracted source ZIP has no `.git` metadata and cannot run this protocol as documented. Configure the dedicated Sheet in ignored `local-settings.json` as described in [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md), keep that Sheet open, and leave the desktop unlocked and awake with the lid open. Each attempt needs fresh capture and native-output directory names; retain failed attempts. Do not edit the collector, decoder, worker, runtime or analyzer during an attempt.
 
 In an **Administrator PowerShell**, run:
 

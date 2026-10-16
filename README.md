@@ -41,7 +41,16 @@ The final presentation review maps evidence to all four judging criteria, adds t
 
 ## Run
 
-Use Python 3.11 or newer. Open a terminal in this repository and create a virtual environment:
+Use Windows and Python 3.11 or newer. For benchmark, ETW or historical reproduction commands, install [Git for Windows](https://git-scm.com/install/windows) and make a full clone so the tools can record the source commit and access earlier versions:
+
+```powershell
+git clone https://github.com/ajayasai/office-twin-ntu-st-2026.git
+Set-Location office-twin-ntu-st-2026
+```
+
+For the GUI, simulation, single native run or automated tests, you can instead extract `office-twin-source.zip` from the judges' attachment and open a terminal in that extracted folder. The source ZIP has no Git history; use the full clone for the benchmark/ETW harnesses and the frozen historical installation check.
+
+From the source directory, create a virtual environment:
 
 ```powershell
 py -3 -m venv .venv

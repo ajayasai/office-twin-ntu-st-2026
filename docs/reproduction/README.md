@@ -29,7 +29,7 @@ Public files use an explicit field selection. The two temporary-directory prefix
 
 ## Repeat the check
 
-These commands reproduce the checked source and command parameters with fresh local output paths. Run them from the repository root in PowerShell with **Python 3.14.2** installed. The `py -3.14` selector must resolve to that patch version for an exact Python-version match. This current documentation directory supplies the constraints file; it was added after the frozen source commit.
+These commands reproduce the checked source and command parameters with fresh local output paths. Run them from the repository root of a **full Git clone**, with Git for Windows on `PATH` and **Python 3.14.2** installed; see [the clone instructions](../../README.md#run). The judges' source ZIP lacks Git history, and a shallow clone may lack the frozen commit used by `git archive` below. The `py -3.14` selector must resolve to that patch version for an exact Python-version match. This current documentation directory supplies the constraints file; it was added after the frozen source commit.
 
 ```powershell
 $reproRoot = Join-Path (Get-Location).Path 'runs\reproduction-check-20261016'

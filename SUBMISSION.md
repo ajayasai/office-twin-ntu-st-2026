@@ -1,10 +1,12 @@
 # Submission status and evidence revision
 
+**Latest verified submission:** [rundown evidence upload, 16 October 2026 at 20:00 SGT](#rundown-evidence-upload-verified--16-october-2026-2000-sgt). Devpost showed **SUBMITTED — 5/5 steps done** with the `4b8d11a` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
+
 ## Rundown supplement prepared — 16 October 2026 (SGT)
 
 The [new rundown evidence](docs/process-rundown/README.md) verifies 32/32 focus observations against three existing application identities, using actual before/after state records and exact independent OS snapshots. All 16 application starts inside the native windows have compatible parent identities: two Explorer → Chrome, ten Chrome → Chrome and four Explorer → Notepad. Thirteen have observed exits within the capture; three Chrome processes remain present in final rundown. The three warm main applications' original parents remain unavailable. Applications stayed open as requested.
 
-The fresh seed-311 retry completed both 11-step native tasks and all 28 known process lifecycles, with zero reported final ETW loss. It used clean tooling source `95bb3efc830a2d811b69cc68c9483ae9b0353fec`; the 139-test suite passed before capture. The earlier warm rundown attempt stopped on a foreground-focus change during its second task and is retained as failed. Historical timing, human aggregates and the prior ETW result remain unchanged. The new source and evidence archive are prepared for replacing the current Devpost story and judges' attachment; verified upload details will be recorded after readback.
+The fresh seed-311 retry completed both 11-step native tasks and all 28 known process lifecycles, with zero reported final ETW loss. It used clean tooling source `95bb3efc830a2d811b69cc68c9483ae9b0353fec`; the 139-test suite passed before capture. The earlier warm rundown attempt stopped on a foreground-focus change during its second task and is retained as failed. Historical timing, human aggregates and the prior ETW result remain unchanged. At this preparation checkpoint, the new source and evidence archive were ready to replace the Devpost story and judges' attachment. The subsequent verified upload is recorded below.
 
 **The entry was submitted on 16 October 2026 (SGT).** Devpost displayed “Project submitted!” and “SUBMITTED TO NTU x ST Engineering Hackathon”. Team:
 

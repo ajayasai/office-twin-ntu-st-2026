@@ -3,7 +3,7 @@
 | Official criterion | Weight | Evidence to inspect |
 | --- | --- | --- |
 | Process Telemetry Authenticity | 30% | New rundown capture verifies 32/32 application focus observations and 16/16 new application-start parent relationships: 2 Explorer → Chrome, 10 Chrome → Chrome, 4 Explorer → Notepad. Also 28/28 known canaries and zero reported final ETW loss. |
-| Human Entropy & Timing | 30% | Five controlled fixed/contextual pairs, measured wait variation, and a participant-confirmed unassisted human baseline: 720 seconds, 42 WPM and 14 corrected error episodes. |
+| Human Entropy & Timing | 30% | Five controlled fixed/contextual pairs with measured key, review and window-focus wait variation, detailed below. A participant-confirmed unassisted human baseline reports 720 seconds, 42 WPM and 14 corrected error episodes. |
 | Complexity of Action | 20% | Ten controlled native tasks completed all 11 steps; two separate successful ETW pairs also completed 11/11 each. Three quotes, six formulas, deadline eligibility and a saved/reopened recommendation form one connected decision. Failed attempts remain documented. |
 | Resource Efficiency | 20% | Median controller CPU: 19.14 / 20.61 CPU-s (fixed/contextual); sampled peak controller RSS: 72.72–73.09 MiB. Runtime makes no cloud-model calls; observer and application costs are reported separately. |
 
@@ -69,9 +69,17 @@ The project delivers a connected native workflow with checked outputs, an inspec
 
 **The revised series completed 10 of 10 native tasks, each with 11/11 steps, yielding five comparable fixed/contextual pairs.** Fixed task duration had a median of **153.13 s** (range 152.24–158.99); contextual duration had a median of **167.08 s** (158.78–169.35). The within-pair contextual-minus-fixed difference had a median of **+11.26 s**, ranging from +5.55 to +17.10 s. These are descriptive results on one warm, shared Windows host, not a population reliability or significance claim.
 
-Each run recorded 586 single-key controller waits. Across runs, their 90th percentiles were **109.50–110.08 ms for fixed** and **161.01–177.73 ms for contextual**. This establishes measured policy variation and its cost; the waits are not OS input-delivery timestamps and do not validate human behavior.
+The retained benchmark measures variation across several actions. The table gives the range of **per-run 90th-percentile observed controller waits** across five runs per policy; counts are per run.
 
-The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. For identities created within capture windows, the per-run counts sum to **6 Chrome identities with compatible Explorer parents, 33 Chrome children with compatible Chrome parents, and 8 Notepad identities with compatible Explorer parents**. Ten preexisting Notepad observations had unresolved parents. These are per-run identity counts, not distinct processes across the whole experiment. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
+| Action | Observed waits per run | Fixed p90 range | Contextual p90 range |
+| --- | ---: | ---: | ---: |
+| Single key | 586 | 109.50–110.08 ms | 161.01–177.73 ms |
+| Review | 6 | 1.312–1.320 s | 1.809–2.814 s |
+| Window focus (`switch`) | 16 | 0.463–0.469 s | 0.628–0.973 s |
+
+These values come from the [retained timing measurements](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/benchmark.json). They measure controller waits, including scheduler effects, not OS input-delivery timestamps. Waits within a run are not independent task trials. The results establish policy variation, not calibrated human similarity; the participant's human timing aggregates use different definitions.
+
+The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. For identities created within capture windows, the per-run counts sum to **6 Chrome identities with compatible Explorer parents, 33 Chrome children with compatible Chrome parents, and 8 Notepad identities with compatible Explorer parents**. Ten preexisting Notepad observations had unresolved parents. These are per-run identity counts, not distinct processes across the whole experiment. No revised Notepad identity had a compatible Python parent in the sampled observations. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
 
 Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
 

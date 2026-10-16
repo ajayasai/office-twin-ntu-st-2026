@@ -19,7 +19,7 @@ The observer records no command lines, usernames, URLs, window titles, keystroke
 
 ## Reproduce the collection
 
-Create the dedicated Sheet described in [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md), then save its URL in ignored `local-settings.json`:
+Start from a full Git clone with Git for Windows on `PATH` and the Python environment installed as in [the setup instructions](../README.md#run). The benchmark harness records Git commit and working-tree metadata; the extracted source ZIP alone is insufficient for this collection protocol. Create the dedicated Sheet described in [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md), then save its URL in ignored `local-settings.json`:
 
 ```json
 {"sheet_url": "PASTE_DEDICATED_SHEET_EDIT_URL"}

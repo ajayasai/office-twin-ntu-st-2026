@@ -7,11 +7,23 @@ Office Twin performs a connected procurement task through Chrome, Google Sheets 
 | Criterion | Weight | Result to inspect | Evidence |
 | --- | ---: | --- | --- |
 | Process Telemetry Authenticity | 30% | Rundown and exact OS snapshots verify 32/32 focus bindings across three current application identities. 28/28 known lifecycles and the stated controller checks pass; final loss counters: 0 / 0 / 0. All 16 application starts have resolved parent lifetimes: 10 Chrome → Chrome, two Explorer → Chrome and four Explorer → Notepad. Warm main processes’ exited original parents remain unresolved. | [Current rundown evidence](process-rundown/README.md), [earlier event evidence](process-events/README.md), [event protocol](PROCESS_EVENTS.md) |
-| Human Entropy & Timing | 30% | Five paired fixed/contextual runs. Per-run 90th-percentile single-key controller waits were 109.50–110.08 ms fixed and 161.01–177.73 ms contextual. A participant-confirmed unassisted human baseline reports 720 s, 42 WPM, 14 corrected errors and measured process ancestry. | [Paired timing results](benchmark/README.md), [human baseline and definitions](human-baseline/README.md) |
+| Human Entropy & Timing | 30% | Five paired fixed/contextual runs measure key, review and window-focus wait variation; see the table below. Single-key p90 ranges are 109.50–110.08 ms fixed and 161.01–177.73 ms contextual. A participant-confirmed unassisted human baseline reports 720 s, 42 WPM, 14 corrected errors and measured process ancestry. | [Paired timing results](benchmark/README.md), [human baseline and definitions](human-baseline/README.md) |
 | Complexity of Action | 20% | The ten-run controlled series completed all 11 steps in every run. The earlier ETW retry pair completed 11/11 each; the rundown supplement adds 11/11 steps in both runs. Interrupted attempts remain documented. Tasks include supplier review, six formulas, a cost/deadline decision, correction and save/reopen checks. A historical changed-price scenario changes the winner. | [Validation history](VALIDATION.md), [rundown evidence](process-rundown/README.md), [saved formula/value check](benchmark/saved-sheet-verification.json), [scenario source](../scenarios/alternate.json) |
 | Resource Efficiency | 20% | Median full-window controller CPU: 19.14 CPU-s fixed / 20.61 contextual. Sampled controller peak RSS: 72.72–73.09 MiB across ten runs. Runtime makes no cloud-model calls. Observer overhead and application cohorts are reported separately. | [Full numeric resource report](benchmark/BENCHMARK.md), [machine-readable export](benchmark/benchmark.json), [architecture](ARCHITECTURE.md) |
 
 The historical observer polls OS state; its per-run parent counts are not globally unique process counts. The rundown supplement adds verified current focus identities to known canary/controller coverage. It does not recover exited historical parents or establish every possible system event. Current identity coverage and historical ancestry closure are reported as separate checks. Human aggregates and controller waits use different measurement definitions; they are not a validated timing-similarity comparison. The evidence supports the listed results, not a computed official score.
+
+## Measured controller waits
+
+These are ranges of per-run 90th-percentile observed waits across five runs per policy, derived from each run's `actual_wait` measurements in the [retained benchmark](benchmark/benchmark.json). Counts are per run.
+
+| Action | Observed waits per run | Fixed p90 range | Contextual p90 range |
+| --- | ---: | ---: | ---: |
+| Single key | 586 | 109.50–110.08 ms | 161.01–177.73 ms |
+| Review | 6 | 1.312–1.320 s | 1.809–2.814 s |
+| Window focus (`switch`) | 16 | 0.463–0.469 s | 0.628–0.973 s |
+
+Controller waits include scheduler effects and are not OS input-delivery timestamps. Waits within a run are not independent task trials. These measurements show variation between the implemented policies; they do not establish calibrated human similarity or a matched comparison with the participant's timing aggregates.
 
 ## What a correct result looks like
 
