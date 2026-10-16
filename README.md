@@ -11,7 +11,9 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 | Task duration range | 152.24–158.99 s | 158.78–169.35 s |
 | Full-window controller CPU median | 19.14 CPU-s | 20.61 CPU-s |
 
-Within matched pairs, contextual timing added a median **11.26 s** (range 5.55–17.10 s). Task duration excludes preparation, countdown, final verification and cleanup; CPU covers the full controller window and excludes applications. This is a descriptive comparison on one warm, shared host. **Human reference n=0**: no participant was available, and human similarity remains unvalidated.
+Within matched pairs, contextual timing added a median **11.26 s** (range 5.55–17.10 s). Task duration excludes preparation, countdown, final verification and cleanup; CPU covers the full controller window and excludes applications. This is a descriptive comparison of automated policies on one warm, shared host; human similarity remains unvalidated.
+
+**Guided manual practice:** one participant subsequently recorded one completion in **734.53 s**, with the saved Sheet's six formulas/results and the recommendation independently checked after the run. The participant received step-by-step guidance, exact formulas and a sample report; elapsed time includes instructions and waiting. Manual operation was participant-reported, not independently observed. **Unassisted human baseline n=0**; no task input timings or agent-versus-human speed ratio are claimed. See the [guided practice evidence](docs/manual-practice/README.md).
 
 ![Observed paired benchmark](docs/media/benchmark.png)
 
@@ -76,7 +78,7 @@ Use application state and saved content to determine task success. A log entry s
 - **Native evidence** includes the real Google Sheet, its UI readback, the saved text report, a screen recording, and independently collected Windows telemetry where available. Browser-based Sheets activity does not create Excel process evidence.
 - **Resource measurements** must state their scope. Agent-process CPU/RAM alone excludes Chrome and Notepad, or Excel/Word when using the optional Office path.
 - **Human comparisons** require consented manual runs of the same task. Synthetic or automated traces must never be labelled human.
-- **Manual reference collector:** `tools/record_manual.py` records explicit task boundaries, optional participant markers and selected-process resources. It does not collect keystroke timings or independently verify human participation or task success. The tool is ready; no human reference runs have been collected. See the [collection guide](docs/MANUAL_BASELINE.md).
+- **Manual reference collector:** `tools/record_manual.py` records explicit task boundaries, optional participant markers and selected-process resources. A browser timer wrapper recorded the [one guided practice](docs/manual-practice/README.md) using duration and collector overhead only; application processes were not sampled. Saved outputs were checked separately. The collector does not verify human participation or collect task input timings. See the [collection guide](docs/MANUAL_BASELINE.md).
 - **Timing** is a testable model of pauses and activity, not proof of indistinguishability or a guarantee against automation detection.
 
 If Sysmon is already installed and authorized for the test environment, export the relevant records using the existing configuration. Do not disable security controls, alter logs, manipulate process ancestry, or change security logging settings to improve the result. State when an event type is unavailable under the current configuration.
@@ -89,6 +91,7 @@ If Sysmon is already installed and authorized for the test environment, export t
 - [Paired benchmark and human-baseline protocol](docs/EVALUATION.md)
 - [Suggested demo storyboard](docs/DEMO.md)
 - [Manual reference collector and guide](docs/MANUAL_BASELINE.md)
+- [Guided manual practice and verified saved outputs](docs/manual-practice/README.md)
 - [Manual baseline log template](docs/baseline-template.csv)
 - [Devpost project narrative](docs/DEVPOST_ENTRY.md)
 - [Narrated pitch script](docs/PITCH.md)

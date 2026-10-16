@@ -1,6 +1,6 @@
 # Evaluation protocol
 
-The purpose is to measure correct task completion, timing, genuine application activity, and resource cost. The protocol is proposed by this team; it is not an official organizer benchmark. See [observed validation](VALIDATION.md) for reported results. No human participant was available: the manual procedure below remains a future protocol, and the current comparison concerns two automated timing policies only.
+The purpose is to measure correct task completion, timing, genuine application activity, and resource cost. The protocol is proposed by this team; it is not an official organizer benchmark. See [observed validation](VALIDATION.md) for reported results. The paired benchmark compares two automated timing policies. One later [guided manual practice](manual-practice/README.md) has verified saved outputs and is reported separately; an unassisted manual comparison remains future work.
 
 ## A paired task
 
@@ -13,6 +13,7 @@ Compare these conditions:
 | Condition | What it establishes |
 | --- | --- |
 | Manual | A consenting human performs the task without automation. Provides a small exploratory reference, not the full range of human behavior. |
+| Guided manual practice | A participant performs the task with instruction support. Report guidance, waiting time and output verification separately; do not treat it as an unassisted timing baseline. |
 | Fixed timing | The desktop agent performs the task using the fixed timing mode. A comparison condition for the timing model. |
 | Contextual timing | The desktop agent performs the task using the contextual timing mode. The proposed submission behavior. |
 
@@ -26,7 +27,9 @@ Simulation is a separate development check. Do not include it in native completi
 4. Record an anonymous participant ID, run ID, environment, start/end times, task boundaries, success, and any interruption. The [CSV template](baseline-template.csv) is a manual recording aid, not a telemetry collector.
 5. Retain only the task-relevant records. Remove personal paths, account names, window titles, and unrelated browsing details from the shared copy; preserve an access-controlled original only where needed and agreed.
 
-A future exploratory study could target three consenting teammates completing two manual runs each and at least five runs per automated condition. These are planning targets, not observations or evidence that the sample is statistically adequate. For the present evaluation, human reference runs are **zero**. Report only the actual automated attempts and restrict conclusions accordingly.
+A future exploratory study could target three consenting teammates completing two unassisted manual runs each and at least five runs per automated condition. These are planning targets, not observations or evidence that the sample is statistically adequate. Current manual evidence is **one participant, one guided completion, zero unassisted baseline runs**. Report each evidence class separately and restrict conclusions accordingly.
+
+The guided completion took **734.526 seconds** from the participant's browser Start to Finish, including chat instructions, replies and waiting. Exact Sheet headers/formulas and a sample report were supplied; the participant had seen the task before. Separate reads verified the saved Sheet's six formulas/results and correct recommendation. Participation was declared rather than independently observed, and the saved report matches the supplied sample after whitespace normalization. No task input timings, application-resource samples or process events were collected. These boundaries and assistance differ from the automated benchmark, so no agent-versus-human speed ratio or timing-similarity claim is justified.
 
 ## Make conditions comparable
 
@@ -63,7 +66,7 @@ Measure the exact controller, observed controller descendants, name-selected Chr
 | Task completion | Successful complete runs / all attempted runs; list partial runs and failure reasons separately. |
 | Output correctness | Check the saved sheet's input values, formula source and results, and whether the text report's recommendation follows them. |
 | Timing | Report total duration and available action/phase intervals using median and spread; show distributions rather than only one average. |
-| Timing similarity | Not measured in this evaluation: human reference n=0. A future consented study can compare like-for-like phases without claiming a detector cannot distinguish them. |
+| Timing similarity | Not measured: unassisted human baseline n=0 and no human task input-timing data. The one guided completion provides no matched timing distribution. A future consented study can compare like-for-like phases. |
 | Process activity | Show actual application observations and compatible parent snapshots, collection coverage and unresolved identities. Distinguish sampled observations from event traces. |
 | Resource cost | Give sampling interval, CPU definition and core normalization, RAM measure, and which processes are included. Report agent-only figures separately from whole-workload figures. |
 
@@ -73,4 +76,4 @@ Do not compute a purported official total score from these measurements: the pub
 
 Generate the numeric report from retained run manifests rather than filling planned counts into a results table. Report attempts, complete/correct tasks, comparable pairs, task-interval duration, full-window controller CPU/RSS, observer coverage/overhead and nonexclusive application cohorts. Keep failed attempts and excluded pairs visible, explain each exclusion, and identify the tested runtime version. The completed 16 October series is reported in the [revised benchmark](benchmark/README.md): ten complete native tasks and five comparable pairs.
 
-Include environment details, anonymization steps, failure notes and evidence references with the results. [Validation](VALIDATION.md) records published outcomes; this document defines the protocol. The current 85 passing automated tests validate software behavior and evidence handling, not human timing or participant activity.
+Include environment details, anonymization steps, failure notes and evidence references with the results. [Validation](VALIDATION.md) records published outcomes; this document defines the protocol. The current 85 passing automated tests validate software behavior and evidence handling, not human timing or participant activity. Keep the [guided practice result](manual-practice/README.md) alongside the automated benchmark with its assistance, timing boundaries and separately verified saved outputs explicit.

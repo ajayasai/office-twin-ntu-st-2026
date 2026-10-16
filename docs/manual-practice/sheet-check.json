@@ -1,0 +1,126 @@
+{
+  "range": "Quotes!A1:F4",
+  "method": "Read-only Google Sheets connector, after participant finished; private file identity omitted.",
+  "cells": [
+    {
+      "cell": "A1",
+      "user_entered": "Supplier",
+      "effective_value": "Supplier"
+    },
+    {
+      "cell": "B1",
+      "user_entered": "Unit price (SGD)",
+      "effective_value": "Unit price (SGD)"
+    },
+    {
+      "cell": "C1",
+      "user_entered": "Qty",
+      "effective_value": "Qty"
+    },
+    {
+      "cell": "D1",
+      "user_entered": "Lead days",
+      "effective_value": "Lead days"
+    },
+    {
+      "cell": "E1",
+      "user_entered": "Total (SGD)",
+      "effective_value": "Total (SGD)"
+    },
+    {
+      "cell": "F1",
+      "user_entered": "Meets deadline",
+      "effective_value": "Meets deadline"
+    },
+    {
+      "cell": "A2",
+      "user_entered": "Atlas Supplies",
+      "effective_value": "Atlas Supplies"
+    },
+    {
+      "cell": "B2",
+      "user_entered": 120,
+      "effective_value": 120
+    },
+    {
+      "cell": "C2",
+      "user_entered": 5,
+      "effective_value": 5
+    },
+    {
+      "cell": "D2",
+      "user_entered": 7,
+      "effective_value": 7
+    },
+    {
+      "cell": "E2",
+      "user_entered": "=B2*C2",
+      "effective_value": 600
+    },
+    {
+      "cell": "F2",
+      "user_entered": "=IF(D2<=7,\"YES\",\"NO\")",
+      "effective_value": "YES"
+    },
+    {
+      "cell": "A3",
+      "user_entered": "Beacon Supply",
+      "effective_value": "Beacon Supply"
+    },
+    {
+      "cell": "B3",
+      "user_entered": 115,
+      "effective_value": 115
+    },
+    {
+      "cell": "C3",
+      "user_entered": 5,
+      "effective_value": 5
+    },
+    {
+      "cell": "D3",
+      "user_entered": 10,
+      "effective_value": 10
+    },
+    {
+      "cell": "E3",
+      "user_entered": "=B3*C3",
+      "effective_value": 575
+    },
+    {
+      "cell": "F3",
+      "user_entered": "=IF(D3<=7,\"YES\",\"NO\")",
+      "effective_value": "NO"
+    },
+    {
+      "cell": "A4",
+      "user_entered": "Crest Industrial",
+      "effective_value": "Crest Industrial"
+    },
+    {
+      "cell": "B4",
+      "user_entered": 125,
+      "effective_value": 125
+    },
+    {
+      "cell": "C4",
+      "user_entered": 5,
+      "effective_value": 5
+    },
+    {
+      "cell": "D4",
+      "user_entered": 3,
+      "effective_value": 3
+    },
+    {
+      "cell": "E4",
+      "user_entered": "=B4*C4",
+      "effective_value": 625
+    },
+    {
+      "cell": "F4",
+      "user_entered": "=IF(D4<=7,\"YES\",\"NO\")",
+      "effective_value": "YES"
+    }
+  ]
+}

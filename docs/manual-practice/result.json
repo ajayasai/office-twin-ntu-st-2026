@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "participant_id": "P01",
+  "attempt_id": "guided-01",
+  "classification": "participant-reported guided manual completion with verified saved outputs",
+  "participant_count": 1,
+  "guided_manual_attempt_count": 1,
+  "unassisted_reference_count": 0,
+  "elapsed_seconds": 734.5256836999979,
+  "elapsed_display": "12 min 14.5 s",
+  "boundaries": [
+    {
+      "event": "start",
+      "elapsed_seconds": 6.120000034570694e-05
+    },
+    {
+      "event": "stop",
+      "elapsed_seconds": 734.5256836999979
+    }
+  ],
+  "timing_boundary": "Browser timer Start click to Finish click, including chat instructions, replies, waiting, application switching, and save/reopen steps.",
+  "guidance": {
+    "step_by_step_chat": true,
+    "exact_sheet_headers_and_formulas_provided": true,
+    "sample_report_provided_during_attempt": true,
+    "participant_later_stated_intent_to_write_own_report": true,
+    "saved_report_matches_sample_after_whitespace_normalization": true,
+    "report_entry_method": "Not observed; no conclusion about typing versus pasting.",
+    "independent_report_authorship_verified": false,
+    "assistant_task_input_injected_during_attempt": false,
+    "prior_task_familiarity": "Participant previously saw task explanations and project results."
+  },
+  "saved_outputs_verified": true,
+  "checks": {
+    "six_headers_correct": true,
+    "twelve_supplier_inputs_correct": true,
+    "six_formula_sources_correct": true,
+    "six_calculated_results_correct": true,
+    "report_requirement_and_supplier_facts_correct": true,
+    "report_recommends_lowest_eligible_supplier_with_reason": true
+  },
+  "raw_collector_outcome": "completed-unverified",
+  "raw_collector_task_success_verified": false,
+  "raw_collector_human_provenance_independently_verified": false,
+  "verification_scope": "Post-run native Google Sheets connector read of Quotes!A1:F4 including formula sources and effective values; separate saved UTF-8 report read.",
+  "raw_collector_preservation": "Original records retained unchanged; output verification is a separate post-run check.",
+  "raw_summary_sha256": "ec829f15ed988a12757d60cefb0bea9bfaf835ff2fbbb72637aa836cc04dca75",
+  "raw_events_sha256": "50439928ed87d5fdaaa25f01085794763e9ba4a7bc52fde3442ca049afd44ae7",
+  "public_artifact_hashes": {
+    "saved-report.txt": "ecbfc0895b8aecfdbe2a14c829097620b0146dba34357d63cc2758bdd0281112",
+    "sheet-check.json": "5c04bbba57295a18528af6a54c7a87628d3734f34815a744a581ee1a807ed1ae"
+  },
+  "report_export_normalization": "UTF-8 with LF line endings; wording unchanged.",
+  "captured_task_input_timestamps": false,
+  "captured_application_resources": false,
+  "human_agent_speed_ratio_computed": false,
+  "limitations": [
+    "Guided practice, not an unassisted completion-time baseline; no agent-versus-human speed ratio is justified.",
+    "No task keystroke, mouse, pause-distribution, application-resource or process-event data was collected.",
+    "One participant and one guided attempt do not characterize a human population.",
+    "Post-run checks establish saved-output correctness, not the exact sequence of actions or authorship."
+  ],
+  "privacy": "Pseudonym only; exact clock times, private paths, spreadsheet identity, timer URL, process IDs and raw resource snapshots omitted."
+}

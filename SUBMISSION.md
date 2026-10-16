@@ -31,4 +31,6 @@ The release packager records its exact source commit, clean/dirty state and arti
 
 The three joined teammates and rules/Terms declaration were confirmed before the original submission. Updating the existing entry does not create a new team or a second submission.
 
-No human participant was available: **human reference n=0**. No human similarity, full process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.
+One participant subsequently completed a [guided manual attempt](docs/manual-practice/README.md) in **734.526 seconds**, with separately verified saved Sheet formulas/results and recommendation. The elapsed time includes chat guidance and waiting; exact formulas and a report example were supplied. **Unassisted human reference n=0**. This completion is not used for an agent-versus-human speed ratio or human-timing calibration. No human similarity, full process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.
+
+The manual-completion evidence and revised narrative are prepared for an update to the existing entry. The attachment and public-story verification above refer to the earlier 15:58 SGT revision until the new upload is verified.

@@ -1,0 +1,9 @@
+Procurement recommendation
+
+We need 5 sensor kits delivered within 7 days.
+
+Atlas Supplies: SGD 600 total, delivery in 7 days.
+Beacon Supply: SGD 575 total, delivery in 10 days.
+Crest Industrial: SGD 625 total, delivery in 3 days.
+
+I recommend Atlas Supplies because it offers the lowest total cost among suppliers meeting the deadline. Beacon is cheaper but arrives too late. Crest meets the deadline but costs more.

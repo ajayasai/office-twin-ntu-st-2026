@@ -20,7 +20,7 @@ Python, pywinauto, Windows UI Automation and pywin32 control visible application
 
 The revised implementation opens both the supplier browser and the Notepad report through visible Explorer shortcut double-clicks. The report shortcut targets the exact run-owned text file. Ambiguous controls stop the run; no direct-file fallback silently changes the opening method.
 
-Fixed and contextual timing policies share the same workflow. Contextual timing introduces bounded variation, correlated pacing and pauses for reading, typing, switching, review and correction. These remain engineering defaults. No human participant was available: **human reference n = 0**, and no human-similarity claim is made.
+Fixed and contextual timing policies share the same workflow. Contextual timing introduces bounded variation, correlated pacing and pauses for reading, typing, switching, review and correction. These remain engineering defaults: **unassisted human reference n = 0**. The guided manual completion described below adds functional evidence, not human-timing calibration.
 
 A separate Python observer uses Windows Toolhelp inventory and psutil identity/resource snapshots. It requests 100-millisecond polling and reports actual median and maximum sampling gaps, overruns and its own CPU/memory overhead. Controller resources, controller descendants, Chrome and Notepad are separate scopes. Application cohorts can include unrelated activity; they are not exclusive task costs and must not be added into a purported whole-system total.
 
@@ -50,7 +50,9 @@ The separate observer collected **17,018 snapshots**. Per-run median gaps were 1
 
 Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
 
-Task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
+**One participant also completed a guided manual practice with verified saved outputs.** The participant reported operating the applications personally and used Start/Finish buttons. Post-run checks confirmed 18 literal Sheet cells, six formula sources, six calculated results and a correct saved recommendation for Atlas at SGD 600. The recorded **734.526 seconds** includes chat guidance and waiting. Exact formulas and a report example were supplied during the attempt; independent report authorship and entry method were not established. This is one guided completion, with no input-timing or application-resource recording, so it is not used for an agent-versus-human speed ratio. [Practice evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/README.md) and the [verification record](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/manual-practice/result.json) preserve that distinction.
+
+Automated task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
 
 The published video shows the initial functional run recorded on 15 October, preserved continuously at 1× within the narrated edit. It does not show the revised launch mechanism or constitute a new benchmark trial.
 
@@ -58,10 +60,10 @@ The published video shows the initial functional run recorded on 15 October, pre
 
 A correct artifact, a successful desktop action and a convincing process trace require different evidence. Separate observation made an implementation difference visible.
 
-Timing variation is similarly insufficient by itself. Our automated comparison can show policy behavior and its observed cost; without human references it cannot establish human entropy, indistinguishability or an official judging score. Missing parents remain unresolved, and sampled CPU or memory must keep its measurement scope attached.
+Timing variation is similarly insufficient by itself. Our automated comparison measures policy behavior and its observed cost. The guided manual practice demonstrates correct saved work, but does not establish human entropy, indistinguishability or an official judging score. Missing parents remain unresolved, and sampled CPU or memory must keep its measurement scope attached.
 
 ## What's next
 
-We want consented manual reference runs, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
+Next are consented, unassisted manual reference runs with suitable input-timing capture, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
 
 Evidence: [source](https://github.com/ajayasai/office-twin-ntu-st-2026), [revised benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md), [sampled parent evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/process-parent-evidence.md), [telemetry methods](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/TELEMETRY.md), and [retained initial series](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark-initial/README.md).

@@ -10,13 +10,21 @@ Final read-only Sheet inspection confirmed all six formulas and their saved valu
 
 Runtime commit `051ec6871425ddaba9faeffed297a2168620e58c` remained fixed across the ten revised attempts. Normal scale 1, seeds 211/223/227/229/233, alternating policy order, default scenario, no video recording. Every attempt is retained; no revised attempt was excluded. The [full benchmark](benchmark/README.md) records hashes, scoped resource measurements, actual sampling gaps and observer overhead. The [figure](media/benchmark.png) plots all five comparable pairs.
 
-**85 automated tests passed** before the revised native series. They cover scenario decisions, bounded timing, cancellation/failure evidence, window targeting, real Explorer report opening, observer PID identity/races, scoped resources, benchmark validation and sanitized exports. Tests and automated task runs are not manual observations. No human participant was available; human reference n=0.
+**85 automated tests passed** before the revised native series. They cover scenario decisions, bounded timing, cancellation/failure evidence, window targeting, real Explorer report opening, observer PID identity/races, scoped resources, benchmark validation and sanitized exports. Tests and automated task runs are not manual observations. The ten-run automated benchmark contains no human reference data; the subsequent guided practice is reported separately below.
 
 The [initial observer series](benchmark-initial/README.md) completed three native tasks on the previous runtime but yielded zero comparable pairs. Its attempted pair differed in Sheet-opening actions; the third trial was unpaired. Six sampled Notepad identities had compatible Python parents. That prompted an actual Explorer shortcut-opening change. The harness stopped before its next trial when source changed. Initial, revised and 15 October runs remain separate.
 
 On this host, Sysmon was unavailable; Security-log access and WMI process-start collection were denied. The separate Toolhelp/psutil observer is our read-only sampling instrument, not an independent auditor or a process-start event stream. No logging/security settings or process-parent metadata were altered. Chrome/Notepad cohorts are shared and nonexclusive. Observer CPU and RSS are reported separately.
 
 The existing [video](https://youtu.be/0OpIetkSomM) documents the historical functional run below. It does not show the revised launch mechanism or provide video evidence for the ten new trials. See [submission status](../SUBMISSION.md) for the source archive and Devpost update.
+
+## Guided manual practice — 16 October 2026
+
+One participant, **P01**, recorded **one guided manual completion in 734.526 seconds** (12 minutes 14.5 seconds). A separate post-run Google Sheets connector read verified six headers, twelve supplier inputs, all six formula sources and their calculated results. A separate read of the saved text report confirmed the task requirements, supplier facts and recommendation of Atlas at SGD 600 as the lowest eligible supplier. The [sanitized practice evidence](manual-practice/README.md) preserves the result and saved report.
+
+The participant had prior exposure to the task and received step-by-step chat guidance, exact Sheet headers/formulas and a sample report during the attempt. The saved report matches the supplied sample after whitespace normalization; report authorship and typing versus pasting were not observed. The participant reported operating the applications manually, and the assistant did not inject task input during the attempt. Post-run checks verify saved-output correctness, not human participation or the exact action sequence.
+
+Elapsed time runs from the participant's browser **Start** to **Finish**, including chat instructions, replies, waiting, application switching and save/reopen steps. The collector recorded duration and its own overhead, with no task keystrokes, mouse events, pause distributions, application-resource samples or process events. **Unassisted human baseline n=0**. This guided completion is not comparable to the automated task interval, supports no agent-versus-human speed ratio, and does not validate human-like timing.
 
 ---
 
@@ -66,10 +74,10 @@ Submission was confirmed in Devpost on **16 October 2026 (SGT)** by the "Project
 
 **41 unit tests passed** in the 15 October suite, including five checks for the manual reference collector. The earlier suite contained 36 tests. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
 
-The [manual reference collector](MANUAL_BASELINE.md) is implemented and tested. It records explicit participant start/stop, optional phase markers, and resource snapshots for selected PIDs; it records no task keystrokes, pointer activity or screen content. Outcomes remain participant-reported and unverified. Collector tests are not human reference observations, and no manual run has been collected.
+At the 15 October checkpoint, the [manual reference collector](MANUAL_BASELINE.md) was implemented and tested. It records explicit participant start/stop, optional phase markers, and resource snapshots for selected PIDs; it records no task keystrokes, pointer activity or screen content. Collector outcomes are participant-reported until separately checked. No manual run had been collected at that checkpoint; the later guided practice and separate output verification are documented above.
 
 The passive WMI process-start collector returned **Access denied** on this host. No independent Sysmon export was collected. Controller action logs and process snapshots must not be presented as independent Sysmon evidence. Security and logging settings were not changed.
 
-No human reference runs have been collected, and the timing parameters remain engineering defaults. No human-indistinguishability, general desktop autonomy, arbitrary website extraction or official benchmark score is claimed. The optional native Excel/Word workflow remains untested because Office activation was unavailable. Desktop tests require an idle, unlocked session and the documented app state; window guards do not prove every focused child control is correct.
+No unassisted human baseline or human input-timing dataset has been collected, and the timing parameters remain engineering defaults. The guided practice does not change those limits. No human-indistinguishability, general desktop autonomy, arbitrary website extraction or official benchmark score is claimed. The optional native Excel/Word workflow remains untested because Office activation was unavailable. Desktop tests require an idle, unlocked session and the documented app state; window guards do not prove every focused child control is correct.
 
-The most valuable next work is the manual-versus-agent evidence in [EVALUATION.md](EVALUATION.md), confirmation of the private organizer brief, and reproduction on the intended demonstration machine.
+The next evaluation step is an unassisted manual reference with matched boundaries under [EVALUATION.md](EVALUATION.md), followed by reproduction on the intended demonstration machine and confirmation of the private organizer brief.
