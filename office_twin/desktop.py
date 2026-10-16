@@ -223,9 +223,65 @@ class WindowsDesktop:
         self._abort_check()
         self._office_gate(app)
         path = self.bundle["paths"][key]
-        self.emit({"event": "launch", "kind": "switch", "app": app, "path": str(path), "mechanism": "os.startfile / Windows ShellExecute file association"})
-        os.startfile(str(path))
+        if app == "notepad":
+            self._launch_report_via_explorer(Path(path))
+        else:
+            self.emit({"event": "launch", "kind": "switch", "app": app, "path": str(path), "mechanism": "os.startfile / Windows ShellExecute file association"})
+            os.startfile(str(path))
         self._focus(app)
+
+    def _launch_report_via_explorer(self, path: Path) -> None:
+        """Open this run's text file by an ordinary visible Explorer action."""
+        self._abort_check()
+        path = path.resolve()
+        expected = self.workspace.resolve() / f'OfficeTwin-{self.bundle["token"]}-recommendation.txt'
+        if path != expected or not path.is_file():
+            raise DesktopPrerequisiteError("Only this run's existing recommendation file may be opened through its report shortcut.")
+        launch_dir = self.workspace.resolve() / f'OfficeTwin-launch-{self.bundle["token"]}'
+        launch_dir.mkdir(exist_ok=True)
+        self.bundle["paths"]["launch"] = launch_dir
+        shortcut_name = f'Open OfficeTwin report {self.bundle["token"]}'
+        shortcut_path = launch_dir / f"{shortcut_name}.lnk"
+        try:
+            import win32com.client
+            shell = win32com.client.Dispatch("WScript.Shell")
+            shortcut = shell.CreateShortcut(str(shortcut_path))
+            shortcut.TargetPath = str(path)
+            shortcut.Arguments = ""
+            shortcut.WorkingDirectory = str(path.parent)
+            shortcut.Description = "Open this run's saved text recommendation through its Windows file association"
+            shortcut.Save()
+        except Exception as exc:
+            raise DesktopPrerequisiteError(f"Could not create the run-local report shortcut: {exc}") from exc
+        # Reuse the unique launch folder left open by the supplier browser step.
+        # Open it only if absent; ambiguity is an error, never another window.
+        try:
+            self._find_window("explorer", timeout=0.7)
+        except DesktopPrerequisiteError:
+            self.emit({"event": "launch_folder", "kind": "switch", "app": "explorer", "path": str(launch_dir),
+                       "mechanism": "os.startfile / Windows ShellExecute folder association"})
+            os.startfile(str(launch_dir))
+        self._focus("explorer")
+        matches = []
+        deadline = time.monotonic() + 8
+        while time.monotonic() < deadline:
+            self._assert_focus()
+            for control_type in ("ListItem", "DataItem"):
+                matches = [item for item in self._window.descendants(control_type=control_type)
+                           if item.window_text().lower() in {shortcut_name.lower(), shortcut_path.name.lower()}]
+                if len(matches) == 1:
+                    break
+            if len(matches) == 1:
+                break
+            self._sleep(0.15)
+        if len(matches) != 1:
+            raise DesktopPrerequisiteError("The run-local report shortcut could not be located uniquely in Explorer. No direct-file or direct-process fallback was attempted.")
+        self._assert_focus()
+        matches[0].double_click_input()
+        self.emit({"event": "input", "kind": "click", "app": "explorer", "action": "Double-click the run-local report shortcut", "native": True})
+        self.emit({"event": "launch", "kind": "switch", "app": "notepad", "path": str(path), "shortcut": str(shortcut_path),
+                   "mechanism": "Visible Explorer double-click on run-local .lnk targeting the exact text report",
+                   "parent_note": "Ordinary shell interaction; Windows file association and application reuse determine actual ancestry. Verify it with independent telemetry."})
 
     def _launch_browser(self) -> None:
         self._abort_check()
