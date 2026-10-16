@@ -63,6 +63,14 @@ At this preparation checkpoint, the new source and evidence are ready for packag
 
 The prepared replacement is **`office-twin-etw-evidence-20261016-9b9e37b.zip`**, **10,348,722 bytes**, SHA-256 `0979755b59a737bd0a8540e88a4560df8c95a2452d57332d2ef3e213a5e019a8`. It contains clean source commit [`9b9e37bb50115ff08e6a94712ec97c1ed731d972`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/9b9e37bb50115ff08e6a94712ec97c1ed731d972), the existing video files and their manifest. ZIP integrity, every artifact hash, all 14 unchanged runtime files, required evidence and exclusion of private runs were checked. Source was pushed to GitHub. **Devpost replacement upload is pending:** its editor presented a human-verification challenge, for which user approval was requested. This is not a verified upload record.
 
+## ETW supplement upload verified — 16 October 2026, 19:22 SGT
+
+Devpost now saves **`office-twin-etw-evidence-20261016-9b9e37b.zip`**, **10,348,722 bytes**, SHA-256 `0979755b59a737bd0a8540e88a4560df8c95a2452d57332d2ef3e213a5e019a8`, as the judges' attachment. The exact filename was read back from Additional info after saving, and the finalization page displayed **Project submitted! — SUBMITTED — 5/5 steps done**. This replaces the earlier `f89ca68` package; its preparation-time source is clean commit `9b9e37bb50115ff08e6a94712ec97c1ed731d972`.
+
+The public story was saved from the packaged `docs/DEVPOST_ENTRY.md` and read back on the live project page. It displays the four-criterion table, verified ETW result, 120-test suite, fresh-environment result, preserved failed attempt and explicit application-ancestry limits. The participant-confirmed unassisted measurements remain unchanged. The historical benchmark image caption now distinguishes its 85-test checkpoint from the later ETW evidence and current suite. The page retains all three teammates and embeds the existing revised video `oTTT0ECN25U`. No new terms declaration or second submission was created.
+
+The user completed the browser's human-verification step. Public-page, saved-attachment and submitted-status screenshots are retained locally. This completion record follows the verified upload and is not part of the archived preparation snapshot.
+
 ## Media and links
 
 - [Devpost entry](https://devpost.com/software/office-twin).
