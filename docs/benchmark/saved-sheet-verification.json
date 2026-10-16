@@ -1,0 +1,216 @@
+{
+  "checked_at_utc": "2026-10-16T07:37:00Z",
+  "method": "Read-only Google Sheets CellData connector, after final revised trial",
+  "scope": "Final saved sheet only; does not verify formula source for every earlier trial",
+  "run_alias": "R010",
+  "range": "Quotes!A1:F4",
+  "cells": [
+    [
+      {
+        "input": {
+          "stringValue": "Supplier"
+        },
+        "value": {
+          "stringValue": "Supplier"
+        }
+      },
+      {
+        "input": {
+          "stringValue": "Unit price (SGD)"
+        },
+        "value": {
+          "stringValue": "Unit price (SGD)"
+        }
+      },
+      {
+        "input": {
+          "stringValue": "Qty"
+        },
+        "value": {
+          "stringValue": "Qty"
+        }
+      },
+      {
+        "input": {
+          "stringValue": "Lead days"
+        },
+        "value": {
+          "stringValue": "Lead days"
+        }
+      },
+      {
+        "input": {
+          "stringValue": "Total (SGD)"
+        },
+        "value": {
+          "stringValue": "Total (SGD)"
+        }
+      },
+      {
+        "input": {
+          "stringValue": "Meets deadline"
+        },
+        "value": {
+          "stringValue": "Meets deadline"
+        }
+      }
+    ],
+    [
+      {
+        "input": {
+          "stringValue": "Atlas Supplies"
+        },
+        "value": {
+          "stringValue": "Atlas Supplies"
+        }
+      },
+      {
+        "input": {
+          "numberValue": 120
+        },
+        "value": {
+          "numberValue": 120
+        }
+      },
+      {
+        "input": {
+          "numberValue": 5
+        },
+        "value": {
+          "numberValue": 5
+        }
+      },
+      {
+        "input": {
+          "numberValue": 7
+        },
+        "value": {
+          "numberValue": 7
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=B2*C2"
+        },
+        "value": {
+          "numberValue": 600
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=IF(D2<=7,\"YES\",\"NO\")"
+        },
+        "value": {
+          "stringValue": "YES"
+        }
+      }
+    ],
+    [
+      {
+        "input": {
+          "stringValue": "Beacon Supply"
+        },
+        "value": {
+          "stringValue": "Beacon Supply"
+        }
+      },
+      {
+        "input": {
+          "numberValue": 115
+        },
+        "value": {
+          "numberValue": 115
+        }
+      },
+      {
+        "input": {
+          "numberValue": 5
+        },
+        "value": {
+          "numberValue": 5
+        }
+      },
+      {
+        "input": {
+          "numberValue": 10
+        },
+        "value": {
+          "numberValue": 10
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=B3*C3"
+        },
+        "value": {
+          "numberValue": 575
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=IF(D3<=7,\"YES\",\"NO\")"
+        },
+        "value": {
+          "stringValue": "NO"
+        }
+      }
+    ],
+    [
+      {
+        "input": {
+          "stringValue": "Crest Industrial"
+        },
+        "value": {
+          "stringValue": "Crest Industrial"
+        }
+      },
+      {
+        "input": {
+          "numberValue": 125
+        },
+        "value": {
+          "numberValue": 125
+        }
+      },
+      {
+        "input": {
+          "numberValue": 5
+        },
+        "value": {
+          "numberValue": 5
+        }
+      },
+      {
+        "input": {
+          "numberValue": 3
+        },
+        "value": {
+          "numberValue": 3
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=B4*C4"
+        },
+        "value": {
+          "numberValue": 625
+        }
+      },
+      {
+        "input": {
+          "formulaValue": "=IF(D4<=7,\"YES\",\"NO\")"
+        },
+        "value": {
+          "stringValue": "YES"
+        }
+      }
+    ]
+  ],
+  "formula_count": 6,
+  "checks": {
+    "all_six_formulas_match": true,
+    "all_eighteen_saved_data_values_match": true,
+    "lowest_cost_eligible_supplier": "Atlas Supplies",
+    "recommended_total_sgd": 600
+  }
+}

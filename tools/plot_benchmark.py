@@ -79,8 +79,10 @@ def plot_benchmark(source: Path, output: Path, dpi: int = 220):
              "axes.labelcolor": MUTED, "xtick.color": MUTED, "ytick.color": MUTED,
              "axes.edgecolor": GRID, "axes.linewidth": 0.8, "svg.fonttype": "none"}
     with plt.rc_context(style):
-        fig, axes = plt.subplots(1, 2, figsize=(13.6, 7.4), facecolor="white")
-        fig.subplots_adjust(left=0.073, right=0.975, top=0.73, bottom=0.25, wspace=0.23)
+        fig, axes = plt.subplots(1, 2, figsize=(13.6, 8.2), facecolor="white")
+        # Reserve separate bands for the human-reference notice, panel titles,
+        # two-line seed labels and the measurement notes.
+        fig.subplots_adjust(left=0.073, right=0.975, top=0.69, bottom=0.30, wspace=0.23)
         fig.text(0.073, 0.94, "OFFICE TWIN  /  OBSERVED AUTOMATED BENCHMARK", fontsize=10,
                  weight="bold", color=TEAL)
         fig.text(0.073, 0.884, "Paired timing, with the limits visible.", fontsize=24, weight="bold")

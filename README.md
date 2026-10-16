@@ -2,21 +2,26 @@
 
 Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office worker: review local supplier quotes in **Chrome**, compare them in **Google Sheets**, and write a recommendation in **Notepad**. It performs a controlled, repeatable scenario through visible desktop input. It does not navigate or understand arbitrary websites.
 
-**Status:** three normal-speed native Chrome → Google Sheets → Notepad runs completed all **11/11 steps**: fixed timing, recorded contextual timing, and an alternate scenario. All saved-report and displayed-sheet checks passed. Independent read-only connector checks also verified actual formula source and values for the initial smoke test and the alternate scenario. The automated test suite passes **41 tests**. Excel/Word support is optional and untested here because licensed Office is unavailable.
+**16 October evidence update:** ten normal-speed native runs completed **11/11 steps each**, with **five matched fixed/contextual pairs** and **85 passing automated tests**. A separate process observer now reports actual sampling gaps, parent relationships, scoped CPU/RSS and its own overhead. Both browser and report opening use visible Explorer shortcut double-clicks. See the [revised benchmark](docs/benchmark/README.md).
 
-Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The completed narrated submission video is **180.13 seconds**: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. The local file is `dist/office-twin-submission.mp4`. The [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in YouTube Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page. Raw runs and video files are excluded from the source repository.
+| Observed measure | Fixed | Contextual |
+| --- | ---: | ---: |
+| Complete native tasks | 5/5 | 5/5 |
+| Median task duration | 153.13 s | 167.08 s |
+| Task duration range | 152.24–158.99 s | 158.78–169.35 s |
+| Full-window controller CPU median | 19.14 CPU-s | 20.61 CPU-s |
 
-**Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**, confirmed by Devpost. The joined team is **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`), and **Sourabh Sooraj** (`@sourabhsooraj97`).
+Within matched pairs, contextual timing added a median **11.26 s** (range 5.55–17.10 s). Task duration excludes preparation, countdown, final verification and cleanup; CPU covers the full controller window and excludes applications. This is a descriptive comparison on one warm, shared host. **Human reference n=0**: no participant was available, and human similarity remains unvalidated.
 
-The uploaded source archive corresponds to commit [`5dd7181317838d9cfa52ba023cf02037539ac5ff`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/5dd7181317838d9cfa52ba023cf02037539ac5ff). Later submission-status documentation updates do not represent new code, test runs or a replacement uploaded archive.
+![Observed paired benchmark](docs/media/benchmark.png)
 
-| Verified normal-speed run | Evidence folder | Result |
-| --- | --- | --- |
-| Fixed timing, default scenario | `runs/20261015T091539Z-3d7a2a48` | 11/11 steps; artifact checks passed |
-| Contextual timing, recorded default scenario | `runs/demo/20261015T091815Z-588afee5` | 11/11 steps; artifact checks passed |
-| Contextual timing, alternate scenario | `runs/20261015T092135Z-e43abfcb` | 11/11 steps; artifact checks passed; Crest selected at SGD 525 |
+The observer collected 17,018 snapshots at per-run median gaps of about 100.4 ms, with a maximum gap of 510.9 ms and one overrun. It captured eight per-run Notepad identities created within capture windows with Explorer parents; ten preexisting Notepad observations had unresolved parents. Counts can include reused processes across runs and do not establish complete event coverage. [Parent evidence](docs/benchmark/process-parent-evidence.md) preserves those limits and the [initial series](docs/benchmark-initial/README.md) preserves the six Python-parent observations that motivated the change.
 
-No human baseline was collected. No Sysmon capture was collected, and WMI process-start collection reported access denied. These runs establish task execution and output correctness, not human indistinguishability or validated process-telemetry authenticity. No private organizer brief was available for review. See [validation details](docs/VALIDATION.md).
+All revised trials passed displayed-sheet and saved-report checks. A [separate final Sheet read](docs/benchmark/saved-sheet-verification.json) confirmed the six formula sources and saved values, with Atlas selected at SGD 600. Historical alternate-scenario validation selected Crest at SGD 525. [Validation history](docs/VALIDATION.md) retains earlier failures and explains the different evidence scopes.
+
+**Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**. Team: **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`) and **Sourabh Sooraj** (`@sourabhsooraj97`). See the [Devpost entry](https://devpost.com/software/office-twin) and [submission checklist](SUBMISSION.md) for publication status. This revision prepares replacement source, evidence and story for that existing entry.
+
+The [unlisted narrated video](https://youtu.be/0OpIetkSomM) is 180.13 seconds and preserves the continuous 162.13-second desktop recording at 1×. It shows the **15 October functional version**, before the later Notepad launch change and separate-observer evaluation. It is not a recording of the new benchmark. Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026); raw runs, personal settings and videos are excluded from the source archive. Optional Excel/Word support remains untested because licensed Office is unavailable.
 
 ## Run
 

@@ -1,6 +1,6 @@
 # Separate process observation and paired timing evaluation
 
-The added observer runs in a separate Python process from the desktop controller. It reads the Windows process inventory and resource counters directly. It does not consume the controller's action records, inspect browser content, or intercept input. This supplies a second measurement path for process presence, compatible parent identities and resource use.
+The added observer runs in a separate Python process from the desktop controller. It uses Windows Toolhelp for process inventory and psutil for process creation times and resource counters. It does not consume the controller's action records, inspect browser content, or intercept input. This supplies a second measurement path for process presence, compatible parent identities and resource use.
 
 It is **sampled polling, not Sysmon, ETW or a complete process-start trace**. A separate process is not an independent auditor. First seen does not mean process started; a process missing from one sample is not proof that it exited.
 
@@ -32,9 +32,19 @@ python tools/run_benchmark.py --output runs/paired-evaluation
 python tools/analyze_benchmark.py --manifest runs/paired-evaluation/manifest.json --output runs/paired-evaluation/export
 ```
 
-The harness pairs fixed and contextual timing for seeds 211, 223, 227, 229 and 233, reversing their order in alternate pairs. Each uses the same default scenario and timing scale 1. It starts a separate observer before each worker, records the source version, and stops the series on a failed trial. Every attempt and capture failure must remain visible. The observer is read-only and requires no security-configuration changes.
+The harness plans fixed and contextual timing trials for seeds 211, 223, 227, 229 and 233, reversing their order in alternate pairs. Each uses the same default scenario and timing scale 1. It starts a separate observer before each worker and records the source commit, runtime hash and measurement-code hash. The worker supplies its actual PID and creation time, which may differ from a Windows launcher PID. The harness checks observer completion, bound identity and coverage, and stops on source changes, failed tasks, failed collection or unsafe cleanup. Every attempted run and capture failure remains visible. The observer is read-only and requires no security-configuration changes.
 
-The reported task interval starts at the first workflow step and ends when the last step completes. Controller wall time also includes setup, countdown, verification and cleanup. Requested delays and measured waits are reported by action kind; these are controller measurements, not hardware input timestamps.
+Keep the dedicated Sheet open before starting. Opening a new Sheet window in only one member of a pair changes the action sequence, so the analyzer excludes that comparison. After collection, the harness closes only validated run-owned supplier/Explorer windows and the saved report tab. It does not close the Sheet or unrelated browser tabs. The remaining signed-in Chrome profile is warm and shared; resource attribution remains limited even with this controlled cleanup.
+
+The reported task interval starts at the first workflow step and ends when the last step completes. Controller wall time also includes setup, countdown, verification and runtime cleanup; the harness closes owned windows after the measurement ends. Requested delays and measured waits are reported by action kind; these are controller measurements, not hardware input timestamps.
+
+## Evidence-driven launch correction
+
+All three initial pilot trials completed their native tasks. Across those observations, the separate collector recorded six Notepad process identities with compatible Python parent identities. Opening the report directly through the controller's `os.startfile` call was therefore visible in the telemetry. These historical observations are retained; they are not rewritten to describe the revised implementation. The first initial fixed/contextual pair also had an extra Sheet-opening branch and is excluded from performance comparison.
+
+The revised workflow opens both the supplier browser and the Notepad report through real, visible Explorer shortcut double-clicks. The report shortcut targets only the exact existing run-owned text file, and its unique launch-folder window is reused for the saved-file reopen. Missing or ambiguous controls stop input; there is no direct-file launch fallback. This changes the actual opening action, not process metadata. Windows file association, application reuse and sampling coverage still determine which parent relationships can be observed. Unresolved parents remain explicitly unresolved.
+
+The revised paired series is a separate source version. Its ten native attempts all completed, yielding five comparable pairs; see the [revised benchmark](benchmark/README.md) and [validation](VALIDATION.md) for measurements and limits. The current software suite has 85 passing tests, including launch targeting and evidence-handling checks; tests are not native telemetry observations.
 
 ## Human-reference status
 
@@ -44,6 +54,6 @@ The existing [manual collector and protocol](MANUAL_BASELINE.md) remain availabl
 
 ## Existing event-trace availability
 
-The current account is not an administrator. No Sysmon service/channel was available, the Security log was inaccessible, and the WMI process-start collector reported Access denied. These limitations are preserved. No logging policy, endpoint protection, process ancestry or audit records were modified.
+The current account is not an administrator. No Sysmon service/channel was available, the Security log was inaccessible, and the WMI process-start collector reported Access denied. These limitations are preserved. No logging policy, endpoint protection or audit records were modified, and no process-parent metadata was spoofed or rewritten.
 
 Implementation references: [Microsoft Toolhelp process inventory](https://learn.microsoft.com/en-us/windows/win32/api/tlhelp32/ns-tlhelp32-processentry32w) and [psutil process counters](https://psutil.readthedocs.io/en/latest/). Parent snapshots establish observed compatibility, not causation.

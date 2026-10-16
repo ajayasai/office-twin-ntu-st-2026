@@ -1,87 +1,67 @@
 # Office Twin
 
-## Project name
-
-Office Twin
-
-## One-line description
-
-A synthetic office worker that completes a supplier comparison through Chrome, Google Sheets and Notepad, with inspectable outputs, contextual timing and measured controller resources.
-
 ## Inspiration
 
-Everyday office work connects several small decisions: inspect information, compare options, calculate a result and explain a recommendation. Those connections make a useful test of synthetic human activity. A convincing demonstration needs a concrete task, correct outputs and evidence of what the system actually did.
+An office worker moves between applications, pauses to read, compares alternatives, corrects mistakes and saves work. For the Synthetic Human Agent challenge, we wanted to make those actions visible and measure how our implementation behaved.
 
-For the NTU × ST Engineering challenge, we chose a procurement exercise that makes the four evaluation areas visible: application activity, timing, action complexity and resource use. Office Twin performs that exercise in ordinary desktop applications and keeps a record that can be checked after the run.
+Office Twin started as a supplier comparison across Chrome, Google Sheets and Notepad. Its most useful improvement came from measuring the implementation: a separate observer revealed that our original Notepad opening method left Python parent relationships. We changed the actual desktop action, retained the original observations and evaluated the revised version separately.
 
 ## What it does
 
-Office Twin completes an eleven-step workflow on Windows. It visits three local supplier pages in Chrome, enters quotations and six formulas into a dedicated Google Sheet, waits for the save indicator, reloads the sheet and checks the displayed results. It then types a recommendation in Notepad, makes a documented correction, saves the file and reopens it. The saved text is checked separately.
+Office Twin completes an eleven-step procurement workflow on Windows. It visits three local supplier pages in Chrome, types quotations and six formulas into a dedicated Google Sheet, waits for saving, reloads and checks the displayed results. It then writes a recommendation in Notepad, makes a documented correction, saves the report and reopens it for verification.
 
-The task selects the lowest-cost supplier that meets the delivery deadline. In the default scenario, that is Atlas Supplies at SGD 600. Changing the supplier order and reducing Crest Industrial's price changes the recommendation to Crest at SGD 525. Both the spreadsheet and the written recommendation follow the supplied scenario.
+The recommendation selects the lowest-cost supplier that meets the delivery deadline. Our original functional checks selected Atlas Supplies at SGD 600. Changing the supplier order and Crest Industrial's price changed the correct recommendation to Crest at SGD 525.
 
-The scenario is a validated JSON input. The local pages, planned actions and expected results are derived from it; the system does not claim to extract or understand arbitrary websites. A simulation mode exercises the plan without desktop input, while the native mode runs the documented Chrome → Google Sheets → Notepad workflow.
+The task is driven by validated synthetic JSON data. That input supplies the pages, planned actions and expected outputs; browsing is not autonomous extraction from arbitrary websites. Google Sheets is a browser application, not native Excel. The optional Excel/Word route remains untested. Simulation is available for development and is always distinguished from native desktop execution.
 
 ## How we built it
 
-The implementation uses Python, pywinauto, Windows UI Automation and pywin32 for visible desktop interaction. It checks the target window, spreadsheet URL and worksheet before writing, and supports cancellation through Escape or the control panel. Each attempt gets its own output directory, including partial evidence when a run fails.
+Python, pywinauto, Windows UI Automation and pywin32 control visible applications. The runner checks the target window, spreadsheet URL, worksheet and range before writing, supports cancellation and retains partial evidence on failure. It verifies saved sheet values and the saved text report.
 
-A seeded timing policy offers a fixed baseline and contextual delays for typing, reading, thinking, switching, reviewing and correction. The contextual model uses bounded variation and correlated pacing. These parameters are engineering defaults; they have not been calibrated against human recordings.
+The revised implementation opens both the supplier browser and the Notepad report through visible Explorer shortcut double-clicks. The report shortcut targets the exact run-owned text file. Ambiguous controls stop the run; no direct-file fallback silently changes the opening method.
 
-The evidence pipeline produces JSONL action records and self-contained HTML reports. It separates requested delays from measured waits and reports controller CPU time and sampled memory. A passive WMI collector reports process-start coverage when available. Execution makes no cloud-model calls. Google connectors were used outside the native runner to provision the test Sheet and independently inspect saved content.
+Fixed and contextual timing policies share the same workflow. Contextual timing introduces bounded variation, correlated pacing and pauses for reading, typing, switching, review and correction. These remain engineering defaults. No human participant was available: **human reference n = 0**, and no human-similarity claim is made.
 
-OpenAI Codex assisted implementation, tests, documentation and execution of local validation. The repository records that provenance alongside the results and limitations; automated validation does not imply student review or organizer approval.
+A separate Python observer uses Windows Toolhelp inventory and psutil identity/resource snapshots. It requests 100-millisecond polling and reports actual median and maximum sampling gaps, overruns and its own CPU/memory overhead. Controller resources, controller descendants, Chrome and Notepad are separate scopes. Application cohorts can include unrelated activity; they are not exclusive task costs and must not be added into a purported whole-system total.
+
+The observer does not read the controller's action log, but it is still our instrumentation, not an independent auditor. Polling is not Sysmon, ETW or a complete process-start trace. Public exports omit personal paths, Sheet IDs, command lines and raw process identifiers.
+
+Runtime execution makes no cloud-model calls. Google connectors provisioned the fixture and provided separate saved-content checks. OpenAI Codex assisted implementation, tests, documentation and local validation; that provenance is disclosed.
 
 ## Challenges we ran into
 
-Real desktop runs exposed two faults that simulation could not: an unsupported accessibility lookup argument and a Sheets Tab action that did not commit a formula as intended. We corrected the lookup and changed formula entry to explicit Enter followed by explicit cell selection. The executor also binds to the intended worksheet and checks the saved grid after reloading.
+Native execution exposed faults simulation missed: an unsupported accessibility lookup and a Tab action that failed to commit a Sheets formula. We corrected the lookup and used explicit Enter plus cell selection. The six historical Sheets development attempts remain documented: four completed and two failed. Those evolving attempts are not a fixed-version reliability estimate.
 
-We kept failed attempts in the evidence history. Across six documented Sheets development attempts, four completed and two failed. The latest three normal-scale runs completed all eleven steps, but the code and setup evolved during development; these observations are not a fixed-version reliability estimate.
+The first separate-observer series completed three native trials. It recorded six Notepad process identities with compatible Python parent identities. That evidence prompted the Explorer launch change; we did not rewrite process metadata or erase the earlier observations.
 
-Independent process-start collection was also limited by the host: WMI returned Access denied. The report records that result, and no security or logging settings were changed. No independent Sysmon export or human reference run has been collected.
+The same series exposed a comparison problem. Its first fixed run opened the Sheet through an extra Explorer branch, while the contextual run reused it. The analyzer rejected that attempted pair. The third trial remained unpaired: **three completed tasks, zero comparable pairs**. When the source changed, the harness stopped before another trial.
+
+The revised series is therefore separate. It uses frozen source `051ec68`, five seed pairs—211, 223, 227, 229 and 233—at normal timing scale 1. Fixed/contextual order reverses in alternate pairs. Source hashes, scenario, seed, capture settings, action sequence and observer coverage must match. Signed-in applications stay warm and shared; background activity is not assumed isolated.
 
 ## Accomplishments that we're proud of
 
-The project completes a connected task in real applications and checks the resulting sheet values and saved recommendation. Its latest three native runs passed all eleven steps, and the automated suite passed 41 tests covering scenario decisions, timing, evidence handling, cancellation and reporting.
+The project delivers a connected native workflow with checked outputs, an inspectable implementation and **85 passing automated tests**. Measured process relationships led to a real implementation change, and the comparison checks caught a setup difference that would otherwise have distorted the timing result.
 
-| Observed run | Result | Controller wall time | Controller CPU | Sampled controller peak RSS |
-| --- | --- | ---: | ---: | ---: |
-| Default scenario, fixed timing | 11/11; Atlas SGD 600 | 136.82 s | 14.86 CPU-s | 79.79 MiB |
-| Default scenario, contextual timing; recording active | 11/11; Atlas SGD 600 | 158.84 s | 18.08 CPU-s | 80.30 MiB |
-| Alternate scenario, contextual timing | 11/11; Crest SGD 525 | 141.81 s | 15.78 CPU-s | 81.03 MiB |
+**The revised series completed 10 of 10 native tasks, each with 11/11 steps, yielding five comparable fixed/contextual pairs.** Fixed task duration had a median of **153.13 s** (range 152.24–158.99); contextual duration had a median of **167.08 s** (158.78–169.35). The within-pair contextual-minus-fixed difference had a median of **+11.26 s**, ranging from +5.55 to +17.10 s. These are descriptive results on one warm, shared Windows host, not a population reliability or significance claim.
 
-All three used timing scale 1. The alternate scenario's six formulas and computed results were independently checked through a read-only connector query. A continuous 162.13-second recording preserves the default contextual run at 1× playback.
+Each run recorded 586 single-key controller waits. Across runs, their 90th percentiles were **109.50–110.08 ms for fixed** and **161.01–177.73 ms for contextual**. This establishes measured policy variation and its cost; the waits are not OS input-delivery timestamps and do not validate human behavior.
 
-The resource figures cover the Python controller, including monitoring, and exclude Chrome and Notepad. Memory was sampled at a requested 0.25-second interval. Wall time includes setup, countdown and cleanup. The runs differ in scenario, seed and recording overhead, so these figures do not establish that one timing policy is more efficient.
+The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. It observed eight per-run Notepad identities created within capture windows with compatible Explorer parents, and ten preexisting Notepad observations with unresolved parents. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
+
+Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
+
+Task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
+
+The published video shows the initial functional run recorded on 15 October, preserved continuously at 1× within the narrated edit. It does not show the revised launch mechanism or constitute a new benchmark trial.
 
 ## What we learned
 
-Task completion, saved-content correctness and process authenticity need different evidence. A successful keypress call does not prove that the intended cell changed; a correct spreadsheet does not prove a human-like process trace. Reloading and checking the saved output caught a real failure, while explicit capture status kept unavailable telemetry from becoming a misleading success claim.
+A correct artifact, a successful desktop action and a convincing process trace require different evidence. Separate observation made an implementation difference visible.
 
-Timing also needs a reference. Variation can be reproducible and context-dependent without being validated as human behavior. The next evaluation should compare equivalent manual, fixed-timing and contextual-timing runs under the same capture conditions.
+Timing variation is similarly insufficient by itself. Our automated comparison can show policy behavior and its observed cost; without human references it cannot establish human entropy, indistinguishability or an official judging score. Missing parents remain unresolved, and sampled CPU or memory must keep its measurement scope attached.
 
-## What's next for Office Twin
+## What's next
 
-The priorities are consented manual reference runs, independent process telemetry on an authorized evaluation machine, and reproduction from the documented starting state. Those measurements would let us assess timing similarity and process differences instead of assuming them.
+We want consented manual reference runs, calibration against those observations and independent event telemetry on an appropriately configured evaluation machine. Reproduction on another Windows setup would test robustness beyond the current host.
 
-The demonstrated scope is three synthetic suppliers, English Chrome and Google Sheets, and a Notepad report on one Windows setup. The optional Excel/Word path remains untested. Window guards do not cover every possible in-page dialog or focused control, and the workflow requires an unlocked, idle desktop. We make no claim of general desktop autonomy, human indistinguishability or an official benchmark score.
-
-## Built with
-
-Python; Windows UI Automation; pywinauto; pywin32; psutil; Tkinter; Google Chrome; Google Sheets; Windows Notepad; HTML; CSS; SVG; FFmpeg.
-
-Development assistance: OpenAI Codex. Google connectors supported fixture setup and separate read-only verification; they are not runtime shortcuts for entering task data.
-
-## Project links and supporting evidence
-
-- Source: [Office Twin on GitHub](https://github.com/ajayasai/office-twin-ntu-st-2026).
-- [Observed validation and complete development history](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/VALIDATION.md).
-- [Architecture and provenance](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/ARCHITECTURE.md).
-- [Reproduction and Google Sheets setup](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/GOOGLE_SHEETS.md).
-- [Proposed paired evaluation protocol](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/EVALUATION.md).
-
-## Submission handoff — exclude from the project description
-
-The [final narrated video](https://youtu.be/0OpIetkSomM) is included in the submitted Devpost entry. The 180.13-second edit adds an eight-second introduction and ten-second closing card around the full continuous 162.13-second desktop run at 1×, with synthetic narration and captions. YouTube Studio confirms it is published as Unlisted and its copyright/community checks passed; viewer-facing playback was verified on the YouTube watch page. The local file is `dist/office-twin-submission.mp4`, and [PITCH.md](PITCH.md) contains the narration script. The source repository is public.
-
-Devpost submission was confirmed on **16 October 2026 (SGT)**. Ajay Asaithambi (`@ajay007`, leader), Siddharth Paliwal (`@siddhartha-paliwal21`), and Sourabh Sooraj (`@sourabhsooraj97`) are confirmed as joined team members. The uploaded source archive uses commit `5dd7181317838d9cfa52ba023cf02037539ac5ff`; later status-documentation commits do not change that uploaded artifact or imply new tests. See [SUBMISSION.md](../SUBMISSION.md) for the completed checklist.
+Evidence: [source](https://github.com/ajayasai/office-twin-ntu-st-2026), [revised benchmark](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/BENCHMARK.md), [sampled parent evidence](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark/process-parent-evidence.md), [telemetry methods](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/TELEMETRY.md), and [retained initial series](https://github.com/ajayasai/office-twin-ntu-st-2026/blob/main/docs/benchmark-initial/README.md).

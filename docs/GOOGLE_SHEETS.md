@@ -27,6 +27,10 @@ Replace the placeholder with the dedicated fixture's verified URL. Use `--timing
 
 Once started, leave the desktop alone. Press Escape to stop native input. The executor also stops if its intended window, document title, spreadsheet, or selected worksheet ID changes. These guards check the window and URL boundaries, not every possible in-page focus change. Close popups before running; same-window dialogs are not comprehensively guarded.
 
+The runner opens the supplier Chrome window through a visible Explorer shortcut double-click. It opens and reopens the exact run-owned Notepad report through a second shortcut in the same unique launch folder. If the folder is still open, it reuses that window; ambiguous windows or missing shortcut controls stop execution. The report is never opened by a direct-file fallback. Actual process parents depend on Windows and application reuse and are reported from observations separately.
+
+For a paired timing evaluation, use the harness described in [telemetry and benchmark reproduction](TELEMETRY.md). Keep the dedicated Sheet open in the same starting state for both conditions. Otherwise one run may include opening a new Sheet window while another reuses it, changing the action sequence and invalidating that performance comparison. The harness closes only validated owned supplier/Explorer windows and the saved report tab after collection; unrelated browser tabs remain outside its control.
+
 ## Workload and expected values
 
 The browser first displays local fictional supplier quotes. The agent then enters these inputs and formulas in Google Sheets:
@@ -51,6 +55,8 @@ For a competition recording, show the real Chrome grid, formula bar, cloud-save 
 
 After the initial accelerated smoke test, the worksheet-binding and range-clearing version completed three normal-speed native runs on 15 October 2026: fixed timing (`20261015T091539Z-3d7a2a48`), recorded contextual timing (`20261015T091815Z-588afee5`), and alternate contextual timing (`20261015T092135Z-e43abfcb`). All eleven steps and artifact checks passed in each run.
 
-The alternate scenario changes the first row to Crest at SGD 105 per unit, correctly calculates SGD 525, and changes the recommendation to Crest. A separate read-only connector query confirmed all six actual formulas and the computed values; its result is saved as `sheets-independent-verification.json` in that run folder. The recorded contextual video is 162.13 seconds at 1× playback. Thirty-six automated tests pass.
+The alternate scenario changes the first row to Crest at SGD 105 per unit, correctly calculates SGD 525, and changes the recommendation to Crest. A separate read-only connector query confirmed all six actual formulas and the computed values; its result is saved as `sheets-independent-verification.json` in that run folder. The recorded contextual video is 162.13 seconds at 1× playback and shows this earlier implementation. The current automated suite has 85 passing tests; that count is separate from the historical recording.
 
-No human baseline was collected. No Sysmon capture was collected and WMI process-start collection reported access denied, so functional success does not establish human-like timing or independent process-telemetry authenticity. See [validation details](VALIDATION.md).
+Three later initial benchmark trials also completed their native tasks. Their separate observer recorded six Notepad identities with compatible Python parent snapshots, prompting the report launch change described above. The first fixed/contextual pair had different Sheet-opening action sequences and is excluded from performance comparison. Preserve these initial observations separately from the revised source version; do not combine them into a same-version reliability estimate.
+
+No human participant was available, so human reference runs remain zero. No Sysmon capture was collected and WMI process-start collection reported access denied. The added separate observer supplies sampled OS process/resource observations, with coverage limits; functional success and timing variation do not establish human similarity. See [validation details](VALIDATION.md) for reported results and [telemetry](TELEMETRY.md) for the measurement scope.

@@ -1,0 +1,4369 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-16T07:36:59+00:00",
+  "human_reference_runs": 0,
+  "source_paths_exported": false,
+  "summary": {
+    "attempts": 10,
+    "complete_verified_desktop_tasks": 10,
+    "performance_comparable_pairs": 5,
+    "duplicate_paths_excluded": 0
+  },
+  "runs": [
+    {
+      "id": "R001",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "fixed",
+      "seed": 211,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 158.98589680000077,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.35,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.35,
+            "p90_seconds": 0.35,
+            "maximum_seconds": 0.35,
+            "mean_seconds": 0.35,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.3616591999998491,
+            "minimum_seconds": 0.3616591999998491,
+            "median_seconds": 0.3616591999998491,
+            "p90_seconds": 0.3616591999998491,
+            "maximum_seconds": 0.3616591999998491,
+            "mean_seconds": 0.3616591999998491,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.3616591999998491,
+            "minimum_seconds": 0.3616591999998491,
+            "median_seconds": 0.3616591999998491,
+            "p90_seconds": 0.3616591999998491,
+            "maximum_seconds": 0.3616591999998491,
+            "mean_seconds": 0.3616591999998491,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.011659199999849101,
+            "minimum_seconds": 0.011659199999849101,
+            "median_seconds": 0.011659199999849101,
+            "p90_seconds": 0.011659199999849101,
+            "maximum_seconds": 0.011659199999849101,
+            "mean_seconds": 0.011659199999849101,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 55.67,
+            "minimum_seconds": 0.095,
+            "median_seconds": 0.095,
+            "p90_seconds": 0.095,
+            "maximum_seconds": 0.095,
+            "mean_seconds": 0.095,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 59.70817550001448,
+            "minimum_seconds": 0.08891570000196225,
+            "median_seconds": 0.09956589999819698,
+            "p90_seconds": 0.11000185000011697,
+            "maximum_seconds": 0.14062560000093072,
+            "mean_seconds": 0.10189108447101447,
+            "sample_sd_seconds": 0.007569887031845366
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 59.70817550001448,
+            "minimum_seconds": 0.08891570000196225,
+            "median_seconds": 0.09956589999819698,
+            "p90_seconds": 0.11000185000011697,
+            "maximum_seconds": 0.14062560000093072,
+            "mean_seconds": 0.10189108447101447,
+            "sample_sd_seconds": 0.007569887031845366
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.148705000034533,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.004565899998196982,
+            "p90_seconds": 0.015001850000116973,
+            "maximum_seconds": 0.045625600000930716,
+            "mean_seconds": 0.007079701365246643,
+            "sample_sd_seconds": 0.00734937725863968
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.800000000000001,
+            "minimum_seconds": 1.6,
+            "median_seconds": 1.6,
+            "p90_seconds": 1.6,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 1.6,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.805362000002788,
+            "minimum_seconds": 1.595980400001281,
+            "median_seconds": 1.6008240000010119,
+            "p90_seconds": 1.6070108800005982,
+            "maximum_seconds": 1.6085576000004949,
+            "mean_seconds": 1.6017873333342625,
+            "sample_sd_seconds": 0.00634369752496685
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.805362000002788,
+            "minimum_seconds": 1.595980400001281,
+            "median_seconds": 1.6008240000010119,
+            "p90_seconds": 1.6070108800005982,
+            "maximum_seconds": 1.6085576000004949,
+            "mean_seconds": 1.6017873333342625,
+            "sample_sd_seconds": 0.00634369752496685
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.009381600001506563,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.0008240000010117932,
+            "p90_seconds": 0.007010880000598175,
+            "maximum_seconds": 0.00855760000049477,
+            "mean_seconds": 0.0031272000005021874,
+            "sample_sd_seconds": 0.004720876732171307
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 9.600000000000001,
+            "minimum_seconds": 2.4000000000000004,
+            "median_seconds": 2.4000000000000004,
+            "p90_seconds": 2.4000000000000004,
+            "maximum_seconds": 2.4000000000000004,
+            "mean_seconds": 2.4000000000000004,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 9.642698399995425,
+            "minimum_seconds": 2.4076858999978867,
+            "median_seconds": 2.410273449999295,
+            "p90_seconds": 2.4134167699994578,
+            "maximum_seconds": 2.414465599998948,
+            "mean_seconds": 2.410674599998856,
+            "sample_sd_seconds": 0.0028632628561108685
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 9.642698399995425,
+            "minimum_seconds": 2.4076858999978867,
+            "median_seconds": 2.410273449999295,
+            "p90_seconds": 2.4134167699994578,
+            "maximum_seconds": 2.414465599998948,
+            "mean_seconds": 2.410674599998856,
+            "sample_sd_seconds": 0.0028632628561108685
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.04269839999542313,
+            "minimum_seconds": 0.007685899997886381,
+            "median_seconds": 0.01027344999929447,
+            "p90_seconds": 0.0134167699994574,
+            "maximum_seconds": 0.014465599998947809,
+            "mean_seconds": 0.010674599998855783,
+            "sample_sd_seconds": 0.0028632628561108685
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.800000000000001,
+            "minimum_seconds": 1.3,
+            "median_seconds": 1.3,
+            "p90_seconds": 1.3,
+            "maximum_seconds": 1.3,
+            "mean_seconds": 1.3,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.836072000001877,
+            "minimum_seconds": 1.2987845999996352,
+            "median_seconds": 1.304463950002173,
+            "p90_seconds": 1.3124423999997816,
+            "maximum_seconds": 1.313722399998369,
+            "mean_seconds": 1.3060120000003128,
+            "sample_sd_seconds": 0.005497446647478613
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.836072000001877,
+            "minimum_seconds": 1.2987845999996352,
+            "median_seconds": 1.304463950002173,
+            "p90_seconds": 1.3124423999997816,
+            "maximum_seconds": 1.313722399998369,
+            "mean_seconds": 1.3060120000003128,
+            "sample_sd_seconds": 0.005497446647478613
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.037287400002241844,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.004463950002173034,
+            "p90_seconds": 0.012442399999781584,
+            "maximum_seconds": 0.013722399998368884,
+            "mean_seconds": 0.006214566667040307,
+            "sample_sd_seconds": 0.005191767173449156
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 7.2,
+            "minimum_seconds": 0.45,
+            "median_seconds": 0.45,
+            "p90_seconds": 0.45,
+            "maximum_seconds": 0.45,
+            "mean_seconds": 0.45,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.35303809999823,
+            "minimum_seconds": 0.450066199999128,
+            "median_seconds": 0.4586694499994337,
+            "p90_seconds": 0.4694494000013947,
+            "maximum_seconds": 0.47729139999864856,
+            "mean_seconds": 0.45956488124988937,
+            "sample_sd_seconds": 0.008009566969450415
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.35303809999823,
+            "minimum_seconds": 0.450066199999128,
+            "median_seconds": 0.4586694499994337,
+            "p90_seconds": 0.4694494000013947,
+            "maximum_seconds": 0.47729139999864856,
+            "mean_seconds": 0.45956488124988937,
+            "sample_sd_seconds": 0.008009566969450415
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.1530380999982297,
+            "minimum_seconds": 6.619999912799157e-05,
+            "median_seconds": 0.008669449999433698,
+            "p90_seconds": 0.019449400001394668,
+            "maximum_seconds": 0.027291399998648547,
+            "mean_seconds": 0.009564881249889357,
+            "sample_sd_seconds": 0.008009566969450415
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.6000000000000005,
+            "minimum_seconds": 1.1,
+            "median_seconds": 1.1,
+            "p90_seconds": 1.1,
+            "maximum_seconds": 1.1,
+            "mean_seconds": 1.1,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.654134999997041,
+            "minimum_seconds": 1.1056452999982866,
+            "median_seconds": 1.107958549999239,
+            "p90_seconds": 1.112834550000116,
+            "maximum_seconds": 1.1128423000009207,
+            "mean_seconds": 1.1090224999995069,
+            "sample_sd_seconds": 0.0030807423402739306
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.654134999997041,
+            "minimum_seconds": 1.1056452999982866,
+            "median_seconds": 1.107958549999239,
+            "p90_seconds": 1.112834550000116,
+            "maximum_seconds": 1.1128423000009207,
+            "mean_seconds": 1.1090224999995069,
+            "sample_sd_seconds": 0.0030807423402739306
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.05413499999704019,
+            "minimum_seconds": 0.005645299998286557,
+            "median_seconds": 0.00795854999923895,
+            "p90_seconds": 0.012834550000115907,
+            "maximum_seconds": 0.01284230000092057,
+            "mean_seconds": 0.009022499999506698,
+            "sample_sd_seconds": 0.0030807423402739306
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 166.17179279999982,
+        "controller_cpu_seconds": 28.515625,
+        "controller_peak_rss_bytes": 76451840.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 171.14839960000245,
+        "snapshot_count": 1704.0,
+        "process_count": 40.0,
+        "read_error_count": 0.0,
+        "cadence": {
+          "median_gap_seconds": 0.10044049999851268,
+          "max_gap_seconds": 0.10540620000028866,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 28.5625,
+            "peak_sampled_rss_bytes": 77508608.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 37.0,
+            "observed_cpu_delta_seconds": 88.53125,
+            "peak_sampled_rss_bytes": 5586317312.0,
+            "single_sample_process_count": 2.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 6.859375,
+            "peak_sampled_rss_bytes": 218628096.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 61.234375,
+          "peak_sampled_rss_bytes": 30318592.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R002",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "contextual",
+      "seed": 211,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 168.43412819999867,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.2594554084703294,
+            "minimum_seconds": 0.2594554084703294,
+            "median_seconds": 0.2594554084703294,
+            "p90_seconds": 0.2594554084703294,
+            "maximum_seconds": 0.2594554084703294,
+            "mean_seconds": 0.2594554084703294,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.2734556000032171,
+            "minimum_seconds": 0.2734556000032171,
+            "median_seconds": 0.2734556000032171,
+            "p90_seconds": 0.2734556000032171,
+            "maximum_seconds": 0.2734556000032171,
+            "mean_seconds": 0.2734556000032171,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.2734556000032171,
+            "minimum_seconds": 0.2734556000032171,
+            "median_seconds": 0.2734556000032171,
+            "p90_seconds": 0.2734556000032171,
+            "maximum_seconds": 0.2734556000032171,
+            "mean_seconds": 0.2734556000032171,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.014000191532887729,
+            "minimum_seconds": 0.014000191532887729,
+            "median_seconds": 0.014000191532887729,
+            "p90_seconds": 0.014000191532887729,
+            "maximum_seconds": 0.014000191532887729,
+            "mean_seconds": 0.014000191532887729,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 60.421918593549364,
+            "minimum_seconds": 0.035,
+            "median_seconds": 0.09629737836347127,
+            "p90_seconds": 0.1543390773590972,
+            "maximum_seconds": 0.3,
+            "mean_seconds": 0.1031090760982071,
+            "sample_sd_seconds": 0.040518747335063054
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 64.8617999000453,
+            "minimum_seconds": 0.040515600001526764,
+            "median_seconds": 0.10450745000161987,
+            "p90_seconds": 0.16350109999984852,
+            "maximum_seconds": 0.31082640000022366,
+            "mean_seconds": 0.11068566535843907,
+            "sample_sd_seconds": 0.041496097262429144
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 64.8617999000453,
+            "minimum_seconds": 0.040515600001526764,
+            "median_seconds": 0.10450745000161987,
+            "p90_seconds": 0.16350109999984852,
+            "maximum_seconds": 0.31082640000022366,
+            "mean_seconds": 0.11068566535843907,
+            "sample_sd_seconds": 0.041496097262429144
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.4977513095393205,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.0063698970536952,
+            "p90_seconds": 0.014742618858322024,
+            "maximum_seconds": 0.04304759345004863,
+            "mean_seconds": 0.007675343531637066,
+            "sample_sd_seconds": 0.006842963918224228
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.475198969481499,
+            "minimum_seconds": 1.12551014431351,
+            "median_seconds": 1.566457770886028,
+            "p90_seconds": 1.7398763976027747,
+            "maximum_seconds": 1.7832310542819614,
+            "mean_seconds": 1.4917329898271665,
+            "sample_sd_seconds": 0.33516718743136686
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.501879599993117,
+            "minimum_seconds": 1.1385099999970407,
+            "median_seconds": 1.573134599999321,
+            "p90_seconds": 1.7468149199972687,
+            "maximum_seconds": 1.7902349999967555,
+            "mean_seconds": 1.5006265333310391,
+            "sample_sd_seconds": 0.3318575503211221
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.501879599993117,
+            "minimum_seconds": 1.1385099999970407,
+            "median_seconds": 1.573134599999321,
+            "p90_seconds": 1.7468149199972687,
+            "maximum_seconds": 1.7902349999967555,
+            "mean_seconds": 1.5006265333310391,
+            "sample_sd_seconds": 0.3318575503211221
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.026680630511617842,
+            "minimum_seconds": 0.006676829113293037,
+            "median_seconds": 0.007003945714794124,
+            "p90_seconds": 0.01180067368978337,
+            "maximum_seconds": 0.012999855683530681,
+            "mean_seconds": 0.008893543503872614,
+            "sample_sd_seconds": 0.0035599299298371793
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 10.41406395280539,
+            "minimum_seconds": 1.7662266700802605,
+            "median_seconds": 2.581429386234312,
+            "p90_seconds": 3.3615516139461468,
+            "maximum_seconds": 3.4849785102565063,
+            "mean_seconds": 2.6035159882013477,
+            "sample_sd_seconds": 0.8089873266623482
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 10.438606900006562,
+            "minimum_seconds": 1.7722463000027346,
+            "median_seconds": 2.5873542500012263,
+            "p90_seconds": 3.3675112600009016,
+            "maximum_seconds": 3.4916521000013745,
+            "mean_seconds": 2.6096517250016404,
+            "sample_sd_seconds": 0.8085661486537471
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 10.438606900006562,
+            "minimum_seconds": 1.7722463000027346,
+            "median_seconds": 2.5873542500012263,
+            "p90_seconds": 3.3675112600009016,
+            "maximum_seconds": 3.4916521000013745,
+            "mean_seconds": 2.6096517250016404,
+            "sample_sd_seconds": 0.8085661486537471
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.02454294720117045,
+            "minimum_seconds": 0.004293777444490221,
+            "median_seconds": 0.006346609833671191,
+            "p90_seconds": 0.007291241985996955,
+            "maximum_seconds": 0.007555950089337848,
+            "mean_seconds": 0.006135736800292613,
+            "sample_sd_seconds": 0.0013799259221511403
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 9.453370642568155,
+            "minimum_seconds": 0.9371421803244616,
+            "median_seconds": 1.4700218208015743,
+            "p90_seconds": 2.2844587432781784,
+            "maximum_seconds": 2.9907551769766965,
+            "mean_seconds": 1.575561773761359,
+            "sample_sd_seconds": 0.7423751188316735
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 9.483417599996756,
+            "minimum_seconds": 0.9467263000005914,
+            "median_seconds": 1.475508899999113,
+            "p90_seconds": 2.2885648499996023,
+            "maximum_seconds": 2.998004499997478,
+            "mean_seconds": 1.5805695999994593,
+            "sample_sd_seconds": 0.7429899657863053
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 9.483417599996756,
+            "minimum_seconds": 0.9467263000005914,
+            "median_seconds": 1.475508899999113,
+            "p90_seconds": 2.2885648499996023,
+            "maximum_seconds": 2.998004499997478,
+            "mean_seconds": 1.5805695999994593,
+            "sample_sd_seconds": 0.7429899657863053
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.030046957428601195,
+            "minimum_seconds": 0.0009628904220659873,
+            "median_seconds": 0.005481137963590177,
+            "p90_seconds": 0.00842266258240415,
+            "maximum_seconds": 0.00958411967612982,
+            "mean_seconds": 0.005007826238100199,
+            "sample_sd_seconds": 0.0035498095743247554
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 8.746260986375907,
+            "minimum_seconds": 0.1949273694493277,
+            "median_seconds": 0.5138075000689198,
+            "p90_seconds": 0.8658918025050983,
+            "maximum_seconds": 1.0467580471099762,
+            "mean_seconds": 0.5466413116484942,
+            "sample_sd_seconds": 0.22990541659441133
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 8.870960499993089,
+            "minimum_seconds": 0.19500060000063968,
+            "median_seconds": 0.5235404999984894,
+            "p90_seconds": 0.8782213999984378,
+            "maximum_seconds": 1.0520670000005339,
+            "mean_seconds": 0.554435031249568,
+            "sample_sd_seconds": 0.23170031935994156
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 8.870960499993089,
+            "minimum_seconds": 0.19500060000063968,
+            "median_seconds": 0.5235404999984894,
+            "p90_seconds": 0.8782213999984378,
+            "maximum_seconds": 1.0520670000005339,
+            "mean_seconds": 0.554435031249568,
+            "sample_sd_seconds": 0.23170031935994156
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.12469951361718251,
+            "minimum_seconds": 7.323055131197576e-05,
+            "median_seconds": 0.007111035378415398,
+            "p90_seconds": 0.013769555647765441,
+            "maximum_seconds": 0.014497708721547098,
+            "mean_seconds": 0.007793719601073907,
+            "sample_sd_seconds": 0.0045520327177617954
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 9.715432443761228,
+            "minimum_seconds": 0.5362868249921595,
+            "median_seconds": 1.529994968042403,
+            "p90_seconds": 2.517993543512018,
+            "maximum_seconds": 2.9499280467938886,
+            "mean_seconds": 1.6192387406268713,
+            "sample_sd_seconds": 0.8580965360951223
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 9.79336830000102,
+            "minimum_seconds": 0.5339424999983748,
+            "median_seconds": 1.5393991500004631,
+            "p90_seconds": 2.5456608000004053,
+            "maximum_seconds": 2.9933220999992045,
+            "mean_seconds": 1.63222805000017,
+            "sample_sd_seconds": 0.8720193771781274
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 9.79336830000102,
+            "minimum_seconds": 0.5339424999983748,
+            "median_seconds": 1.5393991500004631,
+            "p90_seconds": 2.5456608000004053,
+            "maximum_seconds": 2.9933220999992045,
+            "mean_seconds": 1.63222805000017,
+            "sample_sd_seconds": 0.8720193771781274
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.08028018123357694,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.009404181958060143,
+            "p90_seconds": 0.02766725648838686,
+            "maximum_seconds": 0.04339405320531586,
+            "mean_seconds": 0.013380030205596158,
+            "sample_sd_seconds": 0.01532099545003677
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 175.5267899999999,
+        "controller_cpu_seconds": 28.78125,
+        "controller_peak_rss_bytes": 76402688.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 180.400706299999,
+        "snapshot_count": 1796.0,
+        "process_count": 38.0,
+        "read_error_count": 2.0,
+        "cadence": {
+          "median_gap_seconds": 0.10043720000248868,
+          "max_gap_seconds": 0.10756430000037653,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 28.859375,
+            "peak_sampled_rss_bytes": 77185024.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 35.0,
+            "observed_cpu_delta_seconds": 89.703125,
+            "peak_sampled_rss_bytes": 5583806464.0,
+            "single_sample_process_count": 1.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 6.125,
+            "peak_sampled_rss_bytes": 216797184.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 65.875,
+          "peak_sampled_rss_bytes": 30703616.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R003",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "contextual",
+      "seed": 223,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 164.20368450000024,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.23143961038857072,
+            "minimum_seconds": 0.23143961038857072,
+            "median_seconds": 0.23143961038857072,
+            "p90_seconds": 0.23143961038857072,
+            "maximum_seconds": 0.23143961038857072,
+            "mean_seconds": 0.23143961038857072,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.24469509999835282,
+            "minimum_seconds": 0.24469509999835282,
+            "median_seconds": 0.24469509999835282,
+            "p90_seconds": 0.24469509999835282,
+            "maximum_seconds": 0.24469509999835282,
+            "mean_seconds": 0.24469509999835282,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.24469509999835282,
+            "minimum_seconds": 0.24469509999835282,
+            "median_seconds": 0.24469509999835282,
+            "p90_seconds": 0.24469509999835282,
+            "maximum_seconds": 0.24469509999835282,
+            "mean_seconds": 0.24469509999835282,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.013255489609782095,
+            "minimum_seconds": 0.013255489609782095,
+            "median_seconds": 0.013255489609782095,
+            "p90_seconds": 0.013255489609782095,
+            "maximum_seconds": 0.013255489609782095,
+            "mean_seconds": 0.013255489609782095,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 62.19006151441908,
+            "minimum_seconds": 0.04422975957037284,
+            "median_seconds": 0.09798591273275731,
+            "p90_seconds": 0.1542642320821325,
+            "maximum_seconds": 0.3,
+            "mean_seconds": 0.10612638483689263,
+            "sample_sd_seconds": 0.03957117405343236
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 67.02156289997583,
+            "minimum_seconds": 0.0458784000002197,
+            "median_seconds": 0.10751535000053991,
+            "p90_seconds": 0.16352664999976696,
+            "maximum_seconds": 0.31605060000219964,
+            "mean_seconds": 0.11437126774739903,
+            "sample_sd_seconds": 0.04048252207854225
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 67.02156289997583,
+            "minimum_seconds": 0.0458784000002197,
+            "median_seconds": 0.10751535000053991,
+            "p90_seconds": 0.16352664999976696,
+            "maximum_seconds": 0.31605060000219964,
+            "mean_seconds": 0.11437126774739903,
+            "sample_sd_seconds": 0.04048252207854225
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.845930944016521,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.008015105034100044,
+            "p90_seconds": 0.014630811706812567,
+            "maximum_seconds": 0.03485917242160111,
+            "mean_seconds": 0.00826950673040362,
+            "sample_sd_seconds": 0.00539594772554525
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 5.913343659668572,
+            "minimum_seconds": 1.5059073788871093,
+            "median_seconds": 1.7544860430620823,
+            "p90_seconds": 2.4732573987879203,
+            "maximum_seconds": 2.6529502377193794,
+            "mean_seconds": 1.9711145532228571,
+            "sample_sd_seconds": 0.6034258558931531
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 5.938754899998457,
+            "minimum_seconds": 1.5090916000008292,
+            "median_seconds": 1.7695786000003864,
+            "p90_seconds": 2.481983479997871,
+            "maximum_seconds": 2.660084699997242,
+            "mean_seconds": 1.9795849666661525,
+            "sample_sd_seconds": 0.6035505650647303
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 5.938754899998457,
+            "minimum_seconds": 1.5090916000008292,
+            "median_seconds": 1.7695786000003864,
+            "p90_seconds": 2.481983479997871,
+            "maximum_seconds": 2.660084699997242,
+            "mean_seconds": 1.9795849666661525,
+            "sample_sd_seconds": 0.6035505650647303
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.025411240329886287,
+            "minimum_seconds": 0.003184221113719854,
+            "median_seconds": 0.007134462277862408,
+            "p90_seconds": 0.013500938006215702,
+            "maximum_seconds": 0.015092556938304025,
+            "mean_seconds": 0.00847041344329543,
+            "sample_sd_seconds": 0.006065532925068091
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 12.82565345655363,
+            "minimum_seconds": 1.6422357411964719,
+            "median_seconds": 3.289941042716424,
+            "p90_seconds": 4.484685422341386,
+            "maximum_seconds": 4.603535629924311,
+            "mean_seconds": 3.2064133641384074,
+            "sample_sd_seconds": 1.4254708517294443
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 12.853623300001345,
+            "minimum_seconds": 1.6495929000011529,
+            "median_seconds": 3.297382299999299,
+            "p90_seconds": 4.49003335000125,
+            "maximum_seconds": 4.6092658000015945,
+            "mean_seconds": 3.2134058250003363,
+            "sample_sd_seconds": 1.4236629251855588
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 12.853623300001345,
+            "minimum_seconds": 1.6495929000011529,
+            "median_seconds": 3.297382299999299,
+            "p90_seconds": 4.49003335000125,
+            "maximum_seconds": 4.6092658000015945,
+            "mean_seconds": 3.2134058250003363,
+            "sample_sd_seconds": 1.4236629251855588
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.027969843447715137,
+            "minimum_seconds": 0.00445602868588324,
+            "median_seconds": 0.006543664440982311,
+            "p90_seconds": 0.0095056877573114,
+            "maximum_seconds": 0.010426485879867275,
+            "mean_seconds": 0.006992460861928784,
+            "sample_sd_seconds": 0.0025789144112691067
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 8.530033168786668,
+            "minimum_seconds": 1.102205880727743,
+            "median_seconds": 1.3593274064981307,
+            "p90_seconds": 1.7990759660794096,
+            "maximum_seconds": 2.0403900905889776,
+            "mean_seconds": 1.421672194797778,
+            "sample_sd_seconds": 0.351216275509664
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 8.577090899998439,
+            "minimum_seconds": 1.110737800001516,
+            "median_seconds": 1.3677196499993443,
+            "p90_seconds": 1.8086430499988637,
+            "maximum_seconds": 2.0412431999975524,
+            "mean_seconds": 1.4295151499997398,
+            "sample_sd_seconds": 0.35041404058759923
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 8.577090899998439,
+            "minimum_seconds": 1.110737800001516,
+            "median_seconds": 1.3677196499993443,
+            "p90_seconds": 1.8086430499988637,
+            "maximum_seconds": 2.0412431999975524,
+            "mean_seconds": 1.4295151499997398,
+            "sample_sd_seconds": 0.35041404058759923
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.04705773121177148,
+            "minimum_seconds": 0.0008531094085748592,
+            "median_seconds": 0.008218380965264283,
+            "p90_seconds": 0.013580351388002287,
+            "maximum_seconds": 0.01828105843033323,
+            "mean_seconds": 0.007842955201961913,
+            "sample_sd_seconds": 0.006111935061024541
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 8.481266382200179,
+            "minimum_seconds": 0.18644751813748425,
+            "median_seconds": 0.46804406020860884,
+            "p90_seconds": 0.6905208183951825,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 0.5300791488875112,
+            "sample_sd_seconds": 0.3219456765338397
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 8.597416100008559,
+            "minimum_seconds": 0.19458289999965928,
+            "median_seconds": 0.4723332000012306,
+            "p90_seconds": 0.7016513000016857,
+            "maximum_seconds": 1.611378199999308,
+            "mean_seconds": 0.5373385062505349,
+            "sample_sd_seconds": 0.32291680869091566
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 8.597416100008559,
+            "minimum_seconds": 0.19458289999965928,
+            "median_seconds": 0.4723332000012306,
+            "p90_seconds": 0.7016513000016857,
+            "maximum_seconds": 1.611378199999308,
+            "mean_seconds": 0.5373385062505349,
+            "sample_sd_seconds": 0.32291680869091566
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.11614971780838076,
+            "minimum_seconds": 0.00046789772774930016,
+            "median_seconds": 0.008122881859834605,
+            "p90_seconds": 0.011092904666111958,
+            "maximum_seconds": 0.015348242478636864,
+            "mean_seconds": 0.007259357363023798,
+            "sample_sd_seconds": 0.004157692633564328
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 4.710463709190886,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.7150431612952126,
+            "p90_seconds": 1.1303730592666978,
+            "maximum_seconds": 1.2825456114123044,
+            "mean_seconds": 0.7850772848651477,
+            "sample_sd_seconds": 0.31539596838149336
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 4.759636600003432,
+            "minimum_seconds": 0.3492475999992166,
+            "median_seconds": 0.7302493500010314,
+            "p90_seconds": 1.1379435500002728,
+            "maximum_seconds": 1.2895621999996365,
+            "mean_seconds": 0.7932727666672387,
+            "sample_sd_seconds": 0.31714633719601587
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 4.759636600003432,
+            "minimum_seconds": 0.3492475999992166,
+            "median_seconds": 0.7302493500010314,
+            "p90_seconds": 1.1379435500002728,
+            "maximum_seconds": 1.2895621999996365,
+            "mean_seconds": 0.7932727666672387,
+            "sample_sd_seconds": 0.31714633719601587
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.04992529081332897,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.007543748829037578,
+            "p90_seconds": 0.015232930610356021,
+            "maximum_seconds": 0.022341468340894455,
+            "mean_seconds": 0.008320881802221495,
+            "sample_sd_seconds": 0.00752609328889727
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 170.25809519999893,
+        "controller_cpu_seconds": 18.578125,
+        "controller_peak_rss_bytes": 76300288.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 174.815865200002,
+        "snapshot_count": 1741.0,
+        "process_count": 37.0,
+        "read_error_count": 1.0,
+        "cadence": {
+          "median_gap_seconds": 0.10040965000007418,
+          "max_gap_seconds": 0.11679699999876902,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 18.625,
+            "peak_sampled_rss_bytes": 77058048.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 35.0,
+            "observed_cpu_delta_seconds": 62.484375,
+            "peak_sampled_rss_bytes": 5679235072.0,
+            "single_sample_process_count": 0.0
+          },
+          "notepad": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 4.796875,
+            "peak_sampled_rss_bytes": 217137152.0,
+            "single_sample_process_count": 0.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 43.703125,
+          "peak_sampled_rss_bytes": 29593600.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R004",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "fixed",
+      "seed": 223,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 152.94612699999925,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.35,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.35,
+            "p90_seconds": 0.35,
+            "maximum_seconds": 0.35,
+            "mean_seconds": 0.35,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.35277949999726843,
+            "minimum_seconds": 0.35277949999726843,
+            "median_seconds": 0.35277949999726843,
+            "p90_seconds": 0.35277949999726843,
+            "maximum_seconds": 0.35277949999726843,
+            "mean_seconds": 0.35277949999726843,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.35277949999726843,
+            "minimum_seconds": 0.35277949999726843,
+            "median_seconds": 0.35277949999726843,
+            "p90_seconds": 0.35277949999726843,
+            "maximum_seconds": 0.35277949999726843,
+            "mean_seconds": 0.35277949999726843,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.002779499997268453,
+            "minimum_seconds": 0.002779499997268453,
+            "median_seconds": 0.002779499997268453,
+            "p90_seconds": 0.002779499997268453,
+            "maximum_seconds": 0.002779499997268453,
+            "mean_seconds": 0.002779499997268453,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 55.67,
+            "minimum_seconds": 0.095,
+            "median_seconds": 0.095,
+            "p90_seconds": 0.095,
+            "maximum_seconds": 0.095,
+            "mean_seconds": 0.095,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 59.748750199953065,
+            "minimum_seconds": 0.08230480000202078,
+            "median_seconds": 0.10201384999891161,
+            "p90_seconds": 0.1100776000002952,
+            "maximum_seconds": 0.1315943999979936,
+            "mean_seconds": 0.10196032457329875,
+            "sample_sd_seconds": 0.006982026039023936
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 59.748750199953065,
+            "minimum_seconds": 0.08230480000202078,
+            "median_seconds": 0.10201384999891161,
+            "p90_seconds": 0.1100776000002952,
+            "maximum_seconds": 0.1315943999979936,
+            "mean_seconds": 0.10196032457329875,
+            "sample_sd_seconds": 0.006982026039023936
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.210197399964235,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.007013849998911609,
+            "p90_seconds": 0.015077600000295205,
+            "maximum_seconds": 0.036594399997993604,
+            "mean_seconds": 0.007184637201304156,
+            "sample_sd_seconds": 0.006672489918744926
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.800000000000001,
+            "minimum_seconds": 1.6,
+            "median_seconds": 1.6,
+            "p90_seconds": 1.6,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 1.6,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.858129100000951,
+            "minimum_seconds": 1.6081726000011258,
+            "median_seconds": 1.6135928000003332,
+            "p90_seconds": 1.6318095199996605,
+            "maximum_seconds": 1.6363636999994924,
+            "mean_seconds": 1.6193763666669838,
+            "sample_sd_seconds": 0.014959002718101548
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.858129100000951,
+            "minimum_seconds": 1.6081726000011258,
+            "median_seconds": 1.6135928000003332,
+            "p90_seconds": 1.6318095199996605,
+            "maximum_seconds": 1.6363636999994924,
+            "mean_seconds": 1.6193763666669838,
+            "sample_sd_seconds": 0.014959002718101548
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.05812910000095117,
+            "minimum_seconds": 0.00817260000112574,
+            "median_seconds": 0.013592800000333138,
+            "p90_seconds": 0.03180951999966046,
+            "maximum_seconds": 0.036363699999492294,
+            "mean_seconds": 0.019376366666983724,
+            "sample_sd_seconds": 0.014959002718101548
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 9.600000000000001,
+            "minimum_seconds": 2.4000000000000004,
+            "median_seconds": 2.4000000000000004,
+            "p90_seconds": 2.4000000000000004,
+            "maximum_seconds": 2.4000000000000004,
+            "mean_seconds": 2.4000000000000004,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 9.628941399994801,
+            "minimum_seconds": 2.4009167999975034,
+            "median_seconds": 2.4073336999990715,
+            "p90_seconds": 2.411736569999266,
+            "maximum_seconds": 2.4133571999991545,
+            "mean_seconds": 2.4072353499987003,
+            "sample_sd_seconds": 0.005105315625631887
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 9.628941399994801,
+            "minimum_seconds": 2.4009167999975034,
+            "median_seconds": 2.4073336999990715,
+            "p90_seconds": 2.411736569999266,
+            "maximum_seconds": 2.4133571999991545,
+            "mean_seconds": 2.4072353499987003,
+            "sample_sd_seconds": 0.005105315625631887
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.02894139999479961,
+            "minimum_seconds": 0.0009167999975030483,
+            "median_seconds": 0.007333699999071186,
+            "p90_seconds": 0.011736569999265712,
+            "maximum_seconds": 0.01335719999915419,
+            "mean_seconds": 0.007235349998699903,
+            "sample_sd_seconds": 0.005105315625631887
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.800000000000001,
+            "minimum_seconds": 1.3,
+            "median_seconds": 1.3,
+            "p90_seconds": 1.3,
+            "maximum_seconds": 1.3,
+            "mean_seconds": 1.3,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.876856599996245,
+            "minimum_seconds": 1.305663999999524,
+            "median_seconds": 1.3112798999991355,
+            "p90_seconds": 1.3201869999993505,
+            "maximum_seconds": 1.3257952999992995,
+            "mean_seconds": 1.3128094333327074,
+            "sample_sd_seconds": 0.007143827759839526
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.876856599996245,
+            "minimum_seconds": 1.305663999999524,
+            "median_seconds": 1.3112798999991355,
+            "p90_seconds": 1.3201869999993505,
+            "maximum_seconds": 1.3257952999992995,
+            "mean_seconds": 1.3128094333327074,
+            "sample_sd_seconds": 0.007143827759839526
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.0768565999962445,
+            "minimum_seconds": 0.00566399999952405,
+            "median_seconds": 0.011279899999135479,
+            "p90_seconds": 0.020186999999350475,
+            "maximum_seconds": 0.025795299999299415,
+            "mean_seconds": 0.012809433332707417,
+            "sample_sd_seconds": 0.007143827759839526
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 7.2,
+            "minimum_seconds": 0.45,
+            "median_seconds": 0.45,
+            "p90_seconds": 0.45,
+            "maximum_seconds": 0.45,
+            "mean_seconds": 0.45,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.3636236999991524,
+            "minimum_seconds": 0.45092250000016065,
+            "median_seconds": 0.46101454999916314,
+            "p90_seconds": 0.46484809999856225,
+            "maximum_seconds": 0.48079839999991236,
+            "mean_seconds": 0.46022648124994703,
+            "sample_sd_seconds": 0.007179508412796264
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.3636236999991524,
+            "minimum_seconds": 0.45092250000016065,
+            "median_seconds": 0.46101454999916314,
+            "p90_seconds": 0.46484809999856225,
+            "maximum_seconds": 0.48079839999991236,
+            "mean_seconds": 0.46022648124994703,
+            "sample_sd_seconds": 0.007179508412796264
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.16362369999915227,
+            "minimum_seconds": 0.000922500000160642,
+            "median_seconds": 0.011014549999163126,
+            "p90_seconds": 0.014848099998562236,
+            "maximum_seconds": 0.03079839999991235,
+            "mean_seconds": 0.010226481249947017,
+            "sample_sd_seconds": 0.007179508412796264
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.6000000000000005,
+            "minimum_seconds": 1.1,
+            "median_seconds": 1.1,
+            "p90_seconds": 1.1,
+            "maximum_seconds": 1.1,
+            "mean_seconds": 1.1,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.661852900000667,
+            "minimum_seconds": 1.1030229999996664,
+            "median_seconds": 1.1088364499992167,
+            "p90_seconds": 1.1178905500019027,
+            "maximum_seconds": 1.1205564000010781,
+            "mean_seconds": 1.1103088166667778,
+            "sample_sd_seconds": 0.0065971287502631015
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.661852900000667,
+            "minimum_seconds": 1.1030229999996664,
+            "median_seconds": 1.1088364499992167,
+            "p90_seconds": 1.1178905500019027,
+            "maximum_seconds": 1.1205564000010781,
+            "mean_seconds": 1.1103088166667778,
+            "sample_sd_seconds": 0.0065971287502631015
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.0618529000006669,
+            "minimum_seconds": 0.003022999999666265,
+            "median_seconds": 0.008836449999216622,
+            "p90_seconds": 0.01789055000190265,
+            "maximum_seconds": 0.020556400001078057,
+            "mean_seconds": 0.010308816666777817,
+            "sample_sd_seconds": 0.0065971287502631015
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 159.27035579999938,
+        "controller_cpu_seconds": 18.359375,
+        "controller_peak_rss_bytes": 76406784.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 163.81307920000108,
+        "snapshot_count": 1632.0,
+        "process_count": 35.0,
+        "read_error_count": 3.0,
+        "cadence": {
+          "median_gap_seconds": 0.10039370000231429,
+          "max_gap_seconds": 0.10291750000033062,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 18.296875,
+            "peak_sampled_rss_bytes": 77496320.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 32.0,
+            "observed_cpu_delta_seconds": 57.125,
+            "peak_sampled_rss_bytes": 5497208832.0,
+            "single_sample_process_count": 0.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 4.96875,
+            "peak_sampled_rss_bytes": 227012608.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 40.953125,
+          "peak_sampled_rss_bytes": 28868608.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R005",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "fixed",
+      "seed": 227,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 153.12998789999983,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.35,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.35,
+            "p90_seconds": 0.35,
+            "maximum_seconds": 0.35,
+            "mean_seconds": 0.35,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.3602212000005238,
+            "minimum_seconds": 0.3602212000005238,
+            "median_seconds": 0.3602212000005238,
+            "p90_seconds": 0.3602212000005238,
+            "maximum_seconds": 0.3602212000005238,
+            "mean_seconds": 0.3602212000005238,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.3602212000005238,
+            "minimum_seconds": 0.3602212000005238,
+            "median_seconds": 0.3602212000005238,
+            "p90_seconds": 0.3602212000005238,
+            "maximum_seconds": 0.3602212000005238,
+            "mean_seconds": 0.3602212000005238,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.010221200000523845,
+            "minimum_seconds": 0.010221200000523845,
+            "median_seconds": 0.010221200000523845,
+            "p90_seconds": 0.010221200000523845,
+            "maximum_seconds": 0.010221200000523845,
+            "mean_seconds": 0.010221200000523845,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 55.67,
+            "minimum_seconds": 0.095,
+            "median_seconds": 0.095,
+            "p90_seconds": 0.095,
+            "maximum_seconds": 0.095,
+            "mean_seconds": 0.095,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 59.51734310000393,
+            "minimum_seconds": 0.08318190000136383,
+            "median_seconds": 0.1014237499985029,
+            "p90_seconds": 0.10998930000096152,
+            "maximum_seconds": 0.12880710000172257,
+            "mean_seconds": 0.1015654319112695,
+            "sample_sd_seconds": 0.006762658564608461
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 59.51734310000393,
+            "minimum_seconds": 0.08318190000136383,
+            "median_seconds": 0.1014237499985029,
+            "p90_seconds": 0.10998930000096152,
+            "maximum_seconds": 0.12880710000172257,
+            "mean_seconds": 0.1015654319112695,
+            "sample_sd_seconds": 0.006762658564608461
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 3.971536399996548,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.006423749998502898,
+            "p90_seconds": 0.01498930000096152,
+            "maximum_seconds": 0.03380710000172257,
+            "mean_seconds": 0.006777365870301276,
+            "sample_sd_seconds": 0.006468621386543121
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.800000000000001,
+            "minimum_seconds": 1.6,
+            "median_seconds": 1.6,
+            "p90_seconds": 1.6,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 1.6,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.829819499998848,
+            "minimum_seconds": 1.6080073000011907,
+            "median_seconds": 1.6101345999995829,
+            "p90_seconds": 1.6113689999983762,
+            "maximum_seconds": 1.6116775999980746,
+            "mean_seconds": 1.6099398333329493,
+            "sample_sd_seconds": 0.001842885253510108
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.829819499998848,
+            "minimum_seconds": 1.6080073000011907,
+            "median_seconds": 1.6101345999995829,
+            "p90_seconds": 1.6113689999983762,
+            "maximum_seconds": 1.6116775999980746,
+            "mean_seconds": 1.6099398333329493,
+            "sample_sd_seconds": 0.001842885253510108
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.02981949999884792,
+            "minimum_seconds": 0.008007300001190654,
+            "median_seconds": 0.010134599999582772,
+            "p90_seconds": 0.01136899999837615,
+            "maximum_seconds": 0.011677599998074495,
+            "mean_seconds": 0.009939833332949307,
+            "sample_sd_seconds": 0.001842885253510108
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 9.600000000000001,
+            "minimum_seconds": 2.4000000000000004,
+            "median_seconds": 2.4000000000000004,
+            "p90_seconds": 2.4000000000000004,
+            "maximum_seconds": 2.4000000000000004,
+            "mean_seconds": 2.4000000000000004,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 9.641469800004415,
+            "minimum_seconds": 2.404846000001271,
+            "median_seconds": 2.4102722500010714,
+            "p90_seconds": 2.415100100001291,
+            "maximum_seconds": 2.4160793000010017,
+            "mean_seconds": 2.410367450001104,
+            "sample_sd_seconds": 0.005035340876117689
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 9.641469800004415,
+            "minimum_seconds": 2.404846000001271,
+            "median_seconds": 2.4102722500010714,
+            "p90_seconds": 2.415100100001291,
+            "maximum_seconds": 2.4160793000010017,
+            "mean_seconds": 2.410367450001104,
+            "sample_sd_seconds": 0.005035340876117689
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.041469800004414026,
+            "minimum_seconds": 0.004846000001270667,
+            "median_seconds": 0.010272250001071015,
+            "p90_seconds": 0.015100100001290785,
+            "maximum_seconds": 0.01607930000100133,
+            "mean_seconds": 0.010367450001103506,
+            "sample_sd_seconds": 0.005035340876117689
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.800000000000001,
+            "minimum_seconds": 1.3,
+            "median_seconds": 1.3,
+            "p90_seconds": 1.3,
+            "maximum_seconds": 1.3,
+            "mean_seconds": 1.3,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.845840900001349,
+            "minimum_seconds": 1.300777600001311,
+            "median_seconds": 1.3086813999998412,
+            "p90_seconds": 1.3133703000003152,
+            "maximum_seconds": 1.3137941999993927,
+            "mean_seconds": 1.3076401500002248,
+            "sample_sd_seconds": 0.005902319994304905
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.845840900001349,
+            "minimum_seconds": 1.300777600001311,
+            "median_seconds": 1.3086813999998412,
+            "p90_seconds": 1.3133703000003152,
+            "maximum_seconds": 1.3137941999993927,
+            "mean_seconds": 1.3076401500002248,
+            "sample_sd_seconds": 0.005902319994304905
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.04584090000134866,
+            "minimum_seconds": 0.0007776000013108852,
+            "median_seconds": 0.008681399999841188,
+            "p90_seconds": 0.013370300000315138,
+            "maximum_seconds": 0.013794199999392687,
+            "mean_seconds": 0.007640150000224777,
+            "sample_sd_seconds": 0.005902319994304905
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 7.2,
+            "minimum_seconds": 0.45,
+            "median_seconds": 0.45,
+            "p90_seconds": 0.45,
+            "maximum_seconds": 0.45,
+            "mean_seconds": 0.45,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.35754210000232,
+            "minimum_seconds": 0.45340520000172546,
+            "median_seconds": 0.4612882500005071,
+            "p90_seconds": 0.46411930000067514,
+            "maximum_seconds": 0.4647421999979997,
+            "mean_seconds": 0.459846381250145,
+            "sample_sd_seconds": 0.0039891619791849135
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.35754210000232,
+            "minimum_seconds": 0.45340520000172546,
+            "median_seconds": 0.4612882500005071,
+            "p90_seconds": 0.46411930000067514,
+            "maximum_seconds": 0.4647421999979997,
+            "mean_seconds": 0.459846381250145,
+            "sample_sd_seconds": 0.0039891619791849135
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.1575421000023196,
+            "minimum_seconds": 0.0034052000017254502,
+            "median_seconds": 0.011288250000507094,
+            "p90_seconds": 0.014119300000675128,
+            "maximum_seconds": 0.014742199997999694,
+            "mean_seconds": 0.009846381250144975,
+            "sample_sd_seconds": 0.0039891619791849135
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.6000000000000005,
+            "minimum_seconds": 1.1,
+            "median_seconds": 1.1,
+            "p90_seconds": 1.1,
+            "maximum_seconds": 1.1,
+            "mean_seconds": 1.1,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.641403800007538,
+            "minimum_seconds": 1.1023096999997506,
+            "median_seconds": 1.1075430500022776,
+            "p90_seconds": 1.110630700000911,
+            "maximum_seconds": 1.111737200000789,
+            "mean_seconds": 1.1069006333345897,
+            "sample_sd_seconds": 0.0037677686749444067
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.641403800007538,
+            "minimum_seconds": 1.1023096999997506,
+            "median_seconds": 1.1075430500022776,
+            "p90_seconds": 1.110630700000911,
+            "maximum_seconds": 1.111737200000789,
+            "mean_seconds": 1.1069006333345897,
+            "sample_sd_seconds": 0.0037677686749444067
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.041403800007537406,
+            "minimum_seconds": 0.002309699999750503,
+            "median_seconds": 0.007543050002277507,
+            "p90_seconds": 0.010630700000910931,
+            "maximum_seconds": 0.011737200000788928,
+            "mean_seconds": 0.006900633334589568,
+            "sample_sd_seconds": 0.0037677686749444067
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 159.5908973000005,
+        "controller_cpu_seconds": 19.4375,
+        "controller_peak_rss_bytes": 76312576.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 164.12042629999996,
+        "snapshot_count": 1635.0,
+        "process_count": 39.0,
+        "read_error_count": 2.0,
+        "cadence": {
+          "median_gap_seconds": 0.10039194999990286,
+          "max_gap_seconds": 0.11108579999927315,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 19.484375,
+            "peak_sampled_rss_bytes": 77066240.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 37.0,
+            "observed_cpu_delta_seconds": 63.203125,
+            "peak_sampled_rss_bytes": 5624467456.0,
+            "single_sample_process_count": 2.0
+          },
+          "notepad": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 4.140625,
+            "peak_sampled_rss_bytes": 215605248.0,
+            "single_sample_process_count": 0.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 42.171875,
+          "peak_sampled_rss_bytes": 27729920.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R006",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "contextual",
+      "seed": 227,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 167.07972280000104,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.19397585696948125,
+            "minimum_seconds": 0.19397585696948125,
+            "median_seconds": 0.19397585696948125,
+            "p90_seconds": 0.19397585696948125,
+            "maximum_seconds": 0.19397585696948125,
+            "mean_seconds": 0.19397585696948125,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.19532489999983227,
+            "minimum_seconds": 0.19532489999983227,
+            "median_seconds": 0.19532489999983227,
+            "p90_seconds": 0.19532489999983227,
+            "maximum_seconds": 0.19532489999983227,
+            "mean_seconds": 0.19532489999983227,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.19532489999983227,
+            "minimum_seconds": 0.19532489999983227,
+            "median_seconds": 0.19532489999983227,
+            "p90_seconds": 0.19532489999983227,
+            "maximum_seconds": 0.19532489999983227,
+            "mean_seconds": 0.19532489999983227,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.0013490430303510215,
+            "minimum_seconds": 0.0013490430303510215,
+            "median_seconds": 0.0013490430303510215,
+            "p90_seconds": 0.0013490430303510215,
+            "maximum_seconds": 0.0013490430303510215,
+            "mean_seconds": 0.0013490430303510215,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 62.79693481949279,
+            "minimum_seconds": 0.03689750796383334,
+            "median_seconds": 0.0994790873784585,
+            "p90_seconds": 0.16464053298969838,
+            "maximum_seconds": 0.3,
+            "mean_seconds": 0.10716200481142114,
+            "sample_sd_seconds": 0.0426241551898271
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 67.45742770002835,
+            "minimum_seconds": 0.04166520000217133,
+            "median_seconds": 0.10826844999974128,
+            "p90_seconds": 0.1777344500005711,
+            "maximum_seconds": 0.31147219999911613,
+            "mean_seconds": 0.11511506433451936,
+            "sample_sd_seconds": 0.043036924221088305
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 67.45742770002835,
+            "minimum_seconds": 0.04166520000217133,
+            "median_seconds": 0.10826844999974128,
+            "p90_seconds": 0.1777344500005711,
+            "maximum_seconds": 0.31147219999911613,
+            "mean_seconds": 0.11511506433451936,
+            "sample_sd_seconds": 0.043036924221088305
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.707668716695168,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.007276731798910231,
+            "p90_seconds": 0.015025314510817227,
+            "maximum_seconds": 0.037951813567886294,
+            "mean_seconds": 0.008033564362961038,
+            "sample_sd_seconds": 0.006020627043280408
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 5.161927838858046,
+            "minimum_seconds": 1.1017185815042112,
+            "median_seconds": 1.3694578946630744,
+            "p90_seconds": 2.4264926690852224,
+            "maximum_seconds": 2.6907513626907598,
+            "mean_seconds": 1.7206426129526817,
+            "sample_sd_seconds": 0.8507375180932586
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 5.185018399995897,
+            "minimum_seconds": 1.1025388999987626,
+            "median_seconds": 1.3860426999999618,
+            "p90_seconds": 2.4343579799977304,
+            "maximum_seconds": 2.696436799997173,
+            "mean_seconds": 1.7283394666652991,
+            "sample_sd_seconds": 0.8502957933901554
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 5.185018399995897,
+            "minimum_seconds": 1.1025388999987626,
+            "median_seconds": 1.3860426999999618,
+            "p90_seconds": 2.4343579799977304,
+            "maximum_seconds": 2.696436799997173,
+            "mean_seconds": 1.7283394666652991,
+            "sample_sd_seconds": 0.8502957933901554
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.023090561137851795,
+            "minimum_seconds": 0.0008203184945514419,
+            "median_seconds": 0.0056854373064130215,
+            "p90_seconds": 0.01440493173079247,
+            "maximum_seconds": 0.01658480533688733,
+            "mean_seconds": 0.007696853712617265,
+            "sample_sd_seconds": 0.00807242889841131
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 10.222811426995706,
+            "minimum_seconds": 1.308543768145817,
+            "median_seconds": 2.4696146941257178,
+            "p90_seconds": 3.7628836853635113,
+            "maximum_seconds": 3.975038270598455,
+            "mean_seconds": 2.5557028567489266,
+            "sample_sd_seconds": 1.2726770392559086
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 10.235929099995701,
+            "minimum_seconds": 1.3083189999997558,
+            "median_seconds": 2.4749314499986212,
+            "p90_seconds": 3.7664208099984537,
+            "maximum_seconds": 3.977747199998703,
+            "mean_seconds": 2.5589822749989253,
+            "sample_sd_seconds": 1.2735840526884419
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 10.235929099995701,
+            "minimum_seconds": 1.3083189999997558,
+            "median_seconds": 2.4749314499986212,
+            "p90_seconds": 3.7664208099984537,
+            "maximum_seconds": 3.977747199998703,
+            "mean_seconds": 2.5589822749989253,
+            "sample_sd_seconds": 1.2735840526884419
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.013342441146055428,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.003936430481746633,
+            "p90_seconds": 0.005377885596767084,
+            "maximum_seconds": 0.0054695801825621615,
+            "mean_seconds": 0.003335610286513857,
+            "sample_sd_seconds": 0.0025439871019652767
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 11.177687449712707,
+            "minimum_seconds": 1.1601418449252214,
+            "median_seconds": 1.8712071916631803,
+            "p90_seconds": 2.3579905512904076,
+            "maximum_seconds": 2.680548323691622,
+            "mean_seconds": 1.862947908285451,
+            "sample_sd_seconds": 0.5068704073194681
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 11.228171600007045,
+            "minimum_seconds": 1.1702464000009059,
+            "median_seconds": 1.8774610000018583,
+            "p90_seconds": 2.370302150000498,
+            "maximum_seconds": 2.6920634000016435,
+            "mean_seconds": 1.8713619333345075,
+            "sample_sd_seconds": 0.508339698187185
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 11.228171600007045,
+            "minimum_seconds": 1.1702464000009059,
+            "median_seconds": 1.8774610000018583,
+            "p90_seconds": 2.370302150000498,
+            "maximum_seconds": 2.6920634000016435,
+            "mean_seconds": 1.8713619333345075,
+            "sample_sd_seconds": 0.508339698187185
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.05048415029433806,
+            "minimum_seconds": 0.003248781121116817,
+            "median_seconds": 0.009435272156759544,
+            "p90_seconds": 0.012311598710090355,
+            "maximum_seconds": 0.013108121110159132,
+            "mean_seconds": 0.008414025049056343,
+            "sample_sd_seconds": 0.004077839417432027
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 9.011233905623714,
+            "minimum_seconds": 0.15,
+            "median_seconds": 0.46877838742479255,
+            "p90_seconds": 0.9544336894173793,
+            "maximum_seconds": 1.0860637156816035,
+            "mean_seconds": 0.5632021191014821,
+            "sample_sd_seconds": 0.2709311750251428
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 9.157868600002985,
+            "minimum_seconds": 0.15621550000287243,
+            "median_seconds": 0.4784599000013259,
+            "p90_seconds": 0.973320999999487,
+            "maximum_seconds": 1.0883849000019836,
+            "mean_seconds": 0.5723667875001865,
+            "sample_sd_seconds": 0.2723960754103152
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 9.157868600002985,
+            "minimum_seconds": 0.15621550000287243,
+            "median_seconds": 0.4784599000013259,
+            "p90_seconds": 0.973320999999487,
+            "maximum_seconds": 1.0883849000019836,
+            "mean_seconds": 0.5723667875001865,
+            "sample_sd_seconds": 0.2723960754103152
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.1471111562047326,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.00989459816733479,
+            "p90_seconds": 0.014533123424884664,
+            "maximum_seconds": 0.027145632240253015,
+            "mean_seconds": 0.009194447262795788,
+            "sample_sd_seconds": 0.0070511109664199165
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.653035817854247,
+            "minimum_seconds": 0.4616210382717647,
+            "median_seconds": 1.3978942134950678,
+            "p90_seconds": 1.9273099072608986,
+            "maximum_seconds": 2.150494659588118,
+            "mean_seconds": 1.2755059696423745,
+            "sample_sd_seconds": 0.6718282157049229
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.705419100002473,
+            "minimum_seconds": 0.46179490000213264,
+            "median_seconds": 1.4083124499993573,
+            "p90_seconds": 1.9397738000006939,
+            "maximum_seconds": 2.161386499999935,
+            "mean_seconds": 1.2842365166670788,
+            "sample_sd_seconds": 0.6763167696114145
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.705419100002473,
+            "minimum_seconds": 0.46179490000213264,
+            "median_seconds": 1.4083124499993573,
+            "p90_seconds": 1.9397738000006939,
+            "maximum_seconds": 2.161386499999935,
+            "mean_seconds": 1.2842365166670788,
+            "sample_sd_seconds": 0.6763167696114145
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.052383282148226074,
+            "minimum_seconds": 0.00017386173036793018,
+            "median_seconds": 0.00866850117075274,
+            "p90_seconds": 0.01457590312740864,
+            "maximum_seconds": 0.015115861187043445,
+            "mean_seconds": 0.008730547024704346,
+            "sample_sd_seconds": 0.0056760943022198
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 173.37196050000057,
+        "controller_cpu_seconds": 21.296875,
+        "controller_peak_rss_bytes": 76636160.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 177.9644533999999,
+        "snapshot_count": 1773.0,
+        "process_count": 37.0,
+        "read_error_count": 0.0,
+        "cadence": {
+          "median_gap_seconds": 0.10038745000019844,
+          "max_gap_seconds": 0.10615189999953145,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 21.4375,
+            "peak_sampled_rss_bytes": 77795328.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 34.0,
+            "observed_cpu_delta_seconds": 64.03125,
+            "peak_sampled_rss_bytes": 5455949824.0,
+            "single_sample_process_count": 2.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 4.4375,
+            "peak_sampled_rss_bytes": 216891392.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 42.3125,
+          "peak_sampled_rss_bytes": 30584832.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R007",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "contextual",
+      "seed": 229,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 158.78073439999935,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.17239591096091672,
+            "minimum_seconds": 0.17239591096091672,
+            "median_seconds": 0.17239591096091672,
+            "p90_seconds": 0.17239591096091672,
+            "maximum_seconds": 0.17239591096091672,
+            "mean_seconds": 0.17239591096091672,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.17810889999964274,
+            "minimum_seconds": 0.17810889999964274,
+            "median_seconds": 0.17810889999964274,
+            "p90_seconds": 0.17810889999964274,
+            "maximum_seconds": 0.17810889999964274,
+            "mean_seconds": 0.17810889999964274,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.17810889999964274,
+            "minimum_seconds": 0.17810889999964274,
+            "median_seconds": 0.17810889999964274,
+            "p90_seconds": 0.17810889999964274,
+            "maximum_seconds": 0.17810889999964274,
+            "mean_seconds": 0.17810889999964274,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.005712989038726024,
+            "minimum_seconds": 0.005712989038726024,
+            "median_seconds": 0.005712989038726024,
+            "p90_seconds": 0.005712989038726024,
+            "maximum_seconds": 0.005712989038726024,
+            "mean_seconds": 0.005712989038726024,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 61.198147644875576,
+            "minimum_seconds": 0.035,
+            "median_seconds": 0.09669221299932318,
+            "p90_seconds": 0.1537415958165853,
+            "maximum_seconds": 0.29140567303251214,
+            "mean_seconds": 0.10443369905268869,
+            "sample_sd_seconds": 0.03987947601610684
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 65.7856374000039,
+            "minimum_seconds": 0.04206019999764976,
+            "median_seconds": 0.10776475000056962,
+            "p90_seconds": 0.1610084999974788,
+            "maximum_seconds": 0.2950782000007166,
+            "mean_seconds": 0.1122621798634879,
+            "sample_sd_seconds": 0.03999625482244253
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 65.7856374000039,
+            "minimum_seconds": 0.04206019999764976,
+            "median_seconds": 0.10776475000056962,
+            "p90_seconds": 0.1610084999974788,
+            "maximum_seconds": 0.2950782000007166,
+            "mean_seconds": 0.1122621798634879,
+            "sample_sd_seconds": 0.03999625482244253
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.670653685683205,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.007656676675343289,
+            "p90_seconds": 0.014882294944834937,
+            "maximum_seconds": 0.03151787575122052,
+            "mean_seconds": 0.007970398781029361,
+            "sample_sd_seconds": 0.005690871730042069
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.717036383262529,
+            "minimum_seconds": 0.9357886404135238,
+            "median_seconds": 1.5714943508927068,
+            "p90_seconds": 2.08210158374358,
+            "maximum_seconds": 2.209753391956298,
+            "mean_seconds": 1.5723454610875096,
+            "sample_sd_seconds": 0.6369828022284302
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.741278100002091,
+            "minimum_seconds": 0.9422110000014072,
+            "median_seconds": 1.578645300000062,
+            "p90_seconds": 2.0920665000005103,
+            "maximum_seconds": 2.220421800000622,
+            "mean_seconds": 1.5804260333340305,
+            "sample_sd_seconds": 0.6391072606120691
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.741278100002091,
+            "minimum_seconds": 0.9422110000014072,
+            "median_seconds": 1.578645300000062,
+            "p90_seconds": 2.0920665000005103,
+            "maximum_seconds": 2.220421800000622,
+            "mean_seconds": 1.5804260333340305,
+            "sample_sd_seconds": 0.6391072606120691
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.024241716739562547,
+            "minimum_seconds": 0.006422359587883397,
+            "median_seconds": 0.007150949107355142,
+            "p90_seconds": 0.009964916256930235,
+            "maximum_seconds": 0.010668408044324007,
+            "mean_seconds": 0.008080572246520848,
+            "sample_sd_seconds": 0.0022705464671009595
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 11.719646846614793,
+            "minimum_seconds": 1.557109923879772,
+            "median_seconds": 2.613533715333584,
+            "p90_seconds": 4.275784610529911,
+            "maximum_seconds": 4.9354694920678535,
+            "mean_seconds": 2.9299117116536983,
+            "sample_sd_seconds": 1.4303016032780853
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 11.750313399999868,
+            "minimum_seconds": 1.5654617000000144,
+            "median_seconds": 2.620064849999835,
+            "p90_seconds": 4.283621869999479,
+            "maximum_seconds": 4.9447220000001835,
+            "mean_seconds": 2.937578349999967,
+            "sample_sd_seconds": 1.4308781176495535
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 11.750313399999868,
+            "minimum_seconds": 1.5654617000000144,
+            "median_seconds": 2.620064849999835,
+            "p90_seconds": 4.283621869999479,
+            "maximum_seconds": 4.9447220000001835,
+            "mean_seconds": 2.937578349999967,
+            "sample_sd_seconds": 1.4308781176495535
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.0306665533850754,
+            "minimum_seconds": 0.004535013056458759,
+            "median_seconds": 0.008439516198143315,
+            "p90_seconds": 0.00903493243544431,
+            "maximum_seconds": 0.009252507932330012,
+            "mean_seconds": 0.00766663834626885,
+            "sample_sd_seconds": 0.0021238437081659493
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.500403085594956,
+            "minimum_seconds": 0.4883902803579962,
+            "median_seconds": 0.9890346207446102,
+            "p90_seconds": 2.1248498897274155,
+            "maximum_seconds": 2.2806410245807283,
+            "mean_seconds": 1.2500671809324928,
+            "sample_sd_seconds": 0.7095709203470474
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.555633200005104,
+            "minimum_seconds": 0.49303040000086185,
+            "median_seconds": 1.0017011000018101,
+            "p90_seconds": 2.136630150000201,
+            "maximum_seconds": 2.2951575000006414,
+            "mean_seconds": 1.2592722000008507,
+            "sample_sd_seconds": 0.7124790992080982
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.555633200005104,
+            "minimum_seconds": 0.49303040000086185,
+            "median_seconds": 1.0017011000018101,
+            "p90_seconds": 2.136630150000201,
+            "maximum_seconds": 2.2951575000006414,
+            "mean_seconds": 1.2592722000008507,
+            "sample_sd_seconds": 0.7124790992080982
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.05523011441014786,
+            "minimum_seconds": 0.0016965157073117743,
+            "median_seconds": 0.009565584887667122,
+            "p90_seconds": 0.014881154642318095,
+            "maximum_seconds": 0.015245833864723002,
+            "mean_seconds": 0.009205019068357976,
+            "sample_sd_seconds": 0.005342713998203225
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 8.544330690264761,
+            "minimum_seconds": 0.29319502198361586,
+            "median_seconds": 0.48122477954913545,
+            "p90_seconds": 0.8609257427595813,
+            "maximum_seconds": 1.193682503667703,
+            "mean_seconds": 0.5340206681415476,
+            "sample_sd_seconds": 0.2599425594441767
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 8.682871800006978,
+            "minimum_seconds": 0.2983867000002647,
+            "median_seconds": 0.49206525000045076,
+            "p90_seconds": 0.8742301999991469,
+            "maximum_seconds": 1.1993768000029377,
+            "mean_seconds": 0.5426794875004362,
+            "sample_sd_seconds": 0.25940975384430603
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 8.682871800006978,
+            "minimum_seconds": 0.2983867000002647,
+            "median_seconds": 0.49206525000045076,
+            "p90_seconds": 0.8742301999991469,
+            "maximum_seconds": 1.1993768000029377,
+            "mean_seconds": 0.5426794875004362,
+            "sample_sd_seconds": 0.25940975384430603
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.13854110974221684,
+            "minimum_seconds": 0.0006619094223158095,
+            "median_seconds": 0.009297969049356064,
+            "p90_seconds": 0.013283642674453533,
+            "maximum_seconds": 0.015143555695700917,
+            "mean_seconds": 0.008658819358888552,
+            "sample_sd_seconds": 0.004231500547837393
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.392911854741285,
+            "minimum_seconds": 0.3713409656585517,
+            "median_seconds": 1.0227842653563783,
+            "p90_seconds": 1.6682303004065457,
+            "maximum_seconds": 1.912492256142861,
+            "mean_seconds": 1.0654853091235474,
+            "sample_sd_seconds": 0.5526241512408618
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.456208700001298,
+            "minimum_seconds": 0.3837134999994305,
+            "median_seconds": 1.0367106500016234,
+            "p90_seconds": 1.6780349500004377,
+            "maximum_seconds": 1.9226091999989876,
+            "mean_seconds": 1.0760347833335497,
+            "sample_sd_seconds": 0.5528240961264094
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.456208700001298,
+            "minimum_seconds": 0.3837134999994305,
+            "median_seconds": 1.0367106500016234,
+            "p90_seconds": 1.6780349500004377,
+            "maximum_seconds": 1.9226091999989876,
+            "mean_seconds": 1.0760347833335497,
+            "sample_sd_seconds": 0.5528240961264094
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.063296845260013,
+            "minimum_seconds": 0.0034622424408601304,
+            "median_seconds": 0.01124473909850271,
+            "p90_seconds": 0.013926384645245093,
+            "maximum_seconds": 0.015160118785721544,
+            "mean_seconds": 0.010549474210002166,
+            "sample_sd_seconds": 0.004017666816807101
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 165.2131049999989,
+        "controller_cpu_seconds": 19.34375,
+        "controller_peak_rss_bytes": 76627968.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 169.67786139999953,
+        "snapshot_count": 1690.0,
+        "process_count": 41.0,
+        "read_error_count": 0.0,
+        "cadence": {
+          "median_gap_seconds": 0.10040579999986221,
+          "max_gap_seconds": 0.10305460000017774,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 19.3125,
+            "peak_sampled_rss_bytes": 77807616.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 37.0,
+            "observed_cpu_delta_seconds": 63.5625,
+            "peak_sampled_rss_bytes": 5563564032.0,
+            "single_sample_process_count": 2.0
+          },
+          "notepad": {
+            "process_count": 3.0,
+            "observed_cpu_delta_seconds": 4.40625,
+            "peak_sampled_rss_bytes": 226557952.0,
+            "single_sample_process_count": 2.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 39.703125,
+          "peak_sampled_rss_bytes": 29564928.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R008",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "fixed",
+      "seed": 229,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 153.23034279999774,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.35,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.35,
+            "p90_seconds": 0.35,
+            "maximum_seconds": 0.35,
+            "mean_seconds": 0.35,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.35896880000291276,
+            "minimum_seconds": 0.35896880000291276,
+            "median_seconds": 0.35896880000291276,
+            "p90_seconds": 0.35896880000291276,
+            "maximum_seconds": 0.35896880000291276,
+            "mean_seconds": 0.35896880000291276,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.35896880000291276,
+            "minimum_seconds": 0.35896880000291276,
+            "median_seconds": 0.35896880000291276,
+            "p90_seconds": 0.35896880000291276,
+            "maximum_seconds": 0.35896880000291276,
+            "mean_seconds": 0.35896880000291276,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.00896880000291278,
+            "minimum_seconds": 0.00896880000291278,
+            "median_seconds": 0.00896880000291278,
+            "p90_seconds": 0.00896880000291278,
+            "maximum_seconds": 0.00896880000291278,
+            "mean_seconds": 0.00896880000291278,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 55.67,
+            "minimum_seconds": 0.095,
+            "median_seconds": 0.095,
+            "p90_seconds": 0.095,
+            "maximum_seconds": 0.095,
+            "mean_seconds": 0.095,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 59.101466199950664,
+            "minimum_seconds": 0.0854462000024796,
+            "median_seconds": 0.09985745000085444,
+            "p90_seconds": 0.10950400000183436,
+            "maximum_seconds": 0.1300453000003472,
+            "mean_seconds": 0.10085574436851649,
+            "sample_sd_seconds": 0.006562179700917892
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 59.101466199950664,
+            "minimum_seconds": 0.0854462000024796,
+            "median_seconds": 0.09985745000085444,
+            "p90_seconds": 0.10950400000183436,
+            "maximum_seconds": 0.1300453000003472,
+            "mean_seconds": 0.10085574436851649,
+            "sample_sd_seconds": 0.006562179700917892
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 3.6370259999665717,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.004857450000854441,
+            "p90_seconds": 0.014504000001834355,
+            "maximum_seconds": 0.035045300000347196,
+            "mean_seconds": 0.006206529010181863,
+            "sample_sd_seconds": 0.006133495702045249
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.800000000000001,
+            "minimum_seconds": 1.6,
+            "median_seconds": 1.6,
+            "p90_seconds": 1.6,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 1.6,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.8297225999995135,
+            "minimum_seconds": 1.6026663999982702,
+            "median_seconds": 1.6107827000014368,
+            "p90_seconds": 1.6151753400001325,
+            "maximum_seconds": 1.6162734999998065,
+            "mean_seconds": 1.6099075333331712,
+            "sample_sd_seconds": 0.0068456358459886455
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.8297225999995135,
+            "minimum_seconds": 1.6026663999982702,
+            "median_seconds": 1.6107827000014368,
+            "p90_seconds": 1.6151753400001325,
+            "maximum_seconds": 1.6162734999998065,
+            "mean_seconds": 1.6099075333331712,
+            "sample_sd_seconds": 0.0068456358459886455
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.02972259999951321,
+            "minimum_seconds": 0.002666399998270119,
+            "median_seconds": 0.010782700001436663,
+            "p90_seconds": 0.015175340000132476,
+            "maximum_seconds": 0.01627349999980643,
+            "mean_seconds": 0.00990753333317107,
+            "sample_sd_seconds": 0.0068456358459886455
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 9.600000000000001,
+            "minimum_seconds": 2.4000000000000004,
+            "median_seconds": 2.4000000000000004,
+            "p90_seconds": 2.4000000000000004,
+            "maximum_seconds": 2.4000000000000004,
+            "mean_seconds": 2.4000000000000004,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 9.631478199997218,
+            "minimum_seconds": 2.4045268000008946,
+            "median_seconds": 2.4063375999976415,
+            "p90_seconds": 2.412397119999878,
+            "maximum_seconds": 2.4142762000010407,
+            "mean_seconds": 2.4078695499993046,
+            "sample_sd_seconds": 0.004565235788310338
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 9.631478199997218,
+            "minimum_seconds": 2.4045268000008946,
+            "median_seconds": 2.4063375999976415,
+            "p90_seconds": 2.412397119999878,
+            "maximum_seconds": 2.4142762000010407,
+            "mean_seconds": 2.4078695499993046,
+            "sample_sd_seconds": 0.004565235788310338
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.031478199997216905,
+            "minimum_seconds": 0.004526800000894227,
+            "median_seconds": 0.0063375999976411634,
+            "p90_seconds": 0.012397119999877405,
+            "maximum_seconds": 0.014276200001040351,
+            "mean_seconds": 0.007869549999304226,
+            "sample_sd_seconds": 0.004565235788310338
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.800000000000001,
+            "minimum_seconds": 1.3,
+            "median_seconds": 1.3,
+            "p90_seconds": 1.3,
+            "maximum_seconds": 1.3,
+            "mean_seconds": 1.3,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.8336649000011676,
+            "minimum_seconds": 1.3004101000005903,
+            "median_seconds": 1.3029155000003811,
+            "p90_seconds": 1.313345599999593,
+            "maximum_seconds": 1.3179483999992954,
+            "mean_seconds": 1.3056108166668612,
+            "sample_sd_seconds": 0.006744837162071762
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.8336649000011676,
+            "minimum_seconds": 1.3004101000005903,
+            "median_seconds": 1.3029155000003811,
+            "p90_seconds": 1.313345599999593,
+            "maximum_seconds": 1.3179483999992954,
+            "mean_seconds": 1.3056108166668612,
+            "sample_sd_seconds": 0.006744837162071762
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.033664900001167286,
+            "minimum_seconds": 0.0004101000005902744,
+            "median_seconds": 0.0029155000003810994,
+            "p90_seconds": 0.01334559999959306,
+            "maximum_seconds": 0.017948399999295317,
+            "mean_seconds": 0.005610816666861214,
+            "sample_sd_seconds": 0.006744837162071762
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 7.2,
+            "minimum_seconds": 0.45,
+            "median_seconds": 0.45,
+            "p90_seconds": 0.45,
+            "maximum_seconds": 0.45,
+            "mean_seconds": 0.45,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.333623100006662,
+            "minimum_seconds": 0.45080349999989267,
+            "median_seconds": 0.45995289999882516,
+            "p90_seconds": 0.4636513500008732,
+            "maximum_seconds": 0.46427179999955115,
+            "mean_seconds": 0.45835144375041637,
+            "sample_sd_seconds": 0.004900833788650216
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.333623100006662,
+            "minimum_seconds": 0.45080349999989267,
+            "median_seconds": 0.45995289999882516,
+            "p90_seconds": 0.4636513500008732,
+            "maximum_seconds": 0.46427179999955115,
+            "mean_seconds": 0.45835144375041637,
+            "sample_sd_seconds": 0.004900833788650216
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.13362310000666167,
+            "minimum_seconds": 0.000803499999892654,
+            "median_seconds": 0.009952899998825149,
+            "p90_seconds": 0.013651350000873197,
+            "maximum_seconds": 0.014271799999551138,
+            "mean_seconds": 0.008351443750416354,
+            "sample_sd_seconds": 0.004900833788650216
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.6000000000000005,
+            "minimum_seconds": 1.1,
+            "median_seconds": 1.1,
+            "p90_seconds": 1.1,
+            "maximum_seconds": 1.1,
+            "mean_seconds": 1.1,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.665258599990921,
+            "minimum_seconds": 1.1011446999982581,
+            "median_seconds": 1.1104277499980526,
+            "p90_seconds": 1.1190900999990845,
+            "maximum_seconds": 1.119727999997849,
+            "mean_seconds": 1.1108764333318202,
+            "sample_sd_seconds": 0.00789416275647059
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.665258599990921,
+            "minimum_seconds": 1.1011446999982581,
+            "median_seconds": 1.1104277499980526,
+            "p90_seconds": 1.1190900999990845,
+            "maximum_seconds": 1.119727999997849,
+            "mean_seconds": 1.1108764333318202,
+            "sample_sd_seconds": 0.00789416275647059
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.0652585999909201,
+            "minimum_seconds": 0.0011446999982580586,
+            "median_seconds": 0.010427749998052516,
+            "p90_seconds": 0.019090099999084398,
+            "maximum_seconds": 0.01972799999784902,
+            "mean_seconds": 0.010876433331820015,
+            "sample_sd_seconds": 0.00789416275647059
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 159.7891707000017,
+        "controller_cpu_seconds": 18.125,
+        "controller_peak_rss_bytes": 76476416.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 164.3978997000013,
+        "snapshot_count": 1636.0,
+        "process_count": 38.0,
+        "read_error_count": 0.0,
+        "cadence": {
+          "median_gap_seconds": 0.10044059999927413,
+          "max_gap_seconds": 0.11241909999807831,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 18.1875,
+            "peak_sampled_rss_bytes": 77594624.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 35.0,
+            "observed_cpu_delta_seconds": 66.359375,
+            "peak_sampled_rss_bytes": 5356531712.0,
+            "single_sample_process_count": 0.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 4.34375,
+            "peak_sampled_rss_bytes": 208629760.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 38.359375,
+          "peak_sampled_rss_bytes": 28987392.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R009",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "fixed",
+      "seed": 233,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 152.24493839999923,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.35,
+            "minimum_seconds": 0.35,
+            "median_seconds": 0.35,
+            "p90_seconds": 0.35,
+            "maximum_seconds": 0.35,
+            "mean_seconds": 0.35,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.36151690000042436,
+            "minimum_seconds": 0.36151690000042436,
+            "median_seconds": 0.36151690000042436,
+            "p90_seconds": 0.36151690000042436,
+            "maximum_seconds": 0.36151690000042436,
+            "mean_seconds": 0.36151690000042436,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.36151690000042436,
+            "minimum_seconds": 0.36151690000042436,
+            "median_seconds": 0.36151690000042436,
+            "p90_seconds": 0.36151690000042436,
+            "maximum_seconds": 0.36151690000042436,
+            "mean_seconds": 0.36151690000042436,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.01151690000042438,
+            "minimum_seconds": 0.01151690000042438,
+            "median_seconds": 0.01151690000042438,
+            "p90_seconds": 0.01151690000042438,
+            "maximum_seconds": 0.01151690000042438,
+            "mean_seconds": 0.01151690000042438,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 55.67,
+            "minimum_seconds": 0.095,
+            "median_seconds": 0.095,
+            "p90_seconds": 0.095,
+            "maximum_seconds": 0.095,
+            "mean_seconds": 0.095,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 59.691809299984016,
+            "minimum_seconds": 0.08660740000050282,
+            "median_seconds": 0.1018729000006715,
+            "p90_seconds": 0.10984174999975949,
+            "maximum_seconds": 0.13003630000093835,
+            "mean_seconds": 0.1018631558020205,
+            "sample_sd_seconds": 0.006866073025531128
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 59.691809299984016,
+            "minimum_seconds": 0.08660740000050282,
+            "median_seconds": 0.1018729000006715,
+            "p90_seconds": 0.10984174999975949,
+            "maximum_seconds": 0.13003630000093835,
+            "mean_seconds": 0.1018631558020205,
+            "sample_sd_seconds": 0.006866073025531128
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.134849699996994,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.006872900000671506,
+            "p90_seconds": 0.014841749999759485,
+            "maximum_seconds": 0.03503630000093835,
+            "mean_seconds": 0.0070560575085272925,
+            "sample_sd_seconds": 0.006615314455460445
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.800000000000001,
+            "minimum_seconds": 1.6,
+            "median_seconds": 1.6,
+            "p90_seconds": 1.6,
+            "maximum_seconds": 1.6,
+            "mean_seconds": 1.6,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.827096800003346,
+            "minimum_seconds": 1.6027700000013283,
+            "median_seconds": 1.6074751000014658,
+            "p90_seconds": 1.6149763800007348,
+            "maximum_seconds": 1.6168517000005522,
+            "mean_seconds": 1.609032266667782,
+            "sample_sd_seconds": 0.007168831476401914
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.827096800003346,
+            "minimum_seconds": 1.6027700000013283,
+            "median_seconds": 1.6074751000014658,
+            "p90_seconds": 1.6149763800007348,
+            "maximum_seconds": 1.6168517000005522,
+            "mean_seconds": 1.609032266667782,
+            "sample_sd_seconds": 0.007168831476401914
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.027096800003346022,
+            "minimum_seconds": 0.00277000000132821,
+            "median_seconds": 0.007475100001465673,
+            "p90_seconds": 0.014976380000734847,
+            "maximum_seconds": 0.01685170000055214,
+            "mean_seconds": 0.009032266667782007,
+            "sample_sd_seconds": 0.007168831476401914
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 9.600000000000001,
+            "minimum_seconds": 2.4000000000000004,
+            "median_seconds": 2.4000000000000004,
+            "p90_seconds": 2.4000000000000004,
+            "maximum_seconds": 2.4000000000000004,
+            "mean_seconds": 2.4000000000000004,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 9.622400800002652,
+            "minimum_seconds": 2.4011720000016794,
+            "median_seconds": 2.4061329500000284,
+            "p90_seconds": 2.408632480000597,
+            "maximum_seconds": 2.4089629000009154,
+            "mean_seconds": 2.405600200000663,
+            "sample_sd_seconds": 0.003533653531881447
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 9.622400800002652,
+            "minimum_seconds": 2.4011720000016794,
+            "median_seconds": 2.4061329500000284,
+            "p90_seconds": 2.408632480000597,
+            "maximum_seconds": 2.4089629000009154,
+            "mean_seconds": 2.405600200000663,
+            "sample_sd_seconds": 0.003533653531881447
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.0224008000026501,
+            "minimum_seconds": 0.0011720000016790522,
+            "median_seconds": 0.0061329500000280035,
+            "p90_seconds": 0.008632480000596488,
+            "maximum_seconds": 0.008962900000915042,
+            "mean_seconds": 0.005600200000662525,
+            "sample_sd_seconds": 0.003533653531881447
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 7.800000000000001,
+            "minimum_seconds": 1.3,
+            "median_seconds": 1.3,
+            "p90_seconds": 1.3,
+            "maximum_seconds": 1.3,
+            "mean_seconds": 1.3,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 7.858670500001608,
+            "minimum_seconds": 1.3011824000022898,
+            "median_seconds": 1.310617799999818,
+            "p90_seconds": 1.313828950000243,
+            "maximum_seconds": 1.3148588000003656,
+            "mean_seconds": 1.3097784166669346,
+            "sample_sd_seconds": 0.0047252017915573406
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 7.858670500001608,
+            "minimum_seconds": 1.3011824000022898,
+            "median_seconds": 1.310617799999818,
+            "p90_seconds": 1.313828950000243,
+            "maximum_seconds": 1.3148588000003656,
+            "mean_seconds": 1.3097784166669346,
+            "sample_sd_seconds": 0.0047252017915573406
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.058670500001607895,
+            "minimum_seconds": 0.0011824000022897518,
+            "median_seconds": 0.010617799999818045,
+            "p90_seconds": 0.013828950000242868,
+            "maximum_seconds": 0.014858800000365546,
+            "mean_seconds": 0.00977841666693465,
+            "sample_sd_seconds": 0.0047252017915573406
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 7.2,
+            "minimum_seconds": 0.45,
+            "median_seconds": 0.45,
+            "p90_seconds": 0.45,
+            "maximum_seconds": 0.45,
+            "mean_seconds": 0.45,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.302418900013436,
+            "minimum_seconds": 0.44428530000004685,
+            "median_seconds": 0.4576750500000344,
+            "p90_seconds": 0.46349575000203913,
+            "maximum_seconds": 0.4652391000017815,
+            "mean_seconds": 0.4564011812508397,
+            "sample_sd_seconds": 0.006126877954504917
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.302418900013436,
+            "minimum_seconds": 0.44428530000004685,
+            "median_seconds": 0.4576750500000344,
+            "p90_seconds": 0.46349575000203913,
+            "maximum_seconds": 0.4652391000017815,
+            "mean_seconds": 0.4564011812508397,
+            "sample_sd_seconds": 0.006126877954504917
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.1113372000138041,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.007675050000034378,
+            "p90_seconds": 0.01349575000203912,
+            "maximum_seconds": 0.01523910000178147,
+            "mean_seconds": 0.006958575000862756,
+            "sample_sd_seconds": 0.005170508284520104
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 6.6000000000000005,
+            "minimum_seconds": 1.1,
+            "median_seconds": 1.1,
+            "p90_seconds": 1.1,
+            "maximum_seconds": 1.1,
+            "mean_seconds": 1.1,
+            "sample_sd_seconds": 0.0
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 6.655515399997967,
+            "minimum_seconds": 1.106125599999359,
+            "median_seconds": 1.108517849999771,
+            "p90_seconds": 1.1122822500001348,
+            "maximum_seconds": 1.1147932999992918,
+            "mean_seconds": 1.1092525666663278,
+            "sample_sd_seconds": 0.0029742561495420526
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 6.655515399997967,
+            "minimum_seconds": 1.106125599999359,
+            "median_seconds": 1.108517849999771,
+            "p90_seconds": 1.1122822500001348,
+            "maximum_seconds": 1.1147932999992918,
+            "mean_seconds": 1.1092525666663278,
+            "sample_sd_seconds": 0.0029742561495420526
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.055515399997966064,
+            "minimum_seconds": 0.0061255999993590216,
+            "median_seconds": 0.008517849999770899,
+            "p90_seconds": 0.01228225000013472,
+            "maximum_seconds": 0.014793299999291687,
+            "mean_seconds": 0.009252566666327677,
+            "sample_sd_seconds": 0.0029742561495420526
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 158.49574799999755,
+        "controller_cpu_seconds": 19.140625,
+        "controller_peak_rss_bytes": 76255232.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 163.04021849999845,
+        "snapshot_count": 1620.0,
+        "process_count": 36.0,
+        "read_error_count": 2.0,
+        "cadence": {
+          "median_gap_seconds": 0.10040169999774662,
+          "max_gap_seconds": 0.5108935999996902,
+          "overrun_count": 1.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 19.09375,
+            "peak_sampled_rss_bytes": 77336576.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 34.0,
+            "observed_cpu_delta_seconds": 63.03125,
+            "peak_sampled_rss_bytes": 5270417408.0,
+            "single_sample_process_count": 0.0
+          },
+          "notepad": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 4.921875,
+            "peak_sampled_rss_bytes": 171077632.0,
+            "single_sample_process_count": 0.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 39.484375,
+          "peak_sampled_rss_bytes": 28921856.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    },
+    {
+      "id": "R010",
+      "backend": "desktop",
+      "workflow": "sheets",
+      "policy": "contextual",
+      "seed": 233,
+      "scale": 1.0,
+      "source_commit": "051ec6871425ddaba9faeffed297a2168620e58c",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+      "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+      "environment_condition_sha256": "c2a1b1c4c03360c1a0d6e18e8baff55add448cd418688c63b1d3958d064036e9",
+      "capture_condition_sha256": "fdb3027cc69967c1696dee2897b78faf5d8d220174d9751b84bbb419bde50884",
+      "timing_model_sha256": "b01488028f144ee68fab63c4aebca6833e2feea5dc3f62bc17150b898b0f3a98",
+      "timing_action_sequence_sha256": "492dbbf9c40c6ae9f882f1db5633b6d2bc01359f8fd08a77e54ca66e011900e2",
+      "status": "completed",
+      "declared_success": true,
+      "steps_completed": 11,
+      "steps_total": 11,
+      "harness_attempt_status": "completed",
+      "observer_coverage_validated_by_harness": true,
+      "complete_verified_desktop_task": true,
+      "task_interval": {
+        "complete_step_sequence": true,
+        "task_seconds": 169.34686990000046,
+        "partial_through_last_completed_step_seconds": null,
+        "definition": "First step_started through final step_completed; excludes final verification."
+      },
+      "waits_by_kind_and_units": [
+        {
+          "kind": "correction",
+          "units": 1,
+          "requested_wait": {
+            "count": 1,
+            "total_seconds": 0.4531775091165093,
+            "minimum_seconds": 0.4531775091165093,
+            "median_seconds": 0.4531775091165093,
+            "p90_seconds": 0.4531775091165093,
+            "maximum_seconds": 0.4531775091165093,
+            "mean_seconds": 0.4531775091165093,
+            "sample_sd_seconds": null
+          },
+          "actual_wait": {
+            "count": 1,
+            "total_seconds": 0.46428259999811416,
+            "minimum_seconds": 0.46428259999811416,
+            "median_seconds": 0.46428259999811416,
+            "p90_seconds": 0.46428259999811416,
+            "maximum_seconds": 0.46428259999811416,
+            "mean_seconds": 0.46428259999811416,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_actual_wait": {
+            "count": 1,
+            "total_seconds": 0.46428259999811416,
+            "minimum_seconds": 0.46428259999811416,
+            "median_seconds": 0.46428259999811416,
+            "p90_seconds": 0.46428259999811416,
+            "maximum_seconds": 0.46428259999811416,
+            "mean_seconds": 0.46428259999811416,
+            "sample_sd_seconds": null
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 1,
+            "total_seconds": 0.011105090881604884,
+            "minimum_seconds": 0.011105090881604884,
+            "median_seconds": 0.011105090881604884,
+            "p90_seconds": 0.011105090881604884,
+            "maximum_seconds": 0.011105090881604884,
+            "mean_seconds": 0.011105090881604884,
+            "sample_sd_seconds": null
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "key",
+          "units": 1,
+          "requested_wait": {
+            "count": 586,
+            "total_seconds": 64.07300113603596,
+            "minimum_seconds": 0.037175514402895155,
+            "median_seconds": 0.10032992903041468,
+            "p90_seconds": 0.1627735984571524,
+            "maximum_seconds": 0.3,
+            "mean_seconds": 0.10933959238231393,
+            "sample_sd_seconds": 0.042186993815474014
+          },
+          "actual_wait": {
+            "count": 586,
+            "total_seconds": 69.01364729995475,
+            "minimum_seconds": 0.03733669999928679,
+            "median_seconds": 0.10955665000074077,
+            "p90_seconds": 0.17211314999985916,
+            "maximum_seconds": 0.3109965000003285,
+            "mean_seconds": 0.11777072918081016,
+            "sample_sd_seconds": 0.042634548872266954
+          },
+          "uninterrupted_actual_wait": {
+            "count": 586,
+            "total_seconds": 69.01364729995475,
+            "minimum_seconds": 0.03733669999928679,
+            "median_seconds": 0.10955665000074077,
+            "p90_seconds": 0.17211314999985916,
+            "maximum_seconds": 0.3109965000003285,
+            "mean_seconds": 0.11777072918081016,
+            "sample_sd_seconds": 0.042634548872266954
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 586,
+            "total_seconds": 4.986878870984698,
+            "minimum_seconds": 0.0,
+            "median_seconds": 0.008192817296800221,
+            "p90_seconds": 0.015136783116210029,
+            "maximum_seconds": 0.04005684621211025,
+            "mean_seconds": 0.008510032203045559,
+            "sample_sd_seconds": 0.0060549791620289955
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 2,
+          "requested_wait": {
+            "count": 3,
+            "total_seconds": 4.501514469482053,
+            "minimum_seconds": 0.9881781020376658,
+            "median_seconds": 1.4297976285684717,
+            "p90_seconds": 1.9527905168144264,
+            "maximum_seconds": 2.083538738875915,
+            "mean_seconds": 1.5005048231606841,
+            "sample_sd_seconds": 0.5510928793851355
+          },
+          "actual_wait": {
+            "count": 3,
+            "total_seconds": 4.530702399999427,
+            "minimum_seconds": 1.006410699999833,
+            "median_seconds": 1.438735199997609,
+            "p90_seconds": 1.9561922400011098,
+            "maximum_seconds": 2.085556500001985,
+            "mean_seconds": 1.5102341333331424,
+            "sample_sd_seconds": 0.5431141569842021
+          },
+          "uninterrupted_actual_wait": {
+            "count": 3,
+            "total_seconds": 4.530702399999427,
+            "minimum_seconds": 1.006410699999833,
+            "median_seconds": 1.438735199997609,
+            "p90_seconds": 1.9561922400011098,
+            "maximum_seconds": 2.085556500001985,
+            "mean_seconds": 1.5102341333331424,
+            "sample_sd_seconds": 0.5431141569842021
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 3,
+            "total_seconds": 0.02918793051737467,
+            "minimum_seconds": 0.0020177611260701056,
+            "median_seconds": 0.008937571429137314,
+            "p90_seconds": 0.016373592655561264,
+            "maximum_seconds": 0.018232597962167252,
+            "mean_seconds": 0.009729310172458224,
+            "sample_sd_seconds": 0.008136361046780664
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "read",
+          "units": 3,
+          "requested_wait": {
+            "count": 4,
+            "total_seconds": 11.409677880672358,
+            "minimum_seconds": 2.509466722771173,
+            "median_seconds": 2.775676517967744,
+            "p90_seconds": 3.1977872561156246,
+            "maximum_seconds": 3.348858121965696,
+            "mean_seconds": 2.8524194701680896,
+            "sample_sd_seconds": 0.35848689362615566
+          },
+          "actual_wait": {
+            "count": 4,
+            "total_seconds": 11.431642299998202,
+            "minimum_seconds": 2.5117638999981864,
+            "median_seconds": 2.7815129999999044,
+            "p90_seconds": 3.2050065900002664,
+            "maximum_seconds": 3.356852400000207,
+            "mean_seconds": 2.8579105749995506,
+            "sample_sd_seconds": 0.360558475698953
+          },
+          "uninterrupted_actual_wait": {
+            "count": 4,
+            "total_seconds": 11.431642299998202,
+            "minimum_seconds": 2.5117638999981864,
+            "median_seconds": 2.7815129999999044,
+            "p90_seconds": 3.2050065900002664,
+            "maximum_seconds": 3.356852400000207,
+            "mean_seconds": 2.8579105749995506,
+            "sample_sd_seconds": 0.360558475698953
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 4,
+            "total_seconds": 0.02196441932584481,
+            "minimum_seconds": 0.0022971772270135027,
+            "median_seconds": 0.00583648203216014,
+            "p90_seconds": 0.007474544582969456,
+            "maximum_seconds": 0.007994278034511026,
+            "mean_seconds": 0.005491104831461202,
+            "sample_sd_seconds": 0.0023851951474090764
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "review",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 11.248833364791608,
+            "minimum_seconds": 0.8463075621951575,
+            "median_seconds": 1.6903459027447725,
+            "p90_seconds": 2.8084455244376016,
+            "maximum_seconds": 3.622615058255493,
+            "mean_seconds": 1.8748055607986014,
+            "sample_sd_seconds": 0.9428647700997107
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 11.295517200000177,
+            "minimum_seconds": 0.8623550999982399,
+            "median_seconds": 1.6965539000011631,
+            "p90_seconds": 2.814066349999848,
+            "maximum_seconds": 3.6287742999993498,
+            "mean_seconds": 1.8825862000000295,
+            "sample_sd_seconds": 0.9405214215219142
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 11.295517200000177,
+            "minimum_seconds": 0.8623550999982399,
+            "median_seconds": 1.6965539000011631,
+            "p90_seconds": 2.814066349999848,
+            "maximum_seconds": 3.6287742999993498,
+            "mean_seconds": 1.8825862000000295,
+            "sample_sd_seconds": 0.9405214215219142
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.04668383520856856,
+            "minimum_seconds": 0.004652133470733899,
+            "median_seconds": 0.006568946756034477,
+            "p90_seconds": 0.011905699422564808,
+            "maximum_seconds": 0.016047537803082434,
+            "mean_seconds": 0.007780639201428093,
+            "sample_sd_seconds": 0.004211460550163552
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "switch",
+          "units": 1,
+          "requested_wait": {
+            "count": 16,
+            "total_seconds": 6.987355495493718,
+            "minimum_seconds": 0.23692016382284256,
+            "median_seconds": 0.3889344354807456,
+            "p90_seconds": 0.6232945423356948,
+            "maximum_seconds": 0.7692817679702754,
+            "mean_seconds": 0.4367097184683574,
+            "sample_sd_seconds": 0.14421159005261386
+          },
+          "actual_wait": {
+            "count": 16,
+            "total_seconds": 7.105358600001637,
+            "minimum_seconds": 0.2370770999987144,
+            "median_seconds": 0.3930485000000772,
+            "p90_seconds": 0.6278945000012754,
+            "maximum_seconds": 0.7834906000025512,
+            "mean_seconds": 0.4440849125001023,
+            "sample_sd_seconds": 0.14453310721065005
+          },
+          "uninterrupted_actual_wait": {
+            "count": 16,
+            "total_seconds": 7.105358600001637,
+            "minimum_seconds": 0.2370770999987144,
+            "median_seconds": 0.3930485000000772,
+            "p90_seconds": 0.6278945000012754,
+            "maximum_seconds": 0.7834906000025512,
+            "mean_seconds": 0.4440849125001023,
+            "sample_sd_seconds": 0.14453310721065005
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 16,
+            "total_seconds": 0.1180031045079186,
+            "minimum_seconds": 0.00015693617587184128,
+            "median_seconds": 0.00699890503513495,
+            "p90_seconds": 0.014274868617060593,
+            "maximum_seconds": 0.015835215433851246,
+            "mean_seconds": 0.007375194031744912,
+            "sample_sd_seconds": 0.004935492856349223
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        },
+        {
+          "kind": "think",
+          "units": 1,
+          "requested_wait": {
+            "count": 6,
+            "total_seconds": 8.37935339122616,
+            "minimum_seconds": 0.35,
+            "median_seconds": 1.1307254243922171,
+            "p90_seconds": 2.4172138963749923,
+            "maximum_seconds": 3.4795099363578204,
+            "mean_seconds": 1.3965588985376933,
+            "sample_sd_seconds": 1.079907327122669
+          },
+          "actual_wait": {
+            "count": 6,
+            "total_seconds": 8.426521199999115,
+            "minimum_seconds": 0.3531187999979011,
+            "median_seconds": 1.1423967000009725,
+            "p90_seconds": 2.425445700000637,
+            "maximum_seconds": 3.488529100002779,
+            "mean_seconds": 1.4044201999998525,
+            "sample_sd_seconds": 1.0817418391725395
+          },
+          "uninterrupted_actual_wait": {
+            "count": 6,
+            "total_seconds": 8.426521199999115,
+            "minimum_seconds": 0.3531187999979011,
+            "median_seconds": 1.1423967000009725,
+            "p90_seconds": 2.425445700000637,
+            "maximum_seconds": 3.488529100002779,
+            "mean_seconds": 1.4044201999998525,
+            "sample_sd_seconds": 1.0817418391725395
+          },
+          "uninterrupted_nonnegative_overrun": {
+            "count": 6,
+            "total_seconds": 0.04716780877295512,
+            "minimum_seconds": 0.0019130163974271364,
+            "median_seconds": 0.005843646956292192,
+            "p90_seconds": 0.01522434923252125,
+            "maximum_seconds": 0.021429534820083695,
+            "mean_seconds": 0.007861301462159187,
+            "sample_sd_seconds": 0.007163490432448404
+          },
+          "interrupted_count": 0,
+          "missing_actual_count": 0
+        }
+      ],
+      "resources": {
+        "wall_seconds": 175.30583839999963,
+        "controller_cpu_seconds": 20.609375,
+        "controller_peak_rss_bytes": 76419072.0,
+        "sample_interval_seconds": 0.25
+      },
+      "process_trace": {
+        "available": false,
+        "event_count": 0,
+        "source": "Controller-started WMI collector, when declared available"
+      },
+      "external_observer": {
+        "present": true,
+        "recognized_schema": true,
+        "available": true,
+        "source": "Separate OS inventory and resource snapshot observer",
+        "process_start_event_trace": false,
+        "human_reference": false,
+        "status": "completed",
+        "stop_reason": "stop_file",
+        "interval_seconds": 0.1,
+        "duration_seconds": 179.84064149999904,
+        "snapshot_count": 1791.0,
+        "process_count": 40.0,
+        "read_error_count": 2.0,
+        "cadence": {
+          "median_gap_seconds": 0.10040389999994659,
+          "max_gap_seconds": 0.11145849999957136,
+          "overrun_count": 0.0
+        },
+        "scopes": {
+          "controller": {
+            "process_count": 1.0,
+            "observed_cpu_delta_seconds": 20.640625,
+            "peak_sampled_rss_bytes": 77758464.0,
+            "single_sample_process_count": 0.0
+          },
+          "chrome": {
+            "process_count": 37.0,
+            "observed_cpu_delta_seconds": 65.859375,
+            "peak_sampled_rss_bytes": 4884668416.0,
+            "single_sample_process_count": 2.0
+          },
+          "notepad": {
+            "process_count": 2.0,
+            "observed_cpu_delta_seconds": 4.53125,
+            "peak_sampled_rss_bytes": 135544832.0,
+            "single_sample_process_count": 1.0
+          },
+          "controller_descendants": {
+            "process_count": 0.0,
+            "observed_cpu_delta_seconds": 0.0,
+            "peak_sampled_rss_bytes": 0.0,
+            "single_sample_process_count": 0.0
+          }
+        },
+        "observer_resources": {
+          "cpu_seconds": 43.578125,
+          "peak_sampled_rss_bytes": 30576640.0
+        },
+        "limitations": [
+          "Separate process sampling is not a Sysmon or ETW event stream and does not establish human similarity.",
+          "CPU covers first-to-last sampled observation per process identity; it may omit lifetime boundaries.",
+          "Scope RSS is the maximum simultaneous sum of sampled process RSS; shared memory can be counted more than once.",
+          "Application cohorts are nonexclusive and can include unrelated work; scopes may overlap and must not be added together.",
+          "Observer overhead is separate; no whole-system total is inferred."
+        ]
+      },
+      "observer_condition_sha256": "8ed3b806ce28c7e113ce694b53107089f9c16e74ef171cf8f6354da8bb2cc5af",
+      "warnings": []
+    }
+  ],
+  "pairs": [
+    {
+      "id": "P001",
+      "run_ids": [
+        "R001",
+        "R002"
+      ],
+      "matching_metadata_complete": true,
+      "performance_comparable": true,
+      "matching_evidence": "Operator-declared version/setup plus run metadata; not independently verified",
+      "reasons": [],
+      "contextual_minus_fixed": {
+        "task_seconds": 9.448231399997894,
+        "wall_seconds": 9.35499720000007,
+        "controller_cpu_seconds": 0.265625,
+        "controller_peak_rss_bytes": -49152.0
+      }
+    },
+    {
+      "id": "P002",
+      "run_ids": [
+        "R003",
+        "R004"
+      ],
+      "matching_metadata_complete": true,
+      "performance_comparable": true,
+      "matching_evidence": "Operator-declared version/setup plus run metadata; not independently verified",
+      "reasons": [],
+      "contextual_minus_fixed": {
+        "task_seconds": 11.257557500000985,
+        "wall_seconds": 10.987739399999555,
+        "controller_cpu_seconds": 0.21875,
+        "controller_peak_rss_bytes": -106496.0
+      }
+    },
+    {
+      "id": "P003",
+      "run_ids": [
+        "R005",
+        "R006"
+      ],
+      "matching_metadata_complete": true,
+      "performance_comparable": true,
+      "matching_evidence": "Operator-declared version/setup plus run metadata; not independently verified",
+      "reasons": [],
+      "contextual_minus_fixed": {
+        "task_seconds": 13.949734900001204,
+        "wall_seconds": 13.781063200000062,
+        "controller_cpu_seconds": 1.859375,
+        "controller_peak_rss_bytes": 323584.0
+      }
+    },
+    {
+      "id": "P004",
+      "run_ids": [
+        "R007",
+        "R008"
+      ],
+      "matching_metadata_complete": true,
+      "performance_comparable": true,
+      "matching_evidence": "Operator-declared version/setup plus run metadata; not independently verified",
+      "reasons": [],
+      "contextual_minus_fixed": {
+        "task_seconds": 5.550391600001603,
+        "wall_seconds": 5.4239342999972,
+        "controller_cpu_seconds": 1.21875,
+        "controller_peak_rss_bytes": 151552.0
+      }
+    },
+    {
+      "id": "P005",
+      "run_ids": [
+        "R009",
+        "R010"
+      ],
+      "matching_metadata_complete": true,
+      "performance_comparable": true,
+      "matching_evidence": "Operator-declared version/setup plus run metadata; not independently verified",
+      "reasons": [],
+      "contextual_minus_fixed": {
+        "task_seconds": 17.10193150000123,
+        "wall_seconds": 16.810090400002082,
+        "controller_cpu_seconds": 1.46875,
+        "controller_peak_rss_bytes": 163840.0
+      }
+    }
+  ],
+  "limitations": [
+    "No human participant or human reference data was collected. Timing variation is not evidence of human similarity.",
+    "No official score, winning probability, statistical significance or population reliability is inferred.",
+    "Matching source version, environment and capture metadata is based on operator declarations, not independent verification.",
+    "Task interval runs from the first step start through the final step completion; it excludes preparation, countdown, final verification and cleanup.",
+    "Requested delays and measured controller waits are not measurements of native input delivery; application waits are not fully captured by timing events.",
+    "Controller CPU and sampled peak RSS cover the full recorder window, not just the task interval, and exclude application resource use.",
+    "Process observations are limited samples and may miss processes or peaks; named applications may include unrelated work.",
+    "The declared environment may reuse warm, shared Chrome/Notepad processes; background activity is not assumed isolated.",
+    "Repeated timing events within one run are correlated observations, not independent experimental replicates.",
+    "A fixed/contextual comparison can measure the effect of the chosen timing policy; it cannot validate human authenticity."
+  ],
+  "paired_delta_summary": {
+    "task_seconds": {
+      "pairs": 5,
+      "minimum": 5.550391600001603,
+      "median": 11.257557500000985,
+      "maximum": 17.10193150000123
+    },
+    "wall_seconds": {
+      "pairs": 5,
+      "minimum": 5.4239342999972,
+      "median": 10.987739399999555,
+      "maximum": 16.810090400002082
+    },
+    "controller_cpu_seconds": {
+      "pairs": 5,
+      "minimum": 0.21875,
+      "median": 1.21875,
+      "maximum": 1.859375
+    },
+    "controller_peak_rss_bytes": {
+      "pairs": 5,
+      "minimum": -106496.0,
+      "median": 151552.0,
+      "maximum": 323584.0
+    }
+  }
+}

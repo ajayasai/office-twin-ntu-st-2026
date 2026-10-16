@@ -1,6 +1,6 @@
 # Initial telemetry observations — 16 October 2026
 
-These three native trials used commit `0d04ae77d33301b0c614289486355753ce8c8dff`. All completed eleven steps and saved-output checks. Only the first two form a complete fixed/contextual pair; the third is retained as an unpaired attempt.
+These three native trials used commit `0d04ae77d33301b0c614289486355753ce8c8dff`. All completed eleven steps and saved-output checks. The first two were an attempted fixed/contextual pair, but the first opened the Sheet through an extra Explorer launch while the second reused it. The analyzer excludes that pair from performance comparisons because its action sequences differ. The third is retained as an unpaired attempt. There are zero comparable pairs in this initial series.
 
 The new observer exposed six Notepad process identities with Python parentage and OS creation timestamps within the observation windows (two per trial). Chrome also had sampled Explorer-parent relationships. These are real sampled observations, not reconstructed process-start events.
 

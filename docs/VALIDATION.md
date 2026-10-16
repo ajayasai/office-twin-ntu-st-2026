@@ -1,12 +1,34 @@
-# Observed validation — 15 October 2026
+# Observed validation — 16 October 2026 update
 
-The latest three native runs each completed all **11 steps**, including a saved Google Sheets comparison and a reopened, correct Notepad recommendation. The third run changed supplier order and price; the recommendation changed from Atlas at $600 to Crest at $525. These are small functional checks on one machine, not a reliability estimate or a human-similarity benchmark.
+**The revised series completed 10 of 10 native tasks, each with 11/11 steps, yielding five comparable fixed/contextual pairs.** Fixed task duration had a median of **153.13 s** (range 152.24–158.99); contextual duration had a median of **167.08 s** (158.78–169.35). The within-pair contextual-minus-fixed difference had a median of **+11.26 s**, ranging from +5.55 to +17.10 s. These are descriptive results on one warm, shared Windows host, not a population reliability or significance claim.
+
+Each run recorded 586 single-key controller waits. Across runs, their 90th percentiles were **109.50–110.08 ms for fixed** and **161.01–177.73 ms for contextual**. This establishes measured policy variation and its cost; the waits are not OS input-delivery timestamps and do not validate human behavior.
+
+The separate observer collected **17,018 snapshots**. Per-run median gaps were 100.39–100.44 ms; the largest gap was **510.89 ms**, with one overrun. It observed eight per-run Notepad identities created within capture windows with compatible Explorer parents, and ten preexisting Notepad observations with unresolved parents. No Notepad-to-Python parent was observed in this revised series. Reused warm processes can appear in multiple runs; polling can miss short-lived processes, so these counts do not prove complete launch coverage.
+
+Final read-only Sheet inspection confirmed all six formulas and their saved values, supporting Atlas at SGD 600. That separate formula-source inspection applies to the last saved Sheet; every native trial additionally passed its runtime displayed-value and saved-report checks.
+
+Runtime commit `051ec6871425ddaba9faeffed297a2168620e58c` remained fixed across the ten revised attempts. Normal scale 1, seeds 211/223/227/229/233, alternating policy order, default scenario, no video recording. Every attempt is retained; no revised attempt was excluded. The [full benchmark](benchmark/README.md) records hashes, scoped resource measurements, actual sampling gaps and observer overhead. The [figure](media/benchmark.png) plots all five comparable pairs.
+
+**85 automated tests passed** before the revised native series. They cover scenario decisions, bounded timing, cancellation/failure evidence, window targeting, real Explorer report opening, observer PID identity/races, scoped resources, benchmark validation and sanitized exports. Tests and automated task runs are not manual observations. No human participant was available; human reference n=0.
+
+The [initial observer series](benchmark-initial/README.md) completed three native tasks on the previous runtime but yielded zero comparable pairs. Its attempted pair differed in Sheet-opening actions; the third trial was unpaired. Six sampled Notepad identities had compatible Python parents. That prompted an actual Explorer shortcut-opening change. The harness stopped before its next trial when source changed. Initial, revised and 15 October runs remain separate.
+
+On this host, Sysmon was unavailable; Security-log access and WMI process-start collection were denied. The separate Toolhelp/psutil observer is our read-only sampling instrument, not an independent auditor or a process-start event stream. No logging/security settings or process-parent metadata were altered. Chrome/Notepad cohorts are shared and nonexclusive. Observer CPU and RSS are reported separately.
+
+The existing [video](https://youtu.be/0OpIetkSomM) documents the historical functional run below. It does not show the revised launch mechanism or provide video evidence for the ten new trials. See [submission status](../SUBMISSION.md) for the source archive and Devpost update.
+
+---
+
+# Historical functional validation — 15 October 2026
+
+The three final 15 October native runs each completed all **11 steps**, including a saved Google Sheets comparison and a reopened, correct Notepad recommendation. The third run changed supplier order and price; the recommendation changed from Atlas at $600 to Crest at $525. These are small functional checks on one machine, not a reliability estimate or a human-similarity benchmark.
 
 The workflow used **Chrome → Google Sheets → Notepad** on Windows with Python 3.14. Runtime actions used desktop input and UI Automation. Google connectors were used for fixture setup and independent readback, not to write the sheet during a native run. The task uses validated synthetic scenario data; it does not autonomously extract arbitrary websites.
 
 Observed setup: Windows 11 Home Single Language, build 26200; Python 3.14.2; Chrome 155.0.8059.40; Notepad 11.2607.14.0; Intel Core Ultra 7 155U (14 logical processors); 31.55 GiB OS-reported RAM; primary display 1920×1200. Applications were already installed and Chrome was signed in to the dedicated test Sheet. This was not a clean-machine installation test.
 
-## Latest normal-speed runs
+## Historical normal-speed runs
 
 | Run ID | Condition | Result | Wall time | Controller CPU | Sampled controller peak RSS |
 | --- | --- | --- | ---: | ---: | ---: |
@@ -38,11 +60,11 @@ Across the six documented Sheets development attempts, four passed and two faile
 
 Raw local evidence, videos, credentials, personal settings and the virtual environment are excluded from the source archive. The [source repository is public](https://github.com/ajayasai/office-twin-ntu-st-2026). The narrated [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in YouTube Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page.
 
-Submission was confirmed in Devpost on **16 October 2026 (SGT)** by the "Project submitted!" message and the submitted competition status. The joined team is Ajay Asaithambi (`@ajay007`, leader), Siddharth Paliwal (`@siddhartha-paliwal21`), and Sourabh Sooraj (`@sourabhsooraj97`). The uploaded source archive corresponds to commit [`5dd7181317838d9cfa52ba023cf02037539ac5ff`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/5dd7181317838d9cfa52ba023cf02037539ac5ff). Subsequent submission-status documentation commits do not indicate new test runs or a rebuilt/replaced uploaded artifact.
+Submission was confirmed in Devpost on **16 October 2026 (SGT)** by the "Project submitted!" message and the submitted competition status. The joined team is Ajay Asaithambi (`@ajay007`, leader), Siddharth Paliwal (`@siddhartha-paliwal21`), and Sourabh Sooraj (`@sourabhsooraj97`). The uploaded source archive corresponds to commit [`5dd7181317838d9cfa52ba023cf02037539ac5ff`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/5dd7181317838d9cfa52ba023cf02037539ac5ff). That original package is retained locally; the 16 October evidence revision is documented above and replacement-upload status is tracked in SUBMISSION.md.
 
 ## Automated verification and limits
 
-**41 unit tests passed** in the final suite, including five checks for the manual reference collector. The earlier suite contained 36 tests. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
+**41 unit tests passed** in the 15 October suite, including five checks for the manual reference collector. The earlier suite contained 36 tests. They cover scenario validation and changed decisions, timing bounds and reproducibility, CPU delta reporting, failure/cancellation reporting, HTML escaping, comparison scope, and unavailable process tracing. They do not replace native end-to-end runs.
 
 The [manual reference collector](MANUAL_BASELINE.md) is implemented and tested. It records explicit participant start/stop, optional phase markers, and resource snapshots for selected PIDs; it records no task keystrokes, pointer activity or screen content. Outcomes remain participant-reported and unverified. Collector tests are not human reference observations, and no manual run has been collected.
 

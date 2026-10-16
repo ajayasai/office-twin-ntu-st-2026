@@ -1,6 +1,6 @@
 # External process-parent evidence
 
-The separate observer sampled real OS process identities and parent metadata. The tables publish fixed application roles and aggregate counts only.
+The separate observer sampled real OS process identities and parent metadata. The tables publish fixed application roles, aggregate counts and pseudonymized process observations.
 
 **This is sampled process evidence, not a process-start trace.** Creation age uses OS-reported timestamps. Preexisting Chrome parentage does not establish how this run launched Chrome; application cohorts include unrelated activity. Human reference runs: **0**.
 

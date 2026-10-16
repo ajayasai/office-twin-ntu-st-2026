@@ -1,41 +1,30 @@
-# Submission checklist
+# Submission status and evidence revision
 
-**Status: submitted on 16 October 2026 (SGT).** Devpost displayed **"Project submitted!"** and **"SUBMITTED TO NTU x ST Engineering Hackathon"**. The joined team is:
+**The entry was submitted on 16 October 2026 (SGT).** Devpost displayed “Project submitted!” and “SUBMITTED TO NTU x ST Engineering Hackathon”. Team:
 
-- **Ajay Asaithambi** — `@ajay007`, team leader.
+- **Ajay Asaithambi** — `@ajay007`, team leader and project owner.
 - **Siddharth Paliwal** — `@siddhartha-paliwal21`.
 - **Sourabh Sooraj** — `@sourabhsooraj97`.
 
-**Team requirement:** 3–5 eligible NTU students. **Target submission:** 17 October 2026, 21:00 SGT. **Official cutoff:** 18 October 2026, 00:00 SGT, immediately after Saturday ends. [Official schedule](https://ntu-x-st-engineering-hackathon.devpost.com/details/dates)
+Official cutoff: **18 October 2026, 00:00 SGT**. [Official schedule](https://ntu-x-st-engineering-hackathon.devpost.com/details/dates).
 
-## Ready
+## Revised evidence prepared on 16 October
 
-- [x] Public [GitHub source repository](https://github.com/ajayasai/office-twin-ntu-st-2026).
-- [x] Three latest native Chrome → Google Sheets → Notepad runs completed all 11 steps at timing scale 1; 41 automated tests pass.
-- [x] Saved text and displayed-sheet checks passed. Separate connector readback verified the alternate scenario's six formulas and Crest recommendation at SGD 525.
-- [x] [Validation history](docs/VALIDATION.md), [architecture and provenance](docs/ARCHITECTURE.md), [setup instructions](docs/GOOGLE_SHEETS.md), and [Devpost narrative](docs/DEVPOST_ENTRY.md) are prepared.
-- [x] Final narrated video is 180.13 seconds, preserving the continuous 162.13-second source run at 1× between an eight-second introduction and ten-second closing card.
-- [x] [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page.
+- [x] Ten normal-speed native tasks, all 11/11 steps; five comparable policy pairs, no revised attempts excluded.
+- [x] 85 passing automated tests; separate observer coverage, overhead and pseudonymized process-parent evidence.
+- [x] Real Explorer report-opening change; original Python-parent observations and excluded comparison retained.
+- [x] Six final saved formulas and all eighteen data/result values checked through a separate read-only connector.
+- [x] Updated [benchmark](docs/benchmark/README.md), [validation](docs/VALIDATION.md), [architecture](docs/ARCHITECTURE.md), [telemetry methods](docs/TELEMETRY.md), [Devpost narrative](docs/DEVPOST_ENTRY.md) and chart.
+- [ ] Publish the revised source and replace the Devpost judges' evidence ZIP; verify the saved story and submitted status.
 
-The local final video is `dist/office-twin-submission.mp4`. Raw run evidence and videos are excluded from the source archive. The public video and repository links above are the submission links.
+The release packager records its exact source commit, clean/dirty state and artifact hashes in `dist/manifest.json`. The revised runtime tested was `051ec6871425ddaba9faeffed297a2168620e58c`; later reporting/documentation commits do not imply a different tested runtime. The original submitted archive based on `5dd7181317838d9cfa52ba023cf02037539ac5ff` is preserved locally under `runs/submitted-20261016`.
 
-## Submission verification
+## Existing submitted media and links
 
-- [x] Confirm all three team members have joined the Devpost entry, with Ajay as team leader.
-- [x] Verify the saved Devpost title, narrative, technology tags, repository URL, image, and embedded video in the project preview. Ajay's contribution reads "Team leader and project owner."
-- [x] Upload the review ZIP and save the judges' GitHub field.
-- [x] Verify watch-page playback. The local edit has readable captions and AAC narration; measured audio has no clipping.
-- [x] Push the reviewed documentation and source; preserve the package commit and artifact hashes in `dist/manifest.json`.
-- [x] Complete the final rules/Terms confirmations with explicit user approval.
-- [x] Submit after the required teammates joined, before the target time above.
-- [x] Verify the success toast and submitted competition status in Devpost.
+- [Devpost entry](https://devpost.com/software/office-twin).
+- [Public GitHub source](https://github.com/ajayasai/office-twin-ntu-st-2026).
+- [Unlisted YouTube demo](https://youtu.be/0OpIetkSomM), 180.13 seconds, with the continuous 162.13-second native run at 1×. This is the **15 October functional version**, before the revised launch/observer changes. It is not a recording of the new benchmark. Synthetic Microsoft Zira narration is disclosed.
 
-The uploaded source archive is based on commit [`5dd7181317838d9cfa52ba023cf02037539ac5ff`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/5dd7181317838d9cfa52ba023cf02037539ac5ff). Its artifact hashes remain in `dist/manifest.json`. Later documentation commits record submission status only; they do not create new test results, rebuild the package or replace the uploaded archive.
+The three joined teammates and rules/Terms declaration were confirmed before the original submission. Updating the existing entry does not create a new team or a second submission.
 
-## Claims to preserve
-
-The demonstrated task is a controlled, scenario-driven workflow, not arbitrary website understanding. Four of six documented Sheets development attempts completed; two earlier failures and their fixes remain in the evidence history. The three latest runs differ in seed, scenario and recording setup, so their durations are not a controlled efficiency comparison.
-
-No human baseline or Sysmon trace was collected; WMI process-start collection returned Access denied. Resource figures cover the Python controller, not the full application workload. The manual collector is implemented, but its tests are not human reference runs. Excel/Word support remains untested. AI assistance and synthetic narration are disclosed.
-
-No private organizer brief has been supplied. Apply any additional instructions if the team later provides one; no special approval requirement for Google Sheets or AI assistance is inferred from the public rules.
+No human participant was available: **human reference n=0**. No human similarity, full process-event coverage, whole-system efficiency or official score is claimed. Optional native Excel/Word support remains untested. AI assistance is disclosed; no private organizer brief has been supplied.
