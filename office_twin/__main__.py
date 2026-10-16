@@ -3,13 +3,15 @@ import importlib.util
 import json
 import platform
 import sys
+from .timing import TIMING_MODES
 
 
 def main():
     parser = argparse.ArgumentParser(description="Office Twin — reproducible desktop work sessions")
     parser.add_argument("--mode", choices=["simulate", "desktop"], help="Omit to launch the control panel")
     parser.add_argument("--workflow", choices=["notepad", "sheets", "office"], default="notepad")
-    parser.add_argument("--timing", choices=["contextual", "fixed"], default="contextual")
+    parser.add_argument("--timing", choices=TIMING_MODES, default="contextual",
+                        help="human-informed fits requested key delays to supplied human aggregates; native intervals are unverified")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--scale", type=float, default=1.0, help="Timing multiplier; 0 is a fast plan/test mode")
     parser.add_argument("--output", help="Directory containing unique per-run folders")

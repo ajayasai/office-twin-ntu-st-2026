@@ -34,7 +34,7 @@ flowchart LR
 | `fixtures.py` | Validate input; derive totals, eligibility and the correct recommendation; create isolated synthetic fixture files. |
 | `runner.py` | Orchestrate a run; persist results even after failure or cancellation. |
 | `desktop.py` / `sheets.py` | Control the documented desktop workflow using pywinauto, window checks and a dedicated Sheet URL/tab binding. |
-| `timing.py` | Produce seeded fixed or contextual delays for reading, typing, switching, review and correction. |
+| `timing.py` | Produce legacy fixed/contextual delays or optional human-informed requested key delays fitted to the supplied unassisted median/p90. Other action types retain contextual engineering defaults. |
 | `evidence.py` | Record controller actions and measure controller CPU time/RSS with psutil. |
 | `process_trace.py` | Attempt passive Windows process-start observation; report unavailable capture explicitly. |
 | `observer.py` / `tools/observe_run.py` | Read process identities, parent metadata and resource counters in a separate process; report sampling gaps, nonexclusive application cohorts and observer overhead. |
@@ -59,7 +59,7 @@ The benchmark records the runtime and measurement source hashes, starts the obse
 
 The desktop must remain unlocked and idle. Window checks and bounded waits reduce targeting errors, but do not establish that every focused child control is correct. Escape or the GUI cancellation control stops a run. Failures preserve their partial evidence and must not be rewritten as successful attempts. The recommendation deliberately includes a corrected typing error; that correction is scripted, not evidence that the model has learned human mistakes.
 
-Contextual timing is reproducible at the policy level through its seed. Application waits and OS scheduling vary. Timing defaults have not been calibrated to human observations. The runtime does not fabricate OS logs, conceal the controller or override process-parent metadata.
+Contextual timing is reproducible at the policy level through its seed. Application waits and OS scheduling vary. Legacy timing defaults remain uncalibrated; the optional [human-informed mode](human-timing/README.md) fits two supplied unassisted aggregate statistics as requested-delay targets, with a separate key random stream. It does not validate delivered input intervals or key holds. The runtime does not fabricate OS logs, conceal the controller or override process-parent metadata.
 
 The manual collector performs no desktop automation and captures no task keystrokes, pointer activity, window titles or screen content. It measures explicitly selected application processes separately from its own overhead. Its output cannot establish human participation or correct task completion; those require separate evidence. The current automated suite has 144 passing tests, including resource-sampling regressions, manual-collector, event-analysis and guarded-workload checks. The automated benchmark contains zero human-reference runs. The subsequent [720-second unassisted human baseline](human-baseline/README.md) is a participant-supplied measurement summary, including actual measured process ancestry; it was not produced by this collector and its raw input-event and resource logs were not supplied.
 

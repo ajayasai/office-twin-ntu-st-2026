@@ -1,10 +1,14 @@
 # Observed validation — 16 October 2026 update
 
-## Current resource-sampler validation
+## Current human-informed timing validation
+
+The optional `human-informed` profile uses the supplied unassisted median and p90 as requested key-delay targets. The [new validation record](human-timing/README.md) documents the fitting assumptions, one million generated samples, current software tests and a plan-only integration check. No native workload, new human task, input capture or app restart is part of this update. The original human aggregate and all historical evidence remain unchanged.
+
+## Earlier resource-sampler validation
 
 The [resource-sampling fix](resource-sampling-fix/README.md) passes **144 automated tests** and **19/19 noninteractive Windows integration checks**. Five new regressions cover reused process IDs, stale inventory metadata, descendant selection and inaccessible/reused parents. The live probe excluded 0.65625 CPU-seconds of pre-observation work, measured 0.78125 CPU-seconds matching fresh OS readings, and matched 37 stable Chrome/Notepad identities. It started only an owned temporary Python workload, with no app restart, office-task input, human run, input hooks or ETW capture.
 
-This changes `office_twin/evidence.py`; the other 13 runtime modules match the historical native benchmark after line-ending normalization. The measurements below remain evidence of their original frozen runtime. No new performance improvement or native-workflow result is claimed. The supplied unassisted baseline is retained unchanged. Published test logs, source hashes, integration summary, original probe source and preserved-evidence hashes are linked from the new validation page.
+That checkpoint changed `office_twin/evidence.py`; its other 13 runtime modules matched the historical native benchmark after line-ending normalization. The later timing revision changes additional modules. The sampler and observer still match their integration-evidence source hashes. Measurements below retain their original frozen runtime; no new task-performance improvement or native-workflow result is claimed. Published logs, hashes, integration summary, original probe and preserved-evidence hashes remain on the sampler validation page.
 
 ## Historical rundown identity validation
 
@@ -112,6 +116,6 @@ At the 15 October checkpoint, the [manual reference collector](MANUAL_BASELINE.m
 
 The passive WMI process-start collector returned **Access denied** on this host. No independent Sysmon export was collected. Controller action logs and process snapshots must not be presented as independent Sysmon evidence. Security and logging settings were not changed.
 
-At the 15 October checkpoint, no unassisted human baseline had been supplied. Current evidence now includes the unassisted aggregate record above, while retained human input-event traces remain unavailable and the timing parameters remain engineering defaults. No human-indistinguishability, general desktop autonomy, arbitrary website extraction or official benchmark score is claimed. The optional native Excel/Word workflow remains untested because Office activation was unavailable. Desktop tests require an idle, unlocked session and the documented app state; window guards do not prove every focused child control is correct.
+At the 15 October checkpoint, no unassisted human baseline had been supplied. Current evidence includes the unassisted aggregate record and the later optional human-informed requested key-delay profile. Legacy policies and non-key parameters remain engineering defaults, and retained human input-event traces remain unavailable. No human-indistinguishability, general desktop autonomy, arbitrary website extraction or official benchmark score is claimed. The optional native Excel/Word workflow remains untested because Office activation was unavailable. Desktop tests require an idle, unlocked session and the documented app state; window guards do not prove every focused child control is correct.
 
 The next evaluation step is additional unassisted manual references with retained traces and matched boundaries under [EVALUATION.md](EVALUATION.md), followed by reproduction on the intended demonstration machine and confirmation of the private organizer brief.

@@ -9,6 +9,7 @@ from tkinter import ttk, messagebox
 import webbrowser
 
 from .runner import RunConfig, run
+from .timing import TIMING_MODES
 
 
 class ControlPanel:
@@ -48,7 +49,7 @@ class ControlPanel:
         for col, (label, var, values) in enumerate([
             ("Execution", self.mode, ["simulate", "desktop"]),
             ("Workflow", self.workflow, ["notepad", "sheets", "office"]),
-            ("Timing policy", self.timing, ["contextual", "fixed"])]):
+            ("Timing policy", self.timing, list(TIMING_MODES))]):
             ttk.Label(controls, text=label).grid(row=0, column=col, sticky="w", padx=(0, 18))
             ttk.Combobox(controls, textvariable=var, values=values, state="readonly", width=18).grid(row=1, column=col, sticky="w", padx=(0, 18), pady=(6, 16))
         ttk.Label(controls, text="Seed").grid(row=0, column=3, sticky="w")

@@ -143,7 +143,8 @@ def generate_report(run_dir: Path) -> Path:
         trace_panel = f'''<section class="panel"><h2>OS process-start trace</h2><div class="facts"><span>Status <strong>{trace_status}</strong></span><span>Provider <strong>{_escape(process_trace.get("provider", "Not declared"))}</strong></span><span>Events <strong>{_format(process_trace.get("event_count"), precision=0)}</strong></span></div><p class="detail">{_escape(process_trace.get("reason", "No process-trace status was supplied for this run."))}</p><p class="muted">WMI process-start notifications are not Sysmon records. They do not prove UI input or document edits; existing applications may produce no new start event. App-name matches do not establish workload attribution.</p>{trace_link}</section>'''
     peak_rss = _number(resources.get("controller_peak_rss_bytes"))
     limitation_items = [
-        "Timing defaults are an uncalibrated synthetic model. No human reference study or human indistinguishability result is claimed.",
+        timing.get("calibration", "Timing defaults are an uncalibrated synthetic model."),
+        "Aggregate target fit does not establish delivered key intervals, key-hold timing or human indistinguishability.",
         "Requested delays are policy outputs, not measurements of delivered input intervals or proof of successful task completion.",
         "Event records are controller observations. They are not independent Sysmon logs, hardware-originated input, or an external audit.",
         "Resource totals cover controller CPU and sampled controller memory. Application snapshots may include existing or unrelated processes and miss brief peaks.",

@@ -56,7 +56,8 @@ def run(config: RunConfig, cancel=None, on_event=None):
                "config": asdict(config), "timing": policy.metadata(), "status": "starting",
                "success": False, "steps_completed": 0, "run_directory": str(run_dir),
                "limitations": ["Agent event logs are self-reported, not independent Sysmon evidence.",
-                               "Timing parameters are illustrative until calibrated with human reference runs.",
+                               policy.metadata()["calibration"],
+                               "Requested delays do not verify delivered key intervals or key-hold durations.",
                                "No claim of human indistinguishability is made."]}
 
     def emit(event):

@@ -11,6 +11,19 @@ from office_twin.compare import generate_comparison_report
 
 
 class RunnerTests(unittest.TestCase):
+    def test_human_informed_sheets_plan_is_noninteractive_and_reports_scope(self):
+        with tempfile.TemporaryDirectory() as output, patch.dict("sys.modules", {"office_twin.desktop": None, "office_twin.sheets": None, "pywinauto": None}):
+            summary = run(RunConfig(mode="simulate", workflow="sheets", timing="human-informed", scale=0, output=output))
+            saved, events = self.read_run(summary)
+            self.assertEqual(saved["status"], "plan_completed")
+            self.assertEqual(saved["steps_completed"], 11)
+            self.assertFalse(saved["verification"]["native_verified"])
+            self.assertFalse(saved["timing"]["reference_fit"]["native_input_intervals_verified"])
+            self.assertTrue(all(e["delay_seconds"] == 0 for e in events if e["event"] == "timing"))
+            report = (Path(output) / saved["run_id"] / "report.html").read_text(encoding="utf-8")
+            self.assertIn("Participant-aggregate-informed", report)
+            self.assertIn("key-hold", report)
+
     def read_run(self, summary):
         root = Path(summary["run_directory"])
         saved = json.loads((root / "summary.json").read_text(encoding="utf-8"))

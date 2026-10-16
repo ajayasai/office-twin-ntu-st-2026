@@ -1,6 +1,10 @@
 import unittest
+import hashlib
+import json
+from pathlib import Path
 
-from office_twin.timing import PROFILES, TimingPolicy
+from office_twin.timing import (PROFILES, TimingPolicy, HUMAN_BASELINE_PATH,
+                              HUMAN_BASELINE_SHA256, HUMAN_KEY_BOUNDS)
 
 
 class TimingPolicyTests(unittest.TestCase):
@@ -44,6 +48,57 @@ class TimingPolicyTests(unittest.TestCase):
         policy.sample("review")
         self.assertEqual(policy.metadata()["sample_count"], 1)
         self.assertIn("Uncalibrated", policy.metadata()["calibration"])
+
+    def test_legacy_seed_sequence_is_unchanged(self):
+        # Frozen before adding the optional profile; benchmark seeds must not
+        # acquire different legacy behavior as new policy modes are introduced.
+        policy = TimingPolicy(seed=7)
+        expected = [0.10133499371999974, 0.7384106002500818,
+                    0.09137748004761831, 0.8012910464528201,
+                    0.5113523500584736, 1.9990158157496654,
+                    0.17862896961429325, 0.07042531504026603]
+        kinds = ["key", "read", "key", "think", "switch", "review", "correction", "key"]
+        self.assertEqual(expected, [policy.sample(kind) for kind in kinds])
+
+    def test_human_targets_match_preserved_participant_data(self):
+        path = Path(__file__).resolve().parents[1] / HUMAN_BASELINE_PATH
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), HUMAN_BASELINE_SHA256)
+        measured = json.loads(path.read_text(encoding="utf-8"))["measured_results_participant_reported"]
+        fit = TimingPolicy("human-informed").metadata()["reference_fit"]
+        for field, key in (("fitted_median_seconds", "median"), ("fitted_p90_seconds", "p90"), ("reference_mean_seconds", "mean")):
+            self.assertEqual(fit[field] * 1000, measured[f"{key}_inter_key_interval_milliseconds"])
+        self.assertFalse(fit["native_input_intervals_verified"])
+        self.assertFalse(fit["human_indistinguishability_verified"])
+        self.assertIn("key holds", fit["not_fitted"])
+
+    def test_human_key_stream_is_reproducible_and_not_changed_by_interleaving(self):
+        plain, mixed = TimingPolicy("human-informed", seed=23), TimingPolicy("human-informed", seed=23)
+        a, b = [], []
+        for _ in range(200):
+            a.append(plain.sample("key"))
+            mixed.sample("read")
+            mixed.sample("review")
+            b.append(mixed.sample("key"))
+        self.assertEqual(a, b)
+        self.assertGreater(len(set(a)), 190)
+        other = TimingPolicy("human-informed", seed=24)
+        self.assertNotEqual(a, [other.sample("key") for _ in a])
+
+    def test_human_bounds_units_scaling_and_nonkey_defaults(self):
+        single, grouped = TimingPolicy("human-informed", seed=17), TimingPolicy("human-informed", seed=17)
+        self.assertEqual(sum(single.sample("key") for _ in range(30)), grouped.sample("key", 30))
+        full, scaled = TimingPolicy("human-informed", seed=18), TimingPolicy("human-informed", seed=18, scale=0.25)
+        for _ in range(1000):
+            seconds = full.sample("key")
+            self.assertTrue(HUMAN_KEY_BOUNDS[0] <= seconds <= HUMAN_KEY_BOUNDS[1])
+            self.assertEqual(seconds * 0.25, scaled.sample("key"))
+        self.assertFalse(scaled.metadata()["reference_fit"]["scale_one_targets_active"])
+        legacy, informed = TimingPolicy(seed=10), TimingPolicy("human-informed", seed=10)
+        for kind in [k for k in PROFILES if k != "key"] * 10:
+            self.assertEqual(legacy.sample(kind), informed.sample(kind))
+        zero = TimingPolicy("human-informed", scale=0)
+        self.assertEqual(zero.sample("key"), 0)
+        self.assertTrue(zero.metadata()["delays_disabled"])
 
 
 if __name__ == "__main__":
