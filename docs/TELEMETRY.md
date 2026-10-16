@@ -56,6 +56,8 @@ The existing [manual collector and protocol](MANUAL_BASELINE.md) remain availabl
 
 ## Existing event-trace availability
 
-The current account is not an administrator. No Sysmon service/channel was available, the Security log was inaccessible, and the WMI process-start collector reported Access denied. These limitations are preserved. No logging policy, endpoint protection or audit records were modified, and no process-parent metadata was spoofed or rewritten.
+The collection process runs with an unelevated, medium-integrity token; the account's Administrators membership is present only as deny-only in that token. No Sysmon service/channel was available, the Security log was inaccessible, and the WMI process-start collector reported Access denied. These historical collection limitations are preserved. No logging policy, endpoint protection or audit records were modified, and no process-parent metadata was spoofed or rewritten.
+
+The new [process lifecycle event protocol](PROCESS_EVENTS.md) provides an elevated, temporary ETW collector and a separate unelevated validation worker. Its first attempt captured real start/stop events but failed the full protocol after the computer entered Modern Standby. No successful end-to-end native capture is claimed until final loss counters, 28 known lifecycles and the new native pair pass verification. New event-trace trials remain separate from the ten-run sampled benchmark above.
 
 Implementation references: [Microsoft Toolhelp process inventory](https://learn.microsoft.com/en-us/windows/win32/api/tlhelp32/ns-tlhelp32-processentry32w) and [psutil process counters](https://psutil.readthedocs.io/en/latest/). Parent snapshots establish observed compatibility, not causation.

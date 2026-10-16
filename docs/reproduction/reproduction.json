@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "classification": "same-machine fresh virtual-environment reproduction",
+  "started_at_utc": "2026-10-16T09:59:47.855875+00:00",
+  "completed_at_utc": "2026-10-16T10:00:56.866903+00:00",
+  "source_commit": "5d3e0100f652f424fed5653ac78b2ffdae0256e5",
+  "tracked_source_clean_at_freeze": true,
+  "source_archive_sha256": "dc179f9ee61c339e23f14a64407af5e4689f0d0f6dafeb489ba6723951544269",
+  "raw_manifest_sha256": "5e9f2b6bb3239e14e4c140f0d6fa9340960651565bc5dbd13dcfd7c33389cca3",
+  "python": "3.14.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "dependency_index": "https://pypi.org/simple",
+  "pip_cache_used": false,
+  "dependency_versions": {
+    "comtypes": "1.4.17",
+    "psutil": "7.2.2",
+    "pywin32": "312",
+    "pywinauto": "0.6.9",
+    "six": "1.17.0"
+  },
+  "pip_check_passed": true,
+  "doctor_passed": true,
+  "tests_passed": 85,
+  "tests_failed": 0,
+  "simulations": [
+    {
+      "condition": "alternate",
+      "run_id": "20261016T100055Z-b1591ae5",
+      "scenario_sha256": "1fee68616cb117758fa647119bcf59cf95ff5886cc4b5dffc074875b995a578d",
+      "status": "plan_completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "native_verified": false,
+      "plan_only": true,
+      "raw_summary_sha256": "e46e224ba05798b86c0df8ca7da8189c13c19b55864031502a96d471e57b3de4"
+    },
+    {
+      "condition": "default",
+      "run_id": "20261016T100053Z-44457530",
+      "scenario_sha256": "13e9bed46b0b1983abe48827c6a2de2c082f1c63de5dca7e8985c590f4caa74e",
+      "status": "plan_completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "native_verified": false,
+      "plan_only": true,
+      "raw_summary_sha256": "fd03904ebd53509393642f5e421494fe3f016f4956c791b89a0881c1e5281dc1"
+    }
+  ],
+  "second_machine": false,
+  "native_desktop_actions_performed": false,
+  "public_log_redactions": "The two temporary-directory prefixes printed by the benchmark export test are replaced with <TEMP>; raw test log retained privately and hashed.",
+  "limitations": [
+    "Same physical machine and base Python installation as the benchmark.",
+    "A new virtual environment is not a second computer or a clean Windows installation.",
+    "Simulation checks orchestration and scenario decisions; it does not establish native UI completion or telemetry."
+  ],
+  "commands": [
+    {
+      "name": "source-commit",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T09:59:48.105832+00:00",
+      "elapsed_seconds": 0.07553570000163745,
+      "sha256": "4d4cb7785ad2e0bcc663ee9828c5e22245b5533424a02b95918bf0f6d6d15214"
+    },
+    {
+      "name": "source-status",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T09:59:48.197384+00:00",
+      "elapsed_seconds": 0.10824060000231839,
+      "sha256": "917a3b075eb3fa9d35426b596c4ca3035db83d710deb0472ae1525b7f2c7796a"
+    },
+    {
+      "name": "source-archive",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T09:59:48.326509+00:00",
+      "elapsed_seconds": 0.22284900000158814,
+      "sha256": "917a3b075eb3fa9d35426b596c4ca3035db83d710deb0472ae1525b7f2c7796a"
+    },
+    {
+      "name": "original-pins",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T09:59:48.684595+00:00",
+      "elapsed_seconds": 1.5487997000018368,
+      "sha256": "1c4a8075ef9fe6ca95ff7eee9195365a27e510d94f86544b1e8723577e65f24f"
+    },
+    {
+      "name": "create-environment",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T09:59:50.293624+00:00",
+      "elapsed_seconds": 20.43522170000142,
+      "sha256": "917a3b075eb3fa9d35426b596c4ca3035db83d710deb0472ae1525b7f2c7796a"
+    },
+    {
+      "name": "install",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:10.752147+00:00",
+      "elapsed_seconds": 32.06731000000218,
+      "sha256": "473638b6481092265b16d4b14c2f5de9e7aab1a574b9e572b93492482591b784"
+    },
+    {
+      "name": "dependency-check",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:42.847028+00:00",
+      "elapsed_seconds": 1.9643768000023556,
+      "sha256": "4d3b27b6f44c2400483a6a128092f12fe4abb9fcf8deeabe6f73b5c57e35ff3b"
+    },
+    {
+      "name": "installed-versions",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:44.832831+00:00",
+      "elapsed_seconds": 1.5963328999969235,
+      "sha256": "1c4a8075ef9fe6ca95ff7eee9195365a27e510d94f86544b1e8723577e65f24f"
+    },
+    {
+      "name": "doctor",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:46.432970+00:00",
+      "elapsed_seconds": 0.658770199999708,
+      "sha256": "a1d5eb58b07b0dde7f1ccb96020e6edfed708983d97b0cbc4c761d96470f141c"
+    },
+    {
+      "name": "tests",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:47.113282+00:00",
+      "elapsed_seconds": 6.2883604999988165,
+      "sha256": "4350f723648207d696be131a05c2155a71b0632270036546ddc631d6e2bb3496"
+    },
+    {
+      "name": "simulate-default",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:53.429523+00:00",
+      "elapsed_seconds": 1.6713565999998536,
+      "sha256": "4d738b08d78318161d95cb9c547428296d36f4497a7999e8ce6a3ffe4f3097f2"
+    },
+    {
+      "name": "simulate-alternate",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-16T10:00:55.126932+00:00",
+      "elapsed_seconds": 1.7152592999991612,
+      "sha256": "4f3bb545e22bdc137ff6d5a11982245115c260d612e1ec5b9ee0c96e7b9d6f9b"
+    }
+  ],
+  "published_files": [
+    {
+      "filename": "constraints.txt",
+      "sha256": "fb35fd1d447893cc9add9cbe054f383c64c7227e3388afa43b0d9a184aa70822"
+    },
+    {
+      "filename": "doctor.json",
+      "sha256": "ea303f02308b4c753f22507a17dda69aeb4dec743165cd8235cd603889d84fae"
+    },
+    {
+      "filename": "tests.log",
+      "sha256": "69315f260474cf904d82be6daf4f9a6ab82177429dc15fedfea649f9710a1499"
+    }
+  ]
+}

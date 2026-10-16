@@ -1,0 +1,11 @@
+{
+  "python": "3.14.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "desktop_supported": true,
+  "dependencies": {
+    "tkinter": true,
+    "pywinauto": true,
+    "psutil": true
+  },
+  "note": "Dependency availability does not verify Office activation, browser login, or UI compatibility."
+}
