@@ -13,14 +13,23 @@ This remains a reduced native-application demonstration: Sheets generates browse
 - Only one Chrome window displaying the target spreadsheet. Close first-run, sign-in, recovery, and other blocking dialogs yourself before starting.
 - Reliable Internet access so Sheets can report **Saved to Drive**.
 
-The setup workflow creates an empty `.xlsx` fixture and imports it as a native Google Sheet. Connectors are used only for setup and independent verification. Runtime task data is entered through native mouse/keyboard input; the executor makes no Google Sheets API calls.
+## Create the dedicated Sheet
+
+Follow the [source-directory and virtual-environment setup](../README.md#run) first. A full clone or the extracted source ZIP supports a single native run; the paired benchmark and ETW harnesses require a full Git clone.
+
+1. In the signed-in Chrome profile, create a new blank **native Google Sheet** for this test. Give it a recognizable test name. No connector or imported workbook is required.
+2. Rename its initial worksheet tab exactly **Quotes** and select that tab. Keep **A1:F4** empty and reserved for the scenario. The executor clears and replaces this range during every run.
+3. Copy the address-bar edit URL while **Quotes** is selected. Use the `https://docs.google.com/spreadsheets/d/.../edit` URL and retain its `gid` query or fragment identifying that worksheet. Confirm that the copied URL includes this tab identifier; do not use a published-view or shortened sharing URL.
+4. Leave this Sheet open in one Chrome window, with edit access and no blocking dialogs. Paste the URL into the control panel's Sheet field or the command below. For the benchmark/ETW harnesses, save it as `{"sheet_url": "PASTE_DEDICATED_SHEET_EDIT_URL"}` in `local-settings.json` at the repository root; that file is ignored by Git.
+
+The team's recorded setup used a connector to import an empty `.xlsx` fixture as a native Google Sheet. That was a setup choice, not a runtime dependency. Connectors also supported separate saved-output checks. Runtime task data is entered through native mouse/keyboard input; the executor makes no Google Sheets API calls.
 
 ## Run
 
-Select the Google Sheets workflow in the control panel and supply the dedicated Sheet's edit URL. The equivalent command is:
+Select the Google Sheets workflow in the control panel and supply the dedicated Sheet's edit URL. From the source directory, the equivalent command is:
 
 ```powershell
-python -m office_twin --mode desktop --workflow sheets --timing contextual --seed 42 --sheet-url "PASTE_DEDICATED_SHEET_EDIT_URL" --output runs
+.\.venv\Scripts\python.exe -m office_twin --mode desktop --workflow sheets --timing contextual --seed 42 --sheet-url "PASTE_DEDICATED_SHEET_EDIT_URL" --output runs
 ```
 
 Replace the placeholder with the dedicated fixture's verified URL. Use `--timing fixed` for the comparison condition. Keep the spreadsheet URL in local settings rather than committing a private account-linked fixture URL to the public repository.

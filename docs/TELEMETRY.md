@@ -25,11 +25,11 @@ Start from a full Git clone with Git for Windows on `PATH` and the Python enviro
 {"sheet_url": "PASTE_DEDICATED_SHEET_EDIT_URL"}
 ```
 
-On an idle, unlocked Windows desktop:
+From the repository root, on an idle, unlocked Windows desktop, use the installed virtual environment directly:
 
 ```powershell
-python tools/run_benchmark.py --output runs/paired-evaluation
-python tools/analyze_benchmark.py --manifest runs/paired-evaluation/manifest.json --output runs/paired-evaluation/export
+.\.venv\Scripts\python.exe tools/run_benchmark.py --output runs/paired-evaluation
+.\.venv\Scripts\python.exe tools/analyze_benchmark.py --manifest runs/paired-evaluation/manifest.json --output runs/paired-evaluation/export
 ```
 
 The harness plans fixed and contextual timing trials for seeds 211, 223, 227, 229 and 233, reversing their order in alternate pairs. Each uses the same default scenario and timing scale 1. It starts a separate observer before each worker and records the source commit, runtime hash and measurement-code hash. The worker supplies its actual PID and creation time, which may differ from a Windows launcher PID. The harness checks observer completion, bound identity and coverage, and stops on source changes, failed tasks, failed collection or unsafe cleanup. Every attempted run and capture failure remains visible. The observer is read-only and requires no security-configuration changes.

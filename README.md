@@ -52,12 +52,15 @@ Set-Location office-twin-ntu-st-2026
 
 For the GUI, simulation, single native run or automated tests, you can instead extract `office-twin-source.zip` from the judges' attachment and open a terminal in that extracted folder. The source ZIP has no Git history; use the full clone for the benchmark/ETW harnesses and the frozen historical installation check.
 
-From the source directory, create a virtual environment:
+From the source directory, create a virtual environment and install the recorded dependency versions:
 
 ```powershell
 py -3 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt -c docs/reproduction/constraints.txt
+.\.venv\Scripts\python.exe -m pip check
 ```
+
+The [constraints](docs/reproduction/constraints.txt) pin the five dependency versions used in the recorded Windows/Python 3.14.2 environment. `py -3` selects your installed Python 3 interpreter; using these pins on another Python version is not a claim that it has been validated. The commands use the virtual environment directly, so activation is unnecessary. Both the full clone and extracted source ZIP include the constraints file.
 
 The dependencies include `pywinauto` and `psutil`. Launch the Tk interface:
 
@@ -68,8 +71,10 @@ The dependencies include `pywinauto` and `psutil`. Launch the Tk interface:
 Run the safe simulation without opening native applications:
 
 ```powershell
-.\.venv\Scripts\python.exe -m office_twin --mode simulate
+.\.venv\Scripts\python.exe -m office_twin --mode simulate --workflow sheets --scale 0
 ```
+
+This replays the 11-step Sheets plan without desktop input. `--scale 0` skips deliberate waits for a quick review; it is not a native timing measurement.
 
 Run the primary desktop scenario on Windows with Chrome already signed in to the dedicated Google Sheet:
 

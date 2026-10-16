@@ -2,6 +2,13 @@
 
 Office Twin performs a connected procurement task through Chrome, Google Sheets and Notepad: compare three suppliers, calculate price and deadline eligibility, choose the cheapest eligible quote, and save and reopen a checked recommendation. This guide maps the evidence to the [official judging criteria](https://ntu-x-st-engineering-hackathon.devpost.com/rules).
 
+## Review in one minute
+
+1. **See the task:** three supplier quotes become six Sheet formulas, a deadline-aware choice and a saved/reopened report. Atlas wins at SGD 600; the alternate fixture changes the winner to Crest at SGD 525.
+2. **Inspect actual process evidence:** the [rundown record](process-rundown/README.md) verifies 32/32 focus observations and 16 newly observed application-start parent relationships. Exited original parents remain unresolved.
+3. **Compare timing and cost:** five paired trials show contextual wait variation at a median added cost of 11.26 task seconds and 1.219 controller CPU-seconds. These are historical policy comparisons, not human-similarity results.
+4. **Check the supplied human reference and current software:** the [720-second unassisted baseline](human-baseline/README.md) remains unchanged; the [current sampler evidence](resource-sampling-fix/README.md) records 144 tests and 19/19 noninteractive checks. Native benchmarks retain their original code versions.
+
 ## Evidence by criterion
 
 | Criterion | Weight | Result to inspect | Evidence |
@@ -9,7 +16,7 @@ Office Twin performs a connected procurement task through Chrome, Google Sheets 
 | Process Telemetry Authenticity | 30% | Rundown and exact OS snapshots verify 32/32 focus bindings across three current application identities. 28/28 known lifecycles and the stated controller checks pass; final loss counters: 0 / 0 / 0. All 16 application starts have resolved parent lifetimes: 10 Chrome → Chrome, two Explorer → Chrome and four Explorer → Notepad. Warm main processes’ exited original parents remain unresolved. | [Current rundown evidence](process-rundown/README.md), [earlier event evidence](process-events/README.md), [event protocol](PROCESS_EVENTS.md) |
 | Human Entropy & Timing | 30% | Five paired fixed/contextual runs measure key, review and window-focus wait variation; see the table below. Single-key p90 ranges are 109.50–110.08 ms fixed and 161.01–177.73 ms contextual. A participant-confirmed unassisted human baseline reports 720 s, 42 WPM, 14 corrected errors and measured process ancestry. | [Paired timing results](benchmark/README.md), [human baseline and definitions](human-baseline/README.md) |
 | Complexity of Action | 20% | The ten-run controlled series completed all 11 steps in every run. The earlier ETW retry pair completed 11/11 each; the rundown supplement adds 11/11 steps in both runs. Interrupted attempts remain documented. Tasks include supplier review, six formulas, a cost/deadline decision, correction and save/reopen checks. A historical changed-price scenario changes the winner. | [Validation history](VALIDATION.md), [rundown evidence](process-rundown/README.md), [saved formula/value check](benchmark/saved-sheet-verification.json), [scenario source](../scenarios/alternate.json) |
-| Resource Efficiency | 20% | Historical ten-run median full-window controller CPU: 19.14 CPU-s fixed / 20.61 contextual. Sampled controller peak RSS: 72.72–73.09 MiB across ten runs. Runtime makes no cloud-model calls. Observer overhead and application cohorts are reported separately. | [Full numeric resource report](benchmark/BENCHMARK.md), [machine-readable export](benchmark/benchmark.json), [architecture](ARCHITECTURE.md) |
+| Resource Efficiency | 20% | Historical ten-run median full-window controller CPU: 19.14 CPU-s fixed / 20.61 contextual. Sampled controller peak RSS: 72.72–73.09 MiB across ten runs. Runtime makes no cloud-model calls. Observer overhead and application cohorts are reported separately. Current sampler correctness is supported by 144 tests and 19/19 noninteractive checks; this is not a new task-performance measurement. | [Full numeric resource report](benchmark/BENCHMARK.md), [machine-readable export](benchmark/benchmark.json), [sampler validation](resource-sampling-fix/README.md), [architecture](ARCHITECTURE.md) |
 
 The historical observer polls OS state; its per-run parent counts are not globally unique process counts. The rundown supplement adds verified current focus identities to known canary/controller coverage. It does not recover exited historical parents or establish every possible system event. Current identity coverage and historical ancestry closure are reported as separate checks. Human aggregates and controller waits use different measurement definitions; they are not a validated timing-similarity comparison. The evidence supports the listed results, not a computed official score.
 
@@ -25,6 +32,8 @@ These are ranges of per-run 90th-percentile observed waits across five runs per 
 
 Controller waits include scheduler effects and are not OS input-delivery timestamps. Waits within a run are not independent task trials. These measurements show variation between the implemented policies; they do not establish calibrated human similarity or a matched comparison with the participant's timing aggregates.
 
+Across those same five retained pairs, contextual-minus-fixed task duration had a median of **+11.26 seconds** (range +5.55–17.10), while full-window controller CPU had a median paired increase of **+1.219 CPU-seconds** (range +0.219–1.859). These paired deltas are computed separately from the two policy medians. They quantify the historical timing policy's observed cost on this host, not the new sampler's efficiency or a human-versus-agent difference.
+
 ## What a correct result looks like
 
 The default task purchases five sensor kits with a seven-day delivery deadline. Atlas is selected at **SGD 600**; Beacon is cheaper but misses the deadline. A separate alternate-price/order fixture selects **Crest at SGD 525**. The final saved Sheet check contains 18 literal cells, six formula sources and six calculated results. Native trials also verify the displayed grid and saved recommendation.
@@ -33,8 +42,8 @@ Google Sheets runs inside Chrome. Native Excel/Word is optional and has not been
 
 ## Reproduce or review
 
-1. Follow the [installation commands](../README.md#run), then run `python -m office_twin --doctor` and `python -m unittest discover -s tests -v` inside the configured environment. The current reviewed suite passes **144 tests**. A [fresh-environment check](reproduction/README.md) separately reproduced the earlier frozen source's 85 tests and two simulation plans on this same machine.
-2. Run `python -m office_twin --mode simulate --workflow sheets` to inspect the plan without driving the desktop. Simulation is explicitly labelled and does not count as a native result.
+1. Follow the [installation commands](../README.md#run), then run `.\.venv\Scripts\python.exe -m office_twin --doctor` and `.\.venv\Scripts\python.exe -m unittest discover -s tests -v` inside the configured environment. The current reviewed suite passes **144 tests**. A [fresh-environment check](reproduction/README.md) separately reproduced the earlier frozen source's 85 tests and two simulation plans on this same machine.
+2. Run `.\.venv\Scripts\python.exe -m office_twin --mode simulate --workflow sheets --scale 0` to inspect the plan without driving the desktop. Simulation is explicitly labelled and does not count as a native result.
 3. Prepare a dedicated Google Sheet using [GOOGLE_SHEETS.md](GOOGLE_SHEETS.md). Use the native contextual command in the README on an unlocked Windows desktop. Escape cancels input. Use synthetic task data and a dedicated output directory.
 4. Inspect saved results and logs. For the controlled fixed/contextual series, follow [the telemetry reproduction commands](TELEMETRY.md#reproduce-the-collection). The separate [ETW protocol](PROCESS_EVENTS.md) keeps its collector elevated and workload unelevated; retain every attempted run and its capture result.
 
