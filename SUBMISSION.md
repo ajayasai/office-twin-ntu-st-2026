@@ -1,6 +1,6 @@
 # Submission status and evidence revision
 
-**Latest verified submission:** [rundown evidence upload, 16 October 2026 at 20:00 SGT](#rundown-evidence-upload-verified--16-october-2026-2000-sgt). Devpost showed **SUBMITTED — 5/5 steps done** with the `4b8d11a` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
+**Latest verified submission:** [final criterion review, 16 October 2026 at 20:20 SGT](#final-criterion-review-upload-verified--16-october-2026-2020-sgt). Devpost showed **SUBMITTED — 5/5 steps done** with the `74aaa3d` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
 
 ## Rundown supplement prepared — 16 October 2026 (SGT)
 
@@ -97,3 +97,13 @@ The current judges' attachment is **`office-twin-rundown-evidence-20261016-4b8d1
 Devpost readback confirmed the exact saved filename and **SUBMITTED — 5/5 steps done**, with all three teammates present. The saved story exactly matches packaged `docs/DEVPOST_ENTRY.md` after newline normalization (22,198 characters; SHA-256 `fde81f811611cdbee63e9982735bac13065fc09048dc80322847e8570cd6678d`). The public story displays 32/32 focus observations, 16 resolved application-start parents, 28/28 canaries, both 11-step tasks, 139 passing tests and the original-parent limitation. Its image caption distinguishes the historical 85-test benchmark from the latest results; the video URL remains `https://youtu.be/oTTT0ECN25U` and its historical scope is explicit.
 
 The new evidence is also publicly available in the repository. This documentation-only completion record follows the verified upload; the attached preparation snapshot is not rebuilt or relabelled. Raw traces remain private, and failed attempts and participant-reported human aggregates remain intact.
+
+## Final criterion review upload verified — 16 October 2026, 20:20 SGT
+
+The final review checked the live entry against all four public judging criteria. It corrected a reversed parent/child phrase, added the retained key/review/window-focus controller-wait results, reconciled the Sheets guide with the current 139-test suite, and documented the full Git-clone prerequisite for evidence reproduction. The submission record now distinguishes current status from historical preparation checkpoints. These are documentation changes; no applications were restarted and no new native measurement is claimed.
+
+Devpost saves **`office-twin-reviewed-evidence-20261016-74aaa3d.zip`**, **10,384,704 bytes**, SHA-256 `656732e83bf1f9b6eacd691b31f06e38f958a88045b0b28c705fdd0211e1e057`, containing clean source commit [`74aaa3d5c868ab7294e8a77fb4da7f9f42780d34`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/74aaa3d5c868ab7294e8a77fb4da7f9f42780d34). ZIP integrity, all artifact hashes, required evidence, privacy exclusions and 190 local Markdown links passed review. All 14 runtime Python files still match the frozen tested version after line-ending normalization; the existing 139-test provenance is unchanged.
+
+The exact attachment name was read back after saving. The finalization page showed **Project submitted! — SUBMITTED — 5/5 steps done** and the three teammates. The saved story matches the packaged source after newline normalization: **22,886 characters**, SHA-256 `5cc1f5c21e3ba9b13013141f406d0f4fa7d24425ebca40036e324094ee7f3998`. The new timing table and ancestry correction were verified on the public page. The video URL remains `https://youtu.be/oTTT0ECN25U`, with its historical scope disclosed. This completion record follows the upload and is not inside that preparation snapshot.
+
+The substantive limits remain matched human/agent input-event evidence, exited historical parents, workflow breadth and native portability, and exclusive whole-task application resource attribution. The final review does not convert those limits into verified claims or predict an official score.
