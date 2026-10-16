@@ -6,7 +6,9 @@ Office Twin is an NTU × ST Engineering Hackathon project for a synthetic office
 
 Source is in the public [GitHub repository](https://github.com/ajayasai/office-twin-ntu-st-2026). The completed narrated submission video is **180.13 seconds**: an eight-second introduction, the continuous 162.13-second desktop recording at 1×, and a ten-second closing card. The local file is `dist/office-twin-submission.mp4`. The [YouTube video](https://youtu.be/0OpIetkSomM) is published as **Unlisted**, verified in YouTube Studio; copyright and community checks passed. Viewer-facing playback was verified on the YouTube watch page. Raw runs and video files are excluded from the source repository.
 
-**Submission status:** draft. Ajay is the team leader; final submission is held until two teammates have joined.
+**Submission status:** submitted to the NTU × ST Engineering Hackathon on **16 October 2026 (SGT)**, confirmed by Devpost. The joined team is **Ajay Asaithambi** (`@ajay007`, leader), **Siddharth Paliwal** (`@siddhartha-paliwal21`), and **Sourabh Sooraj** (`@sourabhsooraj97`).
+
+The uploaded source archive corresponds to commit [`5dd7181317838d9cfa52ba023cf02037539ac5ff`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/5dd7181317838d9cfa52ba023cf02037539ac5ff). Later submission-status documentation updates do not represent new code, test runs or a replacement uploaded archive.
 
 | Verified normal-speed run | Evidence folder | Result |
 | --- | --- | --- |
