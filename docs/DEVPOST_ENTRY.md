@@ -130,7 +130,7 @@ The participant confirms that the process ancestry is also an actual measurement
 
 Automated task duration covers first step start through final step completion; full controller wall time also includes preparation, countdown, verification and cleanup. Controller waits are not OS input timestamps.
 
-The published video shows the initial functional run recorded on 15 October, preserved continuously at 1× within the narrated edit. It does not show the revised launch mechanism or constitute a new benchmark trial.
+The [revised narrated video](https://youtu.be/oTTT0ECN25U) preserves the same continuous 162.13-second **15 October functional recording at 1×** within a 180.13-second edit. Updated narration and cards report the **16 October evidence—ten native completions, five matched pairs, 85 passing tests and the participant-confirmed 720-second unassisted human baseline—separately from the footage**. The historical recording is labelled throughout; it does not show the revised launch mechanism or constitute a new benchmark trial. The final presentation review also makes all four judging criteria explicit in the evidence table and judging guide, including scoped CPU/RSS results and measured process-parent counts.
 
 ## What we learned
 

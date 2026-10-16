@@ -33,15 +33,24 @@ That checkpoint's judges' attachment was **`office-twin-evidence-20261016-manual
 
 The saved public story adds a **720-second unassisted human baseline**, including typing, correction, pointer, switching, CPU/RSS and measured process-ancestry results. The participant confirms these are actual measurements of a task performed entirely by a human without guidance. The [baseline documentation](docs/human-baseline/README.md) and [aggregate JSON](docs/human-baseline/aggregate.json) preserve the data and scope. This record is separate from the earlier guided practice; the participant's correction changes the waiting label to “Waiting / idle” without changing its 90 seconds.
 
-The latest confirmed uploaded attachment is **`office-twin-evidence-20261016-human-baseline.zip`**, **10,123,690 bytes**, SHA-256 `edf22cf8b7c1706dcff7eb1ef474aa240ef6c6e32a5df213e24e6d7ad0ec65c1`. It preserves every original entry in the preceding `manual-7eecc49` package and adds the participant-supplied aggregates, update notes and saved story. The runtime and frozen automated benchmark are unchanged. Devpost readback confirmed the human-baseline table and measured ancestry, the replacement attachment, and **SUBMITTED — 5/5 steps done** on 16 October 2026 (SGT). No measurement date is inferred from this upload date.
+At this checkpoint, the confirmed uploaded attachment was **`office-twin-evidence-20261016-human-baseline.zip`**, **10,123,690 bytes**, SHA-256 `edf22cf8b7c1706dcff7eb1ef474aa240ef6c6e32a5df213e24e6d7ad0ec65c1`. It preserves every original entry in the preceding `manual-7eecc49` package and adds the participant-supplied aggregates, update notes and saved story. The runtime and frozen automated benchmark are unchanged. Devpost readback confirmed the human-baseline table and measured ancestry, the replacement attachment, and **SUBMITTED — 5/5 steps done** on 16 October 2026 (SGT). No measurement date is inferred from this upload date.
 
 The tracked documentation was then reconciled with that submitted baseline so the repository's current-state pages no longer say zero unassisted references. Historical benchmark exports retain their original collection scope. A later attachment, if prepared, must be recorded here only after its upload is verified.
 
-## Existing submitted media and links
+## Final presentation review — 16 October 2026 (SGT)
+
+The [judging guide](docs/JUDGING_GUIDE.md) and revised [Devpost narrative](docs/DEVPOST_ENTRY.md) now map evidence to **all four judging criteria**. The review added scoped resource results—median controller CPU **19.14 / 20.61 CPU-s** for fixed/contextual timing and sampled controller peak RSS **72.72–73.09 MiB**—plus explicit measured process-parent counts. Within capture windows, per-run counts sum to **6 Chrome identities with compatible Explorer parents, 33 Chrome children with compatible Chrome parents, and 8 Notepad identities with compatible Explorer parents**. Counts are not globally unique processes; observer overhead and nonexclusive application costs remain separate.
+
+The [revised video](https://youtu.be/oTTT0ECN25U) updates narration and cards to cover the later ten native completions, five matched pairs, **85 passing tests** and participant-confirmed **720-second unassisted human baseline**. It preserves the same continuous 162.13-second **15 October functional recording at 1×** within the 180.13-second edit. The footage is labelled throughout and does not depict the later launch mechanism, benchmark trials or human measurements. Synthetic Microsoft Zira narration remains disclosed. This presentation revision does not add a native runtime trial.
+
+The source documentation and chart now consistently distinguish the unassisted baseline from the earlier guided practice and the automated series. The first final-audit package, **`office-twin-final-evidence-20261016-06a9f31.zip`** (10,281,230 bytes; SHA-256 `1c4f7b0926eecf6923ec5fcfefabc39430e0dce2eace50baaf217b6681f3f81a`), was verified as the saved Devpost attachment. It includes the revised video file and source from clean commit `06a9f31ad89925b988448313be86a22e91c6b4e3`. After the revised video was published as Unlisted, its new URL was reconciled here and in the story; the subsequent final package is recorded below only after its upload is verified.
+
+## Media and links
 
 - [Devpost entry](https://devpost.com/software/office-twin).
 - [Public GitHub source](https://github.com/ajayasai/office-twin-ntu-st-2026).
-- [Unlisted YouTube demo](https://youtu.be/0OpIetkSomM), 180.13 seconds, with the continuous 162.13-second native run at 1×. This is the **15 October functional version**, before the revised launch/observer changes. It is not a recording of the new benchmark. Synthetic Microsoft Zira narration is disclosed.
+- [Revised narrated YouTube demo](https://youtu.be/oTTT0ECN25U), 180.13 seconds; updated evidence narration/cards around the continuous historical recording at 1×.
+- [Earlier narrated version](https://youtu.be/0OpIetkSomM), retained as the historical published edit.
 
 The three joined teammates and rules/Terms declaration were confirmed before the original submission. Updating the existing entry does not create a new team or a second submission.
 
