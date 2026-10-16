@@ -11,6 +11,7 @@ import time
 
 try:
     import psutil
+    from .observer import process_inventory
 except ImportError:  # Wall time and controller CPU remain available.
     psutil = None
 
@@ -91,42 +92,55 @@ class EvidenceRecorder:
         try:
             controller = psutil.Process(os.getpid())
             controller_rss = controller.memory_info().rss
-            child_ids = {proc.pid for proc in controller.children(recursive=True)}
+            child_identities = {(proc.pid, proc.create_time()) for proc in controller.children(recursive=True)}
+            child_ids = {pid for pid, _ in child_identities}
             records = []
             parent_cache = {}
-            # Enumerate cheap identity fields first; querying memory/CPU for
-            # every unrelated process would make the monitor dominate the run.
-            for proc in psutil.process_iter(["pid", "name"]):
+            # One OS inventory avoids cached process_iter names/creation times
+            # and repeated Windows parent-map scans. It only finds candidates.
+            inventory_started = time.time()
+            for info in process_inventory():
                 try:
-                    info = proc.info
                     if info["pid"] == os.getpid():
                         continue
                     name = (info.get("name") or "").lower()
                     if info["pid"] not in child_ids and name not in APPLICATION_NAMES:
                         continue
+                    proc = psutil.Process(info["pid"])
                     with proc.oneshot():
                         created = proc.create_time()
+                        # A process born after inventory began may have reused
+                        # the listed PID, so its inventory metadata is unsafe.
+                        if created > inventory_started:
+                            continue
+                        name = proc.name()
+                        is_descendant = (info["pid"], created) in child_identities
+                        if not is_descendant and name.lower() not in APPLICATION_NAMES:
+                            continue
                         cpu, memory = proc.cpu_times(), proc.memory_info()
-                        try:
-                            parent_pid = proc.ppid()
-                        except (psutil.Error, OSError):
-                            parent_pid = None
+                    # A fresh object is essential: create_time is cached by
+                    # psutil, including inside a later call on the same object.
+                    if psutil.Process(info["pid"]).create_time() != created:
+                        continue
+                    parent_pid = info.get("parent_pid")
                     parent_name = None
                     if parent_pid is not None and parent_pid > 0:
                         if parent_pid not in parent_cache:
                             try:
                                 parent = psutil.Process(parent_pid)
                                 with parent.oneshot():
-                                    parent_cache[parent_pid] = (parent.create_time(), parent.name())
+                                    parent_created, observed_parent_name = parent.create_time(), parent.name()
+                                parent_cache[parent_pid] = ((parent_created, observed_parent_name)
+                                    if psutil.Process(parent_pid).create_time() == parent_created else None)
                             except (psutil.Error, OSError):
                                 parent_cache[parent_pid] = None
                         parent_info = parent_cache[parent_pid]
                         # Avoid labelling a reused PID as the original parent.
                         if parent_info is not None and parent_info[0] <= created:
                             parent_name = parent_info[1]
-                    records.append((info["pid"], created, info["name"],
+                    records.append((info["pid"], created, name,
                                     float(cpu.user + cpu.system), int(memory.rss),
-                                    "controller descendant" if info["pid"] in child_ids else "application name match",
+                                    "controller descendant" if is_descendant else "application name match",
                                     parent_pid, parent_name))
                 except (psutil.Error, OSError, KeyError, TypeError):
                     continue

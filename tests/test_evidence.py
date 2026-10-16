@@ -88,6 +88,7 @@ class EvidenceTests(unittest.TestCase):
         child.info = {"pid": 445, "name": "chrome.exe"}
         child.oneshot.side_effect = nullcontext
         child.create_time.return_value = 20.0
+        child.name.return_value = "chrome.exe"
         child.cpu_times.return_value = SimpleNamespace(user=1.0, system=0.5)
         child.memory_info.return_value = SimpleNamespace(rss=2048)
         child.ppid.return_value = 444
@@ -97,9 +98,9 @@ class EvidenceTests(unittest.TestCase):
         parent.name.return_value = "explorer.exe"
         fake_psutil = Mock()
         fake_psutil.Error = RuntimeError
-        fake_psutil.process_iter.return_value = [child]
-        fake_psutil.Process.side_effect = lambda pid: controller if pid == os.getpid() else parent
-        with tempfile.TemporaryDirectory() as directory, patch("office_twin.evidence.psutil", fake_psutil):
+        fake_psutil.Process.side_effect = lambda pid: controller if pid == os.getpid() else child if pid == 445 else parent
+        inventory = [{"pid": 445, "name": "chrome.exe", "parent_pid": 444}]
+        with tempfile.TemporaryDirectory() as directory, patch("office_twin.evidence.psutil", fake_psutil), patch("office_twin.evidence.process_inventory", return_value=inventory):
             recorder = EvidenceRecorder(Path(directory))
             recorder._snapshot()
             observed = recorder.stop()["process_observations"][0]
@@ -107,13 +108,90 @@ class EvidenceTests(unittest.TestCase):
             self.assertEqual(observed["parent_name"], "explorer.exe")
             self.assertEqual(observed["selection"], "application name match")
         parent.name.side_effect = RuntimeError("parent inaccessible")
-        with tempfile.TemporaryDirectory() as directory, patch("office_twin.evidence.psutil", fake_psutil):
+        with tempfile.TemporaryDirectory() as directory, patch("office_twin.evidence.psutil", fake_psutil), patch("office_twin.evidence.process_inventory", return_value=inventory):
             recorder = EvidenceRecorder(Path(directory))
             recorder._snapshot()
             observed = recorder.stop()["process_observations"][0]
             self.assertEqual(observed["parent_pid"], 444)
             self.assertIsNone(observed["parent_name"])
             self.assertEqual(observed["cpu_first_seconds"], 1.5)
+
+    @staticmethod
+    def process(created=20.0, name="chrome.exe", cpu=1.5):
+        proc = Mock()
+        proc.pid = 445
+        proc.oneshot.side_effect = nullcontext
+        proc.create_time.return_value = created
+        proc.name.return_value = name
+        proc.cpu_times.return_value = SimpleNamespace(user=cpu, system=0.0)
+        proc.memory_info.return_value = SimpleNamespace(rss=2048)
+        return proc
+
+    def snapshot_with_processes(self, recorder, processes, *, descendants=(), parent_pid=0, inventory_name="chrome.exe"):
+        controller = Mock()
+        controller.memory_info.return_value = SimpleNamespace(rss=100)
+        controller.children.return_value = descendants
+        sequence = iter(processes)
+        def lookup(pid):
+            if pid == os.getpid():
+                return controller
+            value = next(sequence)
+            if isinstance(value, Exception):
+                raise value
+            return value
+        fake = Mock()
+        fake.Error = RuntimeError
+        fake.Process.side_effect = lookup
+        fake.process_iter.side_effect = AssertionError("Cached process objects must not supply measurements")
+        inventory = [{"pid": 445, "name": inventory_name, "parent_pid": parent_pid}]
+        with patch("office_twin.evidence.psutil", fake), patch("office_twin.evidence.process_inventory", return_value=inventory), patch("office_twin.evidence.time.time", return_value=100.0):
+            recorder._snapshot()
+
+    def test_pid_reused_during_counter_read_does_not_charge_new_process_to_old_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            recorder = EvidenceRecorder(Path(directory))
+            self.snapshot_with_processes(recorder, [self.process(), self.process()])
+            self.snapshot_with_processes(recorder, [self.process(cpu=100.0), self.process(created=30.0)])
+            record = recorder._observed[(445, 20.0)]
+            self.assertEqual(record["snapshot_count"], 1)
+            self.assertEqual(record["cpu_last_seconds"], 1.5)
+            self.snapshot_with_processes(recorder, [self.process(created=30.0, cpu=100.0), self.process(created=30.0)])
+            self.assertEqual(set(recorder._observed), {(445, 20.0), (445, 30.0)})
+            self.assertEqual(recorder._observed[(445, 30.0)]["cpu_first_seconds"], 100.0)
+
+    def test_process_exit_or_access_race_discards_observation(self):
+        for error in (RuntimeError("exited"), OSError("access changed")):
+            for during_read in (False, True):
+                with self.subTest(error=type(error).__name__, during_read=during_read), tempfile.TemporaryDirectory() as directory:
+                    recorder = EvidenceRecorder(Path(directory))
+                    processes = [self.process(), error] if during_read else [error]
+                    self.snapshot_with_processes(recorder, processes)
+                    self.assertEqual(recorder._observed, {})
+                    self.assertEqual(recorder._peak_rss, 100)
+
+    def test_pid_born_after_inventory_is_not_given_old_inventory_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            recorder = EvidenceRecorder(Path(directory))
+            self.snapshot_with_processes(recorder, [self.process(created=101.0)])
+            self.assertEqual(recorder._observed, {})
+
+    def test_reused_descendant_pid_does_not_select_unrelated_non_application(self):
+        old_child = self.process(created=10.0, name="worker.exe")
+        with tempfile.TemporaryDirectory() as directory:
+            recorder = EvidenceRecorder(Path(directory))
+            self.snapshot_with_processes(recorder, [self.process(name="unrelated.exe")], descendants=[old_child], inventory_name="worker.exe")
+            self.assertEqual(recorder._observed, {})
+            self.snapshot_with_processes(recorder, [self.process(), self.process()], descendants=[old_child])
+            self.assertEqual(recorder._observed[(445, 20.0)]["selection"], "application name match")
+
+    def test_parent_reuse_does_not_change_valid_child_counters_or_invent_parent_name(self):
+        with tempfile.TemporaryDirectory() as directory:
+            recorder = EvidenceRecorder(Path(directory))
+            self.snapshot_with_processes(recorder, [self.process(), self.process(), self.process(created=10.0, name="explorer.exe"), self.process(created=30.0, name="unrelated.exe")], parent_pid=444)
+            record = recorder._observed[(445, 20.0)]
+            self.assertEqual(record["parent_pid"], 444)
+            self.assertIsNone(record["parent_name"])
+            self.assertEqual(record["cpu_first_seconds"], 1.5)
 
 
 if __name__ == "__main__":
