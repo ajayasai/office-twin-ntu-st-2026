@@ -45,6 +45,12 @@ The [revised video](https://youtu.be/oTTT0ECN25U) updates narration and cards to
 
 The source documentation and chart now consistently distinguish the unassisted baseline from the earlier guided practice and the automated series. The first final-audit package, **`office-twin-final-evidence-20261016-06a9f31.zip`** (10,281,230 bytes; SHA-256 `1c4f7b0926eecf6923ec5fcfefabc39430e0dce2eace50baaf217b6681f3f81a`), was verified as the saved Devpost attachment. It includes the revised video file and source from clean commit `06a9f31ad89925b988448313be86a22e91c6b4e3`. After the revised video was published as Unlisted, its new URL was reconciled here and in the story; the subsequent final package is recorded below only after its upload is verified.
 
+## Final upload verified — 16 October 2026, 17:54 SGT
+
+The final judges' attachment is **`office-twin-final-evidence-20261016-f89ca68.zip`**, **10,282,378 bytes**, SHA-256 `5a735f6521b6ec36285be8b238c00dd93da40d5c0453c850a5810bc92c05854d`. It contains source from clean commit [`f89ca68628a7330be6aab8250c0cd1e37621516c`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/f89ca68628a7330be6aab8250c0cd1e37621516c), the original continuous recording, the revised narrated video and a manifest with matching file hashes and the new published video URL. ZIP integrity passed; all 14 runtime Python files match the frozen tested version after line-ending normalization. Private settings and raw local runs are excluded.
+
+Devpost readback confirmed the exact saved filename and **SUBMITTED — 5/5 steps done**. The public page displays the revised criterion table, human measurements, CPU/RSS results, process-parent counts and three teammates, and embeds the new video `oTTT0ECN25U`. YouTube confirmed **Video published** after Unlisted was selected; the public watch link opened and playback began. Copyright and Community Guidelines checks reported no issues. This completion record follows the verified upload and is not part of the archived source preparation snapshot.
+
 ## Media and links
 
 - [Devpost entry](https://devpost.com/software/office-twin).
