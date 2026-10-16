@@ -1,0 +1,29 @@
+{
+  "command": "python -m unittest discover -s tests -v",
+  "tests": 139,
+  "passed": true,
+  "elapsed_seconds": 10.389,
+  "tested_source_commit": "95bb3efc830a2d811b69cc68c9483ae9b0353fec",
+  "private_log_sha256": "22183c39823d78411bafc549f5f4ca7f55e8404d2336e63075d8b76b8e455873",
+  "published_log_sha256": "8c3cce9fda66acfcb3c2ef7ec52f69871f8f429d38dd01c0739f66b290562f63",
+  "redaction": "Temporary local account directory prefixes replaced by <TEMP>; workspace prefix replaced by <WORKSPACE>; test names and outcomes unchanged.",
+  "source_file_sha256": {
+    "tools/analyze_process_events.py": "58c063deac15b0658a39076ab4dffb0aee0acc64c23bbdd351e28690d08eedaf",
+    "tools/capture_process_events.ps1": "f345ce3896ceb2bde8d8e1bdade74624e078848eaa087328dee8811893172c0d",
+    "tools/decode_process_events.ps1": "9ea41a81f06a62a57d6f5f252f036ad45106058ecaf7b9a838751f6d2037e7c0",
+    "tools/run_event_validation.py": "26c6fb4470c758d22276d276b0687fd5987422f08c2e4a2087ee1dbf90ec4e3e",
+    "tests/test_event_trace_analysis.py": "657bae727eafbf04d9b08e339b96f0054e4f8e41c8af5d1bfd71da7e1bfb443d",
+    "tests/test_event_validation_runner.py": "1b41d2d7512901085c75f42e0225ac037603617e6ce6289d411600ac2c648cb7",
+    "tests/test_rundown_snapshot.py": "cd8b52454ee7e185ac0c8bb788ed1bf5aa3e67a9a117e89f785c5ee5b6e09667"
+  },
+  "commit_object_file_sha256": {
+    "tools/analyze_process_events.py": "58c063deac15b0658a39076ab4dffb0aee0acc64c23bbdd351e28690d08eedaf",
+    "tools/capture_process_events.ps1": "f345ce3896ceb2bde8d8e1bdade74624e078848eaa087328dee8811893172c0d",
+    "tools/decode_process_events.ps1": "9ea41a81f06a62a57d6f5f252f036ad45106058ecaf7b9a838751f6d2037e7c0",
+    "tools/run_event_validation.py": "26c6fb4470c758d22276d276b0687fd5987422f08c2e4a2087ee1dbf90ec4e3e",
+    "tests/test_event_trace_analysis.py": "657bae727eafbf04d9b08e339b96f0054e4f8e41c8af5d1bfd71da7e1bfb443d",
+    "tests/test_event_validation_runner.py": "1b41d2d7512901085c75f42e0225ac037603617e6ce6289d411600ac2c648cb7",
+    "tests/test_rundown_snapshot.py": "cd8b52454ee7e185ac0c8bb788ed1bf5aa3e67a9a117e89f785c5ee5b6e09667"
+  },
+  "line_ending_check": "Checked-out source matches frozen commit after CRLF-to-LF normalization; both original byte hashes retained."
+}

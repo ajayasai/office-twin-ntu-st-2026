@@ -1,6 +1,6 @@
 # Windows process lifecycle event evidence
 
-**Status: the retry passed the bounded process-event validation protocol: 28/28 known canary lifecycles and 2/2 native tasks, each completing 11/11 steps.** All three final ETW loss counters were zero. See the [verified event evidence and retained failed attempt](process-events/README.md). This verifies the specified lifecycles and native-task coverage; it does not claim universal event completeness or complete ancestry for every application window.
+**Latest status: rundown validation passed with 32/32 focus observations bound to three existing application identities and 16/16 observed application-start parents resolved.** All 28 known canary lifecycles and both 11-step native tasks passed; final ETW loss counters were zero. See the [current identity and parent evidence](process-rundown/README.md). The original parents of the three warm main applications remain unavailable. The [earlier start/stop-only result](process-events/README.md) and failed attempts remain separate historical records.
 
 The existing [ten-run benchmark](benchmark/README.md) used a separate process that sampled Toolhelp/psutil counters. Those historical results remain unchanged. This protocol adds a new, separately identified fixed/contextual pair under Windows process lifecycle tracing; it does not retroactively turn the earlier samples into event records or merge the new pair into the old timing comparison.
 
@@ -79,7 +79,13 @@ The native trace conversion uses [`tracerpt`](https://learn.microsoft.com/en-us/
 
 The canonical `process-events-winapi.xml` contains only the exact process-provider GUID. `winapi-decode-status.json` binds its hash and event count to the unchanged ETL hash, records the decoder source hash, and is required before the analyzer uses that view. A failed or inconsistent decode does not become verified evidence. No timestamp is manually shifted to fit a canary window.
 
-## Verified retry
+## Verified rundown retry
+
+The [rundown supplement](process-rundown/README.md) records 1,300 provider events over 354.9077122 seconds. All 32 focus observations resolve through exact bracketing snapshots and actual rundown. The 16 application starts inside the native windows have compatible parent lifetimes: two Explorer → Chrome, ten Chrome → Chrome and four Explorer → Notepad. Thirteen of those identities have observed exits; three Chrome processes are confirmed alive in final rundown. All 28 canaries and both native tasks pass, with 26 canaries below 100 ms and zero reported final logger loss. The current software suite passed 139 tests.
+
+The first rundown attempt was interrupted by a foreground-focus change during the contextual task and remains a failed full-protocol attempt. The successful retry uses the same frozen tooling source `95bb3ef`, fresh paths, seed 311 and unchanged runtime. These runs are not added to the historical performance comparison. The three preexisting main applications' original parents remain unresolved; current identity coverage does not reconstruct that history.
+
+## Historical start/stop-only retry
 
 The [published retry evidence](process-events/README.md) records a 393.9823415-second capture with 344 process-provider records: 172 starts, 172 stops and no rundown records. Final `EventsLost`, `LogBuffersLost` and `RealTimeBuffersLost` were all zero. The maximum collector loop gap was 0.2349567 seconds, the collector received the requested stop marker, and no deadline overrun was reported.
 

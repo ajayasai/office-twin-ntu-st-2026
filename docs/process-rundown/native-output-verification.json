@@ -1,0 +1,63 @@
+{
+  "source_commit": "95bb3efc830a2d811b69cc68c9483ae9b0353fec",
+  "source_worktree_dirty_at_start": false,
+  "runtime_sha256": "ddc6560bcddd3a3a3074138525c121e3d75c58eda2ea1519e2dacad3319c8876",
+  "measurement_sha256": "5421c57754b86d268e7c265c2401bb5d25a21cbe148ca9417bfd7e21cbea356f",
+  "seed": 311,
+  "condition": "Same warm shared Windows host; process-only ETW with requested rundown, exact bracketing identity snapshots and the separate sampled observer; scale 1; no screen recording; existing applications kept open.",
+  "manifest_sha256": "67a3f9cf14a61d8634388f2ae85dd6513f34191ab6d5ef61d4303f76b587799c",
+  "historical_timing_benchmark_pooled": false,
+  "historical_parent_ancestry_reconstructed": false,
+  "runs": [
+    {
+      "id": "R001",
+      "policy": "fixed",
+      "backend": "desktop",
+      "status": "completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "private_summary_sha256": "c17317bb81cb4c58e956b4937936eb1a0d7b220f94cf350cca25301a14cf6b33"
+    },
+    {
+      "id": "R002",
+      "policy": "contextual",
+      "backend": "desktop",
+      "status": "completed",
+      "steps_completed": 11,
+      "steps_total": 11,
+      "verification": {
+        "passed": true,
+        "checks": {
+          "text_content": true,
+          "spreadsheet_headers": true,
+          "spreadsheet_inputs": true,
+          "spreadsheet_calculated_results": true
+        },
+        "errors": [],
+        "workflow": "sheets",
+        "method": "Saved text-file read plus Google Sheets visible-value clipboard readback after reload",
+        "limitations": [
+          "Formula source is not independently verified by this runtime check.",
+          "Browser-based Sheets activity is not native Excel process activity."
+        ]
+      },
+      "private_summary_sha256": "7722151cf46ce5f5e63ec2e09086a98b1055bf92e36a88248877ce5892147bd9"
+    }
+  ]
+}
