@@ -61,6 +61,8 @@ The current suite passes **120 tests**. A [fresh-environment check](docs/reprodu
 
 At this preparation checkpoint, the new source and evidence are ready for packaging; the previously verified Devpost attachment is still the `f89ca68` package above. A completion record will identify the replacement only after the saved filename and submitted status are read back.
 
+The prepared replacement is **`office-twin-etw-evidence-20261016-9b9e37b.zip`**, **10,348,722 bytes**, SHA-256 `0979755b59a737bd0a8540e88a4560df8c95a2452d57332d2ef3e213a5e019a8`. It contains clean source commit [`9b9e37bb50115ff08e6a94712ec97c1ed731d972`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/9b9e37bb50115ff08e6a94712ec97c1ed731d972), the existing video files and their manifest. ZIP integrity, every artifact hash, all 14 unchanged runtime files, required evidence and exclusion of private runs were checked. Source was pushed to GitHub. **Devpost replacement upload is pending:** its editor presented a human-verification challenge, for which user approval was requested. This is not a verified upload record.
+
 ## Media and links
 
 - [Devpost entry](https://devpost.com/software/office-twin).
