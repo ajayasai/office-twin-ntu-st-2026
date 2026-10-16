@@ -1,6 +1,6 @@
 # Submission status and evidence revision
 
-**Latest verified submission:** [final criterion review, 16 October 2026 at 20:20 SGT](#final-criterion-review-upload-verified--16-october-2026-2020-sgt). Devpost showed **SUBMITTED — 5/5 steps done** with the `74aaa3d` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
+**Latest verified submission:** [resource-sampler update, 16 October 2026 at 21:05 SGT](#resource-sampler-upload-verified). Devpost showed **SUBMITTED — 5/5 steps done** with the `671f032` evidence package. The dated sections below preserve earlier preparation and upload checkpoints; their pending states and test counts are historical.
 
 ## Rundown supplement prepared — 16 October 2026 (SGT)
 
@@ -113,3 +113,11 @@ The substantive limits remain matched human/agent input-event evidence, exited h
 The controller recorder now verifies fresh process identities around CPU/RSS reads and checks parent identity separately. The [new evidence](docs/resource-sampling-fix/README.md) records 144 passing tests and a successful 19-check noninteractive Windows probe, including CPU-baseline exclusion, exact identity agreement for 37 existing application processes and clean recorder shutdown. The first probe selected the virtual-environment launcher instead of the worker; that failed check is retained with the corrected exact-worker binding.
 
 The participant-supplied unassisted human baseline, historical benchmark JSON and rundown evidence remain byte-for-byte unchanged. No app restart, new human run or native office-workflow run was performed. Only `office_twin/evidence.py` differs among the 14 runtime modules from the historical native benchmark; its performance figures are not reassigned to this fix. The versioned package manifest distinguishes current software validation from historical native measurements. This checkpoint prepares the replacement story and evidence attachment; upload completion is recorded separately after readback.
+
+## Resource-sampler upload verified
+
+Verified **16 October 2026 at 21:05 SGT**. Devpost's freshly reopened project-details editor exactly matched the packaged story (25,016 characters after newline normalization; SHA-256 `9f19cc4b914bf5d8fdde67b7757b2b5fca30851099272a8b7d487e664f66c243`). The public story displays the sampler fix, **144 passing tests**, **19/19 noninteractive checks** and the unchanged participant-confirmed unassisted human baseline. The historical image caption now points to 144 current tests while preserving its original 85-test image context.
+
+The saved judges' attachment is **`office-twin-resource-fix-20261016-671f032.zip`**, **10,407,942 bytes**, SHA-256 **`c575388c5a66719584f250af256aef2d59409cbc98be0ed2491e6c7de58205a1`**. It contains clean source commit [`671f032442b7b156ef0d4f1fd41370675be66993`](https://github.com/ajayasai/office-twin-ntu-st-2026/commit/671f032442b7b156ef0d4f1fd41370675be66993), the same historical videos and a schema-v2 provenance manifest. Both ZIPs, artifact hashes, current validation sources and protected historical evidence were checked. Only `office_twin/evidence.py` differs among the 14 runtime modules from the historical native benchmark; the older performance results are not presented as new-version measurements.
+
+After upload, Devpost's finalization page showed **Project submitted!** and **SUBMITTED — 5/5 steps done**. Reopening Additional info confirmed the exact replacement filename. All three teammates remained listed, and the video URL remained `https://youtu.be/oTTT0ECN25U`. The brief Cloudflare verification interruption was resolved before these readbacks. Screenshots and exact readback records are retained locally. This completion record changes documentation only; the uploaded ZIP is preserved without rebuilding it.
