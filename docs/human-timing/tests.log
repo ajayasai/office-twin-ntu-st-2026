@@ -147,8 +147,8 @@ test_inventory_failure_propagates_without_fabricated_snapshot (test_rundown_snap
 test_preserves_exact_filetime_and_retains_only_apps_and_live_ancestors (test_rundown_snapshot.RundownSnapshotTests.test_preserves_exact_filetime_and_retains_only_apps_and_live_ancestors) ... ok
 test_query_error_closes_handle_and_uses_only_limited_query_access (test_rundown_snapshot.RundownSnapshotTests.test_query_error_closes_handle_and_uses_only_limited_query_access) ... ok
 test_races_during_inventory_or_recheck_are_omitted_and_counted (test_rundown_snapshot.RundownSnapshotTests.test_races_during_inventory_or_recheck_are_omitted_and_counted) ... ok
-test_default_behavior_does_not_collect_or_require_snapshots (test_rundown_snapshot.RundownWorkerTests.test_default_behavior_does_not_collect_or_require_snapshots) ... C:\Users\ajaia\AppData\Local\Temp\tmpx63904fs\export\benchmark.json
-C:\Users\ajaia\AppData\Local\Temp\tmpx63904fs\export\BENCHMARK.md
+test_default_behavior_does_not_collect_or_require_snapshots (test_rundown_snapshot.RundownWorkerTests.test_default_behavior_does_not_collect_or_require_snapshots) ... [local-user]\AppData\Local\Temp\tmpx63904fs\export\benchmark.json
+[local-user]\AppData\Local\Temp\tmpx63904fs\export\BENCHMARK.md
 CANARIES: before-native
 NATIVE VALIDATION: one fixed/contextual pair, normal timing
 CANARIES: after-native

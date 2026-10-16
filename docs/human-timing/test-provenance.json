@@ -11,7 +11,7 @@
   "runtime_sha256": "f2494846195fdee39e8f954998d7edbbb55074bb7f7805d8f1f6f45c3b30704a",
   "runtime_digest_algorithm": "SHA256 over sorted office_twin/*.py filename + NUL + raw file bytes + NUL (run_benchmark.code_digest)",
   "private_log_sha256": "c36fd13f69f16d7529b692624ddeb92e9cb9f98b8893ad2435b280c13914ce67",
-  "published_log_sha256": "c36fd13f69f16d7529b692624ddeb92e9cb9f98b8893ad2435b280c13914ce67",
+  "published_log_sha256": "7baa1ea78d1d9fce26ac63f0821d7f3ca923b4e2f49dc913113ccab96e07b80c",
   "source_file_sha256": {
     "office_twin/__init__.py": "3eb2e88c83f56f2ffce595bacbccd1fce3a074793820a218a42c724dddc79638",
     "office_twin/__main__.py": "d6bf86d8bcc3248b7d9fcaa41ace9e17dd29c5b8042c23f5d11a2414b8d43ddc",
@@ -59,5 +59,6 @@
     "tools/run_benchmark.py": "f1a28c8abea9549f17fd3fcda3667468f4533937a78ed4720ed38187917f6fd8",
     "tools/run_event_validation.py": "26c6fb4470c758d22276d276b0687fd5987422f08c2e4a2087ee1dbf90ec4e3e",
     "tools/verify_human_timing.py": "e6a5f902a49453c9d669feea8f87e3a5cc31b67ee8a436a7abaacfa76b34488d"
-  }
+  },
+  "published_log_redactions": "Repository and local-user path prefixes only; private unredacted log hash retained. Test names, outcomes and timing unchanged."
 }
